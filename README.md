@@ -12,6 +12,7 @@ Notes from books and other interesting things that I've read.
 aside is not semantically correct.
 >> 6. You decide on article, because at least it’s not a div.
 >> 7. You’ve wasted 40 minutes, with no tangible benefit to show for it.
+
 > [When You Learn Something, Write About It!](https://www.smashingmagazine.com/2012/03/publish-what-you-learn/)
 >> 1. Publish what you learn.
 >> 2. Why did they become successful? Because they published what they learned. 
