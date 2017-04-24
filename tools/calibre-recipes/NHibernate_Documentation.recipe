@@ -3,32 +3,32 @@
 from __future__ import unicode_literals, division, absolute_import, print_function
 from calibre.web.feeds.news import BasicNewsRecipe
 
-class NHibernate_Reference_Documentation(BasicNewsRecipe):
-    title          = 'NHibernate Reference Documentation'
+class NHibernate_Documentation(BasicNewsRecipe):
+    title          = 'NHibernate Documentation'
     oldest_article = 7
     max_articles_per_feed = 100
     auto_cleanup   = True
 
     
-    description = 'NHibernate - Relational Persistence for Idiomatic .NET, version: 4.1'
+    description = 'NHibernate Documentation'
     cover_url = 'http://nhibernate.info/images/NHLogoSmall.gif'
-    url_pre = 'http://nhibernate.info/doc/nhibernate-reference/index.html'
-    base_url = 'http://nhibernate.info/doc/nhibernate-reference/'
+    url_pre = 'http://nhibernate.info/doc/'
+    base_url = 'http://nhibernate.info'
     no_stylesheets = True
 
     def parse_index(self):
         soup = self.index_to_soup(self.url_pre)
 
-        div = soup.find('div', {'class': 'toc'})
+        div = soup.find('div', { 'class': 'CommonContentBoxContent' })
 
         articles = []
-        for link in div.findAll('a'):
+        for link in div.findAll('a') if link != 0:
             til = link.contents[0].strip()
             url = self.base_url + link['href']
             if "#" not in url:
                 a = { 'title': til, 'url': url }
                 articles.append(a)
 
-        results = [('NHibernate Reference Documentation', articles)]
+        results = [('NHibernate Documentation', articles)]
 
         return results
