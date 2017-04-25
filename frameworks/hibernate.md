@@ -5,5 +5,5 @@
 > session.CreateCriteria<TransactionGoodsPO>("goods").SetMaxResults(limit).List<TransactionGoodsPO>();
 
 ## (NHibernate.Criterion.Expression)Apply a "like" constraint to the project
-> session.CreateCriteria<TransactionGoodsPO>("goods")..Add(Restrictions.Like("goods.GoodsCode", goodsCode, MatchMode.Anywhere)).List<TransactionGoodsPO>();
+> session.CreateCriteria<TransactionGoodsPO>("goods").Add(Restrictions.Like("goods.GoodsCode", goodsCode, MatchMode.Anywhere)).List<TransactionGoodsPO>();
 

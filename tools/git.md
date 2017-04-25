@@ -81,3 +81,12 @@ $ cat .git/refs/heads/master
 
 4. Instead of typing "HEAD", you can say "@" instead, e.g. "git log @".
 
+## git: a quick command to go to root of the working tree
+1. cd $(git rev-parse --show-toplevel) or cd $(git rev-parse --show-cdup)
+2. alias git-root='cd $(git rev-parse --show-cdup)'
+3. --show-toplevel: Show the absolute path of the top-level directory.
+4. --show-cdup: When the command is invoked from a subdirectory, show the path of the top-level directory relative to the current directory (typically a sequence of "../", or an empty string).
+
+## git rev-parse [ --option ] <args>...
+1. git-rev-parse - Pick out and massage parameters
+2. Many Git porcelainish commands take mixture of flags (i.e. parameters that begin with a dash -) and parameters meant for the underlying git rev-list command they use internally and flags and parameters for the other commands they use downstream of git rev-list. This command is used to distinguish between them.

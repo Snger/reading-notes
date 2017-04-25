@@ -27,3 +27,10 @@ var context = new[] {
 3. Assemblies are only loaded into memory if they are required. If they are not used, they are not loaded. This means that assemblies can be an efficient way to manage resources in larger projects.
 4. You can programmatically obtain information about an assembly by using reflection. For more information, see Reflection.
 5. If you want to load an assembly only to inspect it, use a method such as ReflectionOnlyLoadFrom."
+
+## lock Statement (C# Reference)
+1. The lock keyword marks a statement block as a critical section by obtaining the mutual-exclusion lock for a given object, executing a statement, and then releasing the lock. 
+2. The lock keyword ensures that one thread does not enter a critical section of code while another thread is in the critical section. If another thread tries to enter a locked code, it will wait, block, until the object is released.
+3. Best practice is to define a private object to lock on, or a private static object variable to protect data common to all instances.
+4. You can't use the await keyword in the body of a lock statement.
+

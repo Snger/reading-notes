@@ -1,0 +1,18 @@
+Unit testing（单元测试），指一段代码的基本测试，其实际大小是未定的，通常是一个函数或子程序，一般由开发者执行。
+
+## Unit testing（单元测试） 
+1. Unit testing（单元测试），指一段代码的基本测试，其实际大小是未定的，通常是一个函数或子程序，一般由开发者执行。
+
+^(\w*\s?\w*\s?\w*[\(（]\w*[\)）])(?=[\,，])
+\n## $0 \n1.$1$2
+
+
+
+Backreference	\1 through \9	Substituted with the text matched between the 1st through 9th numbered capturing group.	(abc|def)=\1 matches abc=abc or def=def, but not abc=def or def=abc.
+## Backreference 
+1. Syntax: \1 through \9
+2. Substituted with the text matched between the 1st through 9th numbered capturing group.
+3. Example: (abc|def)=\1 matches abc=abc or def=def, but not abc=def or def=abc.
+
+^(\w*\s?\w*)\t([\\\w*\s\w*\s\\\w<>]*)\t([\w\s.]*)\t([\(\w|\)=\\\s,.<>\?\{\}]*)$
+\n## $1 \n1. Syntax: $2\n2. $3\n3. Example: $4
