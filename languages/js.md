@@ -52,3 +52,8 @@ setter(context, 'newValue');
 expect(context.user.name).toEqual('newValue');
 expect(getter(context, locals)).toEqual('local');
 ````
+## conditional (ternary) operator
+1. The conditional (ternary) operator is the only JavaScript operator that takes three operands. This operator is frequently used as a shortcut for the if statement.
+2. Syntax : condition ? expr1 : expr2 
+3. If condition is true, the operator returns the value of expr1; otherwise, it returns the value of expr2. 
+4. You can also do more than one operation during the assignation of a value. In this case, the last comma-separated value of the parenthesis will be the value to be assigned.

@@ -21,3 +21,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp 目录中
 
 ## cmd- change to e drive?
 type the below at the C:\> prompt: `E:` That's all!
+
+## Location of the Hosts File
+1. C:\Windows\System32\Drivers\etc
+2. /c/Windows/System32/Drivers/etc
