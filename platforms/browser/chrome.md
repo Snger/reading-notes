@@ -5,3 +5,5 @@
 4. Timeline. Sorts by the start time of each network request. This is the default sort, and is the same as sorting by the Start Time option.
 Start Time. Sorts by the start time of each network request (same as sorting by the Timeline option).
 
+## Chrome for iOS gets an offline Read Later feature
+1. Google has officially brought a Pocket-like Read Later feature to the latest version of Chrome for iOS, as rumored by 9to5Mac last week. The feature works a lot like Apple’s Reading List feature in Safari — there’s a new “Read Later” icon that appears on the share sheet in Chrome, which saves articles locally on the device to read later, even without an internet connection.

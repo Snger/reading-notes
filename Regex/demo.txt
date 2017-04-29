@@ -16,3 +16,26 @@ Backreference	\1 through \9	Substituted with the text matched between the 1st th
 
 ^(\w*\s?\w*)\t([\\\w*\s\w*\s\\\w<>]*)\t([\w\s.]*)\t([\(\w|\)=\\\s,.<>\?\{\}]*)$
 \n## $1 \n1. Syntax: $2\n2. $3\n3. Example: $4
+
+
+Procedural languages offer limited support for model-driven
+design. Such languages do not offer the constructs necessary to
+implement key components of a model. Some say that OOP can
+be done with a procedural language like C, and indeed, some of
+the functionality can be reproduced that way. Objects can be
+simulated as data structures. Such structures do not contain the
+behavior of the object, and that has to be added separately as
+functions. The meaning of such data exists only in developer’s
+mind, because the code itself is not explicit. A program written
+in a procedural language is usually perceived as a set of
+functions, one calling another, and working together to achieve a
+certain result. Such a program cannot easily encapsulate
+conceptual connections, making mapping between domain and
+code difficult to be realized.
+
+Procedural languages offer limited support for model-driven design. Such languages do not offer the constructs necessary to implement key components of a model. Some say that OOP can be done with a procedural language like C, and indeed, some of the functionality can be reproduced that way. Objects can be simulated as data structures. Such structures do not contain the behavior of the object, and that has to be added separately as functions. The meaning of such data exists only in developer’s mind, because the code itself is not explicit. A program written in a procedural language is usually perceived as a set of functions, one calling another, and working together to achieve a certain result. Such a program cannot easily encapsulate conceptual connections, making mapping between domain and code difficult to be realized.
+
+(\n)(\w{2,})
+ $2
+
+

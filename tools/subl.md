@@ -15,3 +15,18 @@
 3. It is also possible to combine filters using commas. You can combine filters in any order.
 4. Press the ... button in the search panel to display a menu containing filtering options.
 5. (In the Where field, add this filter: `target/`) The filter means "Search in any files that have a folder named `target` in the path. Specify additional subdirectories by separating with commas, e.g. target/foo/,other/bar/.
+
+## Search – Single File
+> Open search panel: Ctrl + F
+> Toggle regular expressions: Alt + R
+> Toggle case sensitivity: Alt + C
+> Toggle exact match: Alt + W
+> Find next: Enter
+> Find previous: Shift + Enter
+> Find all: Alt + Enter
+
+## Replace – Single File
+> Open replace panel:  Ctrl + H
+> Replace next:    Ctrl + Shift + H
+> Replace all:  Ctrl + Alt + Enter
+
