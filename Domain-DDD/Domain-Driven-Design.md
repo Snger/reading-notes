@@ -186,23 +186,11 @@ a refactoring. Refactoring is the process of redesigning the code to make it bet
 4. In-House Implementation. This solution has the advantage of achieving the best level of integration. It does mean extra effort, including the maintenance burden.
 
 ## Why is DDD as important today as ever?
-1. The long-term trend is toward applying software to more and
-more complex problems deeper and deeper into the heart of
-these businesses. It seems to me this trend was interrupted for a
-few years, as the web burst upon us. Attention was diverted
-away from rich logic and deep solutions, because there was so
-much value in just getting data onto the web, along with very
-simple behavior. There was a lot of that to do, and just doing
-simple things on the web was difficult for a while, so that
-absorbed all the development effort.
-2. But now that basic level of web usage has largely been
-assimilated, and projects are starting to get more ambitious again
-about business logic.
-3. Very recently, web development platforms have begun to mature
-enough to make web development productive enough for DDD,
-and there are a number of positive trends. For example, SOA,
-when it is used well, provides us a very useful way of isolating
-the domain.
-4. So DDD looks to be increasingly important for the foreseeable
-future, and some foundations seem to be laid.
+1. The long-term trend is toward applying software to more and more complex problems deeper and deeper into the heart of these businesses. It seems to me this trend was interrupted for a few years, as the web burst upon us. Attention was diverted away from rich logic and deep solutions, because there was so much value in just getting data onto the web, along with very simple behavior. There was a lot of that to do, and just doing simple things on the web was difficult for a while, so that absorbed all the development effort.
+2. But now that basic level of web usage has largely been assimilated, and projects are starting to get more ambitious again about business logic.
+3. Very recently, web development platforms have begun to mature enough to make web development productive enough for DDD, and there are a number of positive trends. For example, SOA, when it is used well, provides us a very useful way of isolating the domain.
+4. So DDD looks to be increasingly important for the foreseeable future, and some foundations seem to be laid.
 
+## Technology platforms (Java, .NET, Ruby, others) are continually evolving. How does Domain Driven Design fit in?
+1. In fact, new technologies and processes should be judged on whether they support teams to focus on their domain, rather than distracting them from it. DDD is not specific to a technology platform, but some platforms give more expressive ways of creating business logic, and some platforms have less distracting clutter.
+2. That was a discouraging period, but trends have turned in the last four years or so. First, looking at Java, there has been a confluence of a new sophistication in the community about how to use frameworks selectively, and a menagerie of new frameworks (mostly open-source) that are incrementally improving. Frameworks such as Hibernate and Spring handle specific jobs that J2EE tried to address, but in a much lighter way. Approaches like AJAX which try to tackle the UI problem, in a less labor-intensive way. And projects are much smarter now about picking and choosing the elements of J2EE that give them value and mixing in some of these newer elements. The term POJO was coined during this era.
