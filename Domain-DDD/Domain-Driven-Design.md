@@ -109,3 +109,100 @@ a refactoring. Refactoring is the process of redesigning the code to make it bet
 1. To reach a Breakthrough, we need to make the implicit concepts explicit. When we talk to the domain experts, we exchange a lot of ideas and knowledge. Some of the concepts make their way into the Ubiquitous Language, but some remain unnoticed at the beginning. They are implicit concepts, used to explain other concepts which are already in the model. During this process of design refinement, some of those implicit concepts draw our attention. We discover that some of them play a key role in the design. At that point we should make the respective concepts explicit. We should create classes and relationships for them. When that happens, we may have the chance of a Breakthrough.
 2. Placing the Constraint into a separate method has the advantage of making it explicit. It is easy to read and everybody will notice that the method is subject to this constraint. There is also room for growth adding more logic to the methods if the constraint becomes more complex.
 
+## Why Preserving Model Integrity is hard?
+1. When multiple teams work on a project, code development is done in parallel, each team being assigned a specific part of the model. Those parts are not independent, but are more or less interconnected. They all start with one big model, and they are given a share of it to implement. Let’s say that one of the teams has created a module, and they make it available for other teams to use it. A developer from another team starts using the module, and discovers that it is missing some functionality needed for his own module. He adds the needed functionality and checks-in the code so it can be used by all. What he might not realize is that this is actually a change of the model, and it is quite possible that this change will break application functionality. This can easily happen, as nobody takes the time to fully understand the entire model. Everybody knows his own backyard, but other areas are not known in enough detail.
+2. It is so easy to start from a good model and progress toward an inconsistent one. The first requirement of a model is to be consistent, with invariable terms and no contradictions. The internal consistency of a model is called unification. An enterprise project could have one model covering the entire domain of the enterprise, with no contradictions and overlapping terms. A unified enterprise model is an ideal which is not easily accomplished, and sometimes it is not even worth trying it. Such projects need the combined effort of many teams. The teams need a large degree of independence in the development process, because they do not have the time to constantly meet and discuss the design. The coordination of such teams is a daunting task. They might belong to different departments and have separate management. When the design of the model evolves partially independently, we are facing the possibility to lose model integrity. Preserving the model integrity by striving to maintain one large unified model for the entire enterprise project is not going to work. The solution is not so obvious, because it is the opposite of all we have learned so far. Instead of trying to keep one big model that will fall apart later, we should consciously divide it into several models. Several models well integrated can evolve independently as long as they obey the contract they are bound to. Each model should have a clearly delimited border, and the relationships between models should be defined with precision.
+
+## How to Preserving Model Integrity?
+1. Bounded Context
+2. Continuous Integration
+3. Context Map
+4. Shared Kernel
+5. Customer-Supplier
+6. Conformist
+7. Anticorruption Layer
+8. Separate Ways
+9. Open Host Service 10. Distillation
+
+## What's Bounded Context?
+1. Each model has a context. When we deal with a single model, the context is implicit. We do not need to define it. When we create an application which is supposed to interact with other software, for example a legacy application, it is clear that the new application has its own model and context, and they are separated from the legacy model and its context. They cannot be combined, mixed, or confused. But when we work on a large enterprise application, we need to define the context for each model we create.
+2. There is no formula to divide one large model into smaller ones. Try to put in a model those elements which are related, and which form a natural concept. A model should be small enough to be assigned to one team.
+3. The main idea is to define the scope of a model, to draw up the boundaries of its context, then do the most possible to keep the model unified.
+4. A Bounded Context is not a Module. A Bounded Context provides the logical frame inside of which the model evolves. Modules are used to organize the elements of a model, so Bounded Context encompasses the Module.
+5. When different teams have to work on the same model, we must be very careful not to step on each others toes. When using multiple models, everybody can work freely on their own piece. We all know the limits of our model, and stay inside the borders. We just have to make sure we keep the model pure, consistent and unified. Each model can support refactoring much easier, without repercussions on other models.
+6. There is a price to pay for having multiple models. We need to define the borders and the relationships between different models. This requires extra work and design effort, and there will be perhaps some translation between different models. We won’t be able to transfer any objects between different models, and we cannot invoke behavior freely as if there was no boundary.
+
+## What's the opposite of Continuous Integration?
+1. Even when a team works in a Bounded Context there is room for error. We need to communicate inside the team to make sure we all understand the role played by each element in the model. If one does not understand the relationships between objects, they may modify the code in such a way that comes in contradiction with the original intent. It is easy to make such a mistake when we do not keep 100% focus on the purity of the model. One member of the team might add code which duplicates existing code without knowing it, or they might add duplicate code instead of changing the current code, afraid of breaking existing functionality.
+
+## What's Continuous Integration?
+1. A model is not fully defined from the beginning. It is created, then it evolves continuously based on new insight in the domain and feedback from the development process. That means that new concepts may enter the model, and new elements are added to the code. All these need are to be integrated into one unified model, and implemented accordingly in code. That’s why Continuous Integration is a necessary process within a Bounded Context.
+2. We need a process of integration to make sure that all the new elements which are added fit harmoniously into the rest of the model, and are implemented correctly in code. We need to have a procedure used to merge the code. The sooner we merge the code the better. For a single small team, daily merges are recommended. We also need to have a build process in place. The merged code needs to be automatically built so it can be tested.
+3. Another necessary requirement is to perform automated tests. If the team has a test tool, and has created a test suite, the test can be run upon each build, and any errors are signaled. The code can be easily changed to fix the reported errors, because they are caught early, and the merge, build, and test process is started again.
+4. Continuous Integration is based on integration of concepts in the model, then finding its way into the implementation where it is tested. Any inconsistency of the model can be spotted in the implementation. Continuous Integration applies to a Bounded Context, it is not used to deal with relationships between neighboring Contexts.
+
+## What's Context Map?
+1. A Context Map is a document which outlines the different Bounded Contexts and the relationships between them. A Context Map can be a diagram like the one below, or it can be any written document. The level of detail may vary. What it is important is that everyone working on the project shares and understands it.
+
+## What's Shared Kernel?
+1. The purpose of the Shared Kernel is to reduce duplication, but still keep two separate contexts. Development on a Shared Kernel needs a lot of care. Both teams may modify the kernel code, and they have to integrate the changes. If the teams use separate copies of the kernel code, they have to merge the code as soon as possible, at least weekly. A test suite should be in place, so every change done to the kernel to be tested right away. Any change of the kernel should be communicated to another team, and the teams should be informed, making them aware of the new functionality.
+
+## What's Customer-Supplier?
+1. When we are faced with such a scenario, we should start acting. The reporting team should play the customer role, while the e- shopping team should play the supplier role. The two teams should meet regularly or upon request, and chat as a customer does with his supplier. The customer team should present its requirements, while the supplier team should make the plans accordingly. While all the customer team’s requirements will have to be met in the end, the timetable for doing that is decided by the supplier team. If some requirements are considered really important, they should be implemented sooner, while other requirements might be postponed. The customer team will also need input and knowledge to be shared by the supplier team. This process flows one way, but it is necessary in some cases.
+
+## When to using Conformist?
+1. If the customer has to use the supplier team’s model, and if that is well done, it may be time for conformity. The customer team could adhere to the supplier team’s model, conforming entirely to it. This is much like the Shared Kernel, but there is an important difference. The customer team cannot make changes to the kernel. They can only use it as part of their model, and they can build on the existing code provided. There are many times when such a solution is viable. When somebody provides a rich component, and provides an interface to it, we can build our model including the respective component as it would be our own. If the component has a small interface, it might be better to simply create an adapter for it, and translate between our model and the component’s model. This would isolate our model, and we can develop it with a high degree of freedom.
+
+## Why we need Anticorruption Layer?
+1. We often encounter circumstances when we create an application which has to interact with legacy software or a separate application. This is another challenge for the domain modeler. Many legacy applications have not been built using domain modeling techniques, and their model is confused, entangled hard to understand and hard to work with. Even if it was well done, the legacy application model is not of much use for us, because our model is likely to be quite different. Nonetheless, there has to be a level of integration between our model and the legacy one, because it is one of the requirements to use the old application.
+2. There are different ways for our client system to interact with an external one. One is via network connections. Both applications need to use the same network communication protocols, and the client needs to adhere to the interface used by the external system. Another method of interaction is the database. The external system works with data stored in a database. The data semantics is very important, and needs to be considered. The client application can’t access the database and write to it without understanding the meaning of the data used. We see that parts of the external model are reflected in the database, and make their way into our model.
+3. We should build an Anticorruption Layer which stands between our client model and the external one. From our model’s perspective, the Anticorruption Layer is a natural part of the model; it does not look like something foreign. It operates with concepts and actions familiar to our model. But the Anticorruption Layer talks to the external model using the external language not the client one. This layer works as a two way translator between two domains and languages. The greatest achievement is that the client model remains pure and consistent without being contaminated by the external one.
+
+## How should we implement the Anticorruption Layer?
+1. A very good solution is to see the layer as a Service from the client model. It is very simple to use a Service because it abstracts the other system and let us address it in our own terms. The Service will do the needed translation, so our model remains insulated. Regarding the actual implementation, the Service will be done as a Façade. (See Design Pattern by Gamma et al. 1995) Besides that, the Anticorruption Layer will most likely need an Adapter. The Adapter allows you to convert the interface of a class to the one understood by the client. In our case the Adapter does not necessarily wrap a class, because its job is to translate between two systems.
+2. The Anticorruption Layer may contain more than one Service. For each Service there is a corresponding Façade, and for each Façade we add an Adapter. We should not use a single Adapter for all Services, because we clutter it with mixed functionality.
+3. We still have to add one more component. The Adapter takes care of wrapping up the behavior of the external system. We also need object and data conversion. This is done using a translator.
+4. This can be a very simple object, with little functionality, serving the basic need of data translation. If the external system has a complex interface, it may be better to add an additional Façade between the adapters and that interface. This will simplify the Adapter’s protocol, and separate it from the other system.
+
+## When to using Separate Ways?
+1. The Separate Ways pattern addresses the case when an enterprise application can be made up of several smaller applications which have little or nothing in common from a modeling perspective. There is a single set of requirements, and from the user’s perspective this is one application, but from a modeling and design point of view it may done using separate models with distinct implementations. We should look at the requirements and see if they can be divided in two or more sets which do not have much in common. If that can be done, then we can create separate Bounded Contexts and do the modeling independently. This has the advantage of having the freedom to choose the technologies used for implementation. The applications we are creating may share a common thin GUI which acts as a portal with links or buttons used to access each application. That is a minor integration which has to do with organizing the applications, rather than the model behind them.
+2. Before going on Separate Ways we need to make sure that we won’t be coming back to an integrated system. Models developed independently are very difficult to integrate. They have so little in common that it is just not worth doing it.
+
+## Open Host Service
+1. When a subsystem has to be integrated with many others, customizing a translator for each can bog down the team. There is more and more to maintain, and more and more to worry about when changes are made.
+2. The solution is to see the external subsystem as a provider of services. If we can wrap a set of Services around it, then all the other subsystems will access these Services, and we won’t need any translation layer. The difficulty is that each subsystem may need to interact in a specific way with the external subsystem, and to create a coherent set of Services may be problematic.
+3. Define a protocol that gives access to your subsystem as a set of Services. Open the protocol so that all who need to integrate with you can use it. Enhance and expand the protocol to handle new integration requirements, except when a single team has idiosyncratic needs. Then, use a one-off translator to augment the protocol for that special case so that the shared protocol can stay simple and coherent.
+
+## Distillation
+1. Distillation is the process of separating the substances composing a mixture. The purpose of distillation is to extract a particular substance from the mixture. During the distillation process, some byproducts may be obtained, and they can also be of interest.
+2. A large domain has a large model even after we have refined it and created many abstractions. It can remain big even after many refactorings. In situations like this, it may be time for a distillation. The idea is to define a Core Domain which represents the essence of the domain. The byproducts of the distillation process will be Generic Subdomains which will comprise the other parts of the domain.
+3. Apply your top talent to the Core Domain, and recruit accordingly. Spend the effort in the Core to find a deep model and develop a supple design—sufficient to fulfill the vision of the system. It is important to assign the best developers to the task of implementing the Core Domain.
+4. Developers usually tend to like technologies, to learn the best and latest language, being driven more to the infrastructure rather than the business logic. The business logic of a domain seems to be boring to them, and of little reward. If the core business logic does not do its job, all the technological bells and whistles will amount to nothing.
+
+## How to implement a Generic Subdomain?
+1. Off-the-shelf Solution. This one has the advantage of having the entire solution already done by someone else. There is still a learning curve associated with it, and such a solution introduces some dependencies. If the code is buggy, you have to wait to be fixed. You also need to use certain compilers and library versions. Integration is not so easily accomplished compared to an in-house system.
+2. Outsourcing. The design and implementation is given to another team, probably from another company. This lets you focus on the Core Domain, and takes off the burden of another domain to deal with. There is still the inconvenience of integrating the outsourced code. The interface used to communicate with the subdomain needs to be defined and communicated to the other team.
+3. Existing Model. One handy solution is to use an already created model. There are some books which have published analysis patterns, and they can be used as inspiration for our subdomains. It may not be possible to copy the patterns ad literam, but many of them can be used with small changes.
+4. In-House Implementation. This solution has the advantage of achieving the best level of integration. It does mean extra effort, including the maintenance burden.
+
+## Why is DDD as important today as ever?
+1. The long-term trend is toward applying software to more and
+more complex problems deeper and deeper into the heart of
+these businesses. It seems to me this trend was interrupted for a
+few years, as the web burst upon us. Attention was diverted
+away from rich logic and deep solutions, because there was so
+much value in just getting data onto the web, along with very
+simple behavior. There was a lot of that to do, and just doing
+simple things on the web was difficult for a while, so that
+absorbed all the development effort.
+2. But now that basic level of web usage has largely been
+assimilated, and projects are starting to get more ambitious again
+about business logic.
+3. Very recently, web development platforms have begun to mature
+enough to make web development productive enough for DDD,
+and there are a number of positive trends. For example, SOA,
+when it is used well, provides us a very useful way of isolating
+the domain.
+4. So DDD looks to be increasingly important for the foreseeable
+future, and some foundations seem to be laid.
+
