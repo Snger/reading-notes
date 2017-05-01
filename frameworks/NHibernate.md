@@ -14,3 +14,22 @@
 1. NHibernate works best with the Plain Old CLR Objects (POCOs, sometimes called Plain Ordinary CLR Objects) programming model for persistent classes. A POCO has its data accessible through the standard .NET property mechanisms, shielding the internal representation from the publicly visible interface.
 2. NHibernate is not restricted in its usage of property types, all .NET types and primitives (like string, char and DateTime) can be mapped, including classes from the System.Collections namespace. You can map them as values, collections of values, or associations to other entities. The Id is a special property that represents the database identifier (primary key) of that class, it is highly recommended for entities. NHibernate can use identifiers only internally, without having to declare them on the class, but we would lose some of the flexibility in our application architecture.
 3. No special interface has to be implemented for persistent classes nor do we have to subclass from a special root persistent class. NHibernate also doesn't use any build time processing, such as IL manipulation, it relies solely on .NET reflection and runtime class enhancement. So, without any dependency in the POCO class on NHibernate, we can map it to a database table. For the above mentioned runtime class enhancement to work, NHibernate requires that all public properties of an entity class are declared as virtual.
+
+
+## How do I make NHibernate Linq provider to use the paging features of MsSql2012Dialect
+1. You can still get the updated dialect from https://github.com/nhibernate/nhibernate-core/blob/master/src/NHibernate/Dialect/MsSql2012Dialect.cs, include it in your project and reference it (adding the correct assembly name).
+
+## How to auto generate IDs in NHibernate?
+> increment: generates identifiers of any integral type that are unique only when no other process is inserting data into the same table. Do not use in a cluster.
+> identity: supports identity columns in DB2, MySQL, MS SQL Server and Sybase. The identifier returned by the database is converted to the property type using Convert.ChangeType. Any integral property type is thus supported.
+> sequence: uses a sequence in DB2, PostgreSQL, Oracle or a generator in Firebird. The identifier returned by the database is converted to the property type using Convert.ChangeType. Any integral property type is thus supported.
+> hilo: uses a hi/lo algorithm to efficiently generate identifiers of any integral type, given a table and column (by default hibernate_unique_key and next_hi respectively) as a source of hi values. The hi/lo algorithm generates identifiers that are unique only for a particular database. Do not use this generator with a user-supplied connection. You can use the "where" parameter to specify the row to use in a table. This is useful if you want to use a single tabel for your identifiers, with different rows for each table.
+> seqhilo: uses a hi/lo algorithm to efficiently generate identifiers of any integral type, given a named database sequence.
+> uuid.hex: uses System.Guid and its ToString(string format) method to generate identifiers of type string. The length of the string returned depends on the configured format.
+> uuid.string: uses a new System.Guid to create a byte[] that is converted to a string.
+> guid: uses a new System.Guid as the identifier.
+> guid.comb: uses the algorithm to generate a new System.Guid described by Jimmy Nilsson in the article http://www.informit.com/articles/article.asp?p=25862
+> native: picks identity, sequence or hilo depending upon the capabilities of the underlying database
+> assigned: lets the application to assign an identifier to the object before Save() is called
+> foreign: uses the identifier of another associated object. Usually used in conjunction with a <one-to-one> primary key association
+
