@@ -1,21 +1,6 @@
 ## What's NHibernate?
 1. NHibernate not only takes care of the mapping from .NET classes to database tables (and from .NET data types to SQL data types), but also provides data query and retrieval facilities and can significantly reduce development time otherwise spent with manual data handling in SQL and ADO.NET.
 
-## download NHibernate to project
-1. Download NHibernate, either from SourceForge (http://sourceforge.net/projects/nhibernate/) or NuGet ( Install-Package NHibernate ). In the project, add a reference to NHibernate.dll (NuGet already does this). Visual Studio will automatically copy the library and its dependencies to the project output directory. If you are using a database other than SQL Server, add a reference to its driver assembly to your project.
-
-## set up the database connection information for NHibernate
-1. We now set up the database connection information for NHibernate. To do this, open the file Web.config automatically generated for your project and add configuration elements according to the listing.
-2. The <configSections> element contains definitions of sections that follow and handlers to use to process their content. We declare the handler for the configuration section here. NHibernate will take care of the differences and comes bundled with dialects for several major commercial and open source databases.
-3. An ISessionFactory is NHibernate's concept of a single datastore, multiple databases can be used by creating multiple XML configuration files and creating multiple Configuration and ISessionFactory objects in your application.
-4. The last element of the <hibernate-configuration> (or <databaseSettings>) section declares Web project as the name of an assembly containing class declarations and mapping files. The mapping files contain the metadata for the mapping of the POCO class to a database table (or multiple tables). 
-
-## First persistent class
-1. NHibernate works best with the Plain Old CLR Objects (POCOs, sometimes called Plain Ordinary CLR Objects) programming model for persistent classes. A POCO has its data accessible through the standard .NET property mechanisms, shielding the internal representation from the publicly visible interface.
-2. NHibernate is not restricted in its usage of property types, all .NET types and primitives (like string, char and DateTime) can be mapped, including classes from the System.Collections namespace. You can map them as values, collections of values, or associations to other entities. The Id is a special property that represents the database identifier (primary key) of that class, it is highly recommended for entities. NHibernate can use identifiers only internally, without having to declare them on the class, but we would lose some of the flexibility in our application architecture.
-3. No special interface has to be implemented for persistent classes nor do we have to subclass from a special root persistent class. NHibernate also doesn't use any build time processing, such as IL manipulation, it relies solely on .NET reflection and runtime class enhancement. So, without any dependency in the POCO class on NHibernate, we can map it to a database table. For the above mentioned runtime class enhancement to work, NHibernate requires that all public properties of an entity class are declared as virtual.
-
-
 ## How do I make NHibernate Linq provider to use the paging features of MsSql2012Dialect
 1. You can still get the updated dialect from https://github.com/nhibernate/nhibernate-core/blob/master/src/NHibernate/Dialect/MsSql2012Dialect.cs, include it in your project and reference it (adding the correct assembly name).
 
@@ -32,4 +17,21 @@
 > native: picks identity, sequence or hilo depending upon the capabilities of the underlying database
 > assigned: lets the application to assign an identifier to the object before Save() is called
 > foreign: uses the identifier of another associated object. Usually used in conjunction with a <one-to-one> primary key association
+
+## download NHibernate to project
+1. Download NHibernate, either from SourceForge (http://sourceforge.net/projects/nhibernate/) or NuGet ( Install-Package NHibernate ). In the project, add a reference to NHibernate.dll (NuGet already does this). Visual Studio will automatically copy the library and its dependencies to the project output directory. If you are using a database other than SQL Server, add a reference to its driver assembly to your project.
+
+## set up the database connection information for NHibernate
+1. We now set up the database connection information for NHibernate. To do this, open the file Web.config automatically generated for your project and add configuration elements according to the listing.
+2. The <configSections> element contains definitions of sections that follow and handlers to use to process their content. We declare the handler for the configuration section here. NHibernate will take care of the differences and comes bundled with dialects for several major commercial and open source databases.
+3. An ISessionFactory is NHibernate's concept of a single datastore, multiple databases can be used by creating multiple XML configuration files and creating multiple Configuration and ISessionFactory objects in your application.
+4. The last element of the <hibernate-configuration> (or <databaseSettings>) section declares Web project as the name of an assembly containing class declarations and mapping files. The mapping files contain the metadata for the mapping of the POCO class to a database table (or multiple tables). 
+
+## First persistent class
+1. NHibernate works best with the Plain Old CLR Objects (POCOs, sometimes called Plain Ordinary CLR Objects) programming model for persistent classes. A POCO has its data accessible through the standard .NET property mechanisms, shielding the internal representation from the publicly visible interface.
+2. NHibernate is not restricted in its usage of property types, all .NET types and primitives (like string, char and DateTime) can be mapped, including classes from the System.Collections namespace. You can map them as values, collections of values, or associations to other entities. The Id is a special property that represents the database identifier (primary key) of that class, it is highly recommended for entities. NHibernate can use identifiers only internally, without having to declare them on the class, but we would lose some of the flexibility in our application architecture.
+3. No special interface has to be implemented for persistent classes nor do we have to subclass from a special root persistent class. NHibernate also doesn't use any build time processing, such as IL manipulation, it relies solely on .NET reflection and runtime class enhancement. So, without any dependency in the POCO class on NHibernate, we can map it to a database table. For the above mentioned runtime class enhancement to work, NHibernate requires that all public properties of an entity class are declared as virtual.
+4. For the above mentioned runtime class enhancement to work, NHibernate requires that all public properties of an entity class are declared as virtual .
+5. The Cat.hbm.xml mapping file contains the metadata required for the object/relational mapping. The metadata includes declaration of persistent classes and the mapping of properties (to columns and foreign key relationships to other entities) to database tables. Please note that the Cat.hbm.xml should be set to an embedded resource.
+6. Every persistent class should have an identifer attribute (actually, only classes representing entities, not dependent value objects, which are mapped as components of an entity). This property is used to distinguish persistent objects: Two cats are equal if catA.Id.Equals(catB.Id) is true, this concept is called database identity.
 
