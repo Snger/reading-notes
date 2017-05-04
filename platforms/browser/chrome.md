@@ -7,3 +7,7 @@ Start Time. Sorts by the start time of each network request (same as sorting by 
 
 ## Chrome for iOS gets an offline Read Later feature
 1. Google has officially brought a Pocket-like Read Later feature to the latest version of Chrome for iOS, as rumored by 9to5Mac last week. The feature works a lot like Apple’s Reading List feature in Safari — there’s a new “Read Later” icon that appears on the share sheet in Chrome, which saves articles locally on the device to read later, even without an internet connection.
+
+## Chrome DevTools converts all HEX Colors to RGB
+1. In Chrome DevTools window: Click "3 dots" icon at the far right corner, select "Settings", in the "Preferences" panel find "Elements" > "Color format", select the option you wish to have, "As authored" is the default option.
+
