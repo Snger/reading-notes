@@ -41,3 +41,6 @@
 1. The Get-Package -updates command checks if there are newer versions available for any installed packages.
 2. To update a package, use Update-Package with the package ID, such as Update-Package jQuery.
 
+## How to: Display Line Numbers in the Editor?
+1. On the menu bar, choose Tools, Options. Expand the Text Editor node, and then select either the node for the language you are using, or All Languages to turn on line numbers in all languages. Or you can type line number in the Quick Launch box.
+
