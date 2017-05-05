@@ -1,0 +1,5 @@
+## What do browsers do with expired cookies?
+1. [Basics of Cookies in ASP.NET, Visual Basic User Education] If a cookie has expired, the browser does not send that particular cookie to the server with the page request; instead, the expired cookie is deleted.
+2. This depends upon the specific browser and also the user's personal settings. Welcome to the world of web development, where everybody is a special case. This is one of the reasons you need to test your site extensively, with multiple browsers, from different locations.
+3. [4.3.3  Cookie Management, HTTP State Management Mechanism - Network Working Group,February 1997]  If a user agent receives a Set-Cookie response header whose NAME is the same as a pre-existing cookie, and whose Domain and Path attribute values exactly (string) match those of a pre-existing cookie, the new cookie supersedes the old.  However, if the Set- Cookie has a value for Max-Age of zero, the (old and new) cookie is discarded.  Otherwise cookies accumulate until they expire (resources permitting), at which time they are discarded.
+
