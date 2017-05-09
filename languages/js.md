@@ -57,3 +57,7 @@ expect(getter(context, locals)).toEqual('local');
 2. Syntax : condition ? expr1 : expr2 
 3. If condition is true, the operator returns the value of expr1; otherwise, it returns the value of expr2. 
 4. You can also do more than one operation during the assignation of a value. In this case, the last comma-separated value of the parenthesis will be the value to be assigned.
+
+## Arrow functions
+1. An arrow function expression has a shorter syntax than a function expression and does not bind its own this, arguments, super, or new.target. These function expressions are best suited for non-method functions, and they cannot be used as constructors.
+2. Two factors influenced the introduction of arrow functions: shorter functions and non-binding of this.
