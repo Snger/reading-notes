@@ -19,3 +19,7 @@
 > dw - delete (cut) the current word
 > x - delete (cut) current character
 
+## How to unfreeze after accidentally pressing Ctrl-S in a terminal?
+1. Ctrl-Q
+2. To disable this altogether, stick stty -ixon in a startup script. To allow any key to get things flowing again, use stty ixany.
+3. ps: It's neither the terminal nor the shell that does this, but the OS's terminal driver.
