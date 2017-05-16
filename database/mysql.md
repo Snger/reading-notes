@@ -60,3 +60,10 @@
 2. mysql> SELECT CURDATE(); -> '2008-06-13'
 3. mysql> SELECT CURDATE() + 0; -> 20080613
 
+## mysql Workbench
+1. 服务（桌面应用）-MySQL 手动启动
+2. mysql Workbench -> mysql connections -> server status: running
+3. open sql script ; or run sql script (need python)
+4. schemas -> set as default schemas
+5. VS -> 视图 -> 服务器资源管理器 -> 连接到数据库
+
