@@ -90,3 +90,10 @@ $ cat .git/refs/heads/master
 ## git rev-parse [ --option ] <args>...
 1. git-rev-parse - Pick out and massage parameters
 2. Many Git porcelainish commands take mixture of flags (i.e. parameters that begin with a dash -) and parameters meant for the underlying git rev-list command they use internally and flags and parameters for the other commands they use downstream of git rev-list. This command is used to distinguish between them.
+
+## Want to exclude file from “git diff”
+1. It is implemented now (git 1.9/2.0, Q1 2014) with the introduction pathspec magic :(exclude) and its short form :! .
+2. You now can log everything except a sub-folder content: `git log -- . ":(exclude)sub"`, `git log -- . ":!sub"`
+3. You can make that exclusion case insensitive! : `git log -- . ":(exclude,icase)SUB"`
+4. pathspec magic: add '^' as alias for '!': The choice of '!' for a negative pathspec ends up not only not matching what we do for revisions, it's also a horrible character for shell expansion since it needs quoting.
+
