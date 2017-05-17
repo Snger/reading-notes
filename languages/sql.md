@@ -38,3 +38,10 @@
 > LEFT (OUTER) JOIN: Return all records from the left table, and the matched records from the right table
 > RIGHT (OUTER) JOIN: Return all records from the right table, and the matched records from the left table
 > FULL (OUTER) JOIN: Return all records when there is a match in either left or right table
+
+## COUNT(expr)
+1. Returns a count of the number of non-NULL values of expr in the rows retrieved by a SELECT statement. The result is a BIGINT value. COUNT() returns 0 if there were no matching rows.
+2. COUNT(*) is somewhat different in that it returns a count of the number of rows retrieved, whether or not they contain NULL values.
+3. COUNT(*) is optimized to return very quickly if the SELECT retrieves from one table, no other columns are retrieved, and there is no WHERE clause. 
+4. if you put count(*), count(1) or count("test") it will give you the same result because mysql will count the number of rows
+
