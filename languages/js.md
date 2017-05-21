@@ -61,3 +61,17 @@ expect(getter(context, locals)).toEqual('local');
 ## Arrow functions
 1. An arrow function expression has a shorter syntax than a function expression and does not bind its own this, arguments, super, or new.target. These function expressions are best suited for non-method functions, and they cannot be used as constructors.
 2. Two factors influenced the introduction of arrow functions: shorter functions and non-binding of this.
+
+## Using a variable for a key in a JavaScript object literal
+1. `var thetop = 'top', var obj = { thetop : 10 }` is a valid object literal. The code will create an object with a property named thetop that has a value of 10. In ES5 and earlier, you cannot use a variable as a property name inside an object literal. 
+2. Assign the variable property name with a value of 10: `aniArgs[thetop] = 10`; 
+3. ES6 defines ComputedPropertyName as part of the grammar for object literals, which allows you to write the code like this: `var thetop = "top",obj = { [thetop]: 10 };`
+4. This is the HTML rendering of ECMA-262 6th Edition, The ECMAScript 2015 Language Specification. -> 12 ECMAScript Language: Expressions -> 12.2 Primary Expression -> 12.2.6 Object Initializer: An object initializer is an expression describing the initialization of an Object, written in a form resembling a literal. It is a list of zero or more pairs of property keys and associated values, enclosed in curly brackets. The values need not be literals; they are evaluated each time the object initializer is evaluated. -> 12.2.6.6 Static Semantics: PropName -> ComputedPropertyName : [ AssignmentExpression ] Return empty.
+
+## Base64 encoding and decoding
+1. Base64 is a group of similar binary-to-text encoding schemes that represent binary data in an ASCII string format by translating it into a radix-64 representation. The term Base64 originates from a specific MIME content transfer encoding.
+2. Base64 encoding schemes are commonly used when there is a need to encode binary data that needs to be stored and transferred over media that are designed to deal with textual data. This is to ensure that the data remain intact without modification during transport. Base64 is commonly used in a number of applications including email via MIME, and storing complex data in XML.
+3. In JavaScript there are two functions respectively for decoding and encoding base64 strings: atob(), btoa()
+4. The atob() function decodes a string of data which has been encoded using base-64 encoding. Conversely, the btoa() function creates a base-64 encoded ASCII string from a "string" of binary data.
+5. Both atob() and btoa() work on strings. If you want to work on ArrayBuffers, please, read this paragraph.
+

@@ -23,3 +23,10 @@
 1. Ctrl-Q
 2. To disable this altogether, stick stty -ixon in a startup script. To allow any key to get things flowing again, use stty ixany.
 3. ps: It's neither the terminal nor the shell that does this, but the OS's terminal driver.
+
+## Switching case of characters
+1. Toggle case "HellO" to "hELLo" with g~ then a movement.
+2. Uppercase "HellO" to "HELLO" with gU then a movement.
+3. Lowercase "HellO" to "hello" with gu then a movement.
+4. Alternatively, you can visually select text then press ~ to toggle case, or U to convert to uppercase, or u to convert to lowercase.
+
