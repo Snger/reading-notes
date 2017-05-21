@@ -97,3 +97,36 @@ $ cat .git/refs/heads/master
 3. You can make that exclusion case insensitive! : `git log -- . ":(exclude,icase)SUB"`
 4. pathspec magic: add '^' as alias for '!': The choice of '!' for a negative pathspec ends up not only not matching what we do for revisions, it's also a horrible character for shell expansion since it needs quoting.
 
+## How to delete .orig files after merge from git repository?
+1. git clean -i is really nice. it will give you a list of files that will be deleted and give you options on how to deal with the list (filter the list, being able to delete everything on the list, and some other options).
+2. `git rm -r *.orig`
+
+## Is there a way to skip password typing when using https:// on GitHub?
+1. With Git version 1.7.9 and later
+> Since Git 1.7.9 (released in late January 2012), there is a neat mechanism in Git to avoid having to type your password all the time for HTTP / HTTPS, called [credential helpers](http://www.kernel.org/pub/software/scm/git/docs/v1.7.9/gitcredentials.html). (Thanks to [dazonic](http://stackoverflow.com/users/109707/dazonic) for pointing out this new feature in the comments below.)
+> With Git 1.7.9 or later, you can just use one of the following credential helpers:
+>    git config --global credential.helper cache
+> ... which tells Git to keep your password cached in memory for (by default) 15 minutes. You can [set a longer timeout](http://www.kernel.org/pub/software/scm/git/docs/v1.7.9/git-credential-cache.html#_examples) with:
+>    git config --global credential.helper "cache --timeout=3600"
+> (That example was suggested in the [GitHub help page for Linux](https://help.github.com/articles/caching-your-github-password-in-git/).) You can also store your credentials permanently if so desired, see the other answers below.
+> GitHub's help [also suggests](https://help.github.com/articles/set-up-git#platform-mac) that if you're on Mac OS X and used [Homebrew] to install Git, you can use the native Mac OS X keystore with:
+>     git config --global credential.helper osxkeychain
+> For Windows, there is a helper called [Git Credential Manager for Windows](https://github.com/Microsoft/Git-Credential-Manager-for-Windows)(存储在 凭据管理器-控制面板) or [wincred in msysgit].
+>     git config --global credential.helper wincred # obsolete
+> With [Git for Windows 2.7.3+] (March 2016):
+>     git config --global credential.helper manager
+> For Linux, you can [use `gnome-keyring`](http://stackoverflow.com/questions/13385690/how-to-use-git-with-gnome-keyring-integration)(or other keyring implementation such as KWallet).
+2. With Git versions before 1.7.9
+> With versions of Git before 1.7.9, this more secure option is not available, and you'll need to change the URL that your `origin` remote uses to include the password in this fashion:
+>     https://you:password@github.com/you/example.git
+> ... in other words with `:password` after the username and before the `@`.
+> You can set a new URL for your `origin` remote with:
+>     git config remote.origin.url https://you:password@github.com/you/example.git
+> Make sure that you use `https` and you should be aware that if you do this, your GitHub password will be stored in plaintext in your `.git` directory, which is obviously undesirable.
+3. With any Git version (well, since version 0.99)
+> An alternative approach is to put your username and password in your `~/.netrc` file, although, as with keeping the password in the remote URL, this means that your password will be stored on the disk in plain text and is thus less secure and not recommended. However, if you want to take this approach, add the following line to your `~/.netrc`:
+>     machine <hostname> login <username> password <password>
+> ... replacing `<hostname>` with the server's hostname, and `<username>` and `<password>` with your username and password. Also remember to set restrictive file system permissions on that file:
+>     chmod 600 ~/.netrc
+> Note that on Windows, this file should be called `_netrc`, and you may need to define the %HOME% environment variable - for more details see:
+

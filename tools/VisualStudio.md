@@ -44,3 +44,11 @@
 ## How to: Display Line Numbers in the Editor?
 1. On the menu bar, choose Tools, Options. Expand the Text Editor node, and then select either the node for the language you are using, or All Languages to turn on line numbers in all languages. Or you can type line number in the Quick Launch box.
 
+## Difference between Build Solution, Rebuild Solution, and Clean Solution in Visual Studio?
+1. Build means compile and link only the source files that have changed since the last build, while Rebuild means compile and link all source files regardless of whether they changed or not. Build is the normal thing to do and is faster. Sometimes the versions of project target components can get out of sync and rebuild is necessary to make the build successful. In practice, you never need to Clean.
+2. Build solution: Compiles code files (DLL and EXE) which are changed.
+3. Rebuild: Deletes all compiled files and compiles them again irrespective if the code has changed or not.
+4. Clean solution: Deletes all compiled files (DLL and EXE file).
+5. The difference between Rebuild vs. (Clean + Build), because there seems to be some confusion around this as well:The difference is the way the build and clean sequence happens for every project. Let’s say your solution has two projects, “proj1” and “proj2”. If you do a rebuild it will take “proj1”, clean (delete) the compiled files for “proj1” and build it. After that it will take the second project “proj2”, clean compiled files for “proj2” and compile “proj2”.
+6. But if you do a “clean” and build”, it will first delete all compiled files for “proj1” and “proj2” and then it will build “proj1” first followed by “proj2”.
+
