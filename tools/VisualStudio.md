@@ -52,3 +52,20 @@
 5. The difference between Rebuild vs. (Clean + Build), because there seems to be some confusion around this as well:The difference is the way the build and clean sequence happens for every project. Let’s say your solution has two projects, “proj1” and “proj2”. If you do a rebuild it will take “proj1”, clean (delete) the compiled files for “proj1” and build it. After that it will take the second project “proj2”, clean compiled files for “proj2” and compile “proj2”.
 6. But if you do a “clean” and build”, it will first delete all compiled files for “proj1” and “proj2” and then it will build “proj1” first followed by “proj2”.
 
+## What is the difference between XML and XSD?
+1. Actually the xsd is xml itself. Its purpose is to validate the structure of another xml document. The xsd is not mandatory for any xml, but it assures that the xml could be used for some particular purposes. The xml is only containing data in suitable format and structure.
+2. Xml: XML was designed to describe data.It is independent from software as well as hardware.
+3. XSD: XSD (XML Schema Definition) specifies how to formally describe the elements in an Extensible Markup Language (XML) document.
+4. It enhances the following things.
+- Data sharing.
+- Platform independent.
+- Increasing the availability of Data.
+5. Differences:
+- XSD is based and written on XML.
+- XSD defines elements and structures that can appear in the document, while XML does not.
+- XSD ensures that the data is properly interpreted, while XML does not.
+- An XSD document is validated as XML, but the opposite may not always be true.
+- XSD is better at catching errors than XML.
+- An XSD defines elements that can be used in the documents, relating to the actual data with which it is to be encoded.
+6. for eg: A date that is expressed as 1/12/2010 can either mean January 12 or December 1st. Declaring a date data type in an XSD document, ensures that it follows the format dictated by XSD.
+

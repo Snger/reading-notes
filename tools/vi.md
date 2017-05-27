@@ -1,23 +1,23 @@
 ## Insert Mode - Inserting/Appending text
-> i - start insert mode at cursor
-> I - insert at the beginning of the line
-> a - append after the cursor
-> A - append at the end of the line
-> o - open (append) blank line below current line (no need to press return)
-> O - open blank line above current line
-> ea - append at end of word
-> Esc - exit insert mode
+- i - start insert mode at cursor
+- I - insert at the beginning of the line
+- a - append after the cursor
+- A - append at the end of the line
+- o - open (append) blank line below current line (no need to press return)
+- O - open blank line above current line
+- ea - append at end of word
+- Esc - exit insert mode
 
 ## Cut and Paste
-> yy - yank (copy) a line
-> 2yy - yank 2 lines
-> yw - yank word
-> y$ - yank to end of line
-> p - put (paste) the clipboard after cursor
-> P - put (paste) before cursor
-> dd - delete (cut) a line
-> dw - delete (cut) the current word
-> x - delete (cut) current character
+- yy - yank (copy) a line
+- 2yy - yank 2 lines
+- yw - yank word
+- y$ - yank to end of line
+- p - put (paste) the clipboard after cursor
+- P - put (paste) before cursor
+- dd - delete (cut) a line
+- dw - delete (cut) the current word
+- x - delete (cut) current character
 
 ## How to unfreeze after accidentally pressing Ctrl-S in a terminal?
 1. Ctrl-Q
@@ -29,4 +29,8 @@
 2. Uppercase "HellO" to "HELLO" with gU then a movement.
 3. Lowercase "HellO" to "hello" with gu then a movement.
 4. Alternatively, you can visually select text then press ~ to toggle case, or U to convert to uppercase, or u to convert to lowercase.
+
+## Repeat last change
+1. The "." command repeats the last change made in normal mode. For example, if you press dw to delete a word, you can then press . to delete another word (. is dot, aka period or full stop).
+2. The "@:" command repeats the last command-line change (a command invoked with ":", for example :s/old/new/).
 

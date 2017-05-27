@@ -7,4 +7,5 @@
 ## flex
 1. The flex CSS property is a shorthand property specifying the ability of a flex item to alter its dimensions to fill available space. Flex items can be stretched to use available space proportional to their flex grow factor or their flex shrink factor to prevent overflow.
 2. Formal syntax: `none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]`
+3. `.container {display: flex; /* or inline-flex */} .children{flex: 1;}`
 

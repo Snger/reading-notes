@@ -51,7 +51,7 @@ If you have already pushed the commit to GitHub, you will have to force push a c
 5. -m : This flag makes the merge commits show the full diff like regular commits; for each merge parent, a separate log entry and diff is generated. An exception is that only diff against the first parent is shown when --first-parent option is given; in that case, the output represents the changes the merge brought into the then-current branch.
 6. --merges : Print only merge commits. This is exactly the same as --min-parents=2.
 7. -- : Use '--' to separate paths from revisions
-8. so, git log -p -m
+8. so, git log -p -m, or git log -U5 -m
 
 ## Get the Git Commit ID via Command Line
 1. git rev-parse HEAD
