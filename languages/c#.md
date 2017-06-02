@@ -127,3 +127,72 @@ Default value: None (parameter is used by all overloads)
 2. There's also an alternative - less well known - form of string interpolation using `$@`  (the order of the two symbols is important). It allows the features of a `@""` string to be mixed with `$""` to support string interpolations without the need for `\\` throughout your string. 
 3. It is *Interpolated Strings*. You can use an interpolated string anywhere you can use a string literal. When running your program would execute the code with the interpolated string literal, the code computes a new string literal by evaluating the interpolation expressions. This computation occurs each time the code with the interpolated string executes.
 4. Interpolated Strings (C# Reference): Used to construct strings. An interpolated string looks like a template string that contains interpolated expressions. An interpolated string returns a string that replaces the interpolated expressions that it contains with their string representations.
+
+## `=>` Operator, Lambda Expressions (C# Programming Guide)
+1. The => token is called the lambda operator. It is used in lambda expressions to separate the input variables on the left side from the lambda body on the right side. Lambda expressions are inline expressions similar to anonymous methods but more flexible; they are used extensively in LINQ queries that are expressed in method syntax.
+2. A lambda expression is an anonymous function that you can use to create delegates or expression tree types. By using lambda expressions, you can write local functions that can be passed as arguments or returned as the value of function calls. Lambda expressions are particularly helpful for writing LINQ query expressions.
+3. To create a lambda expression, you specify input parameters (if any) on the left side of the lambda operator =>, and you put the expression(单句表达式) or statement(任意数量语句) block on the other side. For example, the lambda expression x => x * x specifies a parameter that’s named x and returns the value of x squared.
+4. Lambdas are used in method-based LINQ queries as arguments to standard query operator methods such as Where.
+5. When you use method-based syntax to call the Where method in the Enumerable class (as you do in LINQ to Objects and LINQ to XML) the parameter is a delegate type System.Func<T,TResult>. A lambda expression is the most convenient way to create that delegate. When you call the same method in, for example, the System.Linq.Queryable class (as you do in LINQ to SQL) then the parameter type is an System.Linq.Expressions.Expression where Func is any of the Func delegates with up to sixteen input parameters. Again, a lambda expression is just a very concise way to construct that expression tree. The lambdas allow the Where calls to look similar although in fact the type of object created from the lambda is different.
+6. Lambdas are not allowed on the left side of the is or as operator.
+7. Expression Lambdas
+- A lambda expression with an expression on the right side of the => operator is called an expression lambda. Expression lambdas are used extensively in the construction of Expression Trees.
+- The parentheses are optional only if the lambda has one input parameter; otherwise they are required. Two or more input parameters are separated by commas enclosed in parentheses.
+- Specify zero input parameters with empty parentheses.
+8. Statement Lambdas
+- A statement lambda resembles an expression lambda except that the statement(s) is enclosed in braces.
+- The body of a statement lambda can consist of any number of statements; however, in practice there are typically no more than two or three.
+- Statement lambdas, like anonymous methods, cannot be used to create expression trees.
+9. Async Lambdas
+- You can easily create lambda expressions and statements that incorporate asynchronous processing by using the async and await keywords. 
+10. Lambdas with the Standard Query Operators
+- Many Standard query operators have an input parameter whose type is one of the Func<T,TResult> family of generic delegates. These delegates use type parameters to define the number and types of input parameters, and the return type of the delegate. Func delegates are very useful for encapsulating user-defined expressions that are applied to each element in a set of source data.
+
+## Using Delegates
+1. A delegate is a type that safely encapsulates a method, similar to a function pointer in C and C++. Unlike C function pointers, delegates are object-oriented, type safe, and secure. The type of a delegate is defined by the name of the delegate. 
+2. A delegate object is normally constructed by providing the name of the method the delegate will wrap, or with an anonymous Method. Once a delegate is instantiated, a method call made to the delegate will be passed by the delegate to that method. The parameters passed to the delegate by the caller are passed to the method, and the return value, if any, from the method is returned to the caller by the delegate. This is known as invoking the delegate. 
+3. Delegate types are derived from the Delegate class in the .NET Framework. Delegate types are sealed—they cannot be derived from— and it is not possible to derive custom classes from Delegate. Because the instantiated delegate is an object, it can be passed as a parameter, or assigned to a property. This allows a method to accept a delegate as a parameter, and call the delegate at some later time. This is known as an asynchronous callback, and is a common method of notifying a caller when a long process has completed. When a delegate is used in this fashion, the code using the delegate does not need any knowledge of the implementation of the method being used. The functionality is similar to the encapsulation interfaces provide.
+4. When a delegate is constructed to wrap an instance method, the delegate references both the instance and the method. A delegate has no knowledge of the instance type aside from the method it wraps, so a delegate can refer to any type of object as long as there is a method on that object that matches the delegate signature. When a delegate is constructed to wrap a static method, it only references the method. 
+5. A delegate can call more than one method when invoked. This is referred to as multicasting. To add an extra method to the delegate's list of methods—the invocation list—simply requires adding two delegates using the addition or addition assignment operators ('+' or '+='). 
+
+## Func<​T,​TResult> Delegate
+1. Encapsulates a method that has one parameter and returns a value of the type specified by the TResult parameter.
+2. Assemblies: System.Runtime.dll, mscorlib.dll, netstandard.dll
+3. `public delegate TResult Func<in T,out TResult>(T arg);`
+4. Type Parameters
+- T: The type of the parameter of the method that this delegate encapsulates.
+- TResult: The type of the return value of the method that this delegate encapsulates.
+- Inheritance: ObjectDelegateFunc<T,TResult>
+5. You can use this delegate to represent a method that can be passed as a parameter without explicitly declaring a custom delegate. The encapsulated method must correspond to the method signature that is defined by this delegate. This means that the encapsulated method must have one parameter that is passed to it by value, and that it must return a value.
+
+## out (C# Reference)
+1. You can use the out contextual keyword in two contexts:
+- As a parameter modifier, which lets pass an argument to a method by reference rather than by value.
+- In generic type parameter declarations for interfaces and delegates, which specifies that a type parameter is covariant.
+
+## What's the difference between the 'ref' and 'out' keywords?
+1. ref tells the compiler that the object is initialized before entering the function, while  out tells the compiler that the object will be initialized inside the function.
+2. So while ref is two-ways, out is out-only.
+
+## Enumerable.Select<TSource, TResult>  Method (IEnumerable<TSource>, Func<TSource, TResult>)
+1. Projects each element of a sequence into a new form.
+2. Namespace: System.Linq; Assembly: System.Core (in System.Core.dll)
+3. Syntax
+````c#
+public static IEnumerable<TResult> Select<TSource, TResult>(
+    this IEnumerable<TSource> source,
+    Func<TSource, TResult> selector
+)
+````
+- Parameters
+- source
+> Type: System.Collections.Generic.IEnumerable<TSource>
+> A sequence of values to invoke a transform function on.
+- selector
+> Type: System.Func<TSource, TResult>
+> A transform function to apply to each element.
+- Return Value
+> Type: System.Collections.Generic.IEnumerable<TResult>
+> An IEnumerable<T> whose elements are the result of invoking the transform function on each element of source.
+4. [Remarks] This method is implemented by using deferred execution. The immediate return value is an object that stores all the information that is required to perform the action. The query represented by this method is not executed until the object is enumerated either by calling its GetEnumerator method directly or by using foreach in Visual C# or For Each in Visual Basic.
+5. [Remarks] This projection method requires the transform function, selector, to produce one value for each value in the source sequence, source. If selector returns a value that is itself a collection, it is up to the consumer to traverse the subsequences manually. In such a situation, it might be better for your query to return a single coalesced sequence of values. To achieve this, use the SelectMany<TSource,TResult> method instead of Select<TSource,TResult>. Although SelectMany works similarly to Select, it differs in that the transform function returns a collection that is then expanded by SelectMany before it is returned.

@@ -14,3 +14,14 @@
 1. You can set the type of transition (for example, modal or push) on a segue. Additionally, you can subclass a segue object to implement a custom transition.
 2. You can pass data between scenes with the method prepareForSegue:sender:, which is invoked on the view controller when a segue is triggered. This method allows you to customize the setup of the next view controller before it appears on the screen. Transitions usually occur as the result of some event, such as a button being tapped, but you can programmatically force a transition by calling performSegueWithIdentifier:sender: on the view controller.
 
+## Momentum Scrolling on iOS Overflow Elements
+1. Web pages on iOS by default have a "momentum" style scrolling where a flick of the finger sends the web page scrolling and it keeps going until eventually slowing down and stopping as if friction is slowing it down. Like if you were to push a hockey puck across the ice or something. You might think that any element with scrolling would have this behavior as well, but it doesn't. You can add it back with a special property.
+2. css
+````css
+overflow-y: scroll; /* has to be scroll, not auto */
+-webkit-overflow-scrolling: touch;
+````
+3. The -webkit-overflow-scrolling CSS property controls whether or not touch devices use momentum-based scrolling for the given element.
+- [Value] auto: Use "regular" scrolling, where the content immediately ceases to scroll when you remove your finger from the touchscreen.
+- [Value] touch: Use momentum-based scrolling, where the content continues to scroll for a while after finishing the scroll gesture and removing your finger from the touchscreen. The speed and duration of the continued scrolling is proportional to how vigorous the scroll gesture was. Also creates a new stacking context.
+
