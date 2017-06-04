@@ -40,3 +40,14 @@
 5. After this go to the general tab of each of your targets and check "Automatically manage signing" and under team drop down select your developer account
 6. Do an archive of your project again and everything should work.
 
+## Momentum Scrolling on iOS Overflow Elements
+1. Web pages on iOS by default have a "momentum" style scrolling where a flick of the finger sends the web page scrolling and it keeps going until eventually slowing down and stopping as if friction is slowing it down. Like if you were to push a hockey puck across the ice or something. You might think that any element with scrolling would have this behavior as well, but it doesn't. You can add it back with a special property.
+2. css
+````css
+overflow-y: scroll; /* has to be scroll, not auto */
+-webkit-overflow-scrolling: touch;
+````
+3. The -webkit-overflow-scrolling CSS property controls whether or not touch devices use momentum-based scrolling for the given element.
+- [Value] auto: Use "regular" scrolling, where the content immediately ceases to scroll when you remove your finger from the touchscreen.
+- [Value] touch: Use momentum-based scrolling, where the content continues to scroll for a while after finishing the scroll gesture and removing your finger from the touchscreen. The speed and duration of the continued scrolling is proportional to how vigorous the scroll gesture was. Also creates a new stacking context.
+

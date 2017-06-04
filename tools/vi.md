@@ -34,3 +34,30 @@
 1. The "." command repeats the last change made in normal mode. For example, if you press dw to delete a word, you can then press . to delete another word (. is dot, aka period or full stop).
 2. The "@:" command repeats the last command-line change (a command invoked with ":", for example :s/old/new/).
 
+## Indent multiple lines quickly in vi
+1. Use the > command. To indent 5 lines, 5>>. To mark a block of lines and indent it, Vjj> to indent 3 lines (vim only). To indent a curly-braces block, put your cursor on one of the curly braces and use >%.
+2. If you’re copying blocks of text around and need to align the indent of a block in its new location, use ]p instead of just p. This aligns the pasted block with the surrounding text.
+3. Also, the shiftwidth setting allows you to control how many spaces to indent.
+4. General Commands
+- >>   Indent line by shiftwidth spaces
+- <<   De-indent line by shiftwidth spaces
+- 5>>  Indent 5 lines
+- 5==  Re-indent 5 lines
+- >%   Increase indent of a braced or bracketed block (place cursor on brace first)
+- =%   Reindent a braced or bracketed block (cursor on brace)
+- <%   Decrease indent of a braced or bracketed block (cursor on brace)
+- ]p   Paste text, aligning indentation with surroundings
+- =i{  Re-indent the 'inner block', i.e. the contents of the block
+- =a{  Re-indent 'a block', i.e. block and containing braces
+- =2a{ Re-indent '2 blocks', i.e. this block and containing block
+- >i{  Increase inner block indent
+- <i{  Decrease inner block indent
+
+## Searching and Replacing
+1. vi also has powerful search and replace capabilities. To search the text of an open file for a specific string (combination of characters or words), in the command mode type a colon (:), "s," forward slash (/) and the search string itself. What you type will appear on the bottom line of the display screen. Finally, press ENTER, and the matching area of the text will be highlighted, if it exists. If the matching string is on an area of text that is not currently displayed on the screen, the text will scroll to show that area.
+2. The formal syntax for searching is: `:s/string`
+3. The syntax for replacing one string with another string in the current line is `:s/pattern/replace/`
+4. Here "pattern" represents the old string and "replace" represents the new string. 
+5. To perform a global search and replace in vi, use the search and replace command in command mode: `:%s/search_string/replacement_string/g`
+6. The % is a shortcut that tells vi to search all lines of the file for search_string and change it to replacement_string. The global (g) flag at the end of the command tells vi to continue searching for other occurrences of search_string. To confirm each replacement, add the confirm (c) flag after the global flag.
+
