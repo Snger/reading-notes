@@ -5,18 +5,18 @@
 1. You can still get the updated dialect from https://github.com/nhibernate/nhibernate-core/blob/master/src/NHibernate/Dialect/MsSql2012Dialect.cs, include it in your project and reference it (adding the correct assembly name).
 
 ## How to auto generate IDs in NHibernate?
-> increment: generates identifiers of any integral type that are unique only when no other process is inserting data into the same table. Do not use in a cluster.
-> identity: supports identity columns in DB2, MySQL, MS SQL Server and Sybase. The identifier returned by the database is converted to the property type using Convert.ChangeType. Any integral property type is thus supported.
-> sequence: uses a sequence in DB2, PostgreSQL, Oracle or a generator in Firebird. The identifier returned by the database is converted to the property type using Convert.ChangeType. Any integral property type is thus supported.
-> hilo: uses a hi/lo algorithm to efficiently generate identifiers of any integral type, given a table and column (by default hibernate_unique_key and next_hi respectively) as a source of hi values. The hi/lo algorithm generates identifiers that are unique only for a particular database. Do not use this generator with a user-supplied connection. You can use the "where" parameter to specify the row to use in a table. This is useful if you want to use a single tabel for your identifiers, with different rows for each table.
-> seqhilo: uses a hi/lo algorithm to efficiently generate identifiers of any integral type, given a named database sequence.
-> uuid.hex: uses System.Guid and its ToString(string format) method to generate identifiers of type string. The length of the string returned depends on the configured format.
-> uuid.string: uses a new System.Guid to create a byte[] that is converted to a string.
-> guid: uses a new System.Guid as the identifier.
-> guid.comb: uses the algorithm to generate a new System.Guid described by Jimmy Nilsson in the article http://www.informit.com/articles/article.asp?p=25862
-> native: picks identity, sequence or hilo depending upon the capabilities of the underlying database
-> assigned: lets the application to assign an identifier to the object before Save() is called
-> foreign: uses the identifier of another associated object. Usually used in conjunction with a <one-to-one> primary key association
+- increment: generates identifiers of any integral type that are unique only when no other process is inserting data into the same table. Do not use in a cluster.
+- identity: supports identity columns in DB2, MySQL, MS SQL Server and Sybase. The identifier returned by the database is converted to the property type using Convert.ChangeType. Any integral property type is thus supported.
+- sequence: uses a sequence in DB2, PostgreSQL, Oracle or a generator in Firebird. The identifier returned by the database is converted to the property type using Convert.ChangeType. Any integral property type is thus supported.
+- hilo: uses a hi/lo algorithm to efficiently generate identifiers of any integral type, given a table and column (by default hibernate_unique_key and next_hi respectively) as a source of hi values. The hi/lo algorithm generates identifiers that are unique only for a particular database. Do not use this generator with a user-supplied connection. You can use the "where" parameter to specify the row to use in a table. This is useful if you want to use a single tabel for your identifiers, with different rows for each table.
+- seqhilo: uses a hi/lo algorithm to efficiently generate identifiers of any integral type, given a named database sequence.
+- uuid.hex: uses System.Guid and its ToString(string format) method to generate identifiers of type string. The length of the string returned depends on the configured format.
+- uuid.string: uses a new System.Guid to create a byte[] that is converted to a string.
+- guid: uses a new System.Guid as the identifier.
+- guid.comb: uses the algorithm to generate a new System.Guid described by Jimmy Nilsson in the article http://www.informit.com/articles/article.asp?p=25862
+- native: picks identity, sequence or hilo depending upon the capabilities of the underlying database
+- assigned: lets the application to assign an identifier to the object before Save() is called
+- foreign: uses the identifier of another associated object. Usually used in conjunction with a <one-to-one> primary key association
 
 ## download NHibernate to project
 1. Download NHibernate, either from SourceForge (http://sourceforge.net/projects/nhibernate/) or NuGet ( Install-Package NHibernate ). In the project, add a reference to NHibernate.dll (NuGet already does this). Visual Studio will automatically copy the library and its dependencies to the project output directory. If you are using a database other than SQL Server, add a reference to its driver assembly to your project.
@@ -37,4 +37,8 @@
 7. An ISessionFactory is responsible for one database and may only use one XML configuration file (Web.config or hibernate.cfg.xml). You can set other properties (and even change the mapping metadata) by accessing the Configuration before you build the ISessionFactory (it is immutable). 
 8. An ISessionFactory is threadsafe, many threads can access it concurrently and request ISessions. An ISession is a non-threadsafe object that represents a single unit-of-work with the database. ISessions are opened by an ISessionFactory and are closed when all work is completed.
 9. In an ISession, every database operation occurs inside a transaction that isolates the database operations (even read-only operations). We use NHibernate's ITransaction API to abstract from the underlying transaction strategy (in our case, ADO.NET transactions). 
+
+## nhibernate-core does not contain Remotion.Linq namespace
+1. NHibernate embeds the compiled Remotion.Linq. But Remotion.Linq is a separate project with their own project pages: https://relinq.codeplex.com/ https://github.com/re-motion/Relinq
+2. With re-linq, it's now easier than ever to create full-featured LINQ providers.
 

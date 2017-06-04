@@ -9,3 +9,18 @@
 2. Formal syntax: `none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]`
 3. `.container {display: flex; /* or inline-flex */} .children{flex: 1;}`
 
+## Viewport Sized Typography
+1. CSS3 has some new values for sizing things relative to the current viewport size: vw, vh, and vmin.
+2. One unit on any of the three values is 1% of the viewport axis. "Viewport" == browser window size == window object. If the viewport is 40cm wide, 1vw == 0.4cm.
+- 1vw = 1% of viewport width
+- 1vh = 1% of viewport height
+- 1vmin = 1vw or 1vh, whichever is smaller
+- 1vmax = 1vw or 1vh, whichever is larger
+
+## How to force a line break in a loooooong word in a DIV?
+1. word-break: break-all;
+2. <wbr> (word break) means: "The browser may insert a line break here, if it wishes." It the browser does not think a line break necessary nothing happens.
+
+## Stop word-wrap dividing words
+1. use white-space: wrap;. If you have set width on the element on which you are setting this it should work.
+
