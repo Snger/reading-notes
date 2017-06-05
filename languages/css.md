@@ -24,3 +24,10 @@
 ## Stop word-wrap dividing words
 1. use white-space: wrap;. If you have set width on the element on which you are setting this it should work.
 
+## 100% width table overflowing div container
+1. You can prevent tables from expanding beyond their parent div by using `width: 100%; table-layout:fixed`.
+2. The 'table-layout' property controls the algorithm used to lay out the table cells, rows, and columns. Values have the following meaning:
+- fixed: Use the fixed table layout algorithm
+- auto: Use any automatic table layout algorithm
+3. Fixed table layout: With this (fast) algorithm, the horizontal layout of the table does not depend on the contents of the cells; it only depends on the table's width, the width of the columns, and borders or cell spacing. The table's width may be specified explicitly with the 'width' property. A value of 'auto' (for both 'display: table' and 'display: inline-table') means use the automatic table layout algorithm. However, if the table is a block-level table ('display: table') in normal flow, a UA may (but does not have to) use the algorithm of 10.3.3 to compute a width and apply fixed table layout even if the specified width is 'auto'.
+
