@@ -97,3 +97,18 @@ overflow-y: scroll; /* has to be scroll, not auto */
 - This method represents your last chance to process any keys in the launchOptions dictionary. If you did not evaluate the keys in your application(_:willFinishLaunchingWithOptions:) method, you should look at them in this method and provide an appropriate response.
 - Objects that are not the app delegate can access the same launchOptions dictionary values by observing the notification named UIApplicationDidFinishLaunching and accessing the notification’s userInfo dictionary. That notification is sent shortly after this method returns.
 - The return result from this method is combined with the return result from the application(_:willFinishLaunchingWithOptions:) method to determine if a URL should be handled. If either method returns false, the URL is not handled. If you do not implement one of the methods, only the return value of the implemented method is considered.
+
+## Swift 3 '[UIApplicationLaunchOptionsKey : Any]?' is not convertible to '[String : NSString]'
+1. You'd better work with [UIApplicationLaunchOptionsKey : Any] as it is.
+````swift
+if let launchOptions = launchOptions {
+    for (kind, value) in launchOptions {
+        appControllerContext.launchOptions[kind.rawValue] = value
+    }
+}
+````
+
+## UIKit > UIViewController
+1. Provides the infrastructure for managing the views of your UIKit app.
+1. A view controller manages a set of views that make up a portion of your app’s user interface. It is responsible for loading and disposing of those views, for managing interactions with those views, and for coordinating responses with any appropriate data objects. View controllers also coordinate their efforts with other controller objects—including other view controllers—and help manage your app’s overall interface.
+1. You rarely create instances of the UIViewController class directly. Instead, you create instances of UIViewController subclasses and use those objects to provide the specific behaviors and visual appearances that you need.
