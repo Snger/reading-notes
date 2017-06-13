@@ -75,3 +75,18 @@ expect(getter(context, locals)).toEqual('local');
 4. The atob() function decodes a string of data which has been encoded using base-64 encoding. Conversely, the btoa() function creates a base-64 encoded ASCII string from a "string" of binary data.
 5. Both atob() and btoa() work on strings. If you want to work on ArrayBuffers, please, read this paragraph.
 
+## Array.prototype.splice()
+1. The splice() method changes the content of an array by removing existing elements and/or adding new elements.
+1. Syntax
+````javascript
+array.splice(start)
+array.splice(start, deleteCount)
+array.splice(start, deleteCount, item1, item2, ...)
+````
+1. Parameters
+- start: Index at which to start changing the array (with origin 0). If greater than the length of the array, actual starting index will be set to the length of the array. If negative, will begin that many elements from the end of the array.
+- deleteCount [Optional]: An integer indicating the number of old array elements to remove. If deleteCount is 0, no elements are removed. In this case, you should specify at least one new element. If deleteCount is greater than the number of elements left in the array starting at start, then all of the elements through the end of the array will be deleted. If deleteCount is omitted, deleteCount will be equal to (arr.length - start).
+- item1, item2, ... [Optional]: The elements to add to the array, beginning at the start index. If you don't specify any elements, splice() will only remove elements from the array.
+1. [Return value] An array containing the deleted elements. If only one element is removed, an array of one element is returned. If no elements are removed, an empty array is returned.
+1. [Description] If you specify a different number of elements to insert than the number you're removing, the array will have a different length at the end of the call.
+

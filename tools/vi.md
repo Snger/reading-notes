@@ -60,4 +60,16 @@
 4. Here "pattern" represents the old string and "replace" represents the new string. 
 5. To perform a global search and replace in vi, use the search and replace command in command mode: `:%s/search_string/replacement_string/g`
 6. The % is a shortcut that tells vi to search all lines of the file for search_string and change it to replacement_string. The global (g) flag at the end of the command tells vi to continue searching for other occurrences of search_string. To confirm each replacement, add the confirm (c) flag after the global flag.
+7. You can supply the additional range(s) to it (and concatenate as many as you like): `:6,10s/<search_string>/<replace_string>/g`
+
+## Indent or comment several text lines with vi
+1. visual block mode
+- block lines with  ctrl+v
+- Insert comment sign (//) with I
+- escape with ESC
+- the key typing is
+- ctrl+v → jjjj → I → // → ESC
+2. command line
+- type :set number. take note of the start and end line number of the block you want to comment. then do an address range substitution, eg
+- :12,17s/^/#
 
