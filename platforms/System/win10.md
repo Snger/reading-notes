@@ -20,8 +20,11 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp 目录中
 1. Both Windows 8.1 and Windows 10 have a hidden power user menu that includes a shortcut for the Run window. There are many ways to access this menu, the easiest being to use the Windows + X keyboard shortcut. 
 
 ## cmd- change to e drive?
-type the below at the C:\> prompt: `E:` That's all!
+1. type the below at the C:\> prompt: `E:` That's all!
 
 ## Location of the Hosts File
 1. C:\Windows\System32\Drivers\etc
 2. /c/Windows/System32/Drivers/etc
+
+## How can I refresh my PATH variable from the registry, without a reboot, logoff, or restarting explorer?
+1. If you are trying to use the new value of the path variable from within a Windows command shell, all you should need to do is close your command shell window and open a new one. The new command shell will load the updated path variable.
