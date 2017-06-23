@@ -69,3 +69,8 @@
 - An XSD defines elements that can be used in the documents, relating to the actual data with which it is to be encoded.
 6. for eg: A date that is expressed as 1/12/2010 can either mean January 12 or December 1st. Declaring a date data type in an XSD document, ensures that it follows the format dictated by XSD.
 
+## setting vs
+1. vsVim: keybinding - Ctrl + r - use vim
+2. debug config: uncheck only my code
+3. nuget package config
+4. debug config: symbol(.pdb) position - http://localhost:33417/ D:\workspace\VS-SymbolCache
