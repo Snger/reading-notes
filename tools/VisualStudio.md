@@ -10,6 +10,12 @@
 > Alt + Ctrl + l
 > Ctrl + Tab : come back to editer
 
+## setting vs
+1. vsVim: keybinding - Ctrl + r - use vim
+2. debug config: uncheck only my code
+3. nuget package config
+4. debug config: symbol(.pdb) position - http://localhost:33417/ D:\workspace\VS-SymbolCache
+
 ## Package Manager Console
 1. In all cases, you open the Console in Visual Studio through the Tools > NuGet Package Manager > Package Manager Console command.
 2. At the top of the pane you can select the desired package source, manage sources (by clicking the gear icon), and select the default project to which commands will be applied.
@@ -69,8 +75,15 @@
 - An XSD defines elements that can be used in the documents, relating to the actual data with which it is to be encoded.
 6. for eg: A date that is expressed as 1/12/2010 can either mean January 12 or December 1st. Declaring a date data type in an XSD document, ensures that it follows the format dictated by XSD.
 
-## setting vs
-1. vsVim: keybinding - Ctrl + r - use vim
-2. debug config: uncheck only my code
-3. nuget package config
-4. debug config: symbol(.pdb) position - http://localhost:33417/ D:\workspace\VS-SymbolCache
+## CopyLocal Property (Reference Object)
+1. Determines whether the reference is copied to the local bin path. At run time, a reference must exist in either the global cache assembly or the output path of the project. If this property is set to true, the reference is copied to the output path of the project at run time.
+2. [Remarks] At run time, assemblies must be in one of two locations: the output path of the project or the global assembly cache (see Working with Assemblies and the Global Assembly Cache). If the project contains a reference to an object that is not in one of these locations, then when the project is built, the reference must be copied to the output path of the project. The CopyLocal property indicates whether this copy needs to be made. If the value is true, the reference is copied. If false, the reference is not copied.
+3. [Remarks] The common language runtime does not track the changes to the reference to determine if the local copy needs to be updated. Changes are tracked by the project system. As long as the user has not overridden the CopyLocal property, the value will be automatically updated by the project system if needed.
+
+## Metadata file '.dll' exist but could not be found (for some project)
+1. Restart VS and try building again.
+2. Go to 'Solution Explorer'. Right click on Solution. Go to Properties. Go to 'Configuration Manager'. Check if the checkboxes under 'Build' are checked or not. If any or all of them are unchecked, then check them and try building again.
+3. If the above solution(s) do not work, then follow sequence mentioned in step 2 above, and even if all the checkboxes are checked, uncheck them, check again and try to build again.
+4. Build Order and Project Dependencies: Go to 'Solution Explorer'. Right click on Solution. Go to 'Project Dependencies...'. You will see 2 tabs: 'Dependencies' and 'Build Order'. This build order is the one in which solution builds. Check the project dependencies and the build order to verify if some project (say 'project1') which is dependent on other (say 'project2') is trying to build before that one (project2). This might be the cause for the error.
+5. Check the path of the missing .dll: Check the path of the missing .dll. If the path contains space or any other invalid path character, remove it and try building again.
+
