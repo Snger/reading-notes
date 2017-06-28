@@ -35,3 +35,7 @@
 > `&>`, `>&`, `>>&` and `&>>` : (non-standard). Redirect both standard error and standard output, replacing or appending, respectively.
 > `<<` : A here document. It is often used to print multi-line strings. If you want to pipe the output of command `<< WORD ... WORD` directly into another command or commands, you have to put the pipe on the same line as `<< WORD`, you can't put it after the terminating `WORD` or on the line following. 
 > `<<<` : Here strings, similar to here documents, but intended for a single line. These exist only in the Unix port or rc (where it originated), zsh, some implementations of ksh, yash and bash.
+
+## How do I remove a directory and all its contents?
+1. `rm -rf directoryname`
+2. `rmdir directoryname`
