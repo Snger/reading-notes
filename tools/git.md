@@ -4,6 +4,10 @@ You can change the most recent commit message using the `git commit --amend` com
 ## Amending older or multiple commit messages
 If you have already pushed the commit to GitHub, you will have to force push a commit with an amended message. Use the `push --force` command to force push over the old commit.
 
+## Amend your last commit
+1. And then just commit with the --amend argument.
+2. `git commit --amend`
+
 ## Amending the message of older or multiple commit messages
 1. Use the `git rebase -i HEAD~n` command to display a list of the last n commits in your default text editor.
 2. Replace pick with reword before each commit message you want to change.
