@@ -1,0 +1,6 @@
+## What exactly is “sencha app watch” doing?
+1. It's doing the equivalent of sencha app build development. The reason it goes faster is that it keeps the JVM running and it doesn't re-run the initialisation tasks continually.
+2. If you want to take more control of this yourself, the relevant Ant tasks are in the Sencha CMD distribution - most (but not all) Sencha CMD commands are delegated down to the Ant tasks.
+3. It's a little smarter than doing a simple build - because it knows which files have been changed, it knows what steps it needs to do. As such, it won't run redundant steps (another speed win).
+4. One key difference is with CSS - using sencha app watch will create the CSS once, and then subsequent edits are processed using Fashion instead.
+5. I'm a bit curious. You said "won't run redundant steps". But according to the console output it runs a lot of things multiple times. Any idea why that is? It won't run (as many) redundant steps once it gets to the point where it's waiting for changes. While booting up, it will do a number of things repeatedly - most particularly, every time it goes through a call to Ant, it does start and stop the background server.
