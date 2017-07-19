@@ -38,12 +38,39 @@
 2. INSERT inserts new rows into an existing table. The INSERT ... VALUES and INSERT ... SET forms of the statement insert rows based on explicitly specified values. The INSERT ... SELECT form inserts rows selected from another table or tables.
 
 ## SELECT Syntax
-1. SELECT select_expr [, select_expr ...] [FROM table_references] [WHERE where_condition] [ORDER BY {col_name | expr | position} [ASC | DESC], ...] [LIMIT {[offset,] row_count | row_count OFFSET offset}] [PROCEDURE procedure_name(argument_list)]
+1. Syntax
+````
+SELECT
+    [ALL | DISTINCT | DISTINCTROW ]
+      [HIGH_PRIORITY]
+      [MAX_STATEMENT_TIME = N]
+      [STRAIGHT_JOIN]
+      [SQL_SMALL_RESULT] [SQL_BIG_RESULT] [SQL_BUFFER_RESULT]
+      [SQL_CACHE | SQL_NO_CACHE] [SQL_CALC_FOUND_ROWS]
+    select_expr [, select_expr ...]
+    [FROM table_references
+      [PARTITION partition_list]
+    [WHERE where_condition]
+    [GROUP BY {col_name | expr | position}
+      [ASC | DESC], ... [WITH ROLLUP]]
+    [HAVING where_condition]
+    [ORDER BY {col_name | expr | position}
+      [ASC | DESC], ...]
+    [LIMIT {[offset,] row_count | row_count OFFSET offset}]
+    [PROCEDURE procedure_name(argument_list)]
+    [INTO OUTFILE 'file_name'
+        [CHARACTER SET charset_name]
+        export_options
+      | INTO DUMPFILE 'file_name'
+      | INTO var_name [, var_name]]
+    [FOR UPDATE | LOCK IN SHARE MODE]]
+````
 2. A select_expr can be given an alias using AS alias_name. The alias is used as the expression's column name and can be used in GROUP BY, ORDER BY, or HAVING clauses.
 3. The AS keyword is optional when aliasing a select_expr with an identifier. 
 4. However, because the AS is optional, a subtle problem can occur if you forget the comma between two select_expr expressions: MySQL interprets the second as an alias name. For this reason, it is good practice to be in the habit of using AS explicitly when specifying column aliases.
 5. The FROM table_references clause indicates the table or tables from which to retrieve rows. If you name more than one table, you are performing a join. For each table specified, you can optionally specify an alias. 
 6. tbl_name [[AS] alias] [index_hint] -- You can refer to a table within the default database as tbl_name, or as db_name.tbl_name to specify a database explicitly. You can refer to a column as col_name, tbl_name.col_name, or db_name.tbl_name.col_name. You need not specify a tbl_name or db_name.tbl_name prefix for a column reference unless the reference would be ambiguous.
+7.  The ALL and DISTINCT options specify whether duplicate rows should be returned. ALL (the default) specifies that all matching rows should be returned, including duplicates. DISTINCT specifies removal of duplicate rows from the result set. It is an error to specify both options. DISTINCTROW is a synonym for DISTINCT.
 
 ## Case operator -- Control Flow Functions
 1. Syntax: CASE value WHEN [compare_value] THEN result [WHEN [compare_value] THEN result ...] [ELSE result] END
@@ -67,3 +94,15 @@
 4. schemas -> set as default schemas
 5. VS -> 视图 -> 服务器资源管理器 -> 连接到数据库
 
+## 14.2.9.3 UNION Syntax
+1. Syntax
+````
+SELECT ...
+UNION [ALL | DISTINCT] SELECT ...
+[UNION [ALL | DISTINCT] SELECT ...]
+````
+1. UNION is used to combine the result from multiple SELECT statements into a single result set.
+1. The column names from the first SELECT statement are used as the column names for the results returned. Selected columns listed in corresponding positions of each SELECT statement should have the same data type. (For example, the first column selected by the first statement should have the same type as the first column selected by the other statements.)
+1. If the data types of corresponding SELECT columns do not match, the types and lengths of the columns in the UNION result take into account the values retrieved by all of the SELECT statements.
+1. The default behavior for UNION is that duplicate rows are removed from the result. The optional DISTINCT keyword has no effect other than the default because it also specifies duplicate-row removal. With the optional ALL keyword, duplicate-row removal does not occur and the result includes all matching rows from all the SELECT statements.
+1. You can mix UNION ALL and UNION DISTINCT in the same query. Mixed UNION types are treated such that a DISTINCT union overrides any ALL union to its left. A DISTINCT union can be produced explicitly by using UNION DISTINCT or implicitly by using UNION with no following DISTINCT or ALL keyword.

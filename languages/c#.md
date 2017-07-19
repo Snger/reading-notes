@@ -56,6 +56,18 @@ Default value: None (parameter is used by all overloads)
 2. Namespace: Newtonsoft.Json, Assembly: Newtonsoft.Json (in Newtonsoft.Json.dll) Version: 10.0.0.0 (10.0.1.20720)
 3. [Properties] DateTimeZoneHandling: Gets or sets how DateTime time zones are handled during serialization and deserialization.
 
+## JsonProperty Class
+1. Maps a JSON property to a .NET member or constructor parameter.
+1. Namespace: Newtonsoft.Json.Serialization, Inheritance Hierarchy: System.Object > Newtonsoft.Json.Serialization.JsonProperty
+
+## JsonConverter Class
+1. Converts an object to and from JSON.
+1. Inheritance Hierarchy: System.Object > Newtonsoft.Json.JsonConverter, Namespace: Newtonsoft.Json
+
+## HttpConfiguration Class
+1. Represents a configuration of HttpServer instances.
+1. Namespace: System.Web.Http, Assembly: System.Web.Http (in System.Web.Http.dll)
+
 ## ModelBinders Class
 1. Provides global access to the model binders for the application.
 2. Namespace:   System.Web.Mvc, Assembly:  System.Web.Mvc (in System.Web.Mvc.dll)
@@ -69,7 +81,7 @@ Default value: None (parameter is used by all overloads)
 > Form values: These are form values that go in the HTTP request using the POST method. (including jQuery POST requests).
 > Route values: The set of route values provided by Routing
 > Query strings: The query string part of the URI.
-> Note: Form values, route data, and query strings are all stored as name-value pairs.1
+> Note: Form values, route data, and query strings are all stored as name-value pairs.
 4. Since model binding asked for a key named id and there is nothing named id in the form values, it moved on to the route values looking for that key.
 5. If the action method's parameter were a class such as the Movie type, which contains both simple and complex types as properties, MVC's model binding will still handle it nicely. It uses reflection and recursion to traverse the properties of complex types looking for matches. Model binding looks for the pattern parameter_name.property_name to bind values to properties. If it doesn't find matching values of this form, it will attempt to bind using just the property name. For those types such as Collection types, model binding looks for matches to parameter_name[index] or just [index]. Model binding treats Dictionary types similarly, asking for parameter_name[key] or just [key], as long as the keys are simple types. Keys that are supported match the field names HTML and tag helpers generated for the same model type. This enables round-tripping values so that the form fields remain filled with the user's input for their convenience, for example, when bound data from a create or edit did not pass validation.
 6. In order for binding to happen the class must have a public default constructor and member to be bound must be public writable properties. When model binding happens the class will only be instantiated using the public default constructor, then the properties can be set.
@@ -196,3 +208,24 @@ public static IEnumerable<TResult> Select<TSource, TResult>(
 > An IEnumerable<T> whose elements are the result of invoking the transform function on each element of source.
 4. [Remarks] This method is implemented by using deferred execution. The immediate return value is an object that stores all the information that is required to perform the action. The query represented by this method is not executed until the object is enumerated either by calling its GetEnumerator method directly or by using foreach in Visual C# or For Each in Visual Basic.
 5. [Remarks] This projection method requires the transform function, selector, to produce one value for each value in the source sequence, source. If selector returns a value that is itself a collection, it is up to the consumer to traverse the subsequences manually. In such a situation, it might be better for your query to return a single coalesced sequence of values. To achieve this, use the SelectMany<TSource,TResult> method instead of Select<TSource,TResult>. Although SelectMany works similarly to Select, it differs in that the transform function returns a collection that is then expanded by SelectMany before it is returned.
+
+## Dictionary<TKey, TValue> Class
+1. Represents a collection of keys and values.
+1. Namespace: System.Collections.Generic, Assembly:  mscorlib (in mscorlib.dll)
+
+## HttpResponseMessage Class
+1. Represents a HTTP response message.
+1. Inheritance Hierarchy: System.Object > System.Net.Http.HttpResponseMessage
+
+## ActionNameAttribute.Name Property
+1. Gets or sets the name of the action.
+1. Namespace: System.Web.Mvc, Assembly: System.Web.Mvc (in System.Web.Mvc.dll)
+
+## ActionNameAttribute Class
+1. Represents an attribute that is used for the name of an action.
+1. Inheritance Hierarchy: System.Object > System.Attribute > System.Web.Mvc.ActionNameSelectorAttribute > System.Web.Mvc.ActionNameAttribute, Namespace:  System.Web.Mvc, Assembly:  System.Web.Mvc (in System.Web.Mvc.dll)
+
+## ?? Operator (C# Reference)
+1. The ?? operator is called the null-coalescing operator. It returns the left-hand operand if the operand is not null; otherwise it returns the right hand operand. 1
+1. [Remarks] A nullable type can represent a value from the type’s domain, or the value can be undefined (in which case the value is null). You can use the ?? operator’s syntactic expressiveness to return an appropriate value (the right hand operand) when the left operand has a nullible type whose value is null. If you try to assign a nullable value type to a non-nullable value type without using the ?? operator, you will generate a compile-time error. If you use a cast, and the nullable value type is currently undefined, an InvalidOperationException exception will be thrown. For more information, see Nullable Types.
+1. The result of a ?? operator is not considered to be a constant even if both its arguments are constants.
