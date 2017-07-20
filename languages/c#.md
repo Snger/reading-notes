@@ -229,3 +229,8 @@ public static IEnumerable<TResult> Select<TSource, TResult>(
 1. The ?? operator is called the null-coalescing operator. It returns the left-hand operand if the operand is not null; otherwise it returns the right hand operand. 1
 1. [Remarks] A nullable type can represent a value from the type’s domain, or the value can be undefined (in which case the value is null). You can use the ?? operator’s syntactic expressiveness to return an appropriate value (the right hand operand) when the left operand has a nullible type whose value is null. If you try to assign a nullable value type to a non-nullable value type without using the ?? operator, you will generate a compile-time error. If you use a cast, and the nullable value type is currently undefined, an InvalidOperationException exception will be thrown. For more information, see Nullable Types.
 1. The result of a ?? operator is not considered to be a constant even if both its arguments are constants.
+
+## ConcurrentDictionary<TKey, TValue> Class
+1. Represents a thread-safe collection of key/value pairs that can be accessed by multiple threads concurrently.
+1. Namespace: System.Collections.Concurrent, Assembly: mscorlib (in mscorlib.dll)
+1. [Thread Safety] All public and protected members of ConcurrentDictionary<TKey, TValue> are thread-safe and may be used concurrently from multiple threads. However, members accessed through one of the interfaces the ConcurrentDictionary<TKey, TValue> implements, including extension methods, are not guaranteed to be thread safe and may need to be synchronized by the caller.
