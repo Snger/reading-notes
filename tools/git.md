@@ -158,3 +158,25 @@ $ cat .git/refs/heads/master
 3. 可以在后面添加正斜杠/来忽略文件夹，例如build/即忽略build文件夹。
 4. 可以使用!来否定忽略，即比如在前面用了*.apk，然后使用!a.apk，则这个a.apk不会被忽略。
 5. *用来匹配零个或多个字符，如*.[oa]忽略所有以".o"或".a"结尾，*~忽略所有以~结尾的文件（这种文件通常被许多编辑器标记为临时文件）；[]用来匹配括号内的任一字符，如[abc]，也可以在括号内加连接符，如[0-9]匹配0至9的数；?用来匹配单个字符。
+
+## Refreshing a repository after changing line endings
+1. After you've set the core.autocrlf option and committed a .gitattributes file, you may find that Git wants to commit files that you have not modified. At this point, Git is eager to change the line endings of every file for you.
+1. The best way to automatically configure your repository's line endings is to first backup your files with Git, delete every file in your repository (except the .git directory), and then restore the files all at once.
+> Save your current files in Git, so that none of your work is lost.
+    > git add . -u
+    > git commit -m "Saving files before refreshing line endings"
+> Remove the index and force Git to rescan the working directory.
+    > rm .git/index
+> Rewrite the Git index to pick up all the new line endings.
+    > git reset
+> Show the rewritten, normalized files.
+    > git status
+> Add all your changed files back, and prepare them for a commit. This is your chance to inspect which files, if any, were unchanged.
+    > git add -u
+    > # It is perfectly safe to see a lot of messages here that read
+    > # "warning: CRLF will be replaced by LF in file."
+> Rewrite the .gitattributes file.
+    > git add .gitattributes
+> Commit the changes to your repository.
+    > git commit -m "Normalize all the line endings"
+
