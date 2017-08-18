@@ -16,4 +16,18 @@ Transparency=low
 ColSpacing=4
 ````
 
+## What is the difference between Cygwin and MinGW?
+1. As a simplification, it's like this:
+> Compile something in Cygwin and you are compiling it for Cygwin.
+> Compile something in MinGW and you are compiling it for Windows.
+2. About Cygwin
+> The purpose of Cygwin is to make porting *nix-based applications to Windows much easier, by emulating many of the small details that Unix-based operating systems provide, and are documented by the POSIX standards. If your application assumes that it can use Unix feature such as pipes, Unix-style file and directory access, and so forth, then you can compile it in Cygwin and Cygwin itself will act as a compatibility layer around your application, so that many of these Unix-specific paradigms can continue to be used with little or no modification to your application.
+> If you want to compile something for Cygwin and distribute that resulting application, you must also distribute the Cygwin run-time environment (provided by cygwin1.dll) along with it, and this has implications for what types of software license you may use.
+3. About MinGW
+> MinGW is a Windows port of the GNU compiler tools, such as GCC, Make, Bash, and so on. It does not attempt to emulate or provide comprehensive compatibility with Unix, but instead it provides the minimum necessary environment to use GCC (the GNU compiler) and a small number of other tools on Windows. It does not have a Unix emulation layer like Cygwin, but as a result your application needs to specifically be programmed to be able to run in Windows, which may mean significant alteration if it was created to rely on being run in a standard Unix environment and uses Unix-specific features such as those mentioned earlier. By default, code compiled in MinGW's GCC will compile to a native Windows X86 target, including .exe and .dll files, though you could also cross-compile with the right settings. MinGW is an open-source alternative to Microsoft Visual C++ compiler and its associated linking/make tools.
+> Considerably sophisticated cross-platform frameworks exist which make the task of porting applications to various operating systems easily - for example the Qt framework is a popular framework for cross-platform applications. If you use such a framework from the start, you can not only reduce your headaches when it comes time to port to another platform but you can use the same graphical widgets - windows, menus and controls - across all platforms if you're writing a GUI app.
+4. Short:
+> Cygwin uses a DLL, cygwin.dll, (or maybe a set of DLLs) to provide a POSIX-like runtime on Windows.
+> MinGW compiles to a native Win32 application.
+> If you build something with Cygwin, any system you install it to will also need the Cygwin DLL(s). A MinGW application does not need any special runtime.
 

@@ -17,6 +17,11 @@
 3. nuget package config
 4. debug config: symbol(.pdb) position - http://localhost:33417/ D:\workspace\VS-SymbolCache
 
+## clipboard different from the system one
+1. VsVim uses the gVim settings which will default to using the unnamed register for edit and paste commands. But it also implements the clipboard option which allows you to use the Windows System clipboard instead of the unnamed register.
+2. To get this behavior put the following in your vimrc file
+> `set clipboard=unnamed`
+
 ## Package Manager Console
 1. In all cases, you open the Console in Visual Studio through the Tools > NuGet Package Manager > Package Manager Console command.
 2. At the top of the pane you can select the desired package source, manage sources (by clicking the gear icon), and select the default project to which commands will be applied.
@@ -88,3 +93,6 @@
 4. Build Order and Project Dependencies: Go to 'Solution Explorer'. Right click on Solution. Go to 'Project Dependencies...'. You will see 2 tabs: 'Dependencies' and 'Build Order'. This build order is the one in which solution builds. Check the project dependencies and the build order to verify if some project (say 'project1') which is dependent on other (say 'project2') is trying to build before that one (project2). This might be the cause for the error.
 5. Check the path of the missing .dll: Check the path of the missing .dll. If the path contains space or any other invalid path character, remove it and try building again.
 
+## Debug Error: The source file is different from when the module was built
+1. Go to Tools -> Options -> Debugging -> General and uncheck "Require source files to exactly match the original version". It allows you to use source code which is not the same as original version.
+2. Right click your breakpoint for debugging and select Location, please check "Allow the source code to be different from the original version".
