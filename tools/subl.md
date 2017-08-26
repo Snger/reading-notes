@@ -1,3 +1,10 @@
+## Sublime Text from Command Line (Win10)
+1. `alias subl='/d/App/Sublime\ Text\ 3/subl.exe '`
+
+## memory too high
+1. set "index_files" to false
+2. File indexing parses all files in the side bar, and builds an index of their symbols. This is required for Goto Definition to work.
+
 ## Multiple Cursors in Sublime Text 2 Windows
 1. Windows : Extend selection upward/downward at all carets: Ctrl + Alt + Up/Down
 
@@ -40,3 +47,7 @@
 3. quick_panel_path_label: File paths in quick_panel_row
 4. Filter Label Properties: font.size - an integer point size
 
+## HTML-CSS-JS Prettify
+1. install: HTML-CSS-JS Prettify
+2. usage: htmlprettify
+3. config: https://packagecontrol.io/packages/HTML-CSS-JS%20Prettify

@@ -9,3 +9,7 @@
 1. You can omit the html-webpack-plugin depending on your requirement.
 1. You can find more info here: https://github.com/webpack/webpack/issues/2131
 
+## Short version of --save-dev and --save
+1. Use -S instead of --save and -D instead of --save-dev.
+1. [Shorthands and Other CLI Niceties](https://docs.npmjs.com/misc/config#shorthands-and-other-cli-niceties)
+

@@ -27,6 +27,9 @@
 2. At the top of the pane you can select the desired package source, manage sources (by clicking the gear icon), and select the default project to which commands will be applied.
 3. You can override these settings with most commands by using the -Source and -ProjectName options.
 
+## Restore packages for all projects in the solution
+Update-Package -reinstall
+
 ## PM: Finding a package
 1. In the console, Get-Package -ListAvailable see all the packages available from the selected source. For nuget.org, the list will contain thousands of packages, so it's helpful to use the -Filter switch along with -PageSize. In NuGet 3.0 and later, you can instead use the Find-Package command that is better suited to this operation.
 
@@ -96,3 +99,21 @@
 ## Debug Error: The source file is different from when the module was built
 1. Go to Tools -> Options -> Debugging -> General and uncheck "Require source files to exactly match the original version". It allows you to use source code which is not the same as original version.
 2. Right click your breakpoint for debugging and select Location, please check "Allow the source code to be different from the original version".
+
+## Getting the PublicKeyToken of .Net assemblies
+1. Open a command prompt and type one of the following lines according to your Visual Studio version and Operating System Architecture :
+> VS 2015 on 64bit Windows :
+> "%ProgramFiles(x86)%\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.1 Tools\sn.exe" -T <assemblyname>
+> sn -T <assembly> 
+1. where <assemblyname> is a full file path to the assembly you're interested in, surrounded by quotes if it has spaces.
+
+## How can you disable Git integration in Visual Studio 2013 permanently?
+1. path\to\vs2017\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git
+> change mingw32 to mingw64
+2. As you said you can disable the source control plugin going to:
+> Tools / Options
+> Check "Show all settings"
+> Source Control / Plug-in Selection
+> Set "Current source control plug-in" to "None"
+> Then, as Ade Miller says: Restart Visual Studio.
+> My Visual Studio was working really slow since the git plugging was enabled and I managed to disable it "persistently across sessions" following this steps.
