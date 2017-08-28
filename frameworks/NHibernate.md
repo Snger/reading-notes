@@ -1,6 +1,15 @@
 ## What's NHibernate?
 1. NHibernate not only takes care of the mapping from .NET classes to database tables (and from .NET data types to SQL data types), but also provides data query and retrieval facilities and can significantly reduce development time otherwise spent with manual data handling in SQL and ADO.NET.
 
+## (NHibernate.Criterion.Expression)Creates a new Criteria for the entity class with a specific alias
+> session.CreateCriteria<TransactionGoodsPO>("goods");
+
+## (NHibernate.Criterion.Expression)Set a limit upon the number of objects to be retrieved
+> session.CreateCriteria<TransactionGoodsPO>("goods").SetMaxResults(limit).List<TransactionGoodsPO>();
+
+## (NHibernate.Criterion.Expression)Apply a "like" constraint to the project
+> session.CreateCriteria<TransactionGoodsPO>("goods").Add(Restrictions.Like("goods.GoodsCode", goodsCode, MatchMode.Anywhere)).List<TransactionGoodsPO>();
+
 ## How do I make NHibernate Linq provider to use the paging features of MsSql2012Dialect
 1. You can still get the updated dialect from https://github.com/nhibernate/nhibernate-core/blob/master/src/NHibernate/Dialect/MsSql2012Dialect.cs, include it in your project and reference it (adding the correct assembly name).
 
@@ -42,3 +51,5 @@
 1. NHibernate embeds the compiled Remotion.Linq. But Remotion.Linq is a separate project with their own project pages: https://relinq.codeplex.com/ https://github.com/re-motion/Relinq
 2. With re-linq, it's now easier than ever to create full-featured LINQ providers.
 
+## Criteria vs. Criterion: What's the Difference?
+1. Criteria is the plural form of criterion. It is used when referring to more than one criterion. Criterion is singular and is used to refer to a single thing.

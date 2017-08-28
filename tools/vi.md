@@ -60,7 +60,20 @@
 4. Here "pattern" represents the old string and "replace" represents the new string. 
 5. To perform a global search and replace in vi, use the search and replace command in command mode: `:%s/search_string/replacement_string/g`
 6. The % is a shortcut that tells vi to search all lines of the file for search_string and change it to replacement_string. The global (g) flag at the end of the command tells vi to continue searching for other occurrences of search_string. To confirm each replacement, add the confirm (c) flag after the global flag.
-7. You can supply the additional range(s) to it (and concatenate as many as you like): `:6,10s/<search_string>/<replace_string>/g`
+7. You can supply the additional range(s) to it (and concatenate as many as you like): `:6,10s/<search_string>/<replace_string>/g` or `:6,+4s/<search_string>/<replace_string>/g`
+8. [notes: meaning]
+> %: On every line...
+> s: Substitute...
+> g: (global) Replace all occurrences in the line.
+
+## Regex nested backreference
+1. Capturing groups (and thus backreferences) are numbered according to which opening bracket comes first - so, in this case, the outer brackets would yield \1, and the inner ones would yield \2.
+2. For example, the pattern ((.+)ab)\1\2 will match the string 1234ab1234ab1234. The first capture group will match the 4 numbers plus the ab, while the second (inner) capture group will only match the numbers. Then we repeat each one, yielding the full match.
+
+## How to do case insensitive search in Vim
+1. `\c` for case sensitive
+1. `/search_string\c`
+1. You need to use the \c escape sequence. So: `/\csearch_string` To do the inverse (case sensitive matching), use \C instead.
 
 ## Indent or comment several text lines with vi
 1. visual block mode
