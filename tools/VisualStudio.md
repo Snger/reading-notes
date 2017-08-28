@@ -2,6 +2,7 @@
 1. One of the greatest productivity gains you can make is to type less and navigate through your code faster. VsVim, is an extension for Visual Studio 2010 and later which will get you doing just that. To get VsVim, you can download it from the Visual Studio Gallery or via the extension manager in Visual Studio. Mastering VsVim takes an investment of time, but learning it will pay dividends.
 2. In addition to all this, you still get IntelliSense, tab completion, snippets and all other base Visual Studio features when in insert mode. There's built in support for key binding collisions, enabling you to choose if VsVim or Visual Studio itself will handle the shortcuts; just click the options button in the bottom right of your code file. 
 3. If you need to exit VsVim, you can temporarily disable (and restore) it by pressing `ctrl+Shift+F12`.
+4. [notes: back reference regex in VsVim] You need to escape the parentheses to make them work as groupings rather than as actual matches in the text, and not escape the $.
 
 ## toggle full screen
 > Shift + Alt + Enter
@@ -10,10 +11,24 @@
 > Alt + Ctrl + l
 > Ctrl + Tab : come back to editer
 
+## setting vs
+1. vsVim: keybinding - Ctrl + r - use vim
+2. debug config: uncheck only my code
+3. nuget package config
+4. debug config: symbol(.pdb) position - http://localhost:33417/ D:\workspace\VS-SymbolCache
+
+## clipboard different from the system one
+1. VsVim uses the gVim settings which will default to using the unnamed register for edit and paste commands. But it also implements the clipboard option which allows you to use the Windows System clipboard instead of the unnamed register.
+2. To get this behavior put the following in your vimrc file
+> `set clipboard=unnamed`
+
 ## Package Manager Console
 1. In all cases, you open the Console in Visual Studio through the Tools > NuGet Package Manager > Package Manager Console command.
 2. At the top of the pane you can select the desired package source, manage sources (by clicking the gear icon), and select the default project to which commands will be applied.
 3. You can override these settings with most commands by using the -Source and -ProjectName options.
+
+## Restore packages for all projects in the solution
+Update-Package -reinstall
 
 ## PM: Finding a package
 1. In the console, Get-Package -ListAvailable see all the packages available from the selected source. For nuget.org, the list will contain thousands of packages, so it's helpful to use the -Filter switch along with -PageSize. In NuGet 3.0 and later, you can instead use the Find-Package command that is better suited to this operation.
@@ -69,8 +84,36 @@
 - An XSD defines elements that can be used in the documents, relating to the actual data with which it is to be encoded.
 6. for eg: A date that is expressed as 1/12/2010 can either mean January 12 or December 1st. Declaring a date data type in an XSD document, ensures that it follows the format dictated by XSD.
 
-## setting vs
-1. vsVim: keybinding - Ctrl + r - use vim
-2. debug config: uncheck only my code
-3. nuget package config
-4. debug config: symbol(.pdb) position - http://localhost:33417/ D:\workspace\VS-SymbolCache
+## CopyLocal Property (Reference Object)
+1. Determines whether the reference is copied to the local bin path. At run time, a reference must exist in either the global cache assembly or the output path of the project. If this property is set to true, the reference is copied to the output path of the project at run time.
+2. [Remarks] At run time, assemblies must be in one of two locations: the output path of the project or the global assembly cache (see Working with Assemblies and the Global Assembly Cache). If the project contains a reference to an object that is not in one of these locations, then when the project is built, the reference must be copied to the output path of the project. The CopyLocal property indicates whether this copy needs to be made. If the value is true, the reference is copied. If false, the reference is not copied.
+3. [Remarks] The common language runtime does not track the changes to the reference to determine if the local copy needs to be updated. Changes are tracked by the project system. As long as the user has not overridden the CopyLocal property, the value will be automatically updated by the project system if needed.
+
+## Metadata file '.dll' exist but could not be found (for some project)
+1. Restart VS and try building again.
+2. Go to 'Solution Explorer'. Right click on Solution. Go to Properties. Go to 'Configuration Manager'. Check if the checkboxes under 'Build' are checked or not. If any or all of them are unchecked, then check them and try building again.
+3. If the above solution(s) do not work, then follow sequence mentioned in step 2 above, and even if all the checkboxes are checked, uncheck them, check again and try to build again.
+4. Build Order and Project Dependencies: Go to 'Solution Explorer'. Right click on Solution. Go to 'Project Dependencies...'. You will see 2 tabs: 'Dependencies' and 'Build Order'. This build order is the one in which solution builds. Check the project dependencies and the build order to verify if some project (say 'project1') which is dependent on other (say 'project2') is trying to build before that one (project2). This might be the cause for the error.
+5. Check the path of the missing .dll: Check the path of the missing .dll. If the path contains space or any other invalid path character, remove it and try building again.
+
+## Debug Error: The source file is different from when the module was built
+1. Go to Tools -> Options -> Debugging -> General and uncheck "Require source files to exactly match the original version". It allows you to use source code which is not the same as original version.
+2. Right click your breakpoint for debugging and select Location, please check "Allow the source code to be different from the original version".
+
+## Getting the PublicKeyToken of .Net assemblies
+1. Open a command prompt and type one of the following lines according to your Visual Studio version and Operating System Architecture :
+> VS 2015 on 64bit Windows :
+> "%ProgramFiles(x86)%\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.1 Tools\sn.exe" -T <assemblyname>
+> sn -T <assembly> 
+1. where <assemblyname> is a full file path to the assembly you're interested in, surrounded by quotes if it has spaces.
+
+## How can you disable Git integration in Visual Studio 2013 permanently?
+1. path\to\vs2017\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git
+> change mingw32 to mingw64
+2. As you said you can disable the source control plugin going to:
+> Tools / Options
+> Check "Show all settings"
+> Source Control / Plug-in Selection
+> Set "Current source control plug-in" to "None"
+> Then, as Ade Miller says: Restart Visual Studio.
+> My Visual Studio was working really slow since the git plugging was enabled and I managed to disable it "persistently across sessions" following this steps.

@@ -1,5 +1,16 @@
+## Sublime Text from Command Line (Win10)
+1. `alias subl='/d/App/Sublime\ Text\ 3/subl.exe '`
+
+## memory too high
+1. set "index_files" to false
+2. File indexing parses all files in the side bar, and builds an index of their symbols. This is required for Goto Definition to work.
+
 ## Multiple Cursors in Sublime Text 2 Windows
 1. Windows : Extend selection upward/downward at all carets: Ctrl + Alt + Up/Down
+
+## How to jump to previous and last cursor in Sublime Text 3?
+1. Alt + - : Jump Back and Jump Forward – Jump Back allows you to go to previous editing positions. This goes hand in hand with Goto Definition: you can now inspect a symbol definition, and quickly jump back to where you were previously. Jump Back is bound to Alt+Minus by default. The menu entry is Goto > Jump Back
+2. Alt + Shift - : Jump forward
 
 ## Vintage Mode (Vi/Vim)
 1. Vintage is a vi mode editing package for Sublime Text. It allows you to combine vi's command mode with Sublime Text's features, including multiple selections.
@@ -30,3 +41,13 @@
 > Replace next:    Ctrl + Shift + H
 > Replace all:  Ctrl + Alt + Enter
 
+## Sublime 3 Increase Goto Symbol Font Size
+1. [Quick Panel](http://www.sublimetext.com/docs/3/themes.html#filter_label_properties)
+2. quick_panel_label: Filenames in quick_panel_row and all text in mini_quick_panel_row
+3. quick_panel_path_label: File paths in quick_panel_row
+4. Filter Label Properties: font.size - an integer point size
+
+## HTML-CSS-JS Prettify
+1. install: HTML-CSS-JS Prettify
+2. usage: htmlprettify
+3. config: https://packagecontrol.io/packages/HTML-CSS-JS%20Prettify

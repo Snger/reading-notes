@@ -4,6 +4,10 @@ You can change the most recent commit message using the `git commit --amend` com
 ## Amending older or multiple commit messages
 If you have already pushed the commit to GitHub, you will have to force push a commit with an amended message. Use the `push --force` command to force push over the old commit.
 
+## Amend your last commit
+1. And then just commit with the --amend argument.
+2. `git commit --amend`
+
 ## Amending the message of older or multiple commit messages
 1. Use the `git rebase -i HEAD~n` command to display a list of the last n commits in your default text editor.
 2. Replace pick with reword before each commit message you want to change.
@@ -129,4 +133,50 @@ $ cat .git/refs/heads/master
 > ... replacing `<hostname>` with the server's hostname, and `<username>` and `<password>` with your username and password. Also remember to set restrictive file system permissions on that file:
 >     chmod 600 ~/.netrc
 > Note that on Windows, this file should be called `_netrc`, and you may need to define the %HOME% environment variable - for more details see:
+
+## git-diff to ignore ^M
+1. GitHub suggests that you should make sure to only use \n as a newline character in git-handled repos. There's an option to auto-convert:
+2. `$ git config --global core.autocrlf true` 
+3. Of course, this is said to convert crlf to lf, while you want to convert cr to lf. 
+4. code
+    ````bash
+    # Remove everything from the index
+    $ git rm --cached -r .
+
+    # Re-add all the deleted files to the index
+    # You should get lots of messages like: "warning: CRLF will be replaced by LF in <file>."
+    $ git diff --cached --name-only -z | xargs -0 git add
+
+    # Commit
+    $ git commit -m "Fix CRLF"
+    ````
+5. core.autocrlf: Setting this variable to "true" is almost the same as setting the text attribute to "auto" on all files except that text files are not guaranteed to be normalized: files that contain CRLF in the repository will not be touched. Use this setting if you want to have CRLF line endings in your working directory even though the repository does not have normalized line endings. This variable can be set to input, in which case no output conversion is performed.
+
+## How to .gitignore files recursively
+1. git treats the pattern as a shell glob suitable for consumption by fnmatch(3) with the FNM_PATHNAME flag: wildcards in the pattern will not match a / in the pathname.
+2. 可以在前面添加正斜杠/来避免递归, /TODO -- 仅在当前目录下忽略 TODO 文件， 但不包括子目录下的 subdir/TODO
+3. 可以在后面添加正斜杠/来忽略文件夹，例如build/即忽略build文件夹。
+4. 可以使用!来否定忽略，即比如在前面用了*.apk，然后使用!a.apk，则这个a.apk不会被忽略。
+5. *用来匹配零个或多个字符，如*.[oa]忽略所有以".o"或".a"结尾，*~忽略所有以~结尾的文件（这种文件通常被许多编辑器标记为临时文件）；[]用来匹配括号内的任一字符，如[abc]，也可以在括号内加连接符，如[0-9]匹配0至9的数；?用来匹配单个字符。
+
+## Refreshing a repository after changing line endings
+1. After you've set the core.autocrlf option and committed a .gitattributes file, you may find that Git wants to commit files that you have not modified. At this point, Git is eager to change the line endings of every file for you.
+1. The best way to automatically configure your repository's line endings is to first backup your files with Git, delete every file in your repository (except the .git directory), and then restore the files all at once.
+> Save your current files in Git, so that none of your work is lost.
+    > git add . -u
+    > git commit -m "Saving files before refreshing line endings"
+> Remove the index and force Git to rescan the working directory.
+    > rm .git/index
+> Rewrite the Git index to pick up all the new line endings.
+    > git reset
+> Show the rewritten, normalized files.
+    > git status
+> Add all your changed files back, and prepare them for a commit. This is your chance to inspect which files, if any, were unchanged.
+    > git add -u
+    > # It is perfectly safe to see a lot of messages here that read
+    > # "warning: CRLF will be replaced by LF in file."
+> Rewrite the .gitattributes file.
+    > git add .gitattributes
+> Commit the changes to your repository.
+    > git commit -m "Normalize all the line endings"
 
