@@ -1,10 +1,22 @@
 ## install
 1. https://emacsformacosx.com/
 2. `alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"`
+3. `alias emacsclient="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"`
 
 ## useful link
 1. [ 一年成为Emacs高手(像神一样使用编辑器)](http://blog.csdn.net/redguardtoo/article/details/7222501)
 2. [emacs.d](https://github.com/Snger/emacs.d)
+
+## work
+1. M-x counsel-recentf
+2. M-x neotree-find (current dir file, or ido-find-file) 
+3. M-x evil-mode
+4. M-x neotree-toggle
+5. switch to buffer: M-x b
+6. create new file: Just press C-x C-f. This will prompt for a filename, using the current directory of the current buffer as the directory to put it in. For a dired buffer, its current directory is simply the directory you are looking at.
+7. change other window: C-x o
+8. last input: M p
+9. next input: M p
 
 ## basic
 1. Press `C-h t` in Emacs (“C” means Ctrl key, “M” means Alt key) to read bundled tutorial.
@@ -18,6 +30,16 @@
 7. Open file with Ido: If you press C-x C-f to open a file, Ido will show the suggestions. Keep pressing C-f to ignore suggestions.
 8. You could `M-x package-refresh-content` and restart Emacs.
 9. Chinese Input Method Editor: `M-x toggle-input-method to toggle input method chinese-pyim.`
+
+## daemon
+1. emacs --daemon
+2. emacsclient -t or emacsclient -c (add ` -a ""` without step 1)
+3. emacsclient --eval "(kill-emacs)"
+4. emacsclient -e '(client-save-kill-emacs)'
+
+## Why emacsclient can't find socket after executing 'emacs --daemon'
+1. Finding the server socket file is the tricky bit, you can use lsof to find it, and then a bit of grep-ing to extract the socket path/filename.
+2. lsof -c Emacs | grep server | tr -s " " | cut -d' ' -f8
 
 ## 【C-x】 Prefix
 C-x C-b		list-buffers
