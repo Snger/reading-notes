@@ -39,3 +39,9 @@ Procedural languages offer limited support for model-driven design. Such languag
  $2
 
 
+<a href="/p/content/help/getHelp?id=129" target="_blank">如何交易比特币</a>
+
+<router-link to="/p/content/help/getHelp?id=129" target="_blank">如何交易比特币</router-link>
+
+<a\shref=("/[/\w"/.?=\d&;#]*(\s[\w="？]*)?>[\w\d<>\[\]-：？/]*)</a>
+<router-link to=\1</router-link>
