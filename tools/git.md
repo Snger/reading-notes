@@ -15,6 +15,56 @@ If you have already pushed the commit to GitHub, you will have to force push a c
 4. In each resulting commit file, type the new commit message, save the file, and close it.
 5. Force-push the amended commits.
 
+## Change the author and committer name and e-mail of multiple commits in Git
+1. In the case where just the top few commits have bad authors, you can do this all inside git rebase -i using the exec command and the --amend commit, as follows:
+````
+git rebase -i HEAD~6 # as required
+````
+> which presents you with the editable list of commits:
+````
+pick abcd Someone else's commit
+pick defg my bad commit 1
+pick 1234 my bad commit 2
+````
+> Then add exec ... --author="..." lines after all lines with bad authors:
+````
+pick abcd Someone else's commit
+pick defg my bad commit 1
+exec git commit --amend --author="New Author Name <email@address.com>" -C HEAD
+pick 1234 my bad commit 2
+exec git commit --amend --author="New Author Name <email@address.com>" -C HEAD
+````
+> save and exit editor (to run).
+2. git commit --amend --reset-author --no-edit
+> That works really well on the last commit. Nice and simple. Doesn't have to be a global change, using --local works too
+3. [Changing the Git history of your repository using a script](https://help.github.com/articles/changing-author-info/)
+
+## How do I move forward and backward between commits in git?
+1. I've experimented a bit and this seems to do the trick to navigate forwards:
+````
+git checkout $(git rev-list --topo-order HEAD..towards | tail -1)
+````
+> Explanation:
+>> where towards is a SHA1 of the commit or a tag.
+>> the command inside $() means: get all the commits between current HEAD and towards commit (excluding HEAD), and sort them in the precedence order (like in git log by default -- instead of the chronological order which is weirdly the default for rev-list), and then take the last one (tail), i.e. the one we want to go to.
+>> this is evaluated in the subshell, and passed to git checkout to perform a checkout.
+2. Add these two functions to your ~/.bashrc:
+````
+# checkout prev (older) revision
+git_prev() {
+    git checkout HEAD~
+}
+# checkout next (newer) commit
+git_next() {
+    BRANCH=`git show-ref | grep $(git show-ref -s -- HEAD) | sed 's|.*/\(.*\)|\1|' | grep -v HEAD | sort | uniq`
+    HASH=`git rev-parse $BRANCH`
+    PREV=`git rev-list --topo-order HEAD..$HASH | tail -1`
+    git checkout $PREV
+}
+````
+3. Once you are done looking around, you can go back to your original state just by checking out to that branch. In my example: git checkout master
+4. If you don't want to go to original state, and want so keep one of the commits as your head and continue from there, then you need to branch out from there. for example after "git checkout HEAD@{4}" , git checkout -b MyNewBranch
+
 ## Using a socks proxy with git for the http transport
 1. $ ALL_PROXY=socks5://127.0.0.1:1080 git clone https://github.com/some/one.git
 2. $ git clone https://github.com/xxxxx --config 'http.proxy=socks5://127.0.0.1:1080'
