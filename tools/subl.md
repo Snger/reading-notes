@@ -1,3 +1,20 @@
+# sublime text
+<!-- MarkdownTOC -->
+
+- Sublime Text from Command Line \(Win10\)
+- memory too high
+- Multiple Cursors in Sublime Text 2 Windows
+- How to jump to previous and last cursor in Sublime Text 3?
+- Vintage Mode \(Vi/Vim\)
+- Search Filters
+- Search – Single File
+- Replace – Single File
+- Sublime 3 Increase Goto Symbol Font Size
+- HTML-CSS-JS Prettify
+- Markdown Package
+
+<!-- /MarkdownTOC -->
+
 ## Sublime Text from Command Line (Win10)
 1. `alias subl='/d/App/Sublime\ Text\ 3/subl.exe '`
 
@@ -51,3 +68,9 @@
 1. install: HTML-CSS-JS Prettify
 2. usage: htmlprettify
 3. config: https://packagecontrol.io/packages/HTML-CSS-JS%20Prettify
+
+## Markdown Package
+1. [Table Editor](https://github.com/vkocubinsky/SublimeTableEditor)
+> Table Editor is a package for the Sublime Text 2 and Sublime Text 3 editor for edit text tables. Table Editor is has almost the same keys as Emacs-org mode table editor.
+2. [MarkdownTOC](https://github.com/naokazuterada/MarkdownTOC)
+> Sublime Text 3 plugin for generating a Table of Contents (TOC) in a Markdown document.

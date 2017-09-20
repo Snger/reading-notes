@@ -132,7 +132,6 @@ $ cat .git/refs/heads/master
 1. git log -p
 2. -p, -u, --patch : Generate patch (see section on generating patches).
 3. Normally, to show you what changed in a commit, Git runs a simple git diff parent self, where parent and self are the commit's parent, and the commit itself, respectively. Both git log and git show do this, in slightly different ways and under slightly different circumstances. The most obvious is that git show defaults to showing a diff every time, but git log only does a diff when given -p or one of the various diff control options such as --name-only.
-
 4. Instead of typing "HEAD", you can say "@" instead, e.g. "git log @".
 
 ## git: a quick command to go to root of the working tree
@@ -230,3 +229,6 @@ $ cat .git/refs/heads/master
 > Commit the changes to your repository.
     > git commit -m "Normalize all the line endings"
 
+## git rebase without changing commit timestamps
+1. A crucial question of Von C helped me understand what is going on: when your rebase, the committer's timestamp changes, but not the author's timestamp, which suddenly all makes sense. So my question was actually not precise enough.
+1. The answer is that rebase actually doesn't change the author's timestamps (you don't need to do anything for that), which suits me perfectly.

@@ -1,6 +1,6 @@
 Unit testing（单元测试），指一段代码的基本测试，其实际大小是未定的，通常是一个函数或子程序，一般由开发者执行。
 
-## Unit testing（单元测试） 
+## Unit testing（单元测试）
 1. Unit testing（单元测试），指一段代码的基本测试，其实际大小是未定的，通常是一个函数或子程序，一般由开发者执行。
 
 ^(\w*\s?\w*\s?\w*[\(（]\w*[\)）])(?=[\,，])
@@ -9,7 +9,7 @@ Unit testing（单元测试），指一段代码的基本测试，其实际大�
 
 
 Backreference	\1 through \9	Substituted with the text matched between the 1st through 9th numbered capturing group.	(abc|def)=\1 matches abc=abc or def=def, but not abc=def or def=abc.
-## Backreference 
+## Backreference
 1. Syntax: \1 through \9
 2. Substituted with the text matched between the 1st through 9th numbered capturing group.
 3. Example: (abc|def)=\1 matches abc=abc or def=def, but not abc=def or def=abc.
@@ -43,5 +43,16 @@ Procedural languages offer limited support for model-driven design. Such languag
 
 <router-link to="/p/content/help/getHelp?id=129" target="_blank">如何交易比特币</router-link>
 
-<a\shref=("/[/\w"/.?=\d&;#]*(\s[\w="？]*)?>[\w\d<>\[\]-：？/]*)</a>
+<a\shref=("/[/\w"/.?=\d&;#_\d]*(\s[\w="？\s]*)?>[\w\d<>\[\]-：？/\s]*)</a>
 <router-link to=\1</router-link>
+
+
+
+## js隐藏手机号中间四位，变成 * 星号
+````
+var tel = "13888888888";
+var reg = /^(\d{3})\d{4}(\d{4})$/;
+tel = tel.replace(reg, "$1****$2");
+````
+
+

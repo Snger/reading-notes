@@ -39,3 +39,14 @@
 ## How do I remove a directory and all its contents?
 1. `rm -rf directoryname`
 2. `rmdir directoryname`
+
+## How to get the MD5 hash of a string directly in the terminal?
+1. echo -n Welcome | md5sum
+> Notice that the -n is mandatory. Without it, your hash will be totally wrong since it includes the newline character.
+> -n     do not output the trailing newline
+1. md5sum <<<"my string"
+> Very simple, it accepts stdin, and using the <<< operator sends a newline to the md5sum.
+1. printf '%s' "my string" | md5sum
+> To avoid the trailing newline added by the shell
+1. echo -n 123456 | md5sum | awk '{print $1}'
+1. echo -n 123456 | openssl md5
