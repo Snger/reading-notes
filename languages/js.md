@@ -1,6 +1,6 @@
 ## How can I round a number in JavaScript? .toFixed() returns a string?
 1. The toFixed() method converts a number into a string, keeping a specified number of decimals. (price + priceStepNum).toFixed(2)-0; It returns a string because 0.1, and powers thereof (which are used to display decimal fractions), are not representable (at least not with full accuracy) in binary floating-point systems.
-2. For example, 0.1 is really 0.1000000000000000055511151231257827021181583404541015625, and 0.01 is really 0.01000000000000000020816681711721685132943093776702880859375. (Thanks to BigDecimal for proving my point. :-P) 
+2. For example, 0.1 is really 0.1000000000000000055511151231257827021181583404541015625, and 0.01 is really 0.01000000000000000020816681711721685132943093776702880859375. (Thanks to BigDecimal for proving my point. :-P)
 3. Therefore (absent a decimal floating point or rational number type), outputting it as a string is the only way to get it trimmed to exactly the precision required for display.
 
 ## Return multiple values in JavaScript?
@@ -20,9 +20,9 @@
 ## javascript Object.assign()
 1. The Object.assign() method is used to copy the values of all enumerable own properties from one or more source objects to a target object. It will return the target object.
 2. Syntax: Object.assign(target, ...sources) ; Parameters: target //The target object. sources //The source object(s). Return value: The target object.
-3. The Object.assign() method only copies enumerable and own properties from a source object to a target object. It uses [[Get]] on the source and [[Set]] on the target, so it will invoke getters and setters. 
+3. The Object.assign() method only copies enumerable and own properties from a source object to a target object. It uses [[Get]] on the source and [[Set]] on the target, so it will invoke getters and setters.
 4. var obj = { a: 1 }; var copy = Object.assign({}, obj); console.log(copy); // { a: 1 }
-5. 
+5.
 ````javascript
 var o1 = { a: 1 };
 var o2 = { b: 2 };
@@ -54,8 +54,8 @@ expect(getter(context, locals)).toEqual('local');
 ````
 ## conditional (ternary) operator
 1. The conditional (ternary) operator is the only JavaScript operator that takes three operands. This operator is frequently used as a shortcut for the if statement.
-2. Syntax : condition ? expr1 : expr2 
-3. If condition is true, the operator returns the value of expr1; otherwise, it returns the value of expr2. 
+2. Syntax : condition ? expr1 : expr2
+3. If condition is true, the operator returns the value of expr1; otherwise, it returns the value of expr2.
 4. You can also do more than one operation during the assignation of a value. In this case, the last comma-separated value of the parenthesis will be the value to be assigned.
 
 ## Arrow functions
@@ -63,8 +63,8 @@ expect(getter(context, locals)).toEqual('local');
 2. Two factors influenced the introduction of arrow functions: shorter functions and non-binding of this.
 
 ## Using a variable for a key in a JavaScript object literal
-1. `var thetop = 'top', var obj = { thetop : 10 }` is a valid object literal. The code will create an object with a property named thetop that has a value of 10. In ES5 and earlier, you cannot use a variable as a property name inside an object literal. 
-2. Assign the variable property name with a value of 10: `aniArgs[thetop] = 10`; 
+1. `var thetop = 'top', var obj = { thetop : 10 }` is a valid object literal. The code will create an object with a property named thetop that has a value of 10. In ES5 and earlier, you cannot use a variable as a property name inside an object literal.
+2. Assign the variable property name with a value of 10: `aniArgs[thetop] = 10`;
 3. ES6 defines ComputedPropertyName as part of the grammar for object literals, which allows you to write the code like this: `var thetop = "top",obj = { [thetop]: 10 };`
 4. This is the HTML rendering of ECMA-262 6th Edition, The ECMAScript 2015 Language Specification. -> 12 ECMAScript Language: Expressions -> 12.2 Primary Expression -> 12.2.6 Object Initializer: An object initializer is an expression describing the initialization of an Object, written in a form resembling a literal. It is a list of zero or more pairs of property keys and associated values, enclosed in curly brackets. The values need not be literals; they are evaluated each time the object initializer is evaluated. -> 12.2.6.6 Static Semantics: PropName -> ComputedPropertyName : [ AssignmentExpression ] Return empty.
 
@@ -90,3 +90,9 @@ array.splice(start, deleteCount, item1, item2, ...)
 1. [Return value] An array containing the deleted elements. If only one element is removed, an array of one element is returned. If no elements are removed, an empty array is returned.
 1. [Description] If you specify a different number of elements to insert than the number you're removing, the array will have a different length at the end of the call.
 
+## js隐藏手机号中间四位，变成 * 星号
+````
+var tel = "13888888888";
+var reg = /^(\d{3})\d{4}(\d{4})$/;
+tel = tel.replace(reg, "$1****$2");
+````
