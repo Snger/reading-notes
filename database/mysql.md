@@ -1,6 +1,26 @@
+# mydql
+<!-- MarkdownTOC -->
+
+- DROP TABLE IF EXISTS TABLENAME;
+- CREATE TABLE TABLENAME \(\) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+- ALTER TABLE TABLENAME ADD INDEX IX_TABLENAME_CREATETIME\(CREATETIME\);
+- Definition of stored procedures
+- How to add new stored procedures to mysql in DataGrip?
+- CREATE PROCEDURE Syntax
+- INSERT ... SELECT Syntax
+- SELECT Syntax
+- Case operator -- Control Flow Functions
+- UPDATE Syntax
+- CURDATE\(\)
+- mysql Workbench
+- 14.2.9.3 UNION Syntax
+- MySQL外键使用详解
+
+<!-- /MarkdownTOC -->
+
 ## DROP TABLE IF EXISTS TABLENAME;
 1. DROP TABLE removes one or more tables. You must have the DROP privilege for each table. All table data and the table definition are removed, so be careful with this statement! If any of the tables named in the argument list do not exist, MySQL returns an error indicating by name which nonexisting tables it was unable to drop, but it also drops all of the tables in the list that do exist.
-2. Use IF EXISTS to prevent an error from occurring for tables that do not exist. A NOTE is generated for each nonexistent table when using IF EXISTS. 
+2. Use IF EXISTS to prevent an error from occurring for tables that do not exist. A NOTE is generated for each nonexistent table when using IF EXISTS.
 
 ## CREATE TABLE TABLENAME () ENGINE=InnoDB DEFAULT CHARSET=utf8;
 1. CREATE TABLE creates a table with the given name. You must have the CREATE privilege for the table.
@@ -66,9 +86,9 @@ SELECT
     [FOR UPDATE | LOCK IN SHARE MODE]]
 ````
 2. A select_expr can be given an alias using AS alias_name. The alias is used as the expression's column name and can be used in GROUP BY, ORDER BY, or HAVING clauses.
-3. The AS keyword is optional when aliasing a select_expr with an identifier. 
+3. The AS keyword is optional when aliasing a select_expr with an identifier.
 4. However, because the AS is optional, a subtle problem can occur if you forget the comma between two select_expr expressions: MySQL interprets the second as an alias name. For this reason, it is good practice to be in the habit of using AS explicitly when specifying column aliases.
-5. The FROM table_references clause indicates the table or tables from which to retrieve rows. If you name more than one table, you are performing a join. For each table specified, you can optionally specify an alias. 
+5. The FROM table_references clause indicates the table or tables from which to retrieve rows. If you name more than one table, you are performing a join. For each table specified, you can optionally specify an alias.
 6. tbl_name [[AS] alias] [index_hint] -- You can refer to a table within the default database as tbl_name, or as db_name.tbl_name to specify a database explicitly. You can refer to a column as col_name, tbl_name.col_name, or db_name.tbl_name.col_name. You need not specify a tbl_name or db_name.tbl_name prefix for a column reference unless the reference would be ambiguous.
 7.  The ALL and DISTINCT options specify whether duplicate rows should be returned. ALL (the default) specifies that all matching rows should be returned, including duplicates. DISTINCT specifies removal of duplicate rows from the result set. It is an error to specify both options. DISTINCTROW is a synonym for DISTINCT.
 
@@ -106,3 +126,37 @@ UNION [ALL | DISTINCT] SELECT ...
 1. If the data types of corresponding SELECT columns do not match, the types and lengths of the columns in the UNION result take into account the values retrieved by all of the SELECT statements.
 1. The default behavior for UNION is that duplicate rows are removed from the result. The optional DISTINCT keyword has no effect other than the default because it also specifies duplicate-row removal. With the optional ALL keyword, duplicate-row removal does not occur and the result includes all matching rows from all the SELECT statements.
 1. You can mix UNION ALL and UNION DISTINCT in the same query. Mixed UNION types are treated such that a DISTINCT union overrides any ALL union to its left. A DISTINCT union can be produced explicitly by using UNION DISTINCT or implicitly by using UNION with no following DISTINCT or ALL keyword.
+
+## MySQL外键使用详解
+1. 只有InnoDB类型的表才可以使用外键，mysql默认是MyISAM，这种类型不支持外键约束
+2. 外键的好处：可以使得两张表关联，保证数据的一致性和实现一些级联操作；
+3. 外键的作用：
+
+> 保持数据一致性，完整性，主要目的是控制存储在外键表中的数据。
+> 使两张表形成关联，外键只能引用外表中的列的值！
+
+4. 建立外键的前提：
+
+> 两个表必须是InnoDB表类型。
+> 使用在外键关系的域必须为索引型(Index)。
+> 使用在外键关系的域必须与数据类型相似
+
+5. 创建的步骤
+
+> 指定主键关键字： foreign key(列名)
+> 引用外键关键字： references <外键表名>(外键列名)
+
+6. 事件触发限制:on delete和on update , 可设参数cascade(跟随外键改动), restrict(限制外表中的外键改动),set Null(设空值）,set Default（设默认值）,[默认]no action
+7. 举例
+````mysql
+# 创建含有外键的表
+create table temp (
+    id int,
+    name char(20),
+    foreign key(id) references outTable(id)
+        on delete cascade on update cascade
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- 把id列 设为外键 参照外表outTable的id列 当外键的值删除 本表中对应的列筛除 当外键的值改变 本表中对应的列值改变。
+````
+8. 缺点：在对MySQL做优化的时候类似查询缓存，索引缓存之类的优化对InnoDB类型的表是不起作用的，还有在数据库整体架构中用得同步复制也是对InnoDB类型的表不生效的，像数据库中核心的表类似商品表请大家尽量不要是使用外键，如果同步肯定要同步商品库的，加上了外键也就没法通不了，优化也对它没作用，岂不得不偿失，做外键的目的在于保证数据完整性，请大家通过程序来实现这个目的而不是外键，切记！
+

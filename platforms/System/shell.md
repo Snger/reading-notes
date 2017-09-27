@@ -1,7 +1,18 @@
+# shell
+<!-- MarkdownTOC -->
+
+- Bash tips: Colors and formatting \(ANSI/VT100 Control sequences\)
+- What's is the difference between “>” and “>>” in shell command?
+- What are the shell's control and redirection operators?
+- How do I remove a directory and all its contents?
+- How to get the MD5 hash of a string directly in the terminal?
+
+<!-- /MarkdownTOC -->
+
 ## Bash tips: Colors and formatting (ANSI/VT100 Control sequences)
 1. The ANSI/VT100 terminals and terminal emulators are not just able to display black and white text ; they can display colors and formatted texts thanks to escape sequences. Those sequences are composed of the Escape character (often represented by ”^[” or ”<Esc>”) followed by some other characters: ”<Esc>[FormatCodem”.
 2. In Bash, the <Esc> character can be obtained with the following syntaxes: `\e` , `\033`, `\x1B`, `\u001b`
-3. [Example] `echo -e "\033[31mHello\e[0m World"`: 
+3. [Example] `echo -e "\033[31mHello\e[0m World"`:
 > NOTE¹: The -e option of the echo command enable the parsing of the escape sequences.
 > NOTE²: The ”\e[0m” sequence removes all attributes (formatting and colors). It can be a good idea to add it at the end of each colored text. ;)
 > NOTE³: The examples in this page are in Bash but the ANSI/VT100 escape sequences can be used in every programming languages.
@@ -11,8 +22,8 @@
 1. > is used to write to a file and >> is used to append to a file. Thus, when you use ps aux > file, the output of ps aux will be written to file and if a file named file was already present, its contents will be overwritten. And if you use ps aux >> file, the output of ps aux will be written to file and if the file named file was already present, the file will now contain its previous contents and also the contents of ps aux, written after its older contents of file.
 
 ## What are the shell's control and redirection operators?
-1. These are called shell operators and yes, there are more of them. I will give a brief overview of the most common among the two major classes, control operators and [redirection operators](https://www.gnu.org/software/bash/manual/bashref.html#Redirections), and how they work with respect to the bash shell. 
-2. A. Control operators: These are tokens that perform control functions, one of `||`, `!`, `&&`, `&`, `;`, `;;`, `|`, `|&`, `(`, or `)`. 
+1. These are called shell operators and yes, there are more of them. I will give a brief overview of the most common among the two major classes, control operators and [redirection operators](https://www.gnu.org/software/bash/manual/bashref.html#Redirections), and how they work with respect to the bash shell.
+2. A. Control operators: These are tokens that perform control functions, one of `||`, `!`, `&&`, `&`, `;`, `;;`, `|`, `|&`, `(`, or `)`.
 > 2.1 List terminators
 > `;` : Will run one command after another has finished, irrespective of the outcome of the first.
 > `&` : This will run a command in the background, allowing you to continue working in the same shell.
@@ -33,7 +44,7 @@
 > `>|` : Does the same as `>`, but will overwrite the target, even if the shell has been configured to refuse overwriting (with set -C or set -o noclobber).
 > `>>` : Does the same as `>`, except that if the target file exists, the new data are appended.
 > `&>`, `>&`, `>>&` and `&>>` : (non-standard). Redirect both standard error and standard output, replacing or appending, respectively.
-> `<<` : A here document. It is often used to print multi-line strings. If you want to pipe the output of command `<< WORD ... WORD` directly into another command or commands, you have to put the pipe on the same line as `<< WORD`, you can't put it after the terminating `WORD` or on the line following. 
+> `<<` : A here document. It is often used to print multi-line strings. If you want to pipe the output of command `<< WORD ... WORD` directly into another command or commands, you have to put the pipe on the same line as `<< WORD`, you can't put it after the terminating `WORD` or on the line following.
 > `<<<` : Here strings, similar to here documents, but intended for a single line. These exist only in the Unix port or rc (where it originated), zsh, some implementations of ksh, yash and bash.
 
 ## How do I remove a directory and all its contents?
