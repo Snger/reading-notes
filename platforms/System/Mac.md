@@ -1,3 +1,10 @@
+# Mac
+<!-- MarkdownTOC -->
+
+- Kernel_task taking up RAM in OS X
+
+<!-- /MarkdownTOC -->
+
 ## Kernel_task taking up RAM in OS X
 1. The kernel in OS X is the software architecture that is responsible for handling resources that processes and programs need. These include the management of multitasking scheduling, virtual memory, system input and output, and various communication routines between processes. In addition, the kernel can be modified and given enhanced functionality by loading kernel extensions (kexts) to supply system-level management of features like Bluetooth and Wi-Fi, graphics processors, third-party hardware, access to peripheral devices, and special filesystem support. In essence, the kernel is responsible for running your hardware and making the hardware resources available to applications and system services.
 2. When the system starts up, even though you may have kernel extensions loaded, not all of the services are active. The system may be ready to use them, but will not load them fully until needed. Therefore, if you initially start up your system and check Activity Monitor, you may see the kernel_task process taking up a relatively small amount of RAM. When you then start using your system and activating features like your iSight camera, Wi-Fi services, switching GPUs, and using external devices, then the kernel_task will make use of the resources for these devices and will grow in size.
