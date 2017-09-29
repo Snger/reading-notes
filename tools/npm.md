@@ -13,3 +13,20 @@
 1. Use -S instead of --save and -D instead of --save-dev.
 1. [Shorthands and Other CLI Niceties](https://docs.npmjs.com/misc/config#shorthands-and-other-cli-niceties)
 
+## npm-run-script
+1. Run arbitrary package scripts
+1. Synopsis:
+> npm run-script <command> [--silent] [-- <args>...]
+> alias: npm run
+1. Description: This runs an arbitrary command from a package's "scripts" object. If no "command" is provided, it will list the available scripts. run[-script] is used by the test, start, restart, and stop commands, but can be called directly, as well. When the scripts in the package are printed out, they're separated into lifecycle (test, start, restart) and directly-run scripts.
+1. As of npm@2.0.0, you can use custom arguments when executing scripts. The special option -- is used by getopt to delimit the end of the options. npm will pass all the arguments after the -- directly to your script.
+
+## npm run env
+1. The env script is a special built-in command that can be used to list environment variables that will be available to the script at runtime. If an "env" command is defined in your package it will take precedence over the built-in.
+
+## npm run locally-installed dependencies
+1. In addition to the shell's pre-existing PATH, npm run adds node_modules/.bin to the PATH provided to scripts. Any binaries provided by locally-installed dependencies can be used without the node_modules/.bin prefix.
+> For example, if there is a devDependency on tap in your package, you should write:
+> "scripts": {"test": "tap test/\*.js"}
+> instead of "scripts": {"test": "node_modules/.bin/tap test/\*.js"} to run your tests.
+

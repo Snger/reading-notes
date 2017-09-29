@@ -1,10 +1,27 @@
+# GNU
+<!-- MarkdownTOC -->
+
+- What's GNU Project?
+- CLI pdf viewer - xpdf
+    - How do I open a .pdf in cygwin? - xpdf
+- What's Bash
+- Why most programs should be using '/bin/sh' and not bash?
+- How to navigate long commands faster?
+    - Bash Shortcuts For Maximum Productivity
+- Bash Command Editing Shortcuts
+- Bash Command Recall Shortcuts
+- Bash Command Control Shortcuts
+- Bash Bang \(!\) Commands
+
+<!-- /MarkdownTOC -->
+
 ## What's GNU Project?
 1. The GNU Project Listeni/ɡnuː/[3] is a free-software, mass-collaboration project, first announced on September 27, 1983 by Richard Stallman at MIT. Its aim is to give computer users freedom and control in their use of their computers and computing devices, by collaboratively developing and providing software that is based on the following freedom rights: users are free to run the software, share it (copy, distribute), study it and modify it. GNU software guarantees these freedom-rights legally (via its license), and is therefore free software; the use of the word "free" always being taken to refer to freedom.
 2. In order to ensure that the entire software of a computer grants its users all freedom rights (use, share, study, modify), even the most fundamental and important part, the operating system (including all its numerous utility programs), needed to be free software. According to its manifesto, the founding goal of the project was to build a free operating system and, if possible, "everything useful that normally comes with a Unix system so that one could get along without any software that is not free." Stallman decided to call this operating system GNU (a recursive acronym meaning "GNU's not Unix"), basing its design on that of Unix, a proprietary operating system.[4] Development was initiated in January 1984. In 1991, the kernel Linux appeared, developed outside of the GNU project by Linus Torvalds,[5] and in December 1992 it was made available under version 2 of the GNU General Public License.[6] Combined with the operating system utilities already developed by the GNU project, it allowed for the first operating system that was free software, known as Linux or GNU/Linux.
 3. The project's current work includes software development, awareness building, political campaigning and sharing of the new material.
-4. Once the kernel and the compiler were finished, GNU was able to be used for program development. The main goal was to create many other applications to be like the Unix system. GNU was able to run Unix programs but was not identical to it. 
+4. Once the kernel and the compiler were finished, GNU was able to be used for program development. The main goal was to create many other applications to be like the Unix system. GNU was able to run Unix programs but was not identical to it.
 
-## CLI pdf viewer
+## CLI pdf viewer - xpdf
 1. XPDF's pdftotext CLI utility: pdftotext /path/to/your/pdf | less
 2. pact install poppler (xpdf)
 3. PDFToText – Extract all the text from PDF document. I suggest you use the -Layout option for getting the content in the right order.
@@ -13,6 +30,11 @@
 >> 2. in a system-wide directory, typically /etc/xpdfrc
 5. cp /etc/xpdfrc ~/.xpdfrc
 6. restart computer, which can be invoked from the command line utility pdftotext.
+
+### How do I open a .pdf in cygwin? - xpdf
+> Do you have an X server installed? You'll need one to run graphical programs.
+> [Xming X Server](http://www.straightrunning.com/XmingNotes/)
+> The "website releases" require a donation; the "public domain" ones do not.
 
 ## What's Bash
 1. Bash is an sh-compatible command language interpreter that executes commands read from the standard input or from a file.  Bash also incorporates useful features from the Korn and C shells (ksh and csh).
