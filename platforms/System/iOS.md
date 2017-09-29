@@ -1,3 +1,27 @@
+# iOS
+<!-- MarkdownTOC -->
+
+- Xcode Project vs. Xcode Workspace - Differences
+- What's Storyboard?
+- A Segue Manages the Transition Between Two Scenes
+- WHAT IS COCOAPODS
+- Podspec Syntax Reference
+- Processing Symbol Files in Xcode
+- Code signing is required for product type 'Application' in SDK 'iOS 10.0' - StickerPackExtension requires a development team error
+- Momentum Scrolling on iOS Overflow Elements
+- UIKit
+- UIKit > UIApplication
+- UIKit > UIApplicationMain\(_:_:_:_:\) \(Global Function\)
+- What does “@UIApplicationMain” mean?
+- Language Reference > Attributes
+- UIKit > UIApplicationDelegate
+- UIKit > UIApplicationDelegate > func application\(UIApplication, didFinishLaunchingWithOptions: \[UIApplicationLaunchOptionsKey : Any\]? = nil\)
+- Swift 3 '\[UIApplicationLaunchOptionsKey : Any\]?' is not convertible to '\[String : NSString\]'
+- UIKit > UIViewController
+- UIKit > UIStackView
+
+<!-- /MarkdownTOC -->
+
 ## Xcode Project vs. Xcode Workspace - Differences
 1. I think there are three key items you need to understand regarding project structure: Targets, projects, and workspaces. Targets specify in detail how a product/binary (i.e., an application or library) is built. They include build settings, such as compiler and linker flags, and they define which files (source code and resources) actually belong to a product. When you build/run, you always select one specific target.
 2. It is likely that you have a few targets that share code and resources. These different targets can be slightly different versions of an app (iPad/iPhone, different brandings,…) or test cases that naturally need to access the same source files as the app. All these related targets can be grouped in a project. While the project contains the files from all its targets, each target picks its own subset of relevant files. The same goes for build settings: You can define default project-wide settings in the project, but if one of your targets needs different settings, you can always override them

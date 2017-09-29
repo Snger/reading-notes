@@ -22,7 +22,7 @@
 2. <wbr> (word break) means: "The browser may insert a line break here, if it wishes." It the browser does not think a line break necessary nothing happens.
 
 ## Stop word-wrap dividing words
-1. use white-space: wrap;. If you have set width on the element on which you are setting this it should work.
+1. use white-space: nowrap;. If you have set width on the element on which you are setting this it should work.
 
 ## 100% width table overflowing div container
 1. You can prevent tables from expanding beyond their parent div by using `width: 100%; table-layout:fixed`.
@@ -31,3 +31,20 @@
 - auto: Use any automatic table layout algorithm
 3. Fixed table layout: With this (fast) algorithm, the horizontal layout of the table does not depend on the contents of the cells; it only depends on the table's width, the width of the columns, and borders or cell spacing. The table's width may be specified explicitly with the 'width' property. A value of 'auto' (for both 'display: table' and 'display: inline-table') means use the automatic table layout algorithm. However, if the table is a block-level table ('display: table') in normal flow, a UA may (but does not have to) use the algorithm of 10.3.3 to compute a width and apply fixed table layout even if the specified width is 'auto'.
 
+## Fixed 'thead' width doesn't match with the 'tbody' width
+1. Adding table-layout:fixed to the table and display:table to the thead fixes your problem.
+1. This is kind of a sloppy fix though, since the table-layout:fixed affects the entire layout and might not look how you want it to.
+1. You could also set percentage widths on the columns instead of using table-layout:fixed for more control over the layout.
+
+## Centering in the Unknown
+1. Centering in the Unknown
+> If you know the height and width of both the element to be centered and its parent element (and those measurements won't change, i.e. not fluid width environment) one foolproof way to center the element is just to absolute position it with pixel values so it looks perfectly centered.
+> Let's say you know the exact width and height of the element you are centering, but the parent element can change in height and width.
+> You absolutely position the element to be centered and set the top and left values to 50% and the margin top and left values to negative half of the elements height and width.
+2. Harder: Unknown Child
+> The grossest way to handle it is literally tables
+> If you are worried about the semantics of that, you could attempt to match it to your content. And get the same result as the tables like.
+> CSS tables might be fine for you. Or it might not. Tables do render a bit differently than just a regular block-level div does. For instance the 100% width thing. A table will only stretch to be as wide as it needs to for the content inside it whereas by default a block level element will expand to the width of its parent automatically. Also, god help you if you need other content inside that div that you want to position or otherwise not act as a table-cell.
+> Michał Czernow wrote in to me with an alternate technique that is extremely clever and accomplishes the same thing. If we set up a "ghost" element inside the parent that is 100% height, then we vertical-align: middle both that and the element to be centered, we get the same effect.
+> So does that ghost element need to be an un-semantic element? Nope, it can be a pseudo element.
+> I'd like to tell you the ghost element technique is way better and should be the go-to centering technique for the ages. But in reality, it's just about the same as the table trick. The browser support for this is essentially everything and IE 8+. IE 7 doesn't support pseudo elements. But it doesn't support CSS tables either, so it's a horse apiece. If IE <= 7 support is needed, it's <table> time (or use an equally un-semantic <span> or something for the ghost element).

@@ -17,7 +17,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp 目录中
 2. 我用的 Sublime text 3 编辑器高级搜索也是这个快捷键，也是从前段时间开始不能使用：每次要先按Ctrl + F，然后 Ctrl 键不放，再按下 Shift + F，这样才能打开高级搜索面板。(win10 不能自定义系统快捷键)
 
 ## open the Run window so that you can run quick commands
-1. Both Windows 8.1 and Windows 10 have a hidden power user menu that includes a shortcut for the Run window. There are many ways to access this menu, the easiest being to use the Windows + X keyboard shortcut. 
+1. Both Windows 8.1 and Windows 10 have a hidden power user menu that includes a shortcut for the Run window. There are many ways to access this menu, the easiest being to use the Windows + X keyboard shortcut.
 
 ## cmd- change to e drive?
 1. type the below at the C:\> prompt: `E:` That's all!
@@ -28,3 +28,15 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp 目录中
 
 ## How can I refresh my PATH variable from the registry, without a reboot, logoff, or restarting explorer?
 1. If you are trying to use the new value of the path variable from within a Windows command shell, all you should need to do is close your command shell window and open a new one. The new command shell will load the updated path variable.
+
+## How to open firewall ports in Windows 10
+0. Press Windows logo + X keys on the keyboard and select Control panel from the context menu.
+1. Navigate to Control Panel, System and Security and Windows Firewall.
+2. Select Advanced settings and highlight Inbound Rules in the left pane.
+3. Right click Inbound Rules and select New Rule.
+4. Add the port you need to open and click Next.
+5. Add the protocol (TCP or UDP) and the port number into the next window and click Next.
+6. Select Allow the connection in the next window and hit Next.
+7. Select the network type as you see fit and click Next.
+8. Name the rule something meaningful and click Finish.
+
