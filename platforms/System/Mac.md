@@ -2,6 +2,10 @@
 <!-- MarkdownTOC -->
 
 - Kernel_task taking up RAM in OS X
+- How to Sync Safari Bookmarks with Chrome
+    - Manually import bookmarks and history from Firefox or Chrome
+    - Enable Bookmark Synchronization on a Mac
+    - Enable Bookmark Synchronization in Windows
 
 <!-- /MarkdownTOC -->
 
@@ -12,4 +16,22 @@
 4. As with running applications, general use of the system will also increase kernel_task RAM usage. For instance, enabling Bluetooth and Wi-Fi will bump it up about 3-4MB, browsing the filesystem will boost it around 25-30MB, and enabling the onboard GPU (which uses system memory for video RAM) will initially give around a 20-25MB increase in RAM usage, but this will rise further as you perform tasks like playing 3D games, or watch large movie files when using this GPU.
 5. While some of the kernel_task services will not unload when you quit the processes that have started them, others will, especially if they are managing hardware in the system. For instance, on systems with multiple GPUs, if you use the onboard GPU, then you will see an increase in RAM usage by the kernel_task, but unlike some applications services, if you switch graphics processing back to the dedicated GPU, then the kernel_task will relinquish the RAM it was using for video memory. Likewise, if you have activated your iSight camera with a program like Photo Booth, then the kernel_task will use another 8-10MB of RAM, which will be relinquished when Photo Booth is shut down.
 6. Ultimately there is not much you can do to affect how kernel_task runs and manages the system. If you see the kernel_task process taking up a large amount of RAM on your system, there are a few options to reduce the RAM other than restarting your system. The first is to disable any hardware devices you may have attached to your system, such as external monitors, hard drives, or third-party audio or video interfaces. In addition, you can disable services like Wi-Fi and Bluetooth if you are not using them, and switch to using discrete graphics instead of the onboard GPU. The second thing you can do is quit programs and system services that use kernel extensions, such as the aforementioned Photo Booth, or graphics processing programs and games, especially if you are running with the integrated graphics card.
+
+## How to Sync Safari Bookmarks with Chrome
+### Manually import bookmarks and history from Firefox or Chrome
+> Choose File > Import From > Google Chrome or File > Import From > Firefox, then select the items you want to import. You can do this any time after you start using Safari, even if you imported items already.
+### Enable Bookmark Synchronization on a Mac
+> 1. Open the System Preferences app.
+> 2. Click iCloud.
+> 3. Check the box for Safari if it isn't already checked. If it already is checked, you're done!
+> 4. Click OK to confirm you want to merge your Safari bookmarks and Reading List with iCloud.
+### Enable Bookmark Synchronization in Windows
+1. Download iCloud for Windows from [Apple's site](https://support.apple.com/zh-cn/HT202806)
+2. Install iCloud using the installation wizard. You'll be prompted to restart the computer to complete the installation.
+3. Open the iCloud app. You can do this from the Start menu.
+4. Sign in with your Apple ID.
+5. Click the Options button next to Bookmarks.
+6. Select the browsers you want to sync bookmarks with Safari.
+7. Click OK.
+8. Click Apply to finish setting up synchronization.
 
