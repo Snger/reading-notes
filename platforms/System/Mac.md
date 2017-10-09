@@ -6,6 +6,7 @@
     - Manually import bookmarks and history from Firefox or Chrome
     - Enable Bookmark Synchronization on a Mac
     - Enable Bookmark Synchronization in Windows
+- 如何修改鼠须管默认简繁体？
 
 <!-- /MarkdownTOC -->
 
@@ -35,3 +36,5 @@
 7. Click OK.
 8. Click Apply to finish setting up synchronization.
 
+## 如何修改鼠须管默认简繁体？
+> 鼠须管默认是繁体输入，需要切换到简体输入的话，请用快捷键 control+“~”  打开切换菜单，选“漢字→汉字” 即可。
