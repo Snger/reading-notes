@@ -1,3 +1,18 @@
+# win10
+<!-- MarkdownTOC -->
+
+- Win10英文输入法如何切换全角和半角输入？
+- 把应用加入开机启动
+- Windows 10 自带输入法如何快速切换简繁体?
+- open the Run window so that you can run quick commands
+- cmd- change to e drive?
+- Location of the Hosts File
+- How do I set system environment variables in Windows 10?
+- How can I refresh my PATH variable from the registry, without a reboot, logoff, or restarting explorer?
+- How to open firewall ports in Windows 10
+
+<!-- /MarkdownTOC -->
+
 ## Win10英文输入法如何切换全角和半角输入？
 1. 在win10系统中英文输入状态时我们需要使用全角时只要按 SHIFT键+ 空格键 就可以切换了
 
@@ -25,6 +40,13 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp 目录中
 ## Location of the Hosts File
 1. C:\Windows\System32\Drivers\etc
 2. /c/Windows/System32/Drivers/etc
+
+## How do I set system environment variables in Windows 10?
+> 1. Go into Settings and click on System.
+> 2. Then on the left side click About and select System info at the bottom.
+> 3. In the new Control Panel window that opens, click Advanced system settings on the left.
+> 4. Now in the new window that comes up, select Environment Variables... at the bottom.
+> - I typed "envir" in the "Search the web and Windows" box and selected "Edit environment variables for your account" under the "Best Match".
 
 ## How can I refresh my PATH variable from the registry, without a reboot, logoff, or restarting explorer?
 1. If you are trying to use the new value of the path variable from within a Windows command shell, all you should need to do is close your command shell window and open a new one. The new command shell will load the updated path variable.
