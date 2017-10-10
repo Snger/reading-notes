@@ -5,12 +5,14 @@
 
 <!-- MarkdownTOC -->
 
-- NHibernate architecture
-    - diagram
-    - several key components to an NHibernate application
+- Chapter 1. The Configuration and Schema
+    - NHibernate architecture
+        - diagram
+        - several key components to an NHibernate application
 
 <!-- /MarkdownTOC -->
 
+# Chapter 1. The Configuration and Schema
 ## NHibernate architecture
 ### diagram
 ````

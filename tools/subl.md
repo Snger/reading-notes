@@ -12,6 +12,7 @@
 - Sublime 3 Increase Goto Symbol Font Size
 - HTML-CSS-JS Prettify
 - Markdown Package
+- React Package
 
 <!-- /MarkdownTOC -->
 
@@ -74,3 +75,6 @@
 > Table Editor is a package for the Sublime Text 2 and Sublime Text 3 editor for edit text tables. Table Editor is has almost the same keys as Emacs-org mode table editor.
 2. [MarkdownTOC](https://github.com/naokazuterada/MarkdownTOC)
 > Sublime Text 3 plugin for generating a Table of Contents (TOC) in a Markdown document.
+
+## React Package
+> 1. [JSX](https://github.com/allanhortle/JSX/)  - Syntax & Autocomplete
