@@ -1,3 +1,47 @@
+# git
+
+<!-- MarkdownTOC -->
+
+- Rewriting the most recent commit message
+- Amending older or multiple commit messages
+- Amend your last commit
+- Amending the message of older or multiple commit messages
+- Change the author and committer name and e-mail of multiple commits in Git
+- How do I move forward and backward between commits in git?
+- Using a socks proxy with git for the http transport
+- error: RPC failed; curl transfer closed with outstanding read data remaining
+- min clone a big git repository
+- Git Status Takes a Long Time to Complete
+- Trace the evolution of the line range of a file
+- git diff between two different files
+- List merge commits affecting a file.
+- Get the Git Commit ID via Command Line
+- How do I use vim as 'git log' editor?
+- What is HEAD in Git?
+- Using git log to display files changed during merge
+- git: a quick command to go to root of the working tree
+- git rev-parse \[ --option \] ...
+- Want to exclude file from “git diff”
+- How to delete .orig files after merge from git repository?
+- Is there a way to skip password typing when using https:// on GitHub?
+- git-diff to ignore ^M
+- How to .gitignore files recursively
+- Refreshing a repository after changing line endings
+- git rebase without changing commit timestamps
+- 寻找并删除Git记录中的大文件 & Git如何永久删除文件\(包括历史记录\)
+    - 寻找大文件的ID
+    - 查看大文件
+    - 删除大文件或者目录
+    - 强制覆盖分支
+    - 清理和回收空间
+- git relog
+- git rev-list
+- git pack-objects
+- git verify-pack
+- git gc
+
+<!-- /MarkdownTOC -->
+
 ## Rewriting the most recent commit message
 You can change the most recent commit message using the `git commit --amend` command.
 
@@ -100,7 +144,7 @@ git_next() {
 3. You don't need git for that, just use diff fileA.php fileB.php (or vimdiff if you want side by side comparison)
 
 ## List merge commits affecting a file.
-### For background, someone mis-resolved a conflict when merging, and it wasn't noticed by the team for a few days. At that point, a lot of other unrelated merges had been committed (some of us have been preferring to not use rebase, or things would be simpler). I need to locate the "bad" merge commit, so it can be checked to identify what else might have been reverted (and, of course, to identify and punish the guilty).
+> For background, someone mis-resolved a conflict when merging, and it wasn't noticed by the team for a few days. At that point, a lot of other unrelated merges had been committed (some of us have been preferring to not use rebase, or things would be simpler). I need to locate the "bad" merge commit, so it can be checked to identify what else might have been reverted (and, of course, to identify and punish the guilty).
 1. git log --follow /path/to/file , --follow : Continue listing the history of a file beyond renames (works only for a single file).
 2. `git log -U -m --simplify-merges --merges -- a.txt`
 3. --simplify-merges : Additional option to --full-history to remove some needless merges from the resulting history, as there are no selected commits contributing to this merge.
@@ -194,11 +238,9 @@ $ cat .git/refs/heads/master
     ````bash
     # Remove everything from the index
     $ git rm --cached -r .
-
     # Re-add all the deleted files to the index
     # You should get lots of messages like: "warning: CRLF will be replaced by LF in <file>."
     $ git diff --cached --name-only -z | xargs -0 git add
-
     # Commit
     $ git commit -m "Fix CRLF"
     ````
@@ -235,3 +277,56 @@ $ cat .git/refs/heads/master
 ## git rebase without changing commit timestamps
 1. A crucial question of Von C helped me understand what is going on: when your rebase, the committer's timestamp changes, but not the author's timestamp, which suddenly all makes sense. So my question was actually not precise enough.
 1. The answer is that rebase actually doesn't change the author's timestamps (you don't need to do anything for that), which suits me perfectly.
+
+## 寻找并删除Git记录中的大文件 & Git如何永久删除文件(包括历史记录)
+### 寻找大文件的ID
+> `git verify-pack -v .git/objects/pack/*.idx`
+### 查看大文件
+> `git rev-list --objects --all | grep "$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk '{print$1}')"`
+### 删除大文件或者目录
+> `git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch path-to-your-remove-file' --prune-empty --tag-name-filter cat -- --all`
+> 其中, path-to-your-remove-file 就是你要删除的文件的相对路径(相对于git仓库的跟目录), 替换成你要删除的文件即可. 注意一点，这里的文件或文件夹，都不能以 '/' 开头，否则文件或文件夹会被认为是从 git 的安装目录开始。
+> 如果你要删除的目标不是文件，而是文件夹，那么请在 `git rm --cached` 命令后面添加 -r 命令，表示递归的删除（子）文件夹和文件夹下的文件，类似于 `rm -rf` 命令。
+### 强制覆盖分支
+> `git push origin master --force --tags`
+> 为了能从打了 tag 的版本中也删除你所指定的文件或文件夹，您可以使用这样的命令来强制推送您的 Git tags
+### 清理和回收空间
+````bash
+$ rm -rf .git/refs/original/
+$ git reflog expire --expire=now --all
+$ git gc --prune=now
+$ git gc --aggressive --prune=now
+````
+
+## git relog
+> `git-reflog` - Manage reflog information
+> Reference logs, or "reflogs", record when the tips of branches and other references were updated in the local repository. Reflogs are useful in various Git commands, to specify the old value of a reference. For example, HEAD@{2} means "where HEAD used to be two moves ago", master@{one.week.ago} means "where master used to point to one week ago in this local repository", and so on. See gitrevisions(7) for more details.
+> This command manages the information recorded in the reflogs.
+> The `show` subcommand (which is also the default, in the absence of any subcommands) shows the log of the reference provided in the command-line (or HEAD, by default). The reflog covers all recent actions, and in addition the HEAD reflog records branch switching. `git reflog` show is an alias for `git log -g --abbrev-commit --pretty=oneline`; see git-log(1) for more information.
+> The `expire` subcommand prunes older reflog entries. Entries older than expire time, or entries older than expire-unreachable time and not reachable from the current tip, are removed from the reflog. This is typically not used directly by end users — instead, see `git-gc`(1).
+> The `delete` subcommand deletes single entries from the reflog. Its argument must be an exact entry (e.g. `git reflog delete master@{2}`). This subcommand is also typically not used directly by end users.
+> The `exists` subcommand checks whether a ref has a reflog. It exits with zero status if the reflog exists, and non-zero status if it does not.
+
+## git rev-list
+> `git rev-list` - Lists commit objects in reverse chronological order
+> `$ git rev-list foo bar ^baz` means "list all the commits which are reachable from foo or bar, but not from baz".
+> List commits that are reachable by following the parent links from the given commit(s), but exclude commits that are reachable from the one(s) given with a ^ in front of them. The output is given in reverse chronological order by default.
+> You can think of this as a set operation. Commits given on the command line form a set of commits that are reachable from any of them, and then commits reachable from any of the ones given with ^ in front are subtracted from that set. The remaining commits are what comes out in the command’s output. Various other options and paths parameters can be used to further limit the result.
+> `rev-list` is a very essential Git command, since it provides the ability to build and traverse commit ancestry graphs. For this reason, it has a lot of different options that enables it to be used by commands as different as `git bisect` and `git repack`.
+
+## git pack-objects
+> `git pack-objects` - Create a packed archive of objects
+> Reads list of objects from the standard input, and writes a packed archive with specified base-name, or to the standard output.
+> A packed archive is an efficient way to transfer a set of objects between two repositories as well as an access efficient archival format. In a packed archive, an object is either stored as a compressed whole or as a difference from some other object. The latter is often called a delta.
+> The packed archive format (.pack) is designed to be self-contained so that it can be unpacked without any further information. Therefore, each object that a delta depends upon must be present within the pack.
+> A pack index file (.idx) is generated for fast, random access to the objects in the pack. Placing both the index file (.idx) and the packed archive (.pack) in the pack/ subdirectory of $GIT_OBJECT_DIRECTORY (or any of the directories on $GIT_ALTERNATE_OBJECT_DIRECTORIES) enables Git to read from the pack archive.
+> The `git unpack-objects` command can read the packed archive and expand the objects contained in the pack into "one-file one-object" format; this is typically done by the smart-pull commands when a pack is created on-the-fly for efficient network transport by their peers.
+
+## git verify-pack
+> `git verify-pack` - Validate packed Git archive files
+> Reads given idx file for packed Git archive created with the git pack-objects command and verifies idx file and the corresponding pack file.
+
+## git gc
+> `git gc` - Cleanup unnecessary files and optimize the local repository
+> Runs a number of housekeeping tasks within the current repository, such as compressing file revisions (to reduce disk space and increase performance) and removing unreachable objects which may have been created from prior invocations of git add.
+> Users are encouraged to run this task on a regular basis within each repository to maintain good disk space utilization and good operating performance.
