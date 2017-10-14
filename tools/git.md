@@ -39,6 +39,7 @@
 - git pack-objects
 - git verify-pack
 - git gc
+- Remove all node_module folders recursively
 
 <!-- /MarkdownTOC -->
 
@@ -330,3 +331,11 @@ $ git gc --aggressive --prune=now
 > `git gc` - Cleanup unnecessary files and optimize the local repository
 > Runs a number of housekeeping tasks within the current repository, such as compressing file revisions (to reduce disk space and increase performance) and removing unreachable objects which may have been created from prior invocations of git add.
 > Users are encouraged to run this task on a regular basis within each repository to maintain good disk space utilization and good operating performance.
+
+## Remove all node_module folders recursively
+> Remove all node_module folders (or any type of folder/file): `find . -name "node_modules" -exec rm -rf '{}' +` That will delete the folder and files even if there is a space in the name.
+> Don't you think adding -type d to the find command might improve it a little, so it would be `find . -name "node_modules" -type d -exec rm -rf '{}' +`
+> Include the "prune" argument to not go over children nodemodules.
+```
+find . -name "nodemodules" -type d -prune -exec rm -rf '{}' +
+```
