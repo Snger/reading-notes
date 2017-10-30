@@ -1,3 +1,20 @@
+# vi
+<!-- MarkdownTOC -->
+
+- Insert Mode - Inserting/Appending text
+- Cut and Paste
+- How to unfreeze after accidentally pressing Ctrl-S in a terminal?
+- Switching case of characters
+- Repeat last change
+- Indent multiple lines quickly in vi
+- Searching and Replacing
+- Regex nested backreference
+- How to do case insensitive search in Vim
+- Indent or comment several text lines with vi
+- Ctrl-s hang terminal emulator?
+
+<!-- /MarkdownTOC -->
+
 ## Insert Mode - Inserting/Appending text
 - i - start insert mode at cursor
 - I - insert at the beginning of the line
@@ -86,3 +103,6 @@
 - type :set number. take note of the start and end line number of the block you want to comment. then do an address range substitution, eg
 - :12,17s/^/#
 
+## Ctrl-s hang terminal emulator?
+> `C-s` enables terminal scroll lock. Which prevents your terminal from scrolling (By sending an "XOFF" signal to pause the output of the software).
+> `C-q` disables the scroll lock. Resuming terminal scrolling (By sending an "XON" signal to resume the output of the software).
