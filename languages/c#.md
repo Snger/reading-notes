@@ -1,3 +1,50 @@
+# C sharp
+
+<!-- MarkdownTOC -->
+
+- How to initialize empty array in C
+- How to create an anonymous object in C
+- Creating an JSON array in C
+- What's Assemblies?
+- Can Assemblies contain more than one modules?
+- Assemblies have the following properties
+- lock Statement \(C# Reference\)
+- String To Enum Conversion
+- When are two enums equal in C#?
+- enum \(C# Reference\)
+- Enum.Parse Method \(Type, String\)
+- DateTime.Parse Method
+- JsonSerializerSettings Class
+- JsonProperty Class
+- JsonConverter Class
+- HttpConfiguration Class
+- ModelBinders Class
+- How model binding works
+- Customize model binding behavior with attributes
+- Binding formatted data from the request body
+- Introduction to model validation
+- System.ComponentModel.DataAnnotations Namespace
+- Manual validation
+- Custom validation
+- String.Format Method
+- What's the @ in front of a string in C#?
+- What does $ mean before a string?
+- `=>` Operator, Lambda Expressions \(C# Programming Guide\)
+- Using Delegates
+- Func Delegate
+- out \(C# Reference\)
+- What's the difference between the 'ref' and 'out' keywords?
+- Enumerable.Select  Method \(IEnumerable, Func\)
+- Dictionary Class
+- HttpResponseMessage Class
+- ActionNameAttribute.Name Property
+- ActionNameAttribute Class
+- ?? Operator \(C# Reference\)
+- ConcurrentDictionary Class
+- String.Trim Method \(\)
+
+<!-- /MarkdownTOC -->
+
 ## How to initialize empty array in C#
 > var listOfStrings = new List<string>();
 > string[] a= new string[] { };
@@ -34,15 +81,44 @@ var context = new[] {
 3. Best practice is to define a private object to lock on, or a private static object variable to protect data common to all instances.
 4. You can't use the await keyword in the body of a lock statement.
 
+## String To Enum Conversion
+> - Enum to string
+To convert enum to string use simply Enum.ToString method.
+````C#
+Animal animal = Animal.Cat;
+string str = animal.ToString();  // "Cat"
+````
+> - String to enum
+To convert string to enum use static method Enum.Parse. Parameters of this method are enum type, the string value and optionally indicator to ignore case.
+````C#
+string str = "Dog";
+Animal animal = (Animal)Enum.Parse(typeof(Animal), str);  // Animal.Dog
+Animal animal = (Animal)Enum.Parse(typeof(Animal), str, true); // case insensitive
+````
+
+## When are two enums equal in C#?
+> - Enum.Equals Method (Object)
+> Returns a value indicating whether this instance is equal to a specified object.
+> - Parameters
+obj
+Type: System.Object
+An object to compare with this instance, or null.
+> - Return Value
+Type: System.Boolean
+true if obj is an enumeration value of the same type and with the same underlying value as this instance; otherwise, false.
+> - Remarks
+The Enum.Equals(Object) method overrides ValueType.Equals(Object) to define how enumeration members are evaluated for equality.
+
 ## enum (C# Reference)
 1. The enum keyword is used to declare an enumeration, a distinct type that consists of a set of named constants called the enumerator list. Usually it is best to define an enum directly within a namespace so that all classes in the namespace can access it with equal convenience. However, an enum can also be nested within a class or struct. By default, the first enumerator has the value 0, and the value of each successive enumerator is increased by 1. 
 2. Enumerators can use initializers to override the default values. However, including a constant that has the value of 0 is recommended.
 3. Every enumeration type has an underlying type, which can be any integral type except char. The default underlying type of enumeration elements is int. To declare an enum of another integral type, such as byte, use a colon after the identifier followed by the type, The approved types for an enum are byte, sbyte, short, ushort, int, uint, long, or ulong.
 
 ## Enum.Parse Method (Type, String)
-1. Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.
+> 1. Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.
 2. Namespace: System; Assembly: mscorlib (in mscorlib.dll)
 3. [Remarks] The value parameter contains the string representation of an enumeration member's underlying value or named constant, or a list of named constants delimited by commas (,). One or more blank spaces can precede or follow each value, name, or comma in value. If value is a list, the return value is the value of the specified names combined with a bitwise OR operation. If value is a name that does not correspond to a named constant of enumType, the method throws an ArgumentException. If value is the string representation of an integer that does not represent an underlying value of the enumType enumeration, the method returns an enumeration member whose underlying value is value converted to an integral type. If this behavior is undesirable, call the IsDefined method to ensure that a particular string representation of an integer is actually a member of enumType. The following example defines a Colors enumeration, calls the Parse(Type, String) method to convert strings to their corresponding enumeration values, and calls the IsDefined method to ensure that particular integral values are underlying values in the Colors enumeration.
+> If value is a name that does not correspond to a named constant of enumType, the method *throws an ArgumentException*. If value is the string representation of an integer that does not represent an underlying value of the enumType enumeration, the method returns an enumeration member whose underlying value is value converted to an integral type. If this behavior is undesirable, call the IsDefined method to ensure that a particular string representation of an integer is actually a member of enumType. The following example defines a Colors enumeration, calls the Parse(Type, String) method to convert strings to their corresponding enumeration values, and calls the IsDefined method to ensure that particular integral values are underlying values in the Colors enumeration.
 
 ## DateTime.Parse Method
 1. Converts the string representation of a date and time to its DateTime equivalent.
@@ -234,3 +310,16 @@ public static IEnumerable<TResult> Select<TSource, TResult>(
 1. Represents a thread-safe collection of key/value pairs that can be accessed by multiple threads concurrently.
 1. Namespace: System.Collections.Concurrent, Assembly: mscorlib (in mscorlib.dll)
 1. [Thread Safety] All public and protected members of ConcurrentDictionary<TKey, TValue> are thread-safe and may be used concurrently from multiple threads. However, members accessed through one of the interfaces the ConcurrentDictionary<TKey, TValue> implements, including extension methods, are not guaranteed to be thread safe and may need to be synchronized by the caller.
+
+## String.Trim Method ()
+> - Removes all leading and trailing white-space characters from the current String object.
+> - Return Value
+Type: System.String
+The string that remains after all white-space characters are removed from the start and end of the current string. If no characters can be trimmed from the current instance, the method returns the current instance unchanged.
+> - Examples
+````c#
+String str = " C# ";
+Console.WriteLine("Hello{0}World!", str);
+string trStr = str.Trim();
+Console.WriteLine("Hello{0}World!", trStr );
+````
