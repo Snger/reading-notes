@@ -21,6 +21,7 @@
 - Getting the PublicKeyToken of .Net assemblies
 - How can you disable Git integration in Visual Studio 2013 permanently?
 - Command to collapse all sections of code?
+- HTML is being rendered as literal string using RazorEngine. How can I prevent this?
 
 <!-- /MarkdownTOC -->
 
@@ -54,7 +55,9 @@
 3. You can override these settings with most commands by using the -Source and -ProjectName options.
 
 ## Restore packages for all projects in the solution
-Update-Package -reinstall
+> Update-Package -reinstall
+> - You can also restrict this down to one project.
+> Update-Package -Project YourProjectName
 
 ## PM: Finding a package
 1. In the console, Get-Package -ListAvailable see all the packages available from the selected source. For nuget.org, the list will contain thousands of packages, so it's helpful to use the -Filter switch along with -PageSize. In NuGet 3.0 and later, you can instead use the Find-Package command that is better suited to this operation.
@@ -154,3 +157,7 @@ Collapse / Expand current preset area (e.g. <kbd>M</kbd>ethod)
 - <kbd>CTRL</kbd> + <kbd>M</kbd> + <kbd>O</kbd> ------> C<kbd>o</kbd>llapse all(Collapse declaration bodies)
 - <kbd>CTRL</kbd> + <kbd>M</kbd> + <kbd>L</kbd> ------>  Togg<kbd>l</kbd>e all
 ````
+
+## HTML is being rendered as literal string using RazorEngine. How can I prevent this?
+> `@Html.Raw("<h3>test</h3>")`
+> Represents an HTML-encoded string that should not be encoded again.
