@@ -1,3 +1,19 @@
+# css
+<!-- MarkdownTOC -->
+
+- transform: matrix\(1, 0, 0, 1, 317.4, -235\);
+- flex
+- Viewport Sized Typography
+- How to force a line break in a loooooong word in a DIV?
+- Stop word-wrap dividing words
+- 100% width table overflowing div container
+- Fixed 'thead' width doesn't match with the 'tbody' width
+- Centering in the Unknown
+- HTML position:fixed page header and in-page anchors
+- rendering  as text not as a newline
+
+<!-- /MarkdownTOC -->
+
 ## transform: matrix(1, 0, 0, 1, 317.4, -235);
 1. The origin, the (0, 0) is the top-left corner of the element.
 2. The matrix() CSS function specifies a homogeneous 2D transformation matrix comprised of the specified six values. The constant values of such matrices are implied and not passed as parameters; the other parameters are described in the column-major order. matrix(a, b, c, d, tx, ty) is a shorthand for matrix3d(a, b, 0, 0, c, d, 0, 0, 0, 0, 1, 0, tx, ty, 0, 1).
@@ -48,3 +64,17 @@
 > Michał Czernow wrote in to me with an alternate technique that is extremely clever and accomplishes the same thing. If we set up a "ghost" element inside the parent that is 100% height, then we vertical-align: middle both that and the element to be centered, we get the same effect.
 > So does that ghost element need to be an un-semantic element? Nope, it can be a pseudo element.
 > I'd like to tell you the ghost element technique is way better and should be the go-to centering technique for the ages. But in reality, it's just about the same as the table trick. The browser support for this is essentially everything and IE 8+. IE 7 doesn't support pseudo elements. But it doesn't support CSS tables either, so it's a horse apiece. If IE <= 7 support is needed, it's <table> time (or use an equally un-semantic <span> or something for the ghost element).
+
+## HTML position:fixed page header and in-page anchors
+> 
+````css
+.fix-header {
+	height: 40px
+}
+.anchor {
+    padding-top: 40px;
+}
+````
+
+## rendering <br> as text not as a newline
+> `white-space: pre-line;`
