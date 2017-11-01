@@ -96,10 +96,10 @@ git_next() {
 2. This form is to compare the given two paths on the filesystem. You can omit the --no-index option when running the command in a working tree controlled by Git and at least one of the paths points outside the working tree, or when running the command outside a working tree controlled by Git.
 3. You don't need git for that, just use diff fileA.php fileB.php (or vimdiff if you want side by side comparison)
 
-## List merge commits affecting a file. 
+## List merge commits affecting a file.
 ### For background, someone mis-resolved a conflict when merging, and it wasn't noticed by the team for a few days. At that point, a lot of other unrelated merges had been committed (some of us have been preferring to not use rebase, or things would be simpler). I need to locate the "bad" merge commit, so it can be checked to identify what else might have been reverted (and, of course, to identify and punish the guilty).
 1. git log --follow /path/to/file , --follow : Continue listing the history of a file beyond renames (works only for a single file).
-2. `git log -U -m --simplify-merges --merges -- a.txt` 
+2. `git log -U -m --simplify-merges --merges -- a.txt`
 3. --simplify-merges : Additional option to --full-history to remove some needless merges from the resulting history, as there are no selected commits contributing to this merge.
 4. -U<n>, --unified=<n> : Generate diffs with <n> lines of context instead of the usual three. Implies -p.
 5. -m : This flag makes the merge commits show the full diff like regular commits; for each merge parent, a separate log entry and diff is generated. An exception is that only diff against the first parent is shown when --first-parent option is given; in that case, the output represents the changes the merge brought into the then-current branch.
@@ -185,8 +185,8 @@ $ cat .git/refs/heads/master
 
 ## git-diff to ignore ^M
 1. GitHub suggests that you should make sure to only use \n as a newline character in git-handled repos. There's an option to auto-convert:
-2. `$ git config --global core.autocrlf true` 
-3. Of course, this is said to convert crlf to lf, while you want to convert cr to lf. 
+2. `$ git config --global core.autocrlf true`
+3. Of course, this is said to convert crlf to lf, while you want to convert cr to lf.
 4. code
     ````bash
     # Remove everything from the index
