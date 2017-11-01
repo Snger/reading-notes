@@ -44,6 +44,7 @@
 - git verify-pack
 - git gc
 - Remove all node_module folders recursively
+- Git Bash \(by babun\) git pull command crashed and created git.exe.stackdump file
 
 <!-- /MarkdownTOC -->
 
@@ -416,3 +417,9 @@ $ git gc --aggressive --prune=now
 ```
 find . -name "nodemodules" -type d -prune -exec rm -rf '{}' +
 ```
+## Git Bash (by babun) git pull command crashed and created git.exe.stackdump file
+> [error msg] Your configuration specifies to merge with the ref 'refs/heads/dev' from the remote, but no such ref was fetched.
+> [git.exe.stackdump content] Exception: STATUS_ACCESS_VIOLATION at eip=...
+> [git bash shell extensions use system32/cmd and wscript #8](https://github.com/msysgit/git/issues/8)
+> [Fails with Exception: STATUS_ACCESS_VIOLATION #25](https://github.com/msysgit/msysgit/issues/25)
+
