@@ -5,15 +5,17 @@
 
 <!-- MarkdownTOC -->
 
-- Types of associations
-- One-to-One Association
-    - Using a Primary Key
-    - Using a Foreign Key
-- One-to-Many \(or Many-to-One\) Association
-- Bidirectional One-to-Many Association
+- CHAPTER 5 Associations
+    - Types of associations
+    - One-to-One Association
+        - Using a Primary Key
+        - Using a Foreign Key
+    - One-to-Many \(or Many-to-One\) Association
+    - Bidirectional One-to-Many Association
 
 <!-- /MarkdownTOC -->
 
+# CHAPTER 5 Associations
 ## Types of associations
 ````
 |----------------|----------------------------|----------------------------|

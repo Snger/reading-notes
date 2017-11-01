@@ -1,6 +1,7 @@
 # sublime text
 <!-- MarkdownTOC -->
 
+- Setting
 - Sublime Text from Command Line \(Win10\)
 - memory too high
 - Multiple Cursors in Sublime Text 2 Windows
@@ -12,8 +13,21 @@
 - Sublime 3 Increase Goto Symbol Font Size
 - HTML-CSS-JS Prettify
 - Markdown Package
+- React Package
 
 <!-- /MarkdownTOC -->
+
+## Setting
+> - package control
+````
+- Ctrl+`
+- subline text3
+- import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())
+- subline text2
+- import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())
+````
+>- Install Package
+>> ConvertToUTF8, BracketHighlighter, SidebarEnhancements, afterglow-theme, Sublime SFTP, TypeScript, LESS, Pretty JSON, DocBlockr, JavaScriptNext, SublimeLinter 3 (or Sublime-JSHint), HTML-CSS-JS Prettify, MarkdownTOC, JSX
 
 ## Sublime Text from Command Line (Win10)
 1. `alias subl='/d/App/Sublime\ Text\ 3/subl.exe '`
@@ -74,3 +88,6 @@
 > Table Editor is a package for the Sublime Text 2 and Sublime Text 3 editor for edit text tables. Table Editor is has almost the same keys as Emacs-org mode table editor.
 2. [MarkdownTOC](https://github.com/naokazuterada/MarkdownTOC)
 > Sublime Text 3 plugin for generating a Table of Contents (TOC) in a Markdown document.
+
+## React Package
+> 1. [JSX](https://github.com/allanhortle/JSX/)  - Syntax & Autocomplete

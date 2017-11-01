@@ -1,3 +1,53 @@
+# git
+
+<!-- MarkdownTOC -->
+
+- Rewriting the most recent commit message
+- Amending older or multiple commit messages
+- Amend your last commit
+- Amending the message of older or multiple commit messages
+- Change the author and committer name and e-mail of multiple commits in Git
+- How do I move forward and backward between commits in git?
+- Using a socks proxy with git for the http transport
+- error: RPC failed; curl transfer closed with outstanding read data remaining
+- min clone a big git repository
+- Git Status Takes a Long Time to Complete
+- Trace the evolution of the line range of a file
+- git diff between two different files
+- List merge commits affecting a file.
+- Get the Git Commit ID via Command Line
+- How do I use vim as 'git log' editor?
+- What is HEAD in Git?
+- Using git log to display files changed during merge
+- git: a quick command to go to root of the working tree
+- git rev-parse \[ --option \] ...
+- Want to exclude file from “git diff”
+- How to delete .orig files after merge from git repository?
+- Is there a way to skip password typing when using https:// on GitHub?
+- git-diff to ignore ^M
+- .gitignore manual
+- Best practice for using multiple .gitignore files
+- Are multiple `.gitignore`s frowned on?
+- git check-ignore
+- How to .gitignore files recursively
+- Refreshing a repository after changing line endings
+- git rebase without changing commit timestamps
+- 寻找并删除Git记录中的大文件 & Git如何永久删除文件\(包括历史记录\)
+    - 寻找大文件的ID
+    - 查看大文件
+    - 删除大文件或者目录
+    - 强制覆盖分支
+    - 清理和回收空间
+- git relog
+- git rev-list
+- git pack-objects
+- git verify-pack
+- git gc
+- Remove all node_module folders recursively
+- Git Bash \(by babun\) git pull command crashed and created git.exe.stackdump file
+
+<!-- /MarkdownTOC -->
+
 ## Rewriting the most recent commit message
 You can change the most recent commit message using the `git commit --amend` command.
 
@@ -18,7 +68,8 @@ If you have already pushed the commit to GitHub, you will have to force push a c
 ## Change the author and committer name and e-mail of multiple commits in Git
 1. In the case where just the top few commits have bad authors, you can do this all inside git rebase -i using the exec command and the --amend commit, as follows:
 ````
-git rebase -i HEAD~6 # as required
+git rebase -i HEAD~6 # not at master branch
+git rebase -i HEAD~~~~ # at master branch
 ````
 > which presents you with the editable list of commits:
 ````
@@ -32,11 +83,13 @@ pick abcd Someone else's commit
 pick defg my bad commit 1
 exec git commit --amend --author="New Author Name <email@address.com>" -C HEAD
 pick 1234 my bad commit 2
-exec git commit --amend --author="New Author Name <email@address.com>" -C HEAD
+exec git commit --amend --reset-author -C HEAD
 ````
 > save and exit editor (to run).
 2. git commit --amend --reset-author --no-edit
 > That works really well on the last commit. Nice and simple. Doesn't have to be a global change, using --local works too
+> git commit -C <commit> --reset-author
+>> --reuse-message=<commit> Take an existing commit object, and reuse the log message and the authorship information (including the timestamp) when creating the commit.
 3. [Changing the Git history of your repository using a script](https://help.github.com/articles/changing-author-info/)
 
 ## How do I move forward and backward between commits in git?
@@ -97,7 +150,7 @@ git_next() {
 3. You don't need git for that, just use diff fileA.php fileB.php (or vimdiff if you want side by side comparison)
 
 ## List merge commits affecting a file.
-### For background, someone mis-resolved a conflict when merging, and it wasn't noticed by the team for a few days. At that point, a lot of other unrelated merges had been committed (some of us have been preferring to not use rebase, or things would be simpler). I need to locate the "bad" merge commit, so it can be checked to identify what else might have been reverted (and, of course, to identify and punish the guilty).
+> For background, someone mis-resolved a conflict when merging, and it wasn't noticed by the team for a few days. At that point, a lot of other unrelated merges had been committed (some of us have been preferring to not use rebase, or things would be simpler). I need to locate the "bad" merge commit, so it can be checked to identify what else might have been reverted (and, of course, to identify and punish the guilty).
 1. git log --follow /path/to/file , --follow : Continue listing the history of a file beyond renames (works only for a single file).
 2. `git log -U -m --simplify-merges --merges -- a.txt`
 3. --simplify-merges : Additional option to --full-history to remove some needless merges from the resulting history, as there are no selected commits contributing to this merge.
@@ -191,22 +244,93 @@ $ cat .git/refs/heads/master
     ````bash
     # Remove everything from the index
     $ git rm --cached -r .
-
     # Re-add all the deleted files to the index
     # You should get lots of messages like: "warning: CRLF will be replaced by LF in <file>."
     $ git diff --cached --name-only -z | xargs -0 git add
-
     # Commit
     $ git commit -m "Fix CRLF"
     ````
 5. core.autocrlf: Setting this variable to "true" is almost the same as setting the text attribute to "auto" on all files except that text files are not guaranteed to be normalized: files that contain CRLF in the repository will not be touched. Use this setting if you want to have CRLF line endings in your working directory even though the repository does not have normalized line endings. This variable can be set to input, in which case no output conversion is performed.
 
+## .gitignore manual
+> - NAME
+gitignore - Specifies intentionally untracked files to ignore
+> - SYNOPSIS
+$HOME/.config/git/ignore, $GIT_DIR/info/exclude, .gitignore
+> - DESCRIPTION
+A gitignore file specifies intentionally untracked files that Git should ignore. Files already tracked by Git are not affected; see the NOTES below for details.
+Each line in a gitignore file specifies a pattern. When deciding whether to ignore a path, Git normally checks gitignore patterns from multiple sources, with the following order of precedence, from highest to lowest (within one level of precedence, the last matching pattern decides the outcome):
+>> - Patterns read from the command line for those commands that support them.
+>> - Patterns read from a .gitignore file in the same directory as the path, or in any parent directory, with patterns in the higher level files (up to the toplevel of the work tree) being overridden by those in lower level files down to the directory containing the file. These patterns match relative to the location of the .gitignore file. A project normally includes such .gitignore files in its repository, containing patterns for files generated as part of the project build.
+>> - Patterns read from $GIT_DIR/info/exclude.
+>> - Patterns read from the file specified by the configuration variable core.excludesFile.
+>> Which file to place a pattern in depends on how the pattern is meant to be used.
+>> - Patterns which should be version-controlled and distributed to other repositories via clone (i.e., files that all developers will want to ignore) should go into a .gitignore file.
+>> - Patterns which are specific to a particular repository but which do not need to be shared with other related repositories (e.g., auxiliary files that live inside the repository but are specific to one user’s workflow) should go into the $GIT_DIR/info/exclude file.
+>> - Patterns which a user wants Git to ignore in all situations (e.g., backup or temporary files generated by the user’s editor of choice) generally go into a file specified by core.excludesFile in the user’s ~/.gitconfig. Its default value is $XDG_CONFIG_HOME/git/ignore. If $XDG_CONFIG_HOME is either not set or empty, $HOME/.config/git/ignore is used instead.
+>> The underlying Git plumbing tools, such as git ls-files and git read-tree, read gitignore patterns specified by command-line options, or from files specified by command-line options. Higher-level Git tools, such as git status and git add, use patterns from the sources specified above.
+> - PATTERN FORMAT
+>> - A blank line matches no files, so it can serve as a separator for readability.
+>> - A line starting with # serves as a comment. Put a backslash ("\") in front of the first hash for patterns that begin with a hash.
+>> - Trailing spaces are ignored unless they are quoted with backslash ("\").
+>> - An optional prefix "!" which negates the pattern; any matching file excluded by a previous pattern will become included again. It is not possible to re-include a file if a parent directory of that file is excluded. Git doesn’t list excluded directories for performance reasons, so any patterns on contained files have no effect, no matter where they are defined. Put a backslash ("\") in front of the first "!" for patterns that begin with a literal "!", for example, `\!important!.txt`.
+>> - If the pattern ends with a slash, it is removed for the purpose of the following description, but it would only find a match with a directory. In other words, foo/ will match a directory foo and paths underneath it, but will not match a regular file or a symbolic link foo (this is consistent with the way how pathspec works in general in Git).
+>> - If the pattern does not contain a slash /, Git treats it as a shell glob pattern and checks for a match against the pathname relative to the location of the .gitignore file (relative to the toplevel of the work tree if not from a .gitignore file).
+>> - Otherwise, Git treats the pattern as a shell glob suitable for consumption by fnmatch(3) with the FNM_PATHNAME flag: wildcards in the pattern will not match a / in the pathname. For example, `Documentation/*.html` matches `Documentation/git.html` but not `Documentation/ppc/ppc.html` or `tools/perf/Documentation/perf.html`.
+>> - A leading slash matches the beginning of the pathname. For example, `/*.c` matches `cat-file.c` but not `mozilla-sha1/sha1.c`.
+>> Two consecutive asterisks (`**`) in patterns matched against full pathname may have special meaning:
+>> - A leading `**` followed by a slash means match in all directories. For example, `**/foo` matches file or directory `foo` anywhere, the same as pattern `foo`. `**/foo/bar` matches file or directory `bar` anywhere that is directly under directory `foo`.
+>> - A trailing `/**` matches everything inside. For example, `abc/**` matches all files inside directory `abc`, relative to the location of the .gitignore file, with infinite depth.
+>> - A slash followed by two consecutive asterisks then a slash matches zero or more directories. For example, `a/**/b` matches `a/b`, `a/x/b`, `a/x/y/b` and so on.
+>> - Other consecutive asterisks are considered invalid.
+> - NOTES
+The purpose of gitignore files is to ensure that certain files not tracked by Git remain untracked.
+To stop tracking a file that is currently tracked, use git rm --cached.
+
+## Best practice for using multiple .gitignore files
+> [Background] A .gitignore refers to the directory that it's in, which is either the top level or descendent of a directory with a .git repository, i.e. a ".git/" directory.
+> There can be multiple .gitignore files in any sub directories but *the Best Practice is to have one .gitignore in a given projects root and have that file reference sub-directories as necessary*, e.g. images/yearly/recent Otherwise it is be tricky to know "which" .gitignore file to look at to find something that's being ignored. Given that you can use patterns as file names that could be pretty tricky!
+> I also recommend avoiding using a global .gitignore file which applies to all projects on your machine, although you might keep a template around for using with new projects. The main consideration here is that your .gitignore will be different from other developers (which may or may not exist) and so the result is undetermined. One example of an exception to this is using a global .gitignore file for IDE files that I don't want in any project that I open on my machine so I use a global .gitigore with an entry for .idea/ files (rubyMine).
+> The intent of the templates you see listed is that normally you are writing the code for a given file in a specific language. Given this, a template that is based on the language is frequently sufficient.
+> If there are multiple languages in the code base, then used you will need to combine multiple .gitignore's for those languages, which can be done in a multitude of ways such as:
+````bash
+cat .gitignore1 .gitignore2 > .gitignore # if .gitignore doesn't exist yet
+cat .gitignore1 >> .gitignore # Add to it if it already exists
+paste .gitignore1 .gitignore # Add to it if it already exists
+````
+
+## Are multiple `.gitignore`s frowned on?
+> I can think of at least two situations where you would want to have multiple .gitignore files in different (sub)directories.
+> - Different directories have different types of file to ignore. For example the .gitignore in the top directory of your project ignores generated programs, while Documentation/.gitignore ignores generated documentation.
+> - Ignore given files only in given (sub)directory (you can use /sub/foo in .gitignore, though).
+> Please remember that patterns in .gitignore file apply recursively to the (sub)directory the file is in and all its subdirectories, unless pattern contains '/' (so e.g. pattern name applies to any file named name in given directory and all its subdirectories, while /name appliest to file with this name only in given directory).
+> - As a tangential note, one case where the ability to have multiple .gitignore files is very useful is if you want an extra directory in your working copy that you never intend to commit. Just put a 1-byte .gitignore (containing just a single asterisk) in that directory and it will never show up in git status etc.
+> - You can have multiple .gitignore, each one of course in its own directory.
+> To check which gitignore rule is responsible for ignoring a file, use `git check-ignore`: `git check-ignore -v -- afile`.
+> And you can have different version of a .gitignore file per branch: I have already seen that kind of configuration for ensuring one branch ignores a file while the other branch does not: see this question for instance.
+> If your repo includes several independent projects, it would be best to reference them as submodules though.
+> That would be the actual best practices, allowing each of those projects to be cloned independently (with their respective .gitignore files), while being referenced by a specific revision in a global parent project.
+
+## git check-ignore
+> git check-ignore - Debug gitignore / exclude files
+> "git check-ignore" follows the same rule as "git add" and "git status" in that the ignore/exclude mechanism does not take effect on paths that are already tracked.
+> With "--no-index" option, it can be used to diagnose which paths that should have been ignored have been mistakenly added to the index.
+> `check-ignore` currently shows how .gitignore rules would treat untracked paths. Tracked paths do not generate useful output.
+> This prevents debugging of why a path became tracked unexpectedly unless that path is first removed from the index with `git rm --cached <path>`.
+> *The option `--no-index` tells the command to bypass the check for the path being in the index and hence allows tracked paths to be checked too.*
+> Whilst this behaviour deviates from the characteristics of `git add` and `git status` its use case is unlikely to cause any user confusion.
+> Test scripts are augmented to check this option against the standard ignores to ensure correct behaviour.
+> - `--no-index`
+> Don't look in the index when undertaking the checks. This can be used:
+> - to debug why a path became tracked by e.g. git add . and was not ignored by the rules as expected by the user or
+> - when developing patterns including negation to match a path previously added with git add -f.
+
 ## How to .gitignore files recursively
 1. git treats the pattern as a shell glob suitable for consumption by fnmatch(3) with the FNM_PATHNAME flag: wildcards in the pattern will not match a / in the pathname.
 2. 可以在前面添加正斜杠/来避免递归, /TODO -- 仅在当前目录下忽略 TODO 文件， 但不包括子目录下的 subdir/TODO
 3. 可以在后面添加正斜杠/来忽略文件夹，例如build/即忽略build文件夹。
-4. 可以使用!来否定忽略，即比如在前面用了*.apk，然后使用!a.apk，则这个a.apk不会被忽略。
-5. *用来匹配零个或多个字符，如*.[oa]忽略所有以".o"或".a"结尾，*~忽略所有以~结尾的文件（这种文件通常被许多编辑器标记为临时文件）；[]用来匹配括号内的任一字符，如[abc]，也可以在括号内加连接符，如[0-9]匹配0至9的数；?用来匹配单个字符。
+4. 可以使用!来否定忽略，即比如在前面用了`*.apk`，然后使用`!a.apk`，则这个a.apk不会被忽略。
+5. `*`用来匹配零个或多个字符，如\*.[oa]忽略所有以".o"或".a"结尾，`*~`忽略所有以~结尾的文件（这种文件通常被许多编辑器标记为临时文件）；[]用来匹配括号内的任一字符，如[abc]，也可以在括号内加连接符，如[0-9]匹配0至9的数；?用来匹配单个字符。
 
 ## Refreshing a repository after changing line endings
 1. After you've set the core.autocrlf option and committed a .gitattributes file, you may find that Git wants to commit files that you have not modified. At this point, Git is eager to change the line endings of every file for you.
@@ -232,3 +356,70 @@ $ cat .git/refs/heads/master
 ## git rebase without changing commit timestamps
 1. A crucial question of Von C helped me understand what is going on: when your rebase, the committer's timestamp changes, but not the author's timestamp, which suddenly all makes sense. So my question was actually not precise enough.
 1. The answer is that rebase actually doesn't change the author's timestamps (you don't need to do anything for that), which suits me perfectly.
+
+## 寻找并删除Git记录中的大文件 & Git如何永久删除文件(包括历史记录)
+### 寻找大文件的ID
+> `git verify-pack -v .git/objects/pack/*.idx`
+### 查看大文件
+> `git rev-list --objects --all | grep "$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk '{print$1}')"`
+### 删除大文件或者目录
+> `git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch path-to-your-remove-file' --prune-empty --tag-name-filter cat -- --all`
+> 其中, path-to-your-remove-file 就是你要删除的文件的相对路径(相对于git仓库的跟目录), 替换成你要删除的文件即可. 注意一点，这里的文件或文件夹，都不能以 '/' 开头，否则文件或文件夹会被认为是从 git 的安装目录开始。
+> 如果你要删除的目标不是文件，而是文件夹，那么请在 `git rm --cached` 命令后面添加 -r 命令，表示递归的删除（子）文件夹和文件夹下的文件，类似于 `rm -rf` 命令。
+### 强制覆盖分支
+> `git push origin master --force --tags`
+> 为了能从打了 tag 的版本中也删除你所指定的文件或文件夹，您可以使用这样的命令来强制推送您的 Git tags
+### 清理和回收空间
+````bash
+$ rm -rf .git/refs/original/
+$ git reflog expire --expire=now --all
+$ git gc --prune=now
+$ git gc --aggressive --prune=now
+````
+
+## git relog
+> `git-reflog` - Manage reflog information
+> Reference logs, or "reflogs", record when the tips of branches and other references were updated in the local repository. Reflogs are useful in various Git commands, to specify the old value of a reference. For example, HEAD@{2} means "where HEAD used to be two moves ago", master@{one.week.ago} means "where master used to point to one week ago in this local repository", and so on. See gitrevisions(7) for more details.
+> This command manages the information recorded in the reflogs.
+> The `show` subcommand (which is also the default, in the absence of any subcommands) shows the log of the reference provided in the command-line (or HEAD, by default). The reflog covers all recent actions, and in addition the HEAD reflog records branch switching. `git reflog` show is an alias for `git log -g --abbrev-commit --pretty=oneline`; see git-log(1) for more information.
+> The `expire` subcommand prunes older reflog entries. Entries older than expire time, or entries older than expire-unreachable time and not reachable from the current tip, are removed from the reflog. This is typically not used directly by end users — instead, see `git-gc`(1).
+> The `delete` subcommand deletes single entries from the reflog. Its argument must be an exact entry (e.g. `git reflog delete master@{2}`). This subcommand is also typically not used directly by end users.
+> The `exists` subcommand checks whether a ref has a reflog. It exits with zero status if the reflog exists, and non-zero status if it does not.
+
+## git rev-list
+> `git rev-list` - Lists commit objects in reverse chronological order
+> `$ git rev-list foo bar ^baz` means "list all the commits which are reachable from foo or bar, but not from baz".
+> List commits that are reachable by following the parent links from the given commit(s), but exclude commits that are reachable from the one(s) given with a ^ in front of them. The output is given in reverse chronological order by default.
+> You can think of this as a set operation. Commits given on the command line form a set of commits that are reachable from any of them, and then commits reachable from any of the ones given with ^ in front are subtracted from that set. The remaining commits are what comes out in the command’s output. Various other options and paths parameters can be used to further limit the result.
+> `rev-list` is a very essential Git command, since it provides the ability to build and traverse commit ancestry graphs. For this reason, it has a lot of different options that enables it to be used by commands as different as `git bisect` and `git repack`.
+
+## git pack-objects
+> `git pack-objects` - Create a packed archive of objects
+> Reads list of objects from the standard input, and writes a packed archive with specified base-name, or to the standard output.
+> A packed archive is an efficient way to transfer a set of objects between two repositories as well as an access efficient archival format. In a packed archive, an object is either stored as a compressed whole or as a difference from some other object. The latter is often called a delta.
+> The packed archive format (.pack) is designed to be self-contained so that it can be unpacked without any further information. Therefore, each object that a delta depends upon must be present within the pack.
+> A pack index file (.idx) is generated for fast, random access to the objects in the pack. Placing both the index file (.idx) and the packed archive (.pack) in the pack/ subdirectory of $GIT_OBJECT_DIRECTORY (or any of the directories on $GIT_ALTERNATE_OBJECT_DIRECTORIES) enables Git to read from the pack archive.
+> The `git unpack-objects` command can read the packed archive and expand the objects contained in the pack into "one-file one-object" format; this is typically done by the smart-pull commands when a pack is created on-the-fly for efficient network transport by their peers.
+
+## git verify-pack
+> `git verify-pack` - Validate packed Git archive files
+> Reads given idx file for packed Git archive created with the git pack-objects command and verifies idx file and the corresponding pack file.
+
+## git gc
+> `git gc` - Cleanup unnecessary files and optimize the local repository
+> Runs a number of housekeeping tasks within the current repository, such as compressing file revisions (to reduce disk space and increase performance) and removing unreachable objects which may have been created from prior invocations of git add.
+> Users are encouraged to run this task on a regular basis within each repository to maintain good disk space utilization and good operating performance.
+
+## Remove all node_module folders recursively
+> Remove all node_module folders (or any type of folder/file): `find . -name "node_modules" -exec rm -rf '{}' +` That will delete the folder and files even if there is a space in the name.
+> Don't you think adding -type d to the find command might improve it a little, so it would be `find . -name "node_modules" -type d -exec rm -rf '{}' +`
+> Include the "prune" argument to not go over children nodemodules.
+```
+find . -name "nodemodules" -type d -prune -exec rm -rf '{}' +
+```
+## Git Bash (by babun) git pull command crashed and created git.exe.stackdump file
+> [error msg] Your configuration specifies to merge with the ref 'refs/heads/dev' from the remote, but no such ref was fetched.
+> [git.exe.stackdump content] Exception: STATUS_ACCESS_VIOLATION at eip=...
+> [git bash shell extensions use system32/cmd and wscript #8](https://github.com/msysgit/git/issues/8)
+> [Fails with Exception: STATUS_ACCESS_VIOLATION #25](https://github.com/msysgit/msysgit/issues/25)
+

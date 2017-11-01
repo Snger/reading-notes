@@ -1,3 +1,17 @@
+# npm
+<!-- MarkdownTOC -->
+
+- Error: Cannot find module 'webpack/lib/node/NodeTemplatePlugin'
+- Short version of --save-dev and --save
+- npm-run-script
+- npm run env
+- npm run locally-installed dependencies
+- npm outdated
+- npm update
+- npm ls
+
+<!-- /MarkdownTOC -->
+
 ## Error: Cannot find module 'webpack/lib/node/NodeTemplatePlugin'
 1. Node requires you to install webpack to your project.
 1. You have 2 options to solve the above:
@@ -30,3 +44,19 @@
 > "scripts": {"test": "tap test/\*.js"}
 > instead of "scripts": {"test": "node_modules/.bin/tap test/\*.js"} to run your tests.
 
+## npm outdated
+> This command will check the registry to see if any (or, specific) installed packages are currently outdated.
+
+## npm update
+> This command will update all the packages listed to the latest version (specified by the tag config), respecting semver.
+>It will also install missing packages. As with all commands that install packages, the --dev flag will cause devDependencies to be processed as well.
+>If the -g flag is specified, this command will update globally installed packages. >If no package name is specified, all packages in the specified location (global or local) will be updated.
+
+## npm ls
+> aliases: list, la, ll
+> This command will print to stdout all the versions of packages that are installed, as well as their dependencies, in a tree-structure.
+> Positional arguments are name@version-range identifiers, which will limit the results to only the paths to the packages named. Note that nested packages will also show the paths to the specified packages.
+> The tree shown is the logical dependency tree, based on package dependencies, not the physical layout of your node_modules folder.
+> When run as ll or la, it shows extended information by default.
+> `npm list -g --depth=0` get a list of all globally installed modules
+> ls `npm root -g`

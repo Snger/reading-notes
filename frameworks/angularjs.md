@@ -1,3 +1,19 @@
+# angularjs
+<!-- MarkdownTOC -->
+
+- How to manually fire validation of a textbox with angularJS?
+- the `watchExpression` of angular.$watch\(watchExpression, listener, \[objectEquality\]\);
+- $compile.directive.attributes.$observe\(key, fn\)
+- Interpolation and data-binding
+- angular.isDefined
+- How to reload or re-render the entire page using AngularJS?
+- Using $q.all\(\) to Resolve Multiple Promises
+- ngRoute.ngView.$viewContentLoaded
+- In angular, how to use cancel an $interval on user events, like page change?
+- ScrollTo function in AngularJS
+
+<!-- /MarkdownTOC -->
+
 ## How to manually fire validation of a textbox with angularJS?
 > $scope.tradeForm[modelName].$setDirty();
 
@@ -49,4 +65,15 @@ $scope.$on(
         $timeout.cancel( timer );
     }
 );
+````
+
+## ScrollTo function in AngularJS
+> `$anchorScroll();`
+````js
+$scope.gotoAnchor = function (hash) {
+
+    $location.hash(hash);
+
+    $anchorScroll();
+};
 ````
