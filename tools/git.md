@@ -45,6 +45,7 @@
 - git gc
 - Remove all node_module folders recursively
 - Git Bash \(by babun\) git pull command crashed and created git.exe.stackdump file
+- Git Diff with Beyond Compare
 
 <!-- /MarkdownTOC -->
 
@@ -422,4 +423,7 @@ find . -name "nodemodules" -type d -prune -exec rm -rf '{}' +
 > [git.exe.stackdump content] Exception: STATUS_ACCESS_VIOLATION at eip=...
 > [git bash shell extensions use system32/cmd and wscript #8](https://github.com/msysgit/git/issues/8)
 > [Fails with Exception: STATUS_ACCESS_VIOLATION #25](https://github.com/msysgit/msysgit/issues/25)
+
+## Git Diff with Beyond Compare
+> `git difftool -t bc3`
 
