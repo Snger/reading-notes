@@ -42,6 +42,7 @@
 - ?? Operator \(C# Reference\)
 - ConcurrentDictionary Class
 - String.Trim Method \(\)
+- Do I need to check the Count\(\) of an Enumerable before foreach?
 
 <!-- /MarkdownTOC -->
 
@@ -323,3 +324,7 @@ Console.WriteLine("Hello{0}World!", str);
 string trStr = str.Trim();
 Console.WriteLine("Hello{0}World!", trStr );
 ````
+## Do I need to check the Count() of an Enumerable before foreach?
+> No, the opposite can be true. If it's not a collection (like a List or Array) but a deferred executed query it must be executed completely which can be very expensive, just to determine the count. In your example it's actually a List, Enumerable.Count is clever enough to try to cast it to a ICollection<T>/ICollection first . If that succeeds the Count property is used.
+> So just use the foreach. It doesn't hurt if the sequence is empty, the loop will be exited immediately.
+> For the same reason it's better to use Enumerable.Any instead of Count() > 0 if you just want to check if a sequence contains at least one element. The intention is also more clear.
