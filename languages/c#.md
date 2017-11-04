@@ -43,6 +43,8 @@
 - ConcurrentDictionary Class
 - String.Trim Method \(\)
 - Do I need to check the Count\(\) of an Enumerable before foreach?
+- How do I identify if a string is a number?
+- Inconsistent accessibility: base class 'A' is less accessible than class 'B'
 
 <!-- /MarkdownTOC -->
 
@@ -328,3 +330,23 @@ Console.WriteLine("Hello{0}World!", trStr );
 > No, the opposite can be true. If it's not a collection (like a List or Array) but a deferred executed query it must be executed completely which can be very expensive, just to determine the count. In your example it's actually a List, Enumerable.Count is clever enough to try to cast it to a ICollection<T>/ICollection first . If that succeeds the Count property is used.
 > So just use the foreach. It doesn't hurt if the sequence is empty, the loop will be exited immediately.
 > For the same reason it's better to use Enumerable.Any instead of Count() > 0 if you just want to check if a sequence contains at least one element. The intention is also more clear.
+
+## How do I identify if a string is a number?
+> - int.TryParse
+````c#
+int n;
+bool isNumeric = int.TryParse("123", out n);
+// Update As of C# 7:
+var isNumeric = int.TryParse("123", out var n);
+// Though, I would use double.TryParse, since we want to know if it represents a number at all.
+// One caveat: TryParse could overflow if you have a very long string. If that's a possibility, regular expressions might be a better option
+````
+> - Regex.IsMatch
+````c#
+Regex.IsMatch(input, @"^\d+$");
+Regex.IsMatch(input, @"\d")
+````
+
+## Inconsistent accessibility: base class 'A' is less accessible than class 'B'
+> either change class A to public or class B to internal.
+> you need to have your base classes of which you inherit to be equally open or more open than your derived classes. I suggest you read through the documentation about the access [modifiers of C#](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/accessibility-levels).
