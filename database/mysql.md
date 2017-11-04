@@ -16,6 +16,7 @@
 - 14.2.9.3 UNION Syntax
 - MySQL外键使用详解
 - Set value to NULL in MySQL
+- MySQL add days to a date
 
 <!-- /MarkdownTOC -->
 
@@ -162,7 +163,18 @@ create table temp (
 8. 缺点：在对MySQL做优化的时候类似查询缓存，索引缓存之类的优化对InnoDB类型的表是不起作用的，还有在数据库整体架构中用得同步复制也是对InnoDB类型的表不生效的，像数据库中核心的表类似商品表请大家尽量不要是使用外键，如果同步肯定要同步商品库的，加上了外键也就没法通不了，优化也对它没作用，岂不得不偿失，做外键的目的在于保证数据完整性，请大家通过程序来实现这个目的而不是外键，切记！
 
 ## Set value to NULL in MySQL
-> ````
+> 
+````mysql
 UPDATE MyTable
 SET MyField = NULL
 WHERE MyField = ''
+````
+
+## MySQL add days to a date
+> 
+````mysql
+UPDATE TABLE
+  SET PAYDATE=date_add(curdate(), INTERVAL 15 HOUR),
+    REPAYDATE=date_add(curdate(), INTERVAL 7 DAY)
+WHERE ID IN (165,166,167,168);
+````

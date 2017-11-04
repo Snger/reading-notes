@@ -13,6 +13,7 @@
 - How to: Create \(Local\) IIS Web Sites
 - How to open firewall ports in Windows 10
 - How to join a Homegroup from a Windows 10 computer
+- Enabling UPnP in Windows 7, 8, and 10
 
 <!-- /MarkdownTOC -->
 
@@ -116,3 +117,13 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp 目录中
 > If you don't have a Homegroup already setup, you will see the option to Create a new Homegroup.
 > In the next step, share the files and devices you want to share and click "Next"
 > In the next step, you will need to enter the password of your Homegroup. If you are joining a Homegroup created on another computer, you will need to obtain the password from the administrator of that computer. The computer name and username will be displayed on the screen so that you can ask the appropriate person for the password.
+
+## Enabling UPnP in Windows 7, 8, and 10
+> - Open the Control Panel.
+> - Click Network and Internet
+> - Click Network and Sharing Center.
+> - In the left pane, click the link for Change advanced sharing settings.
+> - In the Network Discovery section, select the option for Turn on network discovery and click the Save changes button.
+UPnP will now automatically start when you turn on your computer.
+> - Win+R, services.msc
+Funtion Discovery Resource Publication, SSDP Discovery Service, UPnP Device Host, auto, start

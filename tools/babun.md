@@ -6,6 +6,7 @@
 - Features in 3 minutes of babun
 - How can I change the default fonts and size of Babun’s \(mintty\) window on startup.
 - What is the difference between Cygwin and MinGW?
+- [Cannon Start Plugin][cygdrive]
 
 <!-- /MarkdownTOC -->
 
@@ -39,3 +40,17 @@ ColSpacing=4
 > MinGW compiles to a native Win32 application.
 > If you build something with Cygwin, any system you install it to will also need the Cygwin DLL(s). A MinGW application does not need any special runtime.
 
+## Cannon Start Plugin [cygdrive]
+> This error occurs when I attempt to start two babun sessions in split console under ConEmu. The first console opens correctly, but the second has the following error:
+````bash
+rm: cannot remove ‘/c’: No such file or directory
+ln: failed to create symbolic link ‘/c/c’: File exists
+Error on or near line 20, last command 'ln -s "$cygdrive_dir" "/$drive_name"';
+Could not start plugin [cygdrive]
+````
+> - vim /etc/fstab
+> - remove with vim the last line `none /cygdrive binary,posix=0,user,acl 0 0`
+> - replace it with this line `none /cygdrive binary 0 0`
+> - System Properties > Environment Variables... -> User Variable for [username] -> New...
+> - Create a HOME variable (in all caps), and path to .babun/cygwin/home/[username].
+> - Restart babun it will reinstall some configs if not, check if the HOME var is in uppercase.
