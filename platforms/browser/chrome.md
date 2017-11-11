@@ -1,3 +1,14 @@
+# chrome
+<!-- MarkdownTOC -->
+
+- How to reset Chrome DevTools sort requests?
+- Chrome for iOS gets an offline Read Later feature
+- Chrome DevTools converts all HEX Colors to RGB
+- How Source Maps Work
+- How to add Feedly to the Chrome RSS Subscription Extension
+
+<!-- /MarkdownTOC -->
+
 ## How to reset Chrome DevTools sort requests?
 1. By default, the resources in the Requests Table are sorted by the start time of each request, starting with the earliest requests at the top.
 2. Click on the header of a column to sort the table by each resource's value for that header. Click the same header again to change the sort order to ascending or descending.
@@ -23,3 +34,12 @@ Start Time. Sorts by the start time of each network request (same as sorting by 
 > sourceRoot – (optional) The URL which all of the files in the sources  array will be resolved from.
 > names – An array containing all of the variable and function names from your source files.
 > mappings – A string of Base64 VLQs containing the actual code mappings. (This is where the magic happens.)
+
+## How to add Feedly to the Chrome RSS Subscription Extension
+> I already use the [Chrome RSS Subscription Extension (by Google)](https://chrome.google.com/webstore/detail/rss-subscription-extensio/nlbjncdgjeocebhnmkbbbdekmmmcbfjd) which gives me a handy icon in my address bar when a feed is detected.
+> Clicking on ‘Manage…’ gives the rather daunting
+> using the following in the Edit feed reader dialog:
+````
+Description: Feedly
+URL: http://cloud.feedly.com/#subscription/feed/%s
+````

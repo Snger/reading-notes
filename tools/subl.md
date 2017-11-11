@@ -84,8 +84,20 @@
 3. config: https://packagecontrol.io/packages/HTML-CSS-JS%20Prettify
 
 ## Markdown Package
-1. [Table Editor](https://github.com/vkocubinsky/SublimeTableEditor)
+> 1. [Table Editor](https://github.com/vkocubinsky/SublimeTableEditor)
 > Table Editor is a package for the Sublime Text 2 and Sublime Text 3 editor for edit text tables. Table Editor is has almost the same keys as Emacs-org mode table editor.
+For first time you should enable table editor with command palette:
+> - click ctrl+shift+p
+> - select Table Editor: Enable for current syntax or Table Editor: Enable for current view or "Table Editor: Set table syntax ... for current view"
+Then when Table Editor is enabled, type
+````markdown
+| Name | Phone |
+|-
+Then press Tab key, you will get pretty printed table
+| Name | Phone |
+|------|-------|
+| _    |       |
+````
 2. [MarkdownTOC](https://github.com/naokazuterada/MarkdownTOC)
 > Sublime Text 3 plugin for generating a Table of Contents (TOC) in a Markdown document.
 

@@ -1,3 +1,14 @@
+# Sprint.Net
+<!-- MarkdownTOC -->
+
+- ContextRegistry Class
+- Spring.Objects.Factory.IObjectFactory
+- Spring.Objects.Factory.IObjectFactory.GetObject\(\)
+- Spring cron expression for every after 30 minutes
+- Class CronSequenceGenerator - org.springframework.scheduling.support
+
+<!-- /MarkdownTOC -->
+
 ## ContextRegistry Class
 1. Provides access to a central registry of IApplicationContexts.
 1. [Remarks] Simplifies access to to one or more application contexts.
@@ -18,3 +29,31 @@
 1. Note that callers should retain references to returned objects. There is no guarantee that this method will be implemented to be efficient. For example, it may be synchronized, or may need to run an RDBMS query.
 1. Will ask the parent factory if the object cannot be found in this factory instance.
 
+## Spring cron expression for every after 30 minutes
+> [Quartz Tutorials](http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/)
+> <property name="cronExpression" value="0 0/30 * * * ?" />
+````
++-------------------- second (0 - 59)
+|  +----------------- minute (0 - 59)
+|  |  +-------------- hour (0 - 23)
+|  |  |  +----------- day of month (1 - 31)
+|  |  |  |  +-------- month (1 - 12)
+|  |  |  |  |  +----- day of week (0 - 6) (Sunday=0 or 7)
+|  |  |  |  |  |  +-- year [optional]
+|  |  |  |  |  |  |
+*  *  *  *  *  *  * command to be executed 
+````
+
+## Class CronSequenceGenerator - org.springframework.scheduling.support
+> Date sequence generator for a Crontab pattern, allowing clients to specify a pattern that the sequence matches.
+> The pattern is a list of six single space-separated fields: representing second, minute, hour, day, month, weekday. Month and weekday names can be given as the first three letters of the English names.
+````
+// Example patterns:
+"0 0 * * * *" = the top of every hour of every day.
+"*/10 * * * * *" = every ten seconds.
+"0 0 8-10 * * *" = 8, 9 and 10 o'clock of every day.
+"0 0 6,19 * * *" = 6:00 AM and 7:00 PM every day.
+"0 0/30 8-10 * * *" = 8:00, 8:30, 9:00, 9:30, 10:00 and 10:30 every day.
+"0 0 9-17 * * MON-FRI" = on the hour nine-to-five weekdays
+"0 0 0 25 12 ?" = every Christmas Day at midnight
+````
