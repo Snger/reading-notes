@@ -45,6 +45,11 @@
 - Do I need to check the Count\(\) of an Enumerable before foreach?
 - How do I identify if a string is a number?
 - Inconsistent accessibility: base class 'A' is less accessible than class 'B'
+- display two decimal places using c
+- How to convert date format to DD-MM-YYYY in C
+- Task Class
+- Task.Run Method \(Func\)
+- How to debug Task.Factory
 
 <!-- /MarkdownTOC -->
 
@@ -350,3 +355,111 @@ Regex.IsMatch(input, @"\d")
 ## Inconsistent accessibility: base class 'A' is less accessible than class 'B'
 > either change class A to public or class B to internal.
 > you need to have your base classes of which you inherit to be equally open or more open than your derived classes. I suggest you read through the documentation about the access [modifiers of C#](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/accessibility-levels).
+````markdown
+|------------------------|-------------------------------------|
+| Declared accessibility |               Meaning               |
+|------------------------|-------------------------------------|
+| public                 | Access is not restricted.           |
+|------------------------|-------------------------------------|
+| protected              | Access is limited to the containing |
+|                        | class or types derived from the     |
+|                        | containing class.                   |
+|------------------------|-------------------------------------|
+| internal               | Access is limited to the current    |
+|                        | assembly.                           |
+|------------------------|-------------------------------------|
+| protected internal     | Access is limited to the current    |
+|                        | assembly or types derived from the  |
+|                        | containing class.                   |
+|------------------------|-------------------------------------|
+| private                | Access is limited to the containing |
+|                        | type.                               |
+|------------------------|-------------------------------------|
+````
+
+## display two decimal places using c#
+> 
+````c#
+string.Format("{0:F}", decimalValue);
+String.Format("{0:0.00}", value);
+yournumber.ToString("0.00");
+Math.Round(1156.547m, 2);
+Decimal.Parse(Debitvalue.ToString("0.00"));
+Convert.ToDecimal(string.Format("{0:F2}", Debitvalue));
+````
+
+## How to convert date format to DD-MM-YYYY in C#
+> 
+````c#
+string formatted = date.ToString("dd-MM-yyyy");
+
+// Where 'dt' is the DateTime object...
+String.Format("{0:dd-MM-yyyy}", dt);
+
+// This is the String value: "5/13/2012"
+DateTime _date;
+string day = "";
+_date = DateTime.Parse("5/13/2012");
+day = _date.ToString("dd-MMM-yyyy");
+
+// config
+config.Formatters.JsonFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
+````
+
+## Task Class
+> Represents an asynchronous operation.
+> Namespace:   System.Threading.Tasks, Assembly:  mscorlib (in mscorlib.dll)
+> - remaks
+> The Task class represents a single operation that does not return a value and that usually executes asynchronously. Task objects are one of the central components of the task-based asynchronous pattern first introduced in the .NET Framework 4. Because the work performed by a Task object typically executes asynchronously on a thread pool thread rather than synchronously on the main application thread, you can use the Status property, as well as the IsCanceled, IsCompleted, and IsFaulted properties, to determine the state of a task. Most commonly, a lambda expression is used to specify the work that the task is to perform.
+> For operations that return values, you use the Task<TResult> class.
+
+## Task.Run Method (Func<Task>)
+> Queues the specified work to run on the thread pool and returns a proxy for the task returned by function.
+> Namespace:   System.Threading.Tasks, Assembly:  mscorlib (in mscorlib.dll)
+> - Syntax
+````c#
+public static Task Run(
+	Func<Task> function
+)
+````
+> - Parameters
+function
+Type: System.Func<Task>
+The work to execute asynchronously
+> - Return Value
+Type: System.Threading.Tasks.Task
+A task that represents a proxy for the task returned by function.
+> - Remarks
+For information on handling exceptions thrown by task operations, see Exception Handling (Task Parallel Library).
+
+## How to debug Task.Factory
+> Try this code in a Console app:
+````c#
+using System;
+using System.Threading.Tasks;
+
+namespace Demo
+{
+    public static class Program
+    {
+        [STAThread]
+        private static void Main()
+        {
+            var task = test();
+            Console.WriteLine(task.Result);
+        }
+
+        private static Task<int> test()
+        {
+            return Task<int>.Factory.StartNew(() =>
+            {
+                int x = 10;  // <-- Set a breakpoint here.
+                int y = 5;
+                int z = x/y;
+
+                return z;
+            });
+        }
+    }
+}
+````

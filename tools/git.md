@@ -23,6 +23,7 @@
 - git rev-parse \[ --option \] ...
 - Want to exclude file from “git diff”
 - How to delete .orig files after merge from git repository?
+- how to remove untracked files in Git?
 - Is there a way to skip password typing when using https:// on GitHub?
 - git-diff to ignore ^M
 - .gitignore manual
@@ -207,6 +208,20 @@ $ cat .git/refs/heads/master
 ## How to delete .orig files after merge from git repository?
 1. git clean -i is really nice. it will give you a list of files that will be deleted and give you options on how to deal with the list (filter the list, being able to delete everything on the list, and some other options).
 2. `git rm -r *.orig`
+
+## how to remove untracked files in Git?
+> - User interactive approach:
+git clean -i -fd
+-i for interactive
+-f for force
+-d for directory
+-x for ignored files(add if required)
+Note: Add -n or --dry-run to just check what it will do.
+> - To remove untracked files / directories do:
+git clean -fdx
+-f - force
+-d - directories too
+-x - remove ignored files too ( don't use this if you don't want to remove ignored files)
 
 ## Is there a way to skip password typing when using https:// on GitHub?
 1. With Git version 1.7.9 and later
