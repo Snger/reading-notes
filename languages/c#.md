@@ -45,11 +45,13 @@
 - Do I need to check the Count\(\) of an Enumerable before foreach?
 - How do I identify if a string is a number?
 - Inconsistent accessibility: base class 'A' is less accessible than class 'B'
+- Accessibility Levels \(C# Reference\)
 - display two decimal places using c
 - How to convert date format to DD-MM-YYYY in C
 - Task Class
 - Task.Run Method \(Func\)
 - How to debug Task.Factory
+- Regex.IsMatch vs string.Contains
 
 <!-- /MarkdownTOC -->
 
@@ -377,6 +379,23 @@ Regex.IsMatch(input, @"\d")
 |------------------------|-------------------------------------|
 ````
 
+## Accessibility Levels (C# Reference)
+````markdown
+|------------|----------------|--------------------------------|
+| Members of | Default member | Allowed declared accessibility |
+|            | accessibility  |         of the member          |
+|------------|----------------|--------------------------------|
+| enum       | public         | None                           |
+|------------|----------------|--------------------------------|
+| class      | private        | public, protected, internal    |
+|            |                | private, protected internal    |
+|------------|----------------|--------------------------------|
+| interface  | public         | None                           |
+|------------|----------------|--------------------------------|
+| struct     | private        | public, internal, private      |
+|------------|----------------|--------------------------------|
+````
+
 ## display two decimal places using c#
 > 
 ````c#
@@ -463,3 +482,7 @@ namespace Demo
     }
 }
 ````
+
+## Regex.IsMatch vs string.Contains
+> For simple cases String.Contains will give you better performance but String.Contains will not allow you to do complex pattern matching. Use String.Contains for non-pattern matching scenarios (like the one in your example) and use regular expressions for scenarios in which you need to do more complex pattern matching.
+> A regular expression has a certain amount of overhead associated with it (expression parsing, compilation, execution, etc.) that a simple method like String.Contains simply does not have which is why String.Contains will outperform a regular expression in examples like yours.
