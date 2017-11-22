@@ -7,3 +7,7 @@
 ## Simple Math In Size Entries[GIMP 2.8]
 1. Enhancements have also been made to the size entry widget, which is used for inputting most of the x, y, width, height parameters. For example, in the scale dialog it is now possible to write ‘50%’ in the Width field to scale the image to 50% of the width. Expressions such as ‘30in + 40px’ and ‘4 * 5.4in’ work, too.
 
+## How do I select a layer “sitting” under the mouse cursor in Gimp?
+> Open Gimp preferences by going to "Edit" menu.
+> In "Preferences" dialog box click on "Tool Options" and enable the "set layer or path as active" option. Close the "Preferences".
+> Select "Move Tool" (shortcut - m), Now Click on your desired object and it's layer will be selected automatically. Hare's an example! 
