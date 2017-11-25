@@ -1,11 +1,12 @@
 # Visual Studio
 <!-- MarkdownTOC -->
 
-- Write Faster Code by Adding VIM to Visual Studio
+- VsVim - Write Faster Code by Adding VIM to Visual Studio
 - toggle full screen
 - show the project manage view
 - setting vs
-- clipboard different from the system one
+- VsVim - clipboard different from the system one
+- VsVim - Capturing group and using Backreference
 - Package Manager Console
 - Restore packages for all projects in the solution
 - PM: Finding a package
@@ -25,7 +26,7 @@
 
 <!-- /MarkdownTOC -->
 
-## Write Faster Code by Adding VIM to Visual Studio
+## VsVim - Write Faster Code by Adding VIM to Visual Studio
 1. One of the greatest productivity gains you can make is to type less and navigate through your code faster. VsVim, is an extension for Visual Studio 2010 and later which will get you doing just that. To get VsVim, you can download it from the Visual Studio Gallery or via the extension manager in Visual Studio. Mastering VsVim takes an investment of time, but learning it will pay dividends.
 2. In addition to all this, you still get IntelliSense, tab completion, snippets and all other base Visual Studio features when in insert mode. There's built in support for key binding collisions, enabling you to choose if VsVim or Visual Studio itself will handle the shortcuts; just click the options button in the bottom right of your code file.
 3. If you need to exit VsVim, you can temporarily disable (and restore) it by pressing `ctrl+Shift+F12`.
@@ -44,10 +45,22 @@
 3. nuget package config
 4. debug config: symbol(.pdb) position - http://localhost:33417/ D:\workspace\VS-SymbolCache
 
-## clipboard different from the system one
+## VsVim - clipboard different from the system one
 1. VsVim uses the gVim settings which will default to using the unnamed register for edit and paste commands. But it also implements the clipboard option which allows you to use the Windows System clipboard instead of the unnamed register.
 2. To get this behavior put the following in your vimrc file
 > `set clipboard=unnamed`
+
+## VsVim - Capturing group and using Backreference
+> 
+````
+.lottery-area .lottery-no-w {
+    background: url('/Content/promo/img/lottery/w.png') center no-repeat;
+}
+// upcase some word
+// :223,299s/lottery-no-\(\w\)/lottery-no-\U\1/g
+// :223,299s/\/\(\w\).png/\/\U\1\u.png/g
+// :328,403s/\(.lottery-area .lottery-no-\)\(\w\)/\0, \1\U\2/g
+````
 
 ## Package Manager Console
 1. In all cases, you open the Console in Visual Studio through the Tools > NuGet Package Manager > Package Manager Console command.
