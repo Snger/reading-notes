@@ -8,29 +8,7 @@
 
 - Part 1. Putting Dependency Injection on the map
     - Chapter 1. A Dependency Injection tasting menu
-        - 1.1. Writing maintainable code
-            - 1.1.1. Unlearning DI
-            - 1.1.2. Understanding the purpose of DI
-        - 1.2. Hello DI
-            - 1.2.2. Benefits of DI
-        - 1.3. What to inject and what not to inject
-            - 1.3.1. Seams
-            - 1.3.2. Stable Dependencies
-            - 1.3.3. Volatile Dependencies
-        - 1.4. DI scope
-            - 1.4.1. Object Composition
-            - 1.4.2. Object Lifetime
-            - 1.4.3. Interception
-            - 1.4.4. DI in three dimensions
-        - 1.5. Summary
     - Chapter 2. A comprehensive example
-        - 2.1. Doing it wrong
-            - 2.1.3. Evaluation
-            - 2.1.4. Analysis
-        - 2.2. Doing it right
-            - 2.2.1. Rebuilding the commerce application
-            - 2.2.2. Analyzing the loosely coupled implementation
-        - 2.3. Expanding the sample application
 
 <!-- /MarkdownTOC -->
 
@@ -212,7 +190,7 @@
 `this.objectContext = new CommerceObjectContext();`
 > This tightly couples the ProductService class to the Data Access library. There’s no reasonable way we can intercept this piece of code and replace it with something else. The reference to the Data Access library is hard-coded into the ProductService class.
 > This tightly couples the ProductService class to the Data Access library. There’s no reasonable way we can intercept this piece of code and replace it with something else. The reference to the Data Access library is hard-coded into the ProductService class.
-> The implementation of the GetFeaturedProducts method uses the CommerceObjectContext to pull Product objects from the database:
+> + The implementation of the GetFeaturedProducts method uses the CommerceObjectContext to pull Product objects from the database:
 ````c#
 var products = (from p in this.objectContext.Products
                 where p.IsFeatured
