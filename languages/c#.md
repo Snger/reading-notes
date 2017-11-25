@@ -52,6 +52,11 @@
 - Task.Run Method \(Func\)
 - How to debug Task.Factory
 - Regex.IsMatch vs string.Contains
+- Regex.Replace Method \(String, String\)
+- C# Split A String By Another String
+- String.Split Method \(String\[\], StringSplitOptions\)
+- C#: how to get first char of a string?
+- String.Chars Property \(Int32\)
 
 <!-- /MarkdownTOC -->
 
@@ -486,3 +491,123 @@ namespace Demo
 ## Regex.IsMatch vs string.Contains
 > For simple cases String.Contains will give you better performance but String.Contains will not allow you to do complex pattern matching. Use String.Contains for non-pattern matching scenarios (like the one in your example) and use regular expressions for scenarios in which you need to do more complex pattern matching.
 > A regular expression has a certain amount of overhead associated with it (expression parsing, compilation, execution, etc.) that a simple method like String.Contains simply does not have which is why String.Contains will outperform a regular expression in examples like yours.
+
+## Regex.Replace Method (String, String)
+> In a specified input string, replaces all strings that match a regular expression pattern with a specified replacement string.
+- Syntax
+````c#
+public string Replace(
+	string input,
+	string replacement
+)
+````
+- Parameters
+> input
+>> Type: System.String
+>> The string to search for a match.
+> replacement
+>> Type: System.String
+>> The replacement string.
+> Return Value
+>> Type: System.String
+>> A new string that is identical to the input string, except that the replacement string takes the place of each matched string. If the regular expression pattern is not matched in the current instance, the method returns the current instance unchanged.
+- Exceptions
+|----------------------------|------------------------------|
+|         Exception          |          Condition           |
+|----------------------------|------------------------------|
+| ArgumentNullException      | input or replacement is null |
+|----------------------------|------------------------------|
+| RegexMatchTimeoutException | A time-out occurred. For     |
+|                            | more information about       |
+|                            | time-outs, see the           |
+|                            | Remarks section.             |
+|----------------------------|------------------------------|
+- example
+````c#
+string input = "This is   text with   far  too   much   " + 
+                     "whitespace.";
+string pattern = "\\s+";
+string replacement = " ";
+Regex rgx = new Regex(pattern);
+string result = rgx.Replace(input, replacement);
+
+Console.WriteLine("Original String: {0}", input);
+Console.WriteLine("Replacement String: {0}", result);        
+// The example displays the following output:
+//   Original String: This is   text with   far  too   much   whitespace.
+//   Replacement String: This is text with far too much whitespace.
+````
+
+## C# Split A String By Another String
+> There is an overload of Split that takes strings.
+`"THExxQUICKxxBROWNxxFOX".Split(new [] { "xx" }, StringSplitOptions.None);`
+> You can use either of these StringSplitOptions
+>> None - The return value includes array elements that contain an empty string
+>> RemoveEmptyEntries - The return value does not include array elements that contain an empty string
+> So if the string is "THExxQUICKxxxxBROWNxxFOX", StringSplitOptions.None will return an empty entry in the array for the "xxxx" part while StringSplitOptions.RemoveEmptyEntries will not.
+
+## String.Split Method (String[], StringSplitOptions)
+> Splits a string into substrings based on the strings in an array. You can specify whether the substrings include empty array elements.
+- Syntax
+````C#
+[ComVisibleAttribute(false)]
+public string[] Split(
+	string[] separator,
+	StringSplitOptions options
+)
+````
+- Parameters
+> separator
+>> Type: System.String[]
+>> A string array that delimits the substrings in this string, an empty array that contains no delimiters, or null.
+> options
+>> Type: System.StringSplitOptions
+>> StringSplitOptions.RemoveEmptyEntries to omit empty array elements from the array returned; or StringSplitOptions.None to include empty array elements in the array returned.
+> Return Value
+>> Type: System.String[]
+>> An array whose elements contain the substrings in this string that are delimited by one or more strings in separator. For more information, see the Remarks section.
+````c#
+string source = "[stop]ONE[stop][stop]TWO[stop][stop][stop]THREE[stop][stop]";
+string[] stringSeparators = new string[] {"[stop]"};
+string[] result;
+// Display the original string and delimiter string.
+Console.WriteLine("Splitting the string:\n   \"{0}\".", source);
+Console.WriteLine();
+Console.WriteLine("Using the delimiter string:\n   \"{0}\"", 
+                stringSeparators[0]);
+Console.WriteLine(); 
+// The example displays the following output:
+//  Splitting the string:
+//    "[stop]ONE[stop][stop]TWO[stop][stop][stop]THREE[stop][stop]".
+//    
+//  Using the delimiter string:
+//    "[stop]"
+````
+
+## C#: how to get first char of a string?
+> Just `MyString[0]`. This uses the String.Chars indexer.
+
+## String.Chars Property (Int32)
+> Gets the Char object at a specified position in the current String object.
+- Syntax
+````c#
+public char this[
+	int index
+] { get; }
+````
+- Parameters
+> index
+>> Type: System.Int32
+>> A position in the current string.
+- Property Value
+>> Type: System.Char
+>> The object at position index.
+- example
+````c#
+string str1 = "Test";
+for (int ctr = 0; ctr <= str1.Length - 1; ctr++ )
+   Console.Write("{0} ", str1[ctr]);
+// The example displays the following output:
+//      T e s t 
+````
+
