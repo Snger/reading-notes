@@ -1,3 +1,22 @@
+# javascript
+
+<!-- MarkdownTOC -->
+
+- How can I round a number in JavaScript? .toFixed\(\) returns a string?
+- Return multiple values in JavaScript?
+- Why function foo\(\){return 1,2,3;} doing console.log\(\[\].push(foo(\))) prints out 1?
+- Chrome Development Tool: \[VM\] file from javascript, What are these strange and mysterious scripts titled "\[VM\](XXXX " and where do they come from?
+- javascript Object.assign\(\)
+- angular.js $parse\(expression\);
+- conditional \(ternary\) operator
+- Arrow functions
+- Using a variable for a key in a JavaScript object literal
+- Base64 encoding and decoding
+- Array.prototype.splice\(\)
+- js隐藏手机号中间四位，变成 * 星号
+
+<!-- /MarkdownTOC -->
+
 ## How can I round a number in JavaScript? .toFixed() returns a string?
 1. The toFixed() method converts a number into a string, keeping a specified number of decimals. (price + priceStepNum).toFixed(2)-0; It returns a string because 0.1, and powers thereof (which are used to display decimal fractions), are not representable (at least not with full accuracy) in binary floating-point systems.
 2. For example, 0.1 is really 0.1000000000000000055511151231257827021181583404541015625, and 0.01 is really 0.01000000000000000020816681711721685132943093776702880859375. (Thanks to BigDecimal for proving my point. :-P)
