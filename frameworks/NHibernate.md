@@ -15,6 +15,7 @@
 - Criteria vs. Criterion: What's the Difference?
 - The following types may not be used as proxies
 - Could not find a getter for property 'CreateTime' in class 'Timemicro.Promotion.PO.PromotionRulePO'
+- order by desc
 
 <!-- /MarkdownTOC -->
 
@@ -80,3 +81,18 @@
 
 ## Could not find a getter for property 'CreateTime' in class 'Timemicro.Promotion.PO.PromotionRulePO'
 > add missing property CreateTime
+
+## order by desc
+````c#
+return HibernateTemplate.Execute((ISession session) =>
+{
+    return session
+        .CreateCriteria<TicketPO>("t")
+        .Add(Restrictions.Eq("t.Promotion.Id", long.Parse(promoId)))
+        .Add(Restrictions.Eq("t.CellPhone", cellPhone))
+        .AddOrder(new Order("t.IsWin", false))
+        .AddOrder(new Order("t.CreateTime", false))
+        .List<TPO>();
+});
+````
+
