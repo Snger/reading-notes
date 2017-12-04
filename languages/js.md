@@ -14,6 +14,7 @@
 - Base64 encoding and decoding
 - Array.prototype.splice\(\)
 - js隐藏手机号中间四位，变成 * 星号
+- How can I get a specific parameter from location.search?
 
 <!-- /MarkdownTOC -->
 
@@ -115,3 +116,22 @@ var tel = "13888888888";
 var reg = /^(\d{3})\d{4}(\d{4})$/;
 tel = tel.replace(reg, "$1****$2");
 ````
+
+## How can I get a specific parameter from location.search?
+````javascript
+var parseQueryString = function() {
+    var str = window.location.search;
+    var objURL = {};
+    str.replace(
+        new RegExp( "([^?=&]+)(=([^&]*))?", "g" ),
+        function( $0, $1, $2, $3 ){
+            objURL[ $1 ] = $3;
+        }
+    );
+    return objURL;
+};
+//Example how to use it: 
+var params = parseQueryString();
+alert(params["foo"]); 
+````
+
