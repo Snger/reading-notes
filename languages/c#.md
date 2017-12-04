@@ -57,6 +57,9 @@
 - String.Split Method \(String\[\], StringSplitOptions\)
 - C#: how to get first char of a string?
 - String.Chars Property \(Int32\)
+- Difference between long and int in C#?
+- Pad left with zeroes
+- String.PadLeft Method
 
 <!-- /MarkdownTOC -->
 
@@ -610,4 +613,44 @@ for (int ctr = 0; ctr <= str1.Length - 1; ctr++ )
 // The example displays the following output:
 //      T e s t 
 ````
+
+## Difference between long and int in C#?
+> an int (aka System.Int32 within the runtime) is always a signed 32 bit integer on any platform, a long (aka System.Int64) is always a signed 64 bit integer on any platform. So you can't cast from a long with a value above Int32.MaxValue or below Int32.MinValuewithout losing data.
+> int in C#=> System.Int32=>from -2,147,483,648 to 2,147,483,647.
+> long in C#=> System.Int64 =>from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+> If your long data exceeds the range of int, and you use Convert.ToInt32 then it will throw OverflowException, if you use explicit cast then the result would be unexpected.
+
+## Pad left with zeroes
+> Microsoft has built in functions for this:
+`someString = someString.PadLeft(8, '0');`
+And here's an article on [MSDN](http://msdn.microsoft.com/en-us/library/dd260048.aspx)
+To use a regular expression, do something like this:
+````c#
+string someText = "asd 123 rete"; 
+someText = Regex.Replace(someText, @"\d+", n => n.Value.PadLeft(8, '0'));
+// int i=10;
+// 方法1：Console.WriteLine(i.ToString("D5"));
+// 方法2：Console.WriteLine(i.ToString().PadLeft(5,'0'));//推荐
+// 方法3：Console.WriteLine(i.ToString("00000")); 
+````
+
+## String.PadLeft Method
+> Returns a new string of a specified length in which the beginning of the current string is padded with spaces or with a specified Unicode character.
+Namespace:   System
+Assembly:  mscorlib (in mscorlib.dll)
+- Overload List
+|----------------------|----------------------------------------|
+|         Name         |              Description               |
+|----------------------|----------------------------------------|
+| PadLeft(Int32)       | Returns a new string that right-aligns |
+|                      | the characters in this instance by     |
+|                      | padding them with spaces on the left,  |
+|                      | for a specified total length.          |
+|----------------------|----------------------------------------|
+| PadLeft(Int32, Char) | Returns a new string that right-aligns |
+|                      | the characters in this instance by     |
+|                      | padding them on the left with a        |
+|                      | specified Unicode character,           |
+|                      | for a specified total length.          |
+|----------------------|----------------------------------------|
 
