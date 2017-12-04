@@ -1,11 +1,24 @@
 # Android Studio
 <!-- MarkdownTOC -->
 
+- Device supports x86, but APK only supports armeabi
 - Error:Connection timed out: connect. If you are behind an HTTP proxy, please config
 - Enable VT-x in BIOS
 - Android Studio - How to Change Android SDK Path
+- How to run from Android Studio to Genymotion emulator
 
 <!-- /MarkdownTOC -->
+
+## Device supports x86, but APK only supports armeabi
+> I had the similar issue and I've resolved it by adding "x86" value to the "abiFilters" list like below -
+[Open build.gradle(Module: app) file ] and search for "ndk" in deafultSection and add "x86" to it!
+````java
+ndk {
+    abiFilters "armeabi-v7a", "x86"
+}
+````
+> - Mac
+In Android Studio, select the Build menu, then click Select Build Variant... and in 'Build Variants' window select x86Debug(or release)
 
 ## Error:Connection timed out: connect. If you are behind an HTTP proxy, please config
 > First check your internet proxy settings copy the proxy settings like proxy host and port no. and go to your “gradle.properties” file in project and paste it like this: 
@@ -44,3 +57,9 @@ You'll get a Welcome to Android Studio Dialog. In that:
 5. Click OK to save changes
 6. Have fun!
 
+## How to run from Android Studio to Genymotion emulator
+> You need to install the genymotion plugin. In android studio File>Settings>Plugins>Browse Repo > install genymotion plugin. once installed a genymotion button should appear in android studio. hope that helps.
+> I had the same situation. I enabled the plugin (see previous answer), the icon of Genymotion appeared. To see the Genymotion Device in the Devices on the down left corner and being able to run your apps in Genymotion emulator do the following:
+> [x] Run the Android Studio (don't forget to launch it like admin (right click on the icon). Wait it until it fully loads.
+> Run Genymotion (not with the icon in Anroid Studio, but from folder where you installed it (also like admin).
+> Choose the Device in Genymotion and run it. The Genymotion Device schould appear in the down left corner of Android Studio (where the Android view is).
