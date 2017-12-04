@@ -1,5 +1,13 @@
 # React Native
 
+<!-- MarkdownTOC -->
+
+- Handling third party build error on react-native 0.46x.
+- \(BUILD SUCCEEDED, but\) Print: Entry, “:CFBundleIdentifier”, Does Not Exist
+- React Native Change Default iOS Simulator Device
+
+<!-- /MarkdownTOC -->
+
 ## Handling third party build error on react-native 0.46x.
 > The problem is from the curl command and pressing ctrl + c key by user.
 > When the download process was interrupted, the curl command do not handle the unfinished or interrupted download file. It just save incomplete file to target file name.
