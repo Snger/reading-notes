@@ -9,6 +9,7 @@
 - Gimp: How can I change the text on a layer using Gimp
 - How to extract text from a PSD file?
 - printout the resources used in the PSD Imgae
+- Change the Size of an Image for the screen
 
 <!-- /MarkdownTOC -->
 
@@ -39,3 +40,9 @@
 ## printout the resources used in the PSD Imgae
 > [This script](https://github.com/jsbueno/psd_print_resources/blob/master/psd_print_resources.py) simply parses file from a PSD Imgae (Adobe Phtooshop native image format), and printout the resources used in the file tagged with "/Name" -- most of them are font (typeface) names.
 > Since GIMP as of 2.8 can't import Photoshop text layers as text, this script can help designers to see what fonts where used in a given image without resorting to a Photoshop install.
+
+## Change the Size of an Image for the screen
+> The first thing that you might notice after opening the image, is that GIMP opens the image at a logical size for viewing. If your image is very large, like the sample image, GIMP sets the zoom so that it displays nicely on the screen. The zoom level is shown in the status area at the bottom of the Image window. This does not change the actual image.
+> The other thing to look at in the title-bar is the mode. If the mode shows as RGB in the title bar, you are fine. If the mode says Indexed or Grayscale, read the Section 4.7, “Change the Mode”.
+> Use Image → Scale Image to open the “Scale Image” dialog. You can right click on the image to open the menu, or use the menu along the top of the Image window. Notice that the “Scale Image” menu item contains three dots, which is a hint that a dialog will be opened.
+> The unit of size for the purpose of displaying an image on a screen is the pixel. You can see the dialog has two sections: one for width and height and another for resolution. Resolution applies to printing only and has no effect on the image's size when it is displayed on a monitor or a mobile device. The reason is that different devices have different pixels sizes and so, an image that displays on one device (such as a smartphone) with a certain physical size, might display on other devices (such as an LCD projector) in another size altogether. For the purpose of displaying an image on a screen, you can ignore the resolution parameter. For the same reason, do not use any size unit other than the pixel in the height / width fields.
