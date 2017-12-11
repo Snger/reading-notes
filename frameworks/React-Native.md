@@ -2,11 +2,15 @@
 
 <!-- MarkdownTOC -->
 
+- the meaning of RCT in RCTBridgeModule
 - Handling third party build error on react-native 0.46x.
 - \(BUILD SUCCEEDED, but\) Print: Entry, “:CFBundleIdentifier”, Does Not Exist
 - React Native Change Default iOS Simulator Device
 
 <!-- /MarkdownTOC -->
+
+## the meaning of RCT in RCTBridgeModule 
+> If you are wondering, RCT is an abbreviation of ReaCT. [by Native Modules](https://facebook.github.io/react-native/docs/native-modules-ios.html)
 
 ## Handling third party build error on react-native 0.46x.
 > The problem is from the curl command and pressing ctrl + c key by user.
