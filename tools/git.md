@@ -406,7 +406,7 @@ paste .gitignore1 .gitignore # Add to it if it already exists
 > 如果你要删除的目标不是文件，而是文件夹，那么请在 `git rm --cached` 命令后面添加 -r 命令，表示递归的删除（子）文件夹和文件夹下的文件，类似于 `rm -rf` 命令。
 ### 强制覆盖分支
 > `git push origin master --force --tags`
-> 为了能从打了 tag 的版本中也删除你所指定的文件或文件夹，您可以使用这样的命令来强制推送您的 Git tags
+> 为了能从打了 tag 的版本中也删除你所指定的文件或文件夹， 您可以使用这样的命令来强制推送您的 Git tags
 ### 清理和回收空间
 ````bash
 $ rm -rf .git/refs/original/

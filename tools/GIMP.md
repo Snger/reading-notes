@@ -2,6 +2,7 @@
 
 <!-- MarkdownTOC -->
 
+- How to Make GIMP Look and Work like Photoshop
 - Single-Window Mode
 - Layer Groups
 - [Simple Math In Size Entries][GIMP 2.8]
@@ -10,8 +11,15 @@
 - How to extract text from a PSD file?
 - printout the resources used in the PSD Imgae
 - Change the Size of an Image for the screen
+- How to create a new layer from selection
+- How to remove transparency of a layer
+- Making the background of an image transparent in Gimp
+- How to create new image from a layer
 
 <!-- /MarkdownTOC -->
+
+## How to Make GIMP Look and Work like Photoshop
+> [link](https://www.pcsteps.com/1566-make-gimp-look-work-like-photoshop/)
 
 ## Single-Window Mode
 1. GIMP 2.8 introduces an optional single-window mode. You can toggle between the default multi-window mode and the new single-window mode through the Single-window mode checkbox in the Windows menu. In single-window mode, GIMP will put dockable dialogs and images in a single, tabbed image window. The single-window mode setting is of course preserved if you quit and start GIMP again. Single-window mode removes the necessity for users of having to deal with multiple windows.
@@ -46,3 +54,21 @@
 > The other thing to look at in the title-bar is the mode. If the mode shows as RGB in the title bar, you are fine. If the mode says Indexed or Grayscale, read the Section 4.7, “Change the Mode”.
 > Use Image → Scale Image to open the “Scale Image” dialog. You can right click on the image to open the menu, or use the menu along the top of the Image window. Notice that the “Scale Image” menu item contains three dots, which is a hint that a dialog will be opened.
 > The unit of size for the purpose of displaying an image on a screen is the pixel. You can see the dialog has two sections: one for width and height and another for resolution. Resolution applies to printing only and has no effect on the image's size when it is displayed on a monitor or a mobile device. The reason is that different devices have different pixels sizes and so, an image that displays on one device (such as a smartphone) with a certain physical size, might display on other devices (such as an LCD projector) in another size altogether. For the purpose of displaying an image on a screen, you can ignore the resolution parameter. For the same reason, do not use any size unit other than the pixel in the height / width fields.
+
+## How to create a new layer from selection
+> select a area
+> Selecting Layer → Mask → Add Layer Mask → Selection, in the Layer menu.
+
+## How to remove transparency of a layer
+> Image -> Zealous Crop
+
+## Making the background of an image transparent in Gimp
+> short answer: always add an alpha channel to the layer, either using the layers dialog or via Layers->Transparency->Add Alpha Channel [1](http://docs.gimp.org/2.6/en/gimp-layer-alpha-add.html).
+> The alpha channel determines the transparency for each pixel. The absence of an alpha channel means that all pixels are fully opaque and hence they get deleted to background color [2](http://docs.gimp.org/2.6/en/gimp-image-combining.html#gimp-layer-properties).
+> go to tools menu and choose fuzzy select tool, click on the background and select the area you want to delete choose additional area if needed by holding down shift on the deyboard right-click on the image and select the edit option from the menu in the following menu choose clear, now your image has a transparent background. 
+
+## How to create new image from a layer
+> select layer, right-click the image, and select -> select all
+> File -> New, the image size will auto set as last select layer size
+> click Advanced Option, and select Fill with Transparency, click OK button
+> copy layer, and paste to new file
