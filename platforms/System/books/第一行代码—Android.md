@@ -8,61 +8,102 @@
 <!-- MarkdownTOC -->
 
 - 第 2 章 先从看得到的入手，探究活动
-	- 2.2.3 在 AndroidManifest 文件中注册
-	- 2.5 活动的启动模式
-	- 3.3.4　百分比布局
+    - 2.2.3 在 AndroidManifest 文件中注册
+    - 2.5 活动的启动模式
+    - 3.3.4　百分比布局
 - How to use Percentage for android layout?
-	- 3.4　系统控件不够用？创建自定义控件
-	- 3.5.1　ListView的简单用法
+    - 3.4　系统控件不够用？创建自定义控件
+    - 3.5.1　ListView的简单用法
 - 3.6　更强大的滚动控件——RecyclerView
-	- 3.6.1　RecyclerView的基本用法
-	- 3.6.2　实现横向滚动和瀑布流布局
+    - 3.6.1　RecyclerView的基本用法
+    - 3.6.2　实现横向滚动和瀑布流布局
 - 3.7　编写界面的最佳实践
-	- 3.7.1　制作Nine-Patch图片
-	- Android Draw9patch is missing?
-	- Error:Execution failed for task ':app:mergeDebugResources'.
+    - 3.7.1　制作Nine-Patch图片
+    - Android Draw9patch is missing?
+    - Error:Execution failed for task ':app:mergeDebugResources'.
 - 4.2　碎片的使用方式
-	- 4.2.2　动态添加碎片
-	- 4.2.3　在碎片中模拟返回栈
-	- 4.2.4　碎片和活动之间进行通信
-	- 4.3　碎片的生命周期
-	- 碎片的状态和回调
+    - 4.2.2　动态添加碎片
+    - 4.2.3　在碎片中模拟返回栈
+    - 4.2.4　碎片和活动之间进行通信
+    - 4.3　碎片的生命周期
+    - 碎片的状态和回调
 - 4.4　动态加载布局的技巧
-	- 4.4.1　使用限定符
-	- 4.4.2　使用最小宽度限定符
-	- Difference between sw600dp and w600dp?
+    - 4.4.1　使用限定符
+    - 4.4.2　使用最小宽度限定符
+    - Difference between sw600dp and w600dp?
 - 4.5　碎片的最佳实践——一个简易版的新闻应用
 - 5.1　广播机制简介
-	- 5.2.1　动态注册监听网络变化
-	- 5.2.2　静态注册实现开机启动
-	- 5.3.1　发送标准广播
-	- 5.3.2　发送有序广播
+    - 5.2.1　动态注册监听网络变化
+    - 5.2.2　静态注册实现开机启动
+    - 5.3.1　发送标准广播
+    - 5.3.2　发送有序广播
 - 5.4　使用本地广播
 - 第 6 章　数据存储全方案——详解持久化技术
-	- 6.1　持久化技术简介
-	- 6.2　文件存储
-	- 6.2.1　将数据存储到文件中
-	- 6.2.2　从文件中读取数据
+    - 6.1　持久化技术简介
+    - 6.2　文件存储
+    - 6.2.1　将数据存储到文件中
+    - 6.2.2　从文件中读取数据
 - 6.3　SharedPreferences存储
-	- 6.3.2　从SharedPreferences中读取数据
+    - 6.3.2　从SharedPreferences中读取数据
 - 6.4　SQLite数据库存储
-	- 6.4.1　创建数据库
-	- 6.4.2　升级数据库
-	- 6.4.3　添加数据
-	- 6.4.4　更新数据
-	- 6.4.5　删除数据
-	- 6.4.7　使用SQL操作数据库
+    - 6.4.1　创建数据库
+    - 6.4.2　升级数据库
+    - 6.4.3　添加数据
+    - 6.4.4　更新数据
+    - 6.4.5　删除数据
+    - 6.4.7　使用SQL操作数据库
 - 6.5　使用LitePal操作数据库
-	- 6.5.3　创建和升级数据库
-	- 6.5.4　使用LitePal添加数据
-	- 6.5.5　使用LitePal更新数据
-	- 6.5.6　使用LitePal删除数据
-	- 6.5.7　使用LitePal查询数据
+    - 6.5.3　创建和升级数据库
+    - 6.5.4　使用LitePal添加数据
+    - 6.5.5　使用LitePal更新数据
+    - 6.5.6　使用LitePal删除数据
+    - 6.5.7　使用LitePal查询数据
 - 第 7 章　跨程序共享数据——探究内容提供器
 - 7.1　内容提供器简介
-	- 7.2.1　Android权限机制详解
-	- 7.2.2　在程序运行时申请权限
+    - 7.2.1　Android权限机制详解
+    - 7.2.2　在程序运行时申请权限
 - 7.3　访问其他程序中的数据
+- 第 10 章 后台默默的劳动者——探究服务
+    - 10.3.2　启动和停止服务
+    - 10.3.3　活动和服务进行通信
+    - 10.4　服务的生命周期
+    - 10.5.1　使用前台服务
+    - 10.5.2　使用IntentService
+- 第 11 章　Android特色开发——基于位置的服务
+    - 11.1　基于位置的服务简介
+- 第 12 章　最佳的UI体验——Material Design实战
+    - 12.3.1 DrawerLayout
+    - 12.3.2　NavigationView
+    - 12.4　悬浮按钮和可交互提示
+    - 12.4.1　FloatingActionButton
+    - 12.4.2　Snackbar
+    - 12.4.3　CoordinatorLayout
+    - 12.5　卡片式布局
+    - 12.5.1　CardView
+    - 12.5.2　AppBarLayout
+    - 12.6　下拉刷新
+    - 12.7　可折叠式标题栏
+    - 12.7.1　CollapsingToolbarLayout
+    - 12.7.2　充分利用系统状态栏空间
+- 第 13 章　继续进阶——你还应该掌握的高级技巧
+    - 13.1　全局获取Context的技巧
+    - 13.2　使用Intent传递对象
+    - 13.2.1　Serializable方式
+    - 13.2.2　Parcelable方式
+    - 13.4　调试Android程序
+    - 13.5　创建定时任务
+    - 13.5.2　Doze模式
+- 13.6　多窗口模式编程
+    - 13.6.1　进入多窗口模式
+    - 13.6.2　多窗口模式下的生命周期
+    - 13.6.3　禁用多窗口模式
+- 13.7　Lambda表达式
+- 第 15 章　最后一步——将应用发布到360应用商店
+    - 15.1　生成正式签名的APK文件
+    - 15.1.1　使用Android Studio生成
+    - 15.1.2　使用Gradle生成
+    - 15.1.3　生成多渠道APK文件
+    - 15.3　发布应用程序
 
 <!-- /MarkdownTOC -->
 
@@ -899,4 +940,436 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions,
 > 如果一个应用程序通过内容提供器对其数据提供了外部访问接口，那么任何其他的应用程序就都可以对这部分数据进行访问。Android系统中自带的电话簿、短信、媒体库等程序都提供了类似的访问接口，这就使得第三方应用程序可以充分地利用这部分数据来实现更好的功能。
 
 
+## 第 10 章 后台默默的劳动者——探究服务
+### 10.3.2　启动和停止服务
+> 可以看到，这里在 `onCreate()` 方法中分别获取到了 `Start Service` 按钮和 `Stop Service` 按钮的实例，并给它们注册了点击事件。然后在 `Start Service` 按钮的点击事件里，我们构建出了一个 `Intent` 对象，并调用 `startService()` 方法来启动 `MyService` 这个服务。在 `Stop Serivce` 按钮的点击事件里，我们同样构建出了一个 `Intent` 对象，并调用 `stopService()` 方法来停止 `MyService` 这个服务。 `startService()` 和 `stopService()` 方法都是定义在 `Context` 类中的，所以我们在活动里可以直接调用这两个方法。注意，这里完全是由活动来决定服务何时停止的，如果没有点击 `Stop Service` 按钮，服务就会一直处于运行状态。那服务有没有什么办法让自已停止下来呢？当然可以，只需要在 `MyService` 的任何一个位置调用 `stopSelf()` 方法就能让这个服务停止下来了。
+> 那么接下来又有一个问题需要思考了，我们如何才能证实服务已经成功启动或者停止了呢？最简单的方法就是在 `MyService` 的几个方法中加入打印日志， `MyService` 中的 `onCreate()` 和 `onStartCommand()` 方法都执行了，说明这个服务确实已经启动成功了，并且你还可以在 `Settings` → `Developer options` → `Running services` 中找到它
+> 其实 `onCreate()` 方法是在服务第一次创建的时候调用的，而 `onStartCommand()` 方法则在每次启动服务的时候都会调用，由于刚才我们是第一次点击 `Start Service` 按钮，服务此时还未创建过，所以两个方法都会执行，之后如果你再连续多点击几次 `Start Service` 按钮，你就会发现只有 `onStartCommand()` 方法可以得到执行了。
 
+### 10.3.3　活动和服务进行通信
+> 上一小节中我们学习了启动和停止服务的方法，不知道你有没有发现，虽然服务是在活动里启动的，但在启动了服务之后，活动与服务基本就没有什么关系了。确实如此，我们在活动里调用了 `startService()` 方法来启动 `MyService` 这个服务，然后 `MyService` 的 `onCreate()` 和 `onStartCommand()` 方法就会得到执行。之后服务会一直处于运行状态，但具体运行的是什么逻辑，活动就控制不了了。这就类似于活动通知了服务一下：“你可以启动了！”然后服务就去忙自己的事情了，但活动并不知道服务到底去做了什么事情，以及完成得如何。
+> 那么有没有什么办法能让活动和服务的关系更紧密一些呢？例如在活动中指挥服务去干什么，服务就去干什么。当然可以，这就需要借助我们刚刚忽略的 `onBind()` 方法了。
+> 比如说，目前我们希望在 `MyService` 里提供一个下载功能，然后在活动中可以决定何时开始下载，以及随时查看下载进度。实现这个功能的思路是创建一个专门的 `Binder` 对象来对下载功能进行管理，修改 `MyService` 中的代码，
+> 可以看到，这里我们新建了一个 `DownloadBinder` 类，并让它继承自 `Binder` ，然后在它的内部提供了开始下载以及查看下载进度的方法。当然这只是两个模拟方法，并没有实现真正的功能，我们在这两个方法中分别打印了一行日志。
+> 接着，在 `MyService` 中创建了 `DownloadBinder` 的实例，然后在 `onBind()` 方法里返回了这个实例，这样 `MyService` 中的工作就全部完成了。
+> 这两个按钮分别是用于绑定服务和取消绑定服务的，那到底谁需要去和服务绑定呢？当然就是活动了。当一个活动和服务绑定了之后，就可以调用该服务里的 `Binder` 提供的方法了。
+> 这里我们首先创建了一个 `ServiceConnection` 的匿名类，在里面重写了 `onServiceConnected()` 方法和 `onServiceDisconnected()` 方法，这两个方法分别会在活动与服务成功绑定以及活动与服务的连接断开的时候调用。在 `onServiceConnected()` 方法中，我们又通过向下转型得到了 `DownloadBinder` 的实例，有了这个实例，活动和服务之间的关系就变得非常紧密了。现在我们可以在活动中根据具体的场景来调用 `DownloadBinder` 中的任何 `public` 方法，即实现了指挥服务干什么服务就去干什么的功能。这里仍然只是做了个简单的测试，在 `onServiceConnected()` 方法中调用了 `DownloadBinder` 的 `startDownload()` 和 `getProgress()` 方法。
+> 这里我们首先创建了一个 `ServiceConnection` 的匿名类，在里面重写了 `onServiceConnected()` 方法和 `onServiceDisconnected()` 方法，这两个方法分别会在活动与服务成功绑定以及活动与服务的连接断开的时候调用。在 `onServiceConnected()` 方法中，我们又通过向下转型得到了 `DownloadBinder` 的实例，有了这个实例，活动和服务之间的关系就变得非常紧密了。现在我们可以在活动中根据具体的场景来调用 `DownloadBinder` 中的任何 `public` 方法，即实现了指挥服务干什么服务就去干什么的功能。这里仍然只是做了个简单的测试，在 `onServiceConnected()` 方法中调用了 `DownloadBinder` 的 `startDownload()` 和 `getProgress()` 方法。
+> 当然，现在活动和服务其实还没进行绑定呢，这个功能是在 `Bind Service` 按钮的点击事件里完成的。可以看到，这里我们仍然是构建出了一个 `Intent` 对象，然后调用 `bindService()` 方法将 `MainActivity` 和 `MyService` 进行绑定。 `bindService()` 方法接收3个参数，第一个参数就是刚刚构建出的 `Intent` 对象，第二个参数是前面创建出的 `ServiceConnection` 的实例，第三个参数则是一个标志位，这里传入 `BIND_AUTO_CREATE` 表示在活动和服务进行绑定后自动创建服务。这会使得 `MyService` 中的 `onCreate()` 方法得到执行，但 `onStartCommand()` 方法不会执行。
+> 然后如果我们想解除活动和服务之间的绑定该怎么办呢？调用一下 `unbindService()` 方法就可以了，这也是 `Unbind Service` 按钮的点击事件里实现的功能。
+> 另外需要注意，任何一个服务在整个应用程序范围内都是通用的，即 `MyService` 不仅可以和 `MainActivity` 绑定，还可以和任何一个其他的活动进行绑定，而且在绑定完成后它们都可以获取到相同的 `DownloadBinder` 实例。
+
+### 10.4　服务的生命周期
+> 之前我们学习过了活动以及碎片的生命周期。类似地，服务也有自己的生命周期，前面我们使用到的 `onCreate()` 、 `onStartCommand()` 、 `onBind()` 和 `onDestroy()` 等方法都是在服务的生命周期内可能回调的方法。
+> 一旦在项目的任何位置调用了 `Context` 的 `startService()` 方法，相应的服务就会启动起来，并回调 `onStartCommand()` 方法。如果这个服务之前还没有创建过， `onCreate()` 方法会先于 `onStartCommand()` 方法执行。服务启动了之后会一直保持运行状态，直到 `stopService()` 或 `stopSelf()` 方法被调用。注意，虽然每调用一次 `startService()` 方法， `onStartCommand()` 就会执行一次，但实际上每个服务都只会存在一个实例。所以不管你调用了多少次 `startService()` 方法，只需调用一次 `stopService()` 或 `stopSelf()` 方法，服务就会停止下来了。
+> 另外，还可以调用 `Context` 的 `bindService()` 来获取一个服务的持久连接，这时就会回调服务中的 `onBind()` 方法。类似地，如果这个服务之前还没有创建过， `onCreate()` 方法会先于 `onBind()` 方法执行。之后，调用方可以获取到 `onBind()` 方法里返回的 `IBinder` 对象的实例，这样就能自由地和服务进行通信了。只要调用方和服务之间的连接没有断开，服务就会一直保持运行状态。
+> 当调用了 `startService()` 方法后，又去调用 `stopService()` 方法，这时服务中的 `onDestroy()` 方法就会执行，表示服务已经销毁了。类似地，当调用了 `bindService()` 方法后，又去调用 `unbindService()` 方法， `onDestroy()` 方法也会执行，这两种情况都很好理解。但是需要注意，我们是完全有可能对一个服务既调用了 `startService()` 方法，又调用了 `bindService()` 方法的，这种情况下该如何才能让服务销毁掉呢？根据 `Android` 系统的机制，一个服务只要被启动或者被绑定了之后，就会一直处于运行状态，必须要让以上两种条件同时不满足，服务才能被销毁。所以，这种情况下要同时调用 `stopService()` 和 `unbindService()` 方法， `onDestroy()` 方法才会执行。
+> 这样你就已经把服务的生命周期完整地走了一遍。
+
+### 10.5.1　使用前台服务
+> 服务几乎都是在后台运行的，一直以来它都是默默地做着辛苦的工作。但是服务的系统优先级还是比较低的，当系统出现内存不足的情况时，就有可能会回收掉正在后台运行的服务。如果你希望服务可以一直保持运行状态，而不会由于系统内存不足的原因导致被回收，就可以考虑使用前台服务。前台服务和普通服务最大的区别就在于，它会一直有一个正在运行的图标在系统的状态栏显示，下拉状态栏后可以看到更加详细的信息，非常类似于通知的效果。当然有时候你也可能不仅仅是为了防止服务被回收掉才使用前台服务的，有些项目由于特殊的需求会要求必须使用前台服务，比如说彩云天气这款天气预报应用，它的服务在后台更新天气数据的同时，还会在系统状态栏一直显示当前的天气信息
+> 可以看到，这里只是修改了 `onCreate()` 方法中的代码，相信这部分代码你会非常眼熟。没错！这就是我们在第8章中学习的创建通知的方法。只不过这次在构建出 `Notification` 对象后并没有使用 `NotificationManager` 来将通知显示出来，而是调用了 `startForeground()` 方法。这个方法接收两个参数，第一个参数是通知的 `id` ，类似于 `notify()` 方法的第一个参数，第二个参数则是构建出的 `Notification` 对象。调用 `startForeground()` 方法后就会让 `MyService` 变成一个前台服务，并在系统状态栏显示出来。
+
+### 10.5.2　使用IntentService
+> 话说回来，在本章一开始的时候我们就已经知道，服务中的代码都是默认运行在主线程当中的，如果直接在服务里去处理一些耗时的逻辑，就很容易出现ANR（Application Not Responding）的情况。
+> 所以这个时候就需要用到Android多线程编程的技术了，我们应该在服务的每个具体的方法里开启一个子线程，然后在这里去处理那些耗时的逻辑。
+> 但是，这种服务一旦启动之后，就会一直处于运行状态，必须调用stopService() 或者stopSelf() 方法才能让服务停止下来。所以，如果想要实现让一个服务在执行完毕后自动停止的功能，就可以这样写：
+````C#
+public class MyService extends Service {
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // 处理具体的逻辑
+                stopSelf();
+            }
+        }).start();
+        return super.onStartCommand(intent, flags, startId);
+        }
+}
+````
+> 虽说这种写法并不复杂，但是总会有一些程序员忘记开启线程，或者忘记调用stopSelf() 方法。为了可以简单地创建一个异步的、会自动停止的服务，Android专门提供了一个IntentService 类，这个类就很好地解决了前面所提到的两种尴尬，下面我们就来看一下它的用法。
+````C#
+public class MyIntentService extends IntentService {
+    public MyIntentService() {
+        super("MyIntentService"); // 调用父类的有参构造函数
+    }
+    @Override
+    protected void onHandleIntent(Intent intent) {
+        // 打印当前线程的id
+        Log.d("MyIntentService", "Thread id is " + Thread.currentThread(). getId());
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("MyIntentService", "onDestroy executed");
+    }
+}
+````
+
+## 第 11 章　Android特色开发——基于位置的服务
+> 说到只有在移动设备上才能实现的技术，很容易就让人联想到基于位置的服务（Location Based Service）。由于移动设备相比于电脑可以随身携带，我们通过地理定位的技术就可以随时得知自己所在的位置，从而围绕这一点开发出很多有意思的应用。
+
+### 11.1　基于位置的服务简介
+> 首先你要清楚，基于位置的服务所围绕的核心就是要先确定出用户所在的位置。通常有两种技术方式可以实现：一种是通过GPS定位，一种是通过网络定位。GPS定位的工作原理是基于手机内置的GPS硬件直接和卫星交互来获取当前的经纬度信息，这种定位方式精确度非常高，但缺点是只能在室外使用，室内基本无法接收到卫星的信号。网络定位的工作原理是根据手机当前网络附近的三个基站进行测速，以此计算出手机和每个基站之间的距离，再通过三角定位确定出一个大概的位置，这种定位方式精确度一般，但优点是在室内室外都可以使用。
+> Android对这两种定位方式都提供了相应的API支持，但是由于一些特殊原因，Google的网络服务在中国不可访问，从而导致网络定位方式的API失效。而GPS定位虽然不需要网络，但是必须要在室外才可以使用，因此你在室内开发的时候很有可能会遇到不管使用哪种定位方式都无法成功定位的情况。
+> 高精确度模式表示允许使用GPS、无线网络、蓝牙或移动网络来进行定位，节电模式表示仅允许使用无线网络、蓝牙或移动网络来进行定位，而仅限设备模式表示仅允许使用GPS来进行定位。也就是说，如果我们想要使用GPS定位功能，这里必须要选择高精确度模式，或者仅限设备模式。
+
+## 第 12 章　最佳的UI体验——Material Design实战
+> 但问题在于， Android 标准的界面设计风格并不是特别被大众所接受，很多公司都觉得自己完全可以设计出更加好看的界面，从而导致 Android 平台的界面风格长期难以得到统一。为了解决这个问题，谷歌也是祭出了杀手锏，在2014年 Google I /O大会上重磅推出了一套全新的界面设计语言—— Material Design 。
+> 为了做出表率，谷歌从 Android 5.0系统开始，就将所有内置的应用都使用 Material Design 风格来进行设计。
+> 不过，在重磅推出之后， Material Design 的普及程度却不能说是特别理想。因为这只是一个推荐的设计规范，主要是面向 UI 设计人员的，而不是面向开发者的。很多开发者可能根本就搞不清楚什么样的界面和效果才叫 Material Design ，就算搞清楚了，实现起来也会很费劲，因为不少 Material Design 的效果是很难实现的，而 Android 中却几乎没有提供相应的 API 支持，一切都要靠开发者自己从零写起。
+> 谷歌当然也意识到了这个问题，于是在2015年的 Google I /O大会上推出了一个 Design Support 库，这个库将 Material Design 中最具代表性的一些控件和效果进行了封装，使得开发者在即使不了解 Material Design 的情况下也能非常轻松地将自己的应用 Material 化。本章中我们就将对 Design Support 这个库进行深入的学习，并且配合一些其他的控件来完成一个优秀的 Material Design 应用。
+> 虽然这段代码不长，但是里面着实有不少技术点是需要我们去仔细琢磨一下的。首先看一下第2行，这里使用 `xmlns` : `app` 指定了一个新的命名空间。思考一下，正是由于每个布局文件都会使用 `xmlns` : `android` 来指定一个命名空间，因此我们才能一直使用 `android` : `id` 、 `android` : `layout_width` 等写法，那么这里指定了 `xmlns` : `app` ，也就是说现在可以使用 `app` : `attribute` 这样的写法了。但是为什么这里要指定一个 `xmlns` : `app` 的命名空间呢？这是由于 `Material Design` 是在 `Android` 5.0系统中才出现的，而很多的 `Material` 属性在5.0之前的系统中并不存在，那么为了能够兼容之前的老系统，我们就不能使用 `android` : `attribute` 这样的写法了，而是应该使用 `app` : `attribute` 。
+> 可以看到，我们通过< `item` > 标签来定义 `action` 按钮， `android` : `id` 用于指定按钮的 `id` ， `android` : `icon` 用于指定按钮的图标， `android` : `title` 用于指定按钮的文字。
+> 接着使用 `app` : `showAsAction` 来指定按钮的显示位置，之所以这里再次使用了 `app` 命名空间，同样是为了能够兼容低版本的系统。 `showAsAction` 主要有以下几种值可选： `always` 表示永远显示在 `Toolbar` 中，如果屏幕空间不够则不显示； `ifRoom` 表示屏幕空间足够的情况下显示在 `Toolbar` 中，不够的话就显示在菜单当中； `never` 则表示永远显示在菜单当中。注意， `Toolbar` 中的 `action` 按钮只会显示图标，菜单中的 `action` 按钮只会显示文字。
+
+### 12.3.1 DrawerLayout
+> 先来简单介绍一下 `DrawerLayout` 的用法吧。首先它是一个布局，在布局中允许放入两个直接子控件，第一个子控件是主屏幕中显示的内容，第二个子控件是滑动菜单中显示的内容。
+> 可以看到，这里最外层的控件使用了 `DrawerLayout` ，这个控件是由 `support` -v4库提供的。 `DrawerLayout` 中放置了两个直接子控件，第一个子控件是 `FrameLayout` ，用于作为主屏幕中显示的内容，当然里面还有我们刚刚定义的 `Toolbar` 。第二个子控件这里使用了一个 `TextView` ，用于作为滑动菜单中显示的内容，其实使用什么都可以， `DrawerLayout` 并没有限制只能使用固定的控件。
+> 但是关于第二个子控件有一点需要注意， `layout_gravity` 这个属性是必须指定的，因为我们需要告诉 `DrawerLayout` 滑动菜单是在屏幕的左边还是右边，指定 `left` 表示滑动菜单在左边，指定 `right` 表示滑动菜单在右边。这里我指定了 `start` ，表示会根据系统语言进行判断，如果系统语言是从左往右的，比如英语、汉语，滑动菜单就在左边，如果系统语言是从右往左的，比如阿拉伯语，滑动菜单就在右边。
+> `ActionBar` 的实例，虽然这个 `ActionBar` 的具体实现是由 `Toolbar` 来完成的。接着调用 `ActionBar` 的 `setDisplayHomeAsUpEnabled()` 方法让导航按钮显示出来，又调用了 `setHomeAsUpIndicator()` 方法来设置一个导航按钮图标。实际上， `Toolbar` 最左侧的这个按钮就叫作 `HomeAsUp` 按钮，它默认的图标是一个返回的箭头，含义是返回上一个活动。很明显，这里我们将它默认的样式和作用都进行了修改。
+> 接下来在 `onOptionsItemSelected()` 方法中对 `HomeAsUp` 按钮的点击事件进行处理， `HomeAsUp` 按钮的 `id` 永远都是 `android` .R. `id` . `home` 。然后调用 `DrawerLayout` 的 `openDrawer()` 方法将滑动菜单展示出来，注意 `openDrawer()` 方法要求传入一个 `Gravity` 参数，为了保证这里的行为和 `XML` 中定义的一致，我们传入了 `GravityCompat` . `START` 。
+
+### 12.3.2　NavigationView
+> 事实上，你可以在滑动菜单页面定制任意的布局，不过谷歌给我们提供了一种更好的方法——使用NavigationView。NavigationView是Design Support库中提供的一个控件，它不仅是严格按照Material Design的要求来进行设计的，而且还可以将滑动菜单页面的实现变得非常简单。
+````gradle
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:design:24.2.1'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+}
+````
+> 我们首先在<menu> 中嵌套了一个<group> 标签，然后将group的checkableBehavior 属性指定为single 。group表示一个组，checkableBehavior 指定为single 表示组中的所有菜单项只能单选。
+> 可以看到，我们将之前的TextView换成了NavigationView，这样滑动菜单中显示的内容也就变成NavigationView了。这里又通过app:menu 和app:headerLayout 属性将我们刚才准备好的menu和headerLayout设置了进去，这样NavigationView就定义完成了。
+> NavigationView虽然定义完成了，但是我们还要去处理菜单项的点击事件才行。
+> 代码还是比较简单的，这里首先获取到了NavigationView的实例，然后调用它的setCheckedItem() 方法将Call菜单项设置为默认选中。接着调用了setNavigationItemSelectedListener() 方法来设置一个菜单项选中事件的监听器，当用户点击了任意菜单项时，就会回调到onNavigationItemSelected() 方法中。我们可以在这个方法中写相应的逻辑处理，不过这里我并没有附加任何逻辑，只是调用了DrawerLayout的closeDrawers() 方法将滑动菜单关闭
+
+### 12.4　悬浮按钮和可交互提示
+> 立面设计是Material Design中一条非常重要的设计思想，也就是说，按照Material Design的理念，应用程序的界面不仅仅只是一个平面，而应该是有立体效果的。在官方给出的示例中，最简单且最具代表性的立面设计就是悬浮按钮了，这种按钮不属于主界面平面的一部分，而是位于另外一个维度的，因此就会给人一种悬浮的感觉。
+
+### 12.4.1　FloatingActionButton
+> FloatingActionButton是Design Support库中提供的一个控件，这个控件可以帮助我们比较轻松地实现悬浮按钮的效果。其实在之前的图12.2中，我们就已经预览过悬浮按钮是长什么样子的了，它默认会使用colorAccent来作为按钮的颜色，我们还可以通过给按钮指定一个图标来表明这个按钮的作用是什么。
+````xml
+<android.support.design.widget.FloatingActionButton
+    android:id="@+id/fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|end"
+    android:layout_margin="16dp"
+    android:src="@drawable/ic_done" />
+````
+> 可以看到，这里我们在主屏幕布局中加入了一个FloatingActionButton。这个控件的用法并没有什么特别的地方，layout_width 和layout_height 属性都指定成wrap_content ，layout_gravity 属性指定将这个控件放置于屏幕的右下角，其中end 的工作原理和之前的start 是一样的，即如果系统语言是从左往右的，那么end 就表示在右边，如果系统语言是从右往左的，那么end 就表示在左边。然后通过layout_margin 属性给控件的四周留点边距，紧贴着屏幕边缘肯定是不好看的，最后通过src 属性给FloatingActionButton设置了一个图标。
+> 这里使用app:elevation 属性来给FloatingActionButton指定一个高度值，高度值越大，投影范围也越大，但是投影效果越淡，高度值越小，投影范围也越小，但是投影效果越浓。当然这些效果的差异其实都不怎么明显，我个人感觉使用默认的FloatingActionButton效果就已经足够了。
+
+### 12.4.2　Snackbar
+> 首先要明确，Snackbar并不是Toast的替代品，它们两者之间有着不同的应用场景。Toast的作用是告诉用户现在发生了什么事情，但同时用户只能被动接收这个事情，因为没有什么办法能让用户进行选择。而Snackbar则在这方面进行了扩展，它允许在提示当中加入一个可交互按钮，当用户点击按钮的时候可以执行一些额外的逻辑操作。打个比方，如果我们在执行删除操作的时候只弹出一个Toast提示，那么用户要是误删了某个重要数据的话肯定会十分抓狂吧，但是如果我们增加一个Undo按钮，就相当于给用户提供了一种弥补措施，从而大大降低了事故发生的概率，提升了用户体验。
+````java
+@Override
+public void onclick(view view) {
+    snackbar.make(view, "data deleted", snackbar.length_short)
+            .setaction("undo", new view.onclicklistener() {
+                @override
+                public void onclick(view v) {
+                    toast.maketext(mainactivity.this, "data restored",
+                        toast.length_short).show();
+                }
+            })
+            .show();
+}
+````
+> 可以看到，这里调用了Snackbar的make() 方法来创建一个Snackbar 对象，make() 方法的第一个参数需要传入一个View，只要是当前界面布局的任意一个View都可以，Snackbar会使用这个View来自动查找最外层的布局，用于展示Snackbar。第二个参数就是Snackbar中显示的内容，第三个参数是Snackbar显示的时长。这些和Toast都是类似的。不管是出现还是消失，Snackbar都是带有动画效果的，因此视觉体验也会比较好。
+
+### 12.4.3　CoordinatorLayout
+> CoordinatorLayout可以说是一个加强版的FrameLayout，这个布局也是由Design Support库提供的。它在普通情况下的作用和FrameLayout基本一致，不过既然是Design Support库中提供的布局，那么就必然有一些Material Design的魔力了。
+> 事实上，CoordinatorLayout可以监听其所有子控件的各种事件，然后自动帮助我们做出最为合理的响应。举个简单的例子，刚才弹出的Snackbar提示将悬浮按钮遮挡住了，而如果我们能让CoordinatorLayout监听到Snackbar的弹出事件，那么它会自动将内部的FloatingActionButton向上偏移，从而确保不会被Snackbar遮挡到。
+> 至于CoordinatorLayout的使用也非常简单，我们只需要将原来的FrameLayout替换一下就可以了。由于CoordinatorLayout本身就是一个加强版的FrameLayout，因此这种替换不会有任何的副作用。另外悬浮按钮的向上和向下偏移也是伴随着动画效果的，且和Snackbar完全同步，整体效果看上去特别赏心悦目。
+> 不过我们回过头来再思考一下，刚才说的是CoordinatorLayout可以监听其所有子控件的各种事件，但是Snackbar好像并不是CoordinatorLayout的子控件吧，为什么它却可以被监听到呢？
+> 其实道理很简单，还记得我们在Snackbar的make() 方法中传入的第一个参数吗？这个参数就是用来指定Snackbar是基于哪个View来触发的，刚才我们传入的是FloatingActionButton本身，而FloatingActionButton是CoordinatorLayout中的子控件，因此这个事件就理所应当能被监听到了。你可以自己再做个试验，如果给Snackbar的make() 方法传入一个DrawerLayout，那么Snackbar就会再次遮挡住悬浮按钮，因为DrawerLayout不是CoordinatorLayout的子控件，CoordinatorLayout也就无法监听到Snackbar的弹出和隐藏事件了。
+
+### 12.5　卡片式布局
+### 12.5.1　CardView
+> CardView是用于实现卡片式布局效果的重要控件，由appcompat-v7库提供。实际上，CardView也是一个FrameLayout，只是额外提供了圆角和阴影等效果，看上去会有立体的感觉。
+> 这里定义了一个CardView布局，我们可以通过app:cardCornerRadius 属性指定卡片圆角的弧度，数值越大，圆角的弧度也越大。另外还可以通过app:elevation 属性指定卡片的高度，高度值越大，投影范围也越大，但是投影效果越淡，高度值越小，投影范围也越小，但是投影效果越浓，这一点和FloatingActionButton是一致的。
+> 然后我们在CardView布局中放置了一个TextView，那么这个TextView就会显示在一张卡片当中了，CardView的用法就是这么简单。
+> 但是我们显然不可能在如此宽阔的一块空白区域内只放置一张卡片，为了能够充分利用屏幕的空间，这里我准备综合运用一下第3章中学到的知识，使用RecyclerView来填充MaterialTest项目的主界面部分。还记得之前实现过的水果列表效果吗？这次我们将升级一下，实现一个高配版的水果列表效果。
+````gradle
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:design:24.2.1'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.android.support:recyclerview-v7:24.2.1'
+    compile 'com.android.support:cardview-v7:24.2.1'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+}
+````
+> 注意上述声明的最后一行，这里添加了一个Glide库的依赖。Glide是一个超级强大的图片加载库，它不仅可以用于加载本地图片，还可以加载网络图片、GIF图片、甚至是本地视频。最重要的是，Glide的用法非常简单，只需一行代码就能轻松实现复杂的图片加载功能，因此这里我们准备用它来加载水果图片。[Glide的项目主页地址](https://github.com/bumptech/glide) 。
+> 内容倒也没有什么特殊的地方，就是定义了一个ImageView用于显示水果的图片，又定义了一个TextView用于显示水果的名称，并让TextView在水平方向上居中显示。注意在ImageView中我们使用了一个scaleType 属性，这个属性可以指定图片的缩放模式。由于各张水果图片的长宽比例可能都不一致，为了让所有的图片都能填充满整个ImageView，这里使用了centerCrop模式，它可以让图片保持原有比例填充满ImageView，并将超出屏幕的部分裁剪掉。
+> 那么这里就顺便来看一下Glide的用法吧，其实并没有太多好讲的，因为Glide的用法实在是太简单了。首先调用Glide.with() 方法并传入一个Context 、Activity 或Fragment 参数，然后调用load() 方法去加载图片，可以是一个URL地址，也可以是一个本地路径，或者是一个资源id，最后调用into() 方法将图片设置到具体某一个ImageView中就可以了。
+> 那么我们为什么要使用Glide而不是传统的设置图片方式呢？因为这次我从网上找的这些水果图片像素都非常高，如果不进行压缩就直接展示的话，很容易就会引起内存溢出。而使用Glide就完全不需要担心这回事，因为Glide在内部做了许多非常复杂的逻辑操作，其中就包括了图片压缩，我们只需要安心按照Glide的标准用法去加载图片就可以了。
+
+### 12.5.2　AppBarLayout
+> 首先我们来分析一下为什么 `RecyclerView` 会把 `Toolbar` 给遮挡住吧。其实并不难理解，由于 `RecyclerView` 和 `Toolbar` 都是放置在 `CoordinatorLayout` 中的，而前面已经说过， `CoordinatorLayout` 就是一个加强版的 `FrameLayout` ，那么 `FrameLayout` 中的所有控件在不进行明确定位的情况下，默认都会摆放在布局的左上角，从而也就产生了遮挡的现象。其实这已经不是你第一次遇到这种情况了，我们在3.3.3小节学习 `FrameLayout` 的时候就早已见识过了控件与控件之间遮挡的效果。
+> 既然已经找到了问题的原因，那么该如何解决呢？传统情况下，使用偏移是唯一的解决办法，即让 `RecyclerView` 向下偏移一个 `Toolbar` 的高度，从而保证不会遮挡到 `Toolbar` 。不过我们使用的并不是普通的 `FrameLayout` ，而是 `CoordinatorLayout` ，因此自然会有一些更加巧妙的解决办法。
+> 这里我准备使用 `Design Support` 库中提供的另外一个工具—— `AppBarLayout` 。 `AppBarLayout` 实际上是一个垂直方向的 `LinearLayout` ，它在内部做了很多滚动事件的封装，并应用了一些 `Material Design` 的设计理念。
+> 那么我们怎样使用 `AppBarLayout` 才能解决前面的覆盖问题呢？其实只需要两步就可以了，第一步将 `Toolbar` 嵌套到 `AppBarLayout` 中，第二步给 `RecyclerView` 指定一个布局行为。
+> 可以看到，布局文件并没有什么太大的变化。我们首先定义了一个 `AppBarLayout` ，并将 `Toolbar` 放置在了 `AppBarLayout` 里面，然后在 `RecyclerView` 中使用 `app : layout_behavior ` 属性指定了一个布局行为。其中 `appbar_scrolling_view_behavior ` 这个字符串也是由 `Design Support` 库提供的。
+> 虽说使用 `AppBarLayout` 已经成功解决了 `RecyclerView` 遮挡 `Toolbar` 的问题，但是刚才有提到过，说 `AppBarLayout` 中应用了一些 `Material Design` 的设计理念，好像从上面的例子完全体现不出来呀。事实上，当 `RecyclerView` 滚动的时候就已经将滚动事件都通知给 `AppBarLayout` 了，只是我们还没进行处理而已。那么下面就让我们来进一步优化，看看 `AppBarLayout` 到底能实现什么样的 `Material Design` 效果。
+> 当 `AppBarLayout` 接收到滚动事件的时候，它内部的子控件其实是可以指定如何去影响这些事件的，通过 `app` : `layout_scrollFlags ` 属性就能实现。
+> 这里在 `Toolbar` 中添加了一个 `app:layout`  `_scrollFlags ` 属性，并将这个属性的值指定成了 `scroll|enterAlways|snap ` 。其中， `scroll ` 表示当 `RecyclerView` 向上滚动的时候， `Toolbar` 会跟着一起向上滚动并实现隐藏； `enterAlways ` 表示当 `RecyclerView` 向下滚动的时候， `Toolbar` 会跟着一起向下滚动并重新显示。 `snap ` 表示当 `Toolbar` 还没有完全隐藏或显示的时候， 会根据当前滚动的距离， 自动选择是隐藏还是显示。
+
+### 12.6　下拉刷新
+> SwipeRefreshLayout就是用于实现下拉刷新功能的核心类，它是由support-v4库提供的。我们把想要实现下拉刷新功能的控件放置到SwipeRefreshLayout中，就可以迅速让这个控件支持下拉刷新。那么在MaterialTest项目中，应该支持下拉刷新功能的控件自然就是RecyclerView了。
+> 可以看到，这里我们在RecyclerView的外面又嵌套了一层SwipeRefreshLayout，这样RecyclerView就自动拥有下拉刷新功能了。另外需要注意，由于RecyclerView现在变成了SwipeRefreshLayout的子控件，因此之前使用app:layout_behavior 声明的布局行为现在也要移到SwipeRefreshLayout中才行。
+````java
+public class MainActivity extends AppCompatActivity {
+    ...
+    private SwipeRefreshLayout swipeRefresh;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ...
+        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.
+            OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshFruits();
+            }
+        });
+    }
+    private void refreshFruits() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        initFruits();
+                        adapter.notifyDataSetChanged();
+                        swipeRefresh.setRefreshing(false);
+                    }
+                });
+            }
+        }).start();
+    }
+    ...
+}
+````
+> 这段代码应该还是比较好理解的，首先通过findViewById() 方法拿到SwipeRefreshLayout的实例，然后调用setColorSchemeResources() 方法来设置下拉刷新进度条的颜色，这里我们就使用主题中的colorPrimary作为进度条的颜色了。接着调用setOnRefreshListener() 方法来设置一个下拉刷新的监听器，当触发了下拉刷新操作的时候就会回调这个监听器的onRefresh() 方法，然后我们在这里去处理具体的刷新逻辑就可以了。
+> 通常情况下，onRefresh() 方法中应该是去网络上请求最新的数据，然后再将这些数据展示出来。这里简单起见，我们就不和网络进行交互了，而是调用一个refreshFruits() 方法进行本地刷新操作。refreshFruits() 方法中先是开启了一个线程，然后将线程沉睡两秒钟。之所以这么做，是因为本地刷新操作速度非常快，如果不将线程沉睡的话，刷新立刻就结束了，从而看不到刷新的过程。沉睡结束之后，这里使用了runOnUiThread() 方法将线程切换回主线程，然后调用initFruits() 方法重新生成数据，接着再调用FruitAdapter的notifyDataSetChanged() 方法通知数据发生了变化，最后调用SwipeRefreshLayout的setRefreshing() 方法并传入false ，用于表示刷新事件结束，并隐藏刷新进度条。
+
+### 12.7　可折叠式标题栏
+### 12.7.1　CollapsingToolbarLayout
+> 顾名思义，CollapsingToolbarLayout是一个作用于Toolbar基础之上的布局，它也是由Design Support库提供的。CollapsingToolbarLayout可以让Toolbar的效果变得更加丰富，不仅仅是展示一个标题栏，而是能够实现非常华丽的效果。
+> 不过，CollapsingToolbarLayout是不能独立存在的，它在设计的时候就被限定只能作为AppBarLayout的直接子布局来使用。而AppBarLayout又必须是CoordinatorLayout的子布局，因此本节中我们要实现的功能其实需要综合运用前面所学的各种知识。
+````xml
+<android.support.design.widget.CollapsingToolbarLayout
+    android:id="@+id/collapsing_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    app:contentScrim="?attr/colorPrimary"
+    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+</android.support.design.widget.CollapsingToolbarLayout>
+````
+> android:theme 属性指定了一个ThemeOverlay.AppCompat.Dark.ActionBar的主题，其实对于这部分我们也并不陌生，因为之前在activity_main.xml 中给Toolbar指定的也是这个主题，只不过这里要实现更加高级的Toolbar效果，因此需要将这个主题的指定提到上一层来。app:contentScrim 属性用于指定CollapsingToolbarLayout在趋于折叠状态以及折叠之后的背景色，其实CollapsingToolbarLayout在折叠之后就是一个普通的Toolbar，那么背景色肯定应该是colorPrimary了，具体的效果我们待会儿就能看到。app:layout_scrollFlags 属性我们也是见过的，只不过之前是给Toolbar指定的，现在也移到外面来了。其中，scroll表示CollapsingToolbarLayout会随着水果内容详情的滚动一起滚动，exitUntilCollapsed 表示当CollapsingToolbarLayout随着滚动完成折叠之后就保留在界面上，不再移出屏幕。
+> 可以看到，我们在CollapsingToolbarLayout中定义了一个ImageView和一个Toolbar，也就意味着，这个高级版的标题栏将是由普通的标题栏加上图片组合而成的。这里定义的大多数属性我们都是见过的，就不再解释了，只有一个app:layout_collapseMode 比较陌生。它用于指定当前控件在CollapsingToolbarLayout折叠过程中的折叠模式，其中Toolbar指定成pin，表示在折叠的过程中位置始终保持不变，ImageView指定成parallax，表示会在折叠的过程中产生一定的错位偏移，这种模式的视觉效果会非常好。
+> 水果内容详情的最外层布局使用了一个NestedScrollView，注意它和AppBarLayout是平级的。我们之前在9.2.1小节学过ScrollView的用法，它允许使用滚动的方式来查看屏幕以外的数据，而NestedScrollView在此基础之上还增加了嵌套响应滚动事件的功能。由于CoordinatorLayout本身已经可以响应滚动事件了，因此我们在它的内部就需要使用NestedScrollView或RecyclerView这样的布局。另外，这里还通过app:layout_behavior 属性指定了一个布局行为，这和之前在RecyclerView中的用法是一模一样的。
+> 不管是ScrollView还是NestedScrollView，它们的内部都只允许存在一个直接子布局。因此，如果我们想要在里面放入很多东西的话，通常都会先嵌套一个LinearLayout，然后再在LinearLayout中放入具体的内容就可以了，
+> 可以看到，这里加入了一个FloatingActionButton，它和AppBarLayout以及NestedScrollView是平级的。FloatingActionButton中使用app:layout_anchor 属性指定了一个锚点，我们将锚点设置为AppBarLayout，这样悬浮按钮就会出现在水果标题栏的区域内，接着又使用app:layout_anchorGravity 属性将悬浮按钮定位在标题栏区域的右下角。其他一些属性都比较简单，就不再进行解释了。
+
+### 12.7.2　充分利用系统状态栏空间
+> 想要让背景图能够和系统状态栏融合，需要借助android:fitsSystemWindows 这个属性来实现。在CoordinatorLayout、AppBarLayout、CollapsingToolbarLayout这种嵌套结构的布局中，将控件的android:fitsSystemWindows 属性指定成true ，就表示该控件会出现在系统状态栏里。对应到我们的程序，那就是水果标题栏中的ImageView应该设置这个属性了。不过只给ImageView设置这个属性是没有用的，我们必须将ImageView布局结构中的所有父布局都设置上这个属性才可以
+> 但是，即使我们将android:fitsSystemWindows 属性都设置好了还是没有用的，因为还必须在程序的主题中将状态栏颜色指定成透明色才行。指定成透明色的方法很简单，在主题中将android:statusBarColor 属性的值指定成@android:color/transparent 就可以了。但问题在于，android:statusBarColor 这个属性是从API 21，也就是Android 5.0系统开始才有的，之前的系统无法指定这个属性。那么，系统差异型的功能实现就要从这里开始了。
+> 右击res目录→New→Directory，创建一个values-v21目录，然后右击values-v21目录→New→Values resource file，创建一个styles.xml文件。接着对这个文件进行编写，代码如下所示：
+````xml
+<resources>
+    <style name="FruitActivityTheme" parent="AppTheme">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+</resources>
+````
+> 这里我们定义了一个 FruitActivityTheme 主题，它是专门给FruitActivity使用的。FruitActivityTheme的parent主题是AppTheme，也就是说，它继承了AppTheme中的所有特性。然后我们在FruitActivityTheme中将状态栏的颜色指定成透明色，由于values-v21目录是只有Android 5.0及以上的系统才会去读取的，因此这么声明是没有问题的。
+> 但是Android 5.0之前的系统却无法识别 FruitActivityTheme 这个主题，因此我们还需要对 values/styles.xml 文件进行修改，定义了一个FruitActivityTheme主题，并且parent主题也是AppTheme，但是它的内部是空的。因为Android 5.0之前的系统无法指定状态栏的颜色，因此这里什么都不用做就可以了。
+
+## 第 13 章　继续进阶——你还应该掌握的高级技巧
+### 13.1　全局获取Context的技巧
+> Android提供了一个Application 类，每当应用程序启动的时候，系统就会自动将这个类进行初始化。而我们可以定制一个自己的Application 类，以便于管理程序内一些全局的状态信息，比如说全局Context 。
+> 定制一个自己的Application 其实并不复杂，首先我们需要创建一个MyApplication 类继承自Application 
+> 可以看到，MyApplication 中的代码非常简单。这里我们重写了父类的onCreate() 方法，并通过调用getApplicationContext() 方法得到了一个应用程序级别的Context ，然后又提供了一个静态的getContext() 方法，在这里将刚才获取到的Context 进行返回。
+> 接下来我们需要告知系统，当程序启动的时候应该初始化MyApplication 类，而不是默认的Application 类。这一步也很简单，在AndroidManifest.xml文件的<application> 标签下进行指定就可以了，注意这里在指定MyApplication 的时候一定要加上完整的包名，不然系统将无法找到这个类。
+> 这样我们就已经实现了一种全局获取Context 的机制，之后不管你想在项目的任何地方使用Context ，只需要调用一下MyApplication.getContext() 就可以了。
+> 不过这里你可能又会产生疑问，如果我们已经配置过了自己的Application 怎么办？这样岂不是和LitePalApplication 冲突了？没错，任何一个项目都只能配置一个Application ，对于这种情况，LitePal提供了很简单的解决方案，那就是在我们自己的Application 中去调用LitePal的初始化方法就可以了，使用这种写法，就相当于我们把全局的Context 对象通过参数传递给了LitePal，效果和在AndroidManifest.xml中配置LitePalApplication 是一模一样的。
+
+### 13.2　使用Intent传递对象
+> Intent的用法相信你已经比较熟悉了，我们可以借助它来启动活动、发送广播、启动服务等。在进行上述操作的时候，我们还可以在Intent中添加一些附加数据，以达到传值的效果，
+
+### 13.2.1　Serializable方式
+> 使用Intent来传递对象通常有两种实现方式：Serializable和Parcelable，本小节中我们先来学习一下第一种实现方式。
+> Serializable是序列化的意思，表示将一个对象转换成可存储或可传输的状态。序列化后的对象可以在网络上进行传输，也可以存储到本地。至于序列化的方法也很简单，只需要让一个类去实现Serializable 这个接口就可以了。
+> 其中，get 、set 方法都是用于赋值和读取字段数据的，最重要的部分是在第一行。这里让Person 类去实现了Serializable 接口，这样所有的Person 对象就都是可序列化的了。
+> 可以看到，这里我们创建了一个Person 的实例，然后就直接将它传入到putExtra() 方法中了。由于Person 类实现了Serializable 接口，所以才可以这样写。
+> 接下来在SecondActivity 中获取这个对象也很简单，写法如下：
+> `Person person = (Person) getIntent().getSerializableExtra("person_data");`
+
+### 13.2.2　Parcelable方式
+> 除了 `Serializable` 之外，使用 `Parcelable` 也可以实现相同的效果，不过不同于将对象进行序列化， `Parcelable` 方式的实现原理是将一个完整的对象进行分解，而分解后的每一部分都是 `Intent` 所支持的数据类型，这样也就实现传递对象的功能了。
+> `Parcelable` 的实现方式要稍微复杂一些。可以看到，首先我们让 `Person` 类去实现了 `Parcelable` 接口，这样就必须重写 `describeContents()` 和 `writeToParcel()` 这两个方法。其中 `describeContents()` 方法直接返回0就可以了，而 `writeToParcel()` 方法中我们需要调用 `Parcel` 的 `writeXxx()` 方法，将 `Person` 类中的字段一一写出。注意，字符串型数据就调用 `writeString()` 方法，整型数据就调用 `writeInt()` 方法，以此类推。
+> 除此之外，我们还必须在 `Person` 类中提供一个名为 `CREATOR` 的常量，这里创建了 `Parcelable` . `Creator` 接口的一个实现，并将泛型指定为 `Person` 。接着需要重写 `createFromParcel()` 和 `newArray()` 这两个方法，在 `createFromParcel()` 方法中我们要去读取刚才写出的 `name` 和 `age` 字段，并创建一个 `Person` 对象进行返回，其中 `name` 和 `age` 都是调用 `Parcel` 的 `readXxx()` 方法读取到的， 注意这里读取的顺序一定要和刚才写出的顺序完全相同。 而 `newArray()` 方法中的实现就简单多了，只需要 `new` 出一个 `Person` 数组，并使用方法中传入的 `size` 作为数组大小就可以了。
+> 接下来，在 `FirstActivity` 中我们仍然可以使用相同的代码来传递 `Person` 对象，只不过在 `SecondActivity` 中获取对象的时候需要稍加改动，如下所示：
+> `Person person = (Person) getIntent().getParcelableExtra("person_data");`
+> 这样我们就把使用Intent来传递对象的两种实现方式都学习完了，对比一下，Serializable的方式较为简单，但由于会把整个对象进行序列化，因此效率会比Parcelable方式低一些，所以在通常情况下还是更加推荐使用Parcelable的方式来实现Intent传递对象的功能。
+
+### 13.4　调试Android程序
+> 这种调试方式虽然完全可以正常工作，但在调试模式下，程序的运行效率将会大大地降低，如果你的断点加在一个比较靠后的位置，需要执行很多的操作才能运行到这个断点，那么前面这些操作就都会有一些卡顿的感觉。没关系，Android还提供了另外一种调试的方式，可以让程序随时进入到调试模式，下面我们就来尝试一下。
+> 这次不需要选择调试模式来启动程序了，就使用正常的方式来启动程序。由于现在不是在调试模式下，程序的运行速度比较快，可以先把账号和密码输入好。然后点击Android Studio顶部工具栏的Attach debugger to Android process按钮（图13.7中最左边的按钮）。
+
+### 13.5　创建定时任务
+> Android中的定时任务一般有两种实现方式，一种是使用Java API里提供的Timer类，一种是使用Android的Alarm机制。这两种方式在多数情况下都能实现类似的效果，但Timer有一个明显的短板，它并不太适用于那些需要长期在后台运行的定时任务。我们都知道，为了能让电池更加耐用，每种手机都会有自己的休眠策略，Android手机就会在长时间不操作的情况下自动让CPU进入到睡眠状态，这就有可能导致Timer中的定时任务无法正常运行。而Alarm则具有唤醒CPU的功能，它可以保证在大多数情况下需要执行定时任务的时候CPU都能正常工作。需要注意，这里唤醒CPU和唤醒屏幕完全不是一个概念，千万不要产生混淆。
+````java
+AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+> long triggerAtTime = SystemClock.elapsedRealtime() + 10 * 1000;
+> manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerAtTime, pendingIntent);
+````
+> 上面的两行代码你不一定能看得明白，因为set() 方法中需要传入的3个参数稍微有点复杂，下面我们就来仔细地分析一下。第一个参数是一个整型参数，用于指定AlarmManager 的工作类型，有4种值可选，分别是ELAPSED_REALTIME 、ELAPSED_REALTIME_WAKEUP 、RTC 和RTC_WAKEUP 。其中ELAPSED_REALTIME 表示让定时任务的触发时间从系统开机开始算起，但不会唤醒CPU。ELAPSED_REALTIME_WAKEUP 同样表示让定时任务的触发时间从系统开机开始算起，但会唤醒CPU。RTC 表示让定时任务的触发时间从1970年1月1日0点开始算起，但不会唤醒CPU。RTC_WAKEUP 同样表示让定时任务的触发时间从1970年1月1日0点开始算起，但会唤醒CPU。使用SystemClock.elapsedRealtime() 方法可以获取到系统开机至今所经历时间的毫秒数，使用System.currentTimeMillis() 方法可以获取到1970年1月1日0点至今所经历时间的毫秒数。
+> 然后看一下第二个参数，这个参数就好理解多了，就是定时任务触发的时间，以毫秒为单位。如果第一个参数使用的是ELAPSED_REALTIME 或ELAPSED_REALTIME_WAKEUP ，则这里传入开机至今的时间再加上延迟执行的时间。如果第一个参数使用的是RTC 或RTC_WAKEUP ，则这里传入1970年1月1日0点至今的时间再加上延迟执行的时间。
+> 第三个参数是一个PendingIntent ，对于它你应该已经不会陌生了吧。这里我们一般会调用getService() 方法或者getBroadcast() 方法来获取一个能够执行服务或广播的PendingIntent 。这样当定时任务被触发的时候，服务的onStartCommand() 方法或广播接收器的onReceive() 方法就可以得到执行。
+> 那么，如果我们要实现一个长时间在后台定时运行的服务该怎么做呢？其实很简单，首先新建一个普通的服务，比如把它起名叫LongRunningService ，然后将触发定时任务的代码写到onStartCommand() 方法中，可以看到，我们先是在onStartCommand() 方法中开启了一个子线程，这样就可以在这里执行具体的逻辑操作了。之所以要在子线程里执行逻辑操作，是因为逻辑操作也是需要耗时的，如果放在主线程里执行可能会对定时任务的准确性造成轻微的影响。
+> 另外需要注意的是，从Android 4.4系统开始，Alarm任务的触发时间将会变得不准确，有可能会延迟一段时间后任务才能得到执行。这并不是个bug，而是系统在耗电性方面进行的优化。系统会自动检测目前有多少Alarm任务存在，然后将触发时间相近的几个任务放在一起执行，这就可以大幅度地减少CPU被唤醒的次数，从而有效延长电池的使用时间。
+> 当然，如果你要求Alarm任务的执行时间必须准确无误，Android仍然提供了解决方案。使用AlarmManager的setExact() 方法来替代set() 方法，就基本上可以保证任务能够准时执行了。
+
+### 13.5.2　Doze模式
+> 虽然Android的每个系统版本都在手机电量方面努力进行优化，不过一直没能解决后台服务泛滥、手机电量消耗过快的问题。于是在Android 6.0系统中，谷歌加入了一个全新的Doze模式，从而可以极大幅度地延长电池的使用寿命。本小节中我们就来了解一下这个模式，并且掌握一些编程时的注意事项。
+> 首先看一下到底什么是Doze模式。当用户的设备是Android 6.0或以上系统时，如果该设备未插接电源，处于静止状态（Android 7.0中删除了这一条件），且屏幕关闭了一段时间之后，就会进入到Doze模式。在Doze模式下，系统会对CPU 、网络、Alarm等活动进行限制，从而延长了电池的使用寿命。
+> 可以看到，随着设备进入Doze模式的时间越长，间歇性地退出Doze模式的时间间隔也会越长。因为如果设备长时间不使用的话，是没必要频繁退出Doze模式来执行同步等操作的，Android在这些细节上的把控使得电池寿命进一步得到了延长。
+> 接下来我们具体看一看在Doze模式下有哪些功能会受到限制吧。
+> - 网络访问被禁止。
+> - 系统忽略唤醒CPU或者屏幕操作。
+> - 系统不再执行WIFI扫描。
+> - 系统不再执行同步服务。
+> - Alarm任务将会在下次退出Doze模式的时候执行。
+> 注意其中的最后一条，也就是说，在Doze模式下，我们的Alarm任务将会变得不准时。当然，这在大多数情况下都是合理的，因为只有当用户长时间不使用手机的时候才会进入Doze模式，通常在这种情况下对Alarm任务的准时性要求并没有那么高。
+> 不过，如果你真的有非常特殊的需求，要求Alarm任务即使在Doze模式下也必须正常执行，Android还是提供了解决方案。调用AlarmManager的setAndAllowWhileIdle() 或setExactAndAllowWhileIdle() 方法就能让定时任务即使在Doze模式下也能正常执行了，这两个方法之间的区别和set() 、setExact() 方法之间的区别是一样的。
+
+## 13.6　多窗口模式编程
+> Android 7.0系统中却引入了一个非常有特色的功能——多窗口模式，它允许我们在同一个屏幕中同时打开两个应用程序。
+
+### 13.6.1　进入多窗口模式
+> 我们可以通过以下两种方式进入多窗口模式。
+> - 在Overview列表界面长按任意一个活动的标题，将该活动拖动到屏幕突出显示的区域，则可以进入多窗口模式。
+> - 打开任意一个程序，长按Overview按钮，也可以进入多窗口模式。
+> 在多窗口模式下，整个应用的界面会缩小很多，那么编写程序时就应该多考虑使用match_parent 属性、RecyclerView、ListView、ScrollView等控件，来让应用的界面能够更好地适配各种不同尺寸的屏幕，尽量不要出现屏幕尺寸变化过大时界面就无法正常显示的情况。
+
+### 13.6.2　多窗口模式下的生命周期
+> 接下来我们学习一下多窗口模式下的生命周期。其实多窗口模式并不会改变活动原有的生命周期，只是会将用户最近交互过的那个活动设置为运行状态，而将多窗口模式下另外一个可见的活动设置为暂停状态。如果这时用户又去和暂停的活动进行交互，那么该活动就变成运行状态，之前处于运行状态的活动变成暂停状态。
+> 了解了多窗口模式下活动的生命周期规则，那么我们在编写程序的时候，就可以将一些关键性的点考虑进去了。比如说，在多窗口模式下，用户仍然可以看到处于暂停状态的应用，那么像视频播放器之类的应用在此时就应该能继续播放视频才对。因此，我们最好不要在活动的onPause() 方法中去处理视频播放器的暂停逻辑，而是应该在onStop() 方法中去处理，并且在onStart() 方法恢复视频的播放。
+> 另外，针对于进入多窗口模式时活动会被重新创建，如果你想改变这一默认行为，可以在AndroidManifest.xml中对活动进行如下配置：
+````xml
+<activity
+    android:name=".MainActivity"
+    android:label="Fruits"
+    android:configChanges="orientation|keyboardHidden|screenSize|screenLayout">
+    ...
+</activity>
+````
+> 加入了这行配置之后，不管是进入多窗口模式，还是横竖屏切换，活动都不会被重新创建，而是会将屏幕发生变化的事件通知到Activity的onConfigurationChanged() 方法当中。因此，如果你想在屏幕发生变化的时候进行相应的逻辑处理，那么在活动中重写onConfigurationChanged() 方法即可。
+
+### 13.6.3　禁用多窗口模式
+> 多窗口模式虽然功能非常强大，但是未必就适用于所有的程序。比如说，手机游戏就非常不适合在多窗口模式下运行，很难想象我们如何一边玩着游戏，一边又操作着其他应用。因此，Android还是给我们提供了禁用多窗口模式的选项，如果你非常不希望自己的应用能够在多窗口模式下运行，那么就可以将这个功能关闭掉。
+> 禁用多窗口模式的方法非常简单，只需要在AndroidManifest.xml的<application> 或<activity> 标签中加入如下属性即可：
+> android:resizeableActivity=["true" | "false"]
+> 其中，true 表示应用支持多窗口模式，false 表示应用不支持多窗口模式
+> 可以看到，现在是无法进入到多窗口模式的，而且屏幕下方还会弹出一个Toast提示来告知用户，当前应用不支持多窗口模式。
+> 虽说android:resizeableActivity 这个属性的用法很简单，但是它还存在着一个问题，就是这个属性只有当项目的targetSdkVersion指定成24或者更高的时候才会有用，否则这个属性是无效的。那么比如说我们将项目的targetSdkVersion指定成23，这个时候尝试进入多窗口模式，虽说界面上弹出了一个提示，告知我们此应用在多窗口模式下可能无法正常工作，但还是进入了多窗口模式。那这样我们就非常头疼了，因为有很多的老项目，它们的targetSdkVersion都没有指定到24，岂不是这些老项目都无法禁用多窗口模式了？
+> 针对这种情况，还有一种解决方案。Android规定，如果项目指定的targetSdkVersion低于24，并且*（任一？）*活动是不允许横竖屏切换的，那么该应用也将不支持多窗口模式。
+> 默认情况下，我们的应用都是可以随着手机的旋转自由地横竖屏切换的，如果想要让应用不允许横竖屏切换，那么就需要在AndroidManifest.xml的<activity> 标签中加入如下配置：
+`android:screenOrientation=["portrait" | "landscape"]`
+> 其中，portrait 表示活动只支持竖屏，landscape 表示活动只支持横屏。
+
+## 13.7　Lambda表达式
+> 如果想要在Android项目中使用Lambda表达式或者Java 8的其他新特性，首先我们需要在app/build.gradle中添加如下配置：
+````gradle
+android {
+    ...
+    defaultConfig {
+        ...
+        jackOptions.enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    ...
+}
+````
+````java
+new Thread(new Runnable() {
+    @Override
+    public void run() {
+        // 处理具体的逻辑
+    }
+}).start();
+// lamda
+new Thread(() -> {
+    // 处理具体的逻辑
+}).start();
+Button button = (Button) findViewById(R.id.button);
+button.setOnClickListener(v -> {
+    // 处理点击事件
+});
+````
+> 那么为什么我们可以使用这么神奇的写法呢？这是因为Thread 类的构造函数接收的参数是一个Runnable 接口，并且该接口中只有一个待实现方法。
+
+## 第 15 章　最后一步——将应用发布到360应用商店
+### 15.1　生成正式签名的APK文件
+> Android系统会将所有的APK文件识别为应用程序的安装包，类似于Windows系统上的EXE文件。
+> 但并不是所有的APK文件都能成功安装到手机上，Android系统要求只有签名后的APK文件才可以安装，因此我们还需要对生成的APK文件进行签名才行。那么你可能会有疑问了，直接通过Android Studio来运行程序的时候好像并没有进行过签名操作啊，为什么还能将程序安装到手机上呢？这是因为Android Studio 使用了一个默认的 keystore 文件帮我们自动进行了签名。点击 Android Studio 右侧工具栏的 Gradle→ 项目名 → :app → Tasks → android，双击signingReport，
+````
+Variant: debug
+Config: debug
+Store: C:\Users\toushou\.android\debug.keystore
+Alias: AndroidDebugKey
+````
+> 也就是说，我们所有通过Android Studio来运行的程序都是使用了这个debug.keystore文件来进行签名的。不过这仅仅适用于开发阶段而已
+
+### 15.1.1　使用Android Studio生成
+> 点击Android Studio导航栏上的Build→Generate Signed APK，首次点击可能会提示让我们输入操作系统的密码，输入密码之后点击OK，则会弹出如图15.3所示的创建签名APK对话框。
+> 由于目前我们还没有一个正式的keystore文件，所以应该点击Create new按钮，然后会弹出一个新的对话框来让我们填写创建keystore文件所必要的信息。根据自己的实际情况进行填写就行了
+> 这里需要注意，在Validity那一栏填写的是keystore文件的有效时长，单位是年，一般建议时间可以填得长一些，比如我填了30年。
+
+### 15.1.2　使用Gradle生成
+> Gradle的用法极为丰富，想要完全掌握它的用法，其复杂程度并不亚于学习一门新的语言（Gradle是使用Groovy语言编写的）。
+> 这里在android闭包中添加了一个signingConfigs闭包，然后在signingConfigs闭包中又添加了一个config闭包。接着在config闭包中配置keystore文件的各种信息，storeFile用于指定keystore文件的位置，storePassword用于指定密码，keyAlias用于指定别名， keyPassword用于指定别名密码。
+> 现在build.gradle文件已经配置完成，那么我们如何才能生成APK文件呢？其实非常简单，Android Studio中内置了很多的Gradle Tasks，其中就包括了生成APK文件的Task。点击右侧工具栏的Gradle→项目名→:app→Tasks→build
+> 其中assembleDebug用于生成测试版的APK文件，assembleRelease用于生成正式版的APK文件，assemble用于同时生成测试版和正式版的APK文件。在生成APK之前，先要双击clean这个Task来清理一下当前项目，然后双击assembleRelease
+> 可以看到，这里提示我们BUILD SUCCESSFUL，说明assembleRelease执行成功了。APK文件会自动生成在app/build/outputs/apk目录下
+> 虽说现在APK文件已经成功生成了，不过还有一个小细节需要注意一下。目前keystore文件的所有信息都是以明文的形式直接配置在build.gradle中的，这样就不太安全。Android推荐的做法是将这类敏感数据配置在一个独立的文件里面，然后再在build.gradle中去读取这些数据。
+> 这里只需要将原来的明文配置改成相应的键值，一切就完工了。这样直接查看build.gradle文件是无法看到keystore文件的各种信息的，只有查看gradle.properties文件才能看得到。然后我们只需要将gradle.properties文件保护好就行了，比如说将它从Git版本控制中排除。这样gradle.properties文件就只会保留在本地，从而也就不用担心keystore文件的信息会泄漏了。
+
+### 15.1.3　生成多渠道APK文件
+> 现在Android Studio提供了一种非常方便的方法来应对这种差异性需求，极大程度地解决了之前版本维护困难的问题，比如说这里我们准备生成360和百度两个渠道的APK文件，那么修改app/build.gradle文件，添加了一个productFlavors 闭包，然后在该闭包中添加所有的渠道配置就可以了。注意Gradle中的配置规定不能以数字开头，因此这里我将360的渠道名配置成了qihoo。渠道名的闭包中可以覆写defaultConfig中的任何一个属性，比如说这里将applicationId 属性进行了覆写，那么最终生成的各渠道APK文件的包名也将各不相同。
+> 接下来我们开始针对不同渠道编写差异性需求。在app/src目录下（main的平级目录）新建一个baidu目录，然后在baidu目录下再新建java和res这两个目录，这样我们就可以在这里编写百度渠道特有的功能了，java目录用于存放代码，res目录用于存放资源，如果需要覆写AndroidManifest文件中的内容，还可以在baidu目录下再新建一个AndroidManifest.xml文件。
+> 这样我们就以一个简单的示例实现渠道差异性需求了，下面开始来生成多渠道的APK文件。观察右侧工具栏的Gradle Tasks列表，你会发现里面多出了几个新的Task，如果你只想生成百度渠道的APK文件，那么就执行assembleBaidu；如果你只想生成360渠道的APK文件，那么就执行assembleQihoo；如果你想一次性生成所有渠道的APK文件，那么就还是执行assembleRelease。
+> 除了使用Gradle的方式生成之外，使用Android Studio提供的可视化工具也是能生成多渠道APK文件的，这里我们可以选择是生成百度渠道的APK文件，还是生成360渠道的APK文件，如果你想一次性生成多个渠道的APK文件，按住CTRL键就可以进行多选了。
+> 接下来我们可以通过adb install 命令将生成好的APK文件安装到模拟器上，adb install 命令的后面加上APK文件的路径，就可以将该APK文件安装到模拟器上了。
+
+### 15.3　发布应用程序
+> 点击下载应用按钮，先将加固后的APK文件下载下来。接下来的工作就有点烦琐了，因为Android Studio中并没有提供对一个未签名的APK直接进行签名的功能，因此我们只能通过最原始的方式，使用jarsigner 命令来进行签名。
+> 在命令行界面按照以下格式输入签名命令：
+````bash
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore [keystore文件路径] -storepass [keystore文件密码] [待签名APK路径] [keystore文件别名]
+````
+> 将[] 中的描述替换成keystore文件的具体信息就能签名成功了，注意[] 符号是不需要的。接着我们将签名后的APK文件重新上传就可以了。
