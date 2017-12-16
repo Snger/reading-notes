@@ -8,21 +8,6 @@
 
 - Part 1. Putting Dependency Injection on the map
     - Chapter 1. A Dependency Injection tasting menu
-        - 1.1. Writing maintainable code
-            - 1.1.1. Unlearning DI
-            - 1.1.2. Understanding the purpose of DI
-        - 1.2. Hello DI
-            - 1.2.2. Benefits of DI
-        - 1.3. What to inject and what not to inject
-            - 1.3.1. Seams
-            - 1.3.2. Stable Dependencies
-            - 1.3.3. Volatile Dependencies
-        - 1.4. DI scope
-            - 1.4.1. Object Composition
-            - 1.4.2. Object Lifetime
-            - 1.4.3. Interception
-            - 1.4.4. DI in three dimensions
-        - 1.5. Summary
     - Chapter 2. A comprehensive example
         - 2.1. Doing it wrong
             - 2.1.3. Evaluation
@@ -82,7 +67,7 @@
 > The IMessageWriter instance is later used in the implementation of the Exclaim method , which writes the proper message to the *DEPENDENCY*.
 
 #### 1.2.2. Benefits of DI
->
+````markdown
 |----------------------|--------------------------|-----------------------------------|
 |       Benefit        |       Description        |        When is it valuable?       |
 |----------------------|--------------------------|-----------------------------------|
@@ -107,6 +92,7 @@
 | TESTABILITY          | Classes can be unit      | Only valuable if you unit test    |
 |                      | tested.                  | (which you really, really should) |
 |----------------------|--------------------------|-----------------------------------|
+````
 > - Late binding
 > XML files never seemed like a convincing alternative in highly scalable enterprise scenarios. This has changed significantly in the last couple of years.
 > By pulling the type name from the application configuration file and creating a Type instance from it, you can use Reflection to create an instance of IMessageWriter without knowing the concrete type at compile time.

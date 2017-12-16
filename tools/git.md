@@ -14,6 +14,8 @@
 - Git Status Takes a Long Time to Complete
 - Trace the evolution of the line range of a file
 - git diff between two different files
+- How to compare files from two different branches?
+- man git-merge-base
 - List merge commits affecting a file.
 - Get the Git Commit ID via Command Line
 - How do I use vim as 'git log' editor?
@@ -47,6 +49,7 @@
 - Remove all node_module folders recursively
 - Git Bash \(by babun\) git pull command crashed and created git.exe.stackdump file
 - Git Diff with Beyond Compare
+- Create Git branch with current changes
 
 <!-- /MarkdownTOC -->
 
@@ -150,6 +153,25 @@ git_next() {
 1. git diff [options] [--no-index] [--] <path> <path>
 2. This form is to compare the given two paths on the filesystem. You can omit the --no-index option when running the command in a working tree controlled by Git and at least one of the paths points outside the working tree, or when running the command outside a working tree controlled by Git.
 3. You don't need git for that, just use diff fileA.php fileB.php (or vimdiff if you want side by side comparison)
+
+## How to compare files from two different branches?
+> `git diff mybranch master -- myfile.cs`
+> Or, equivalently:
+> `git diff mybranch..master -- myfile.cs`
+> Using the latter syntax, if either side is HEAD it may be omitted (e.g. master.. compares master to HEAD).
+> You may also be interested in `mybranch...master` (from git diff docs):
+> This form is to view the changes on the branch containing and up to the second <commit>, starting at a common ancestor of both <commit>. `git diff A...B` is equivalent to `git diff $(git-merge-base A B) B`.
+In other words, this will give a diff of changes in master since it diverged from mybranch (but without new changes since then in mybranch).
+
+## man git-merge-base
+> git-merge-base - Find as good common ancestors as possible for a merge
+> git merge-base finds best common ancestor(s) between two commits to use in a three-way merge. One common ancestor is better than another common ancestor if the latter is an ancestor of the former. A common ancestor that does not have any better common ancestor is a best common ancestor, i.e. a merge base. Note that there can be more than one merge base for a pair of commits.
+> Given two commits A and B, git merge-base A B will output a commit which is reachable from both A and B through the parent relationship.
+> For example, with this topology:
+            o---o---o---B
+           /
+    ---o---1---o---o---o---A
+> the merge base between A and B is 1.
 
 ## List merge commits affecting a file.
 > For background, someone mis-resolved a conflict when merging, and it wasn't noticed by the team for a few days. At that point, a lot of other unrelated merges had been committed (some of us have been preferring to not use rebase, or things would be simpler). I need to locate the "bad" merge commit, so it can be checked to identify what else might have been reverted (and, of course, to identify and punish the guilty).
@@ -384,7 +406,7 @@ paste .gitignore1 .gitignore # Add to it if it already exists
 > 如果你要删除的目标不是文件，而是文件夹，那么请在 `git rm --cached` 命令后面添加 -r 命令，表示递归的删除（子）文件夹和文件夹下的文件，类似于 `rm -rf` 命令。
 ### 强制覆盖分支
 > `git push origin master --force --tags`
-> 为了能从打了 tag 的版本中也删除你所指定的文件或文件夹，您可以使用这样的命令来强制推送您的 Git tags
+> 为了能从打了 tag 的版本中也删除你所指定的文件或文件夹， 您可以使用这样的命令来强制推送您的 Git tags
 ### 清理和回收空间
 ````bash
 $ rm -rf .git/refs/original/
@@ -442,3 +464,9 @@ find . -name "nodemodules" -type d -prune -exec rm -rf '{}' +
 ## Git Diff with Beyond Compare
 > `git difftool -t bc3`
 
+## Create Git branch with current changes
+````bash
+git checkout -b <new-branch>
+git add <files>
+git commit -m "<Brief description of this commit>"
+````

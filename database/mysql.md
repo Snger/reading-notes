@@ -17,6 +17,9 @@
 - MySQL外键使用详解
 - Set value to NULL in MySQL
 - MySQL add days to a date
+- 13.2.9.1 SELECT ... INTO Syntax
+- IFNULL\(expr1,expr2\)
+- NULLIF\(expr1,expr2\)
 
 <!-- /MarkdownTOC -->
 
@@ -177,4 +180,36 @@ UPDATE TABLE
   SET PAYDATE=date_add(curdate(), INTERVAL 15 HOUR),
     REPAYDATE=date_add(curdate(), INTERVAL 7 DAY)
 WHERE ID IN (165,166,167,168);
+````
+
+## 13.2.9.1 SELECT ... INTO Syntax
+> The SELECT ... INTO form of SELECT enables a query result to be stored in variables or written to a file:
+> `SELECT ... INTO var_list` selects column values and stores them into variables.
+> The SELECT syntax description (see Section 13.2.9, “SELECT Syntax”) shows the INTO clause near the end of the statement. It is also possible to use INTO immediately following the select_expr list.
+> An INTO clause should not be used in a nested SELECT because such a SELECT must return its result to the outer context.
+> The INTO clause can name a list of one or more variables, which can be user-defined variables, stored procedure or function parameters, or stored program local variables. (Within a prepared SELECT ... INTO OUTFILE statement, only user-defined variables are permitted;see Section 13.6.4.2, “Local Variable Scope and Resolution”.)
+> The selected values are assigned to the variables. The number of variables must match the number of columns. The query should return a single row. If the query returns no rows, a warning with error code 1329 occurs (No data), and the variable values remain unchanged. If the query returns multiple rows, error 1172 occurs (Result consisted of more than one row). If it is possible that the statement may retrieve multiple rows, you can use LIMIT 1 to limit the result set to a single row.
+> `SELECT id, data INTO @x, @y FROM test.t1 LIMIT 1;`
+
+## IFNULL(expr1,expr2)
+> If expr1 is not NULL, IFNULL() returns expr1; otherwise it returns expr2.
+````mysql
+mysql> SELECT IFNULL(1,0);
+        -> 1
+mysql> SELECT IFNULL(NULL,10);
+        -> 10
+mysql> SELECT IFNULL(1/0,10);
+        -> 10
+mysql> SELECT IFNULL(1/0,'yes');
+        -> 'yes'
+````
+
+##  NULLIF(expr1,expr2)
+> Returns NULL if expr1 = expr2 is true, otherwise returns expr1. This is the same as CASE WHEN expr1 = expr2 THEN NULL ELSE expr1 END.
+The return value has the same type as the first argument.
+````mysql
+mysql> SELECT NULLIF(1,1);
+        -> NULL
+mysql> SELECT NULLIF(1,2);
+        -> 1
 ````

@@ -1,3 +1,12 @@
+# SumatraPDF
+
+<!-- MarkdownTOC -->
+
+- find text
+- find next/previous
+
+<!-- /MarkdownTOC -->
+
 ## find text
 1. <Ctrl> + F, /
 

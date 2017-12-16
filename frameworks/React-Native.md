@@ -1,5 +1,17 @@
 # React Native
 
+<!-- MarkdownTOC -->
+
+- the meaning of RCT in RCTBridgeModule
+- Handling third party build error on react-native 0.46x.
+- \(BUILD SUCCEEDED, but\) Print: Entry, “:CFBundleIdentifier”, Does Not Exist
+- React Native Change Default iOS Simulator Device
+
+<!-- /MarkdownTOC -->
+
+## the meaning of RCT in RCTBridgeModule 
+> If you are wondering, RCT is an abbreviation of ReaCT. [by Native Modules](https://facebook.github.io/react-native/docs/native-modules-ios.html)
+
 ## Handling third party build error on react-native 0.46x.
 > The problem is from the curl command and pressing ctrl + c key by user.
 > When the download process was interrupted, the curl command do not handle the unfinished or interrupted download file. It just save incomplete file to target file name.
