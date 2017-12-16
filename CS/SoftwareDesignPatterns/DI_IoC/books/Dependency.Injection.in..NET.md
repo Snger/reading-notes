@@ -31,6 +31,7 @@
             - 2.2.1. Rebuilding the commerce application
             - 2.2.2. Analyzing the loosely coupled implementation
         - 2.3. Expanding the sample application
+            - 2.3.1. Architecture
 
 <!-- /MarkdownTOC -->
 
@@ -212,7 +213,7 @@
 `this.objectContext = new CommerceObjectContext();`
 > This tightly couples the ProductService class to the Data Access library. There’s no reasonable way we can intercept this piece of code and replace it with something else. The reference to the Data Access library is hard-coded into the ProductService class.
 > This tightly couples the ProductService class to the Data Access library. There’s no reasonable way we can intercept this piece of code and replace it with something else. The reference to the Data Access library is hard-coded into the ProductService class.
-> The implementation of the GetFeaturedProducts method uses the CommerceObjectContext to pull Product objects from the database:
+> *The implementation of the GetFeaturedProducts method uses the CommerceObjectContext to pull Product objects from the database*:
 ````c#
 var products = (from p in this.objectContext.Products
                 where p.IsFeatured
@@ -226,7 +227,7 @@ var products = (from p in this.objectContext.Products
 > The View (as shown in listing 2.3) seems to contain too much functionality. It performs casts and specific string formatting. Such functionality should be moved to the underlying model.
 
 ### 2.2. Doing it right
-> Dependency Injection (DI) can be used to solve the issues that we discovered. Because DI is a radical departure from the way Mary created her application, I’m not going to modify it. Rather, I’m going to re-create it from scratch.
+> *Dependency Injection (DI) can be used to solve the issues that we discovered.* Because DI is a radical departure from the way Mary created her application, I’m not going to modify it. Rather, I’m going to re-create it from scratch.
 > Many people refer to DI as INVERSION OF CONTROL (IoC). These two terms are sometimes used interchangeably, but DI is a subset of IoC.
 > Before DI had a name, people started to refer to frameworks that manage DEPENDENCIES as Inversion of Control Containers, and soon, the meaning of IoC gradually drifted towards that particular meaning: Inversion of Control over DEPENDENCIES. Always the taxonomist, Martin Fowler introduced the term Dependency Injection to specifically refer to IoC in the context of dependency management.[5](http://martinfowler.com/articles/injection.html)Dependency Injection has since been widely accepted as the most correct terminology.
 > In short, IoC is a much broader term that includes, but isn’t limited to, DI.
@@ -275,7 +276,10 @@ var products = (from p in this.objectContext.Products
 >> Can we replace the relational Data Access library with one that works with the Azure Table Service? In chapter 3 I’ll describe how the application locates and instantiates the correct ProductRepository, so for now take the following at face value: the Data Access library is being loaded by late binding, and the type name is defined as an application setting in web.config. It’s possible to throw the current Data Access library away and inject a new one, as long as it also provides an implementation of ProductRepository.
 > It’s no longer possible to use the current Data Access library in isolation, as it now depends on the Domain Model. In many types of applications, that’s not an issue, but if the stakeholders want that feature, I can solve the problem by adding another layer of indirection: by extracting an interface from Product (say, IProduct) and changing ProductRepository to work with IProduct instead of Product. These abstractions can then be moved to a separate library that’s shared by both the Data Access library and the Domain Model. It would require more work, because I’d need to write code to map between Product and IProduct, but it’s certainly possible.
 > With the DI-based design, the original web application can be gradually transformed to a Software + Services application with a rich WPF interface and a cloud-based storage engine. The only thing remaining from the initial effort is the Domain Model, but that’s only appropriate because it encapsulates all the important business rules and, as such, we should expect that to be the most essential module.
-> When we develop applications, we can’t possibly foresee every future direction we may need to take the product, but that’s no problem as long as we can keep our options open. DI helps us build loosely coupled applications so that we can reuse or replace different modules as needed.
+> *When we develop applications, we can’t possibly foresee every future direction we may need to take the product, but that’s no problem as long as we can keep our options open. DI helps us build loosely coupled applications so that we can reuse or replace different modules as needed.*
 
 ### 2.3. Expanding the sample application
+#### 2.3.1. Architecture
+> I move all the Controllers and ViewModels from the User Interface Layer to the Presentation Model layer, leaving only the Views (the .aspx and .ascx files) and the COMPOSITION ROOT in the User Interface Layer.
+> The main reason for this move is to separate the COMPOSITION ROOT from the presentation logic; this way, I can show you different variations of configuration styles while keeping invariant as much of the application as possible.
 
