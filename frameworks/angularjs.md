@@ -11,6 +11,7 @@
 - ngRoute.ngView.$viewContentLoaded
 - In angular, how to use cancel an $interval on user events, like page change?
 - ScrollTo function in AngularJS
+- How to add hash and query params to a url in Angularjs
 
 <!-- /MarkdownTOC -->
 
@@ -76,4 +77,10 @@ $scope.gotoAnchor = function (hash) {
 
     $anchorScroll();
 };
+````
+
+## How to add hash and query params to a url in Angularjs
+> You can set it using [$location.hash](https://docs.angularjs.org/api/ng/service/$location#hash)
+````javascript
+$location.url("/project").search(param).hash('result');
 ````

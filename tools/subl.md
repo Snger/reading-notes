@@ -2,11 +2,14 @@
 <!-- MarkdownTOC -->
 
 - Setting
+- Sublime Text 3 : Can't find installed packages
 - Sublime Text from Command Line \(Win10\)
 - memory too high
 - Multiple Cursors in Sublime Text 2 Windows
 - How to jump to previous and last cursor in Sublime Text 3?
 - Vintage Mode \(Vi/Vim\)
+- VintageEx
+- advanced Vim
 - Search Filters
 - Search – Single File
 - Replace – Single File
@@ -27,8 +30,10 @@
 - import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())
 ````
 >- Install Package
->> ConvertToUTF8, BracketHighlighter, SidebarEnhancements, afterglow-theme, Compare Side-By-Side, Sublime SFTP, TypeScript, LESS, Pretty JSON, DocBlockr, JavaScriptNext, SublimeLinter 3 (or Sublime-JSHint), HTML-CSS-JS Prettify, MarkdownTOC, JSX
+>> ConvertToUTF8, BracketHighlighter, SidebarEnhancements, afterglow-theme, CompaRe Side-By-Side, Sublime SFTP, TypeScript, LESS, Pretty JSON, DocBlockr, JavaScriptNext, SublimeLinter 3 (or Sublime-JSHint), HTML-CSS-JS Prettify, MarkdownTOC, JSX
 
+## Sublime Text 3 : Can't find installed packages
+> Sublime Text 3 uses .sublime-package zip files to store packages. In Windows, they are stored in AppData/Roaming/Sublime Text 3/Installed Packages. The easiest way to deal with them is to install the PackageResourceViewer plugin via Package Control. Once installed, it gives you Command Palette options to view, edit, and extract packages. 
 
 ## Sublime Text from Command Line (Win10)
 1. `alias subl='/d/App/Sublime\ Text\ 3/subl.exe '`
@@ -48,6 +53,23 @@
 1. Vintage is a vi mode editing package for Sublime Text. It allows you to combine vi's command mode with Sublime Text's features, including multiple selections.
 2. Vintage is disabled by default, via the ignored_packages setting. If you remove "Vintage" from the list of ignored packages, you'll be able to edit with vi keys
 3. Vintage starts in insert mode by default. This can be changed by adding the following setting to your user settings: "vintage_start_in_command_mode": true
+
+## VintageEx
+> [but not support to Sublime Text 3](https://github.com/SublimeText/VintageEx/issues/52)
+> [VintageEx](https://github.com/SublimeText/VintageEx) gives you a Vim-like command-line where you can at least perform substitutions. Well, that's how far I went when trying it. I don't know how extended the subset of Vim commands it implements is but I'd guess that it's not as large as the original and, like with Vintage, probably different and unsettling enough to keep a relatively experienced Vimmer out.
+> Anyway, I just tried it again and indeed you can more or less do the kind of substitution you are looking for, which instantly makes ST a lot more useful:
+````vi
+:3,5s/foo/bar/g
+:.,5s/bar/foo/g
+:,5/foo/bar/g
+:,+5/bar/foo/g
+````
+> Unfortunately, it doesn't support the /c flag.
+
+## advanced Vim
+> [NeoVintageous](https://github.com/NeoVintageous/NeoVintageous) An advanced Vim emulation layer for Sublime Text (Vintageous fork).
+> [Sublime Six](https://github.com/guillermooo/Six) is an advanced Vim emulator implemented entirely as a Python plugin.
+> [Vintageous](https://github.com/guillermooo/Vintageous) is a comprehensive vi/Vim emulation layer for Sublime Text 3.
 
 ## Search Filters
 1. The Where field in Find in Files limits the search scope. You can define filters in several ways:

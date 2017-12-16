@@ -1,3 +1,24 @@
+# Nhibernate
+
+<!-- MarkdownTOC -->
+
+- What's NHibernate?
+- \(NHibernate.Criterion.Expression\)Creates a new Criteria for the entity class with a specific alias
+- \(NHibernate.Criterion.Expression\)Set a limit upon the number of objects to be retrieved
+- \(NHibernate.Criterion.Expression\)Apply a "like" constraint to the project
+- How do I make NHibernate Linq provider to use the paging features of MsSql2012Dialect
+- How to auto generate IDs in NHibernate?
+- download NHibernate to project
+- set up the database connection information for NHibernate
+- First persistent class
+- nhibernate-core does not contain Remotion.Linq namespace
+- Criteria vs. Criterion: What's the Difference?
+- The following types may not be used as proxies
+- Could not find a getter for property 'CreateTime' in class 'Timemicro.Promotion.PO.PromotionRulePO'
+- order by desc
+
+<!-- /MarkdownTOC -->
+
 ## What's NHibernate?
 1. NHibernate not only takes care of the mapping from .NET classes to database tables (and from .NET data types to SQL data types), but also provides data query and retrieval facilities and can significantly reduce development time otherwise spent with manual data handling in SQL and ADO.NET.
 
@@ -53,3 +74,25 @@
 
 ## Criteria vs. Criterion: What's the Difference?
 1. Criteria is the plural form of criterion. It is used when referring to more than one criterion. Criterion is singular and is used to refer to a single thing.
+
+## The following types may not be used as proxies
+> Timemicro.Promotion.PO.PromotionStagePO: method get_Promotion should be 'public/protected virtual' or 'protected internal virtual'
+> add virtual
+
+## Could not find a getter for property 'CreateTime' in class 'Timemicro.Promotion.PO.PromotionRulePO'
+> add missing property CreateTime
+
+## order by desc
+````c#
+return HibernateTemplate.Execute((ISession session) =>
+{
+    return session
+        .CreateCriteria<TicketPO>("t")
+        .Add(Restrictions.Eq("t.Promotion.Id", long.Parse(promoId)))
+        .Add(Restrictions.Eq("t.CellPhone", cellPhone))
+        .AddOrder(new Order("t.IsWin", false))
+        .AddOrder(new Order("t.CreateTime", false))
+        .List<TPO>();
+});
+````
+
