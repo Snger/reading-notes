@@ -7,6 +7,7 @@
 - How can I change the default fonts and size of Babun’s \(mintty\) window on startup.
 - What is the difference between Cygwin and MinGW?
 - [Cannon Start Plugin][cygdrive]
+- How to install g++ compiler?
 
 <!-- /MarkdownTOC -->
 
@@ -54,3 +55,8 @@ Could not start plugin [cygdrive]
 > - System Properties > Environment Variables... -> User Variable for [username] -> New...
 > - Create a HOME variable (in all caps), and path to .babun/cygwin/home/[username].
 > - Restart babun it will reinstall some configs if not, check if the HOME var is in uppercase.
+
+## How to install g++ compiler?
+	pact update gcc-core gcc-g++
+	pact find cmake
+	pact install cmake
