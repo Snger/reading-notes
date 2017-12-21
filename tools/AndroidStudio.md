@@ -6,6 +6,7 @@
 - Enable VT-x in BIOS
 - Android Studio - How to Change Android SDK Path
 - How to run from Android Studio to Genymotion emulator
+- Open AndroidStudio project from command line
 
 <!-- /MarkdownTOC -->
 
@@ -63,3 +64,11 @@ You'll get a Welcome to Android Studio Dialog. In that:
 > [x] Run the Android Studio (don't forget to launch it like admin (right click on the icon). Wait it until it fully loads.
 > Run Genymotion (not with the icon in Anroid Studio, but from folder where you installed it (also like admin).
 > Choose the Device in Genymotion and run it. The Genymotion Device schould appear in the down left corner of Android Studio (where the Android view is).
+
+## Open AndroidStudio project from command line
+> `alias androidStudio='/c/Program\ Files/Android/Android\ Studiudio64.exe '`
+> In your ~/.bash_profile add
+	alias AndroidStudio="open -a /Applications/Android\ Studio.app"
+> Then reload your terminal and you can now do
+	AndroidStudio ~/my_android_project
+
