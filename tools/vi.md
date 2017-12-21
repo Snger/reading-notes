@@ -12,6 +12,7 @@
 - How to do case insensitive search in Vim
 - Indent or comment several text lines with vi
 - Ctrl-s hang terminal emulator?
+- Tab key == 4 spaces and auto-indent after curly braces in Vim
 
 <!-- /MarkdownTOC -->
 
@@ -106,3 +107,25 @@
 ## Ctrl-s hang terminal emulator?
 > `C-s` enables terminal scroll lock. Which prevents your terminal from scrolling (By sending an "XOFF" signal to pause the output of the software).
 > `C-q` disables the scroll lock. Resuming terminal scrolling (By sending an "XON" signal to resume the output of the software).
+
+## Tab key == 4 spaces and auto-indent after curly braces in Vim
+````vimrc
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+````
+> - tabstop
+The width of a hard tabstop measured in "spaces" -- effectively the (maximum) width of an actual tab character.
+> - shiftwidth
+> The size of an "indent". It's also measured in spaces, so if your code base indents with tab characters then you want shiftwidth to equal the number of tab characters times tabstop. This is also used by things like the =, > and < commands.
+> - softtabstop
+> Setting this to a non-zero value other than tabstop will make the tab key (in insert mode) insert a combination of spaces (and possibly tabs) to simulate tab stops at this width.
+> - expandtab
+> Enabling this will make the tab key (in insert mode) insert spaces instead of tab characters. This also affects the behavior of the retab command.
+> - smarttab
+> Enabling this will make the tab key (in insert mode) insert spaces or tabs to go to the next indent of the next tabstop when the cursor is at the beginning of a line (i.e. the only preceding characters are whitespace).
+> For more details on any of these see :help 'optionname' in vim (e.g. :help 'tabstop')

@@ -14,6 +14,13 @@
 - 自定义WAR插件
 - 在嵌入的Web容器中运行
 - Gradle包装器
+- 配置Gradle包装器
+- 自定义包装器
+- 构建块
+- 项目
+- 任务
+- 属性
+	- 外部属性
 
 <!-- /MarkdownTOC -->
 
@@ -51,18 +58,21 @@ cd <project-root>
 
 ## 使用命令行操作
 > - 检查构建脚本
-$ gradle -q tasks
+	$ gradle -q tasks
 > Gradle提供了一个辅助的任务tasks来检查你的构建脚本，然后显示所有的任务，包含一个描述性的消息。
 > -  任务执行
-$ gradle groupTherapy
-$ gradle gT
+	$ gradle groupTherapy
+	$ gradle gT
 > 要执行一个任务，只需要输入gradle + 任务名，Gradle确保这个任务和它所依赖的任务都会执行，要执行多个任务只需要在后面添加多个任务名。Gradle提高效率的一个办法就是能够在命令行输入任务名的驼峰简写，当你的任务名称非常长的时候这很有用，当然你要确保你的简写只匹配到一个任务
 > - 运行的时候排除一个任务
-$ gradle groupTherapy -x yayGradle0
+	$ gradle groupTherapy -x yayGradle0
 > 比如运行的时候你要排除yayGradle0,你可以使用-x命令来完成
 > - 列出可配置的标准和插件属性以及他们的默认值
-$ gradle properties 
-> 运行命令行gradle properties可以列出可配置的标准和插件属性以及他们的默认值（并编译？）。
+	$ gradle properties 
+> 运行命令行 gradle properties 可以列出可配置的标准和插件属性以及他们的默认值（并编译？）。
+> - 检查依赖报告
+	$ gradle dependencies
+> 当你运行dependencies任务时，这个依赖树会打印出来，依赖树显示了你build脚本声明的顶级依赖和它们的传递依赖， 仔细观察你会发现有些传递依赖标注了 * 号，表示这个依赖被忽略了，这是因为其他顶级依赖中也依赖了这个传递的依赖，Gradle会自动分析下载最合适的依赖。
 
 ## 命令行选项
 > 
@@ -209,3 +219,77 @@ Gradle能够自动检测并下载项目定义的依赖
 > 这样你就把监听端口改成了9090,上下文目录改成了todo。
 
 ## Gradle包装器
+> Gradle提供了一个非常方便和实用的方法：Gradle包装器，包装器是Gradle的一个核心特性，它允许你的机器不需要安装运行时就能运行Gradle脚本，而且她还能确保build脚本运行在指定版本的Gradle。它会从中央仓库中自动下载Gradle运行时，解压到你的文件系统，然后用来build。终极目标就是创建可靠的、可复用的、与操作系统、系统配置或Gradle版本无关的构建。
+
+## 配置Gradle包装器
+> 在设置你的包装器之前，你需要做两件事情：创建一个包装任务，执行这个任务生成包装文件。为了能让你的项目下载压缩的Gradle运行时，定义一个Wrapper类型的任务 在里面指定你想使用的Gradle版本：
+	task wrapper(type: Wrapper) {
+	    gradleVersion = '1.7'
+	}
+> 然后执行这个任务：
+	$ gradle wrapper
+	:wrapper
+> 执行完之后，你就能看到下面这个 gradle/wrapper 文件和你的构建脚本：
+> - gradle-wrapper.jar
+> Gradle wrapper microlibrary contains logic to download and unpack distribution
+> - gradle-wrapper.properties
+> Wrapper metadata like storage location for downloaded distribution and originating URL
+> 记住你只需要运行 `gradle wrapper` 一次，以后你就能用 `wrapper` 来执行你的任务，下载下来的 `wrapper` 文件会被添加到版本控制系统中。如果你的系统中已经安装了 `Gradle` 运行时，你就不需要再添加一个 `gradle wrapper` 任务，你可以直接运行 `gradle wrapper` 任务，这个任务会使用你的 `Gradle` 当前版本来生成包装文件。
+
+## 自定义包装器
+> 一些公司的安全措施非常严格，特别是当你给政府工作的时候，你能够访问外网的能力是被限制的，在这种情况下你怎么让你的项目使用Gradle包装器？所以你需要修改默认配置：
+	task wrapper(type: Wrapper) {
+	    //Requested Gradle version
+	    gradleVersion = '1.2'
+	    //Target URL to retrieve Gradle wrapper distribution
+	    distributionUrl = 'http://myenterprise.com/gradle/dists'
+	    //Path where wrapper will be unzipped relative to Gradle home directory
+	    distributionPath = 'gradle-dists'         
+	}
+
+## 构建块
+> 每个Gradle构建都包括三个基本的构建块：项目(projects)、任务(tasks)和属性(properties)，每个构建至少包括一个项目，项目包括一个或者多个任务，项目和任务都有很多个属性来控制构建过程。
+> Gradle运用了领域驱动的设计理念（DDD）来给自己的领域构建软件建模，因此Gradle的项目和任务都在Gradle的API中有一个直接的class来表示，接下来我们来深入了解每一个组件和它对应的API。
+
+## 项目
+> 在Gradle术语里项目表示你想构建的一个组件(比如一个JAR文件)，或者你想完成的一个目标(比如打包app)，如果你以前使用过Maven，你应该听过类似的概念。与Maven pom.xml相对应的是build.gradle文件，每个Gradle脚本至少定义了一个项目。当开始构建过程后，Gradle基于你的配置实例化 [org.gradle.api.Project](https://github.com/gradle/gradle/blob/master/subprojects/core-api/src/main/java/org/gradle/api/Project.java) 这个类以及让这个项目通过project变量来隐式的获得。
+> 一个项目可以创建新任务、添加依赖和配置、应用插件和其他脚本，许多属性比如name和description都是可以通过getter和setter方法来访问。
+> Project实例允许你访问你项目所有的Gradle特性，比如任务的创建和依赖了管理，记住一点当访问你项目的属性和方法时你并不需要显式的使用project变量--Gradle假定你的意思是Project实例，看看下面这个例子： 
+	//没有使用project变量来设置项目的描述
+	setDescription("myProject")
+	//使用Grovvy语法来访问名字和描述
+	println "Description of project $name: " + project.description
+> 在之前的章节，我们只处理到单个peoject的构建，Gradle支持多项目的构建，软件设计一个很重要的概念是模块化，当一个软件系统变得越复杂，你越想把它分解成一个个功能性的模块，模块之间可以相互依赖，每个模块有自己的build.gradle脚本。
+
+##任务
+> 我们在第二章的时候就创建了一些简单的任务，你应该了解两个概念：任务动作(actions)和任务依赖，一个动作就是任务执行的时候一个原子的工作，这可以简单到打印hello world,也可以复杂到编译源代码。很多时候一个任务需要在另一个任务之后执行，尤其是当一个任务的输入依赖于另一个任务的输出时，比如项目打包成JAR文件之前先要编译成class文件，让我们来看看Gradle API中任务的表示： [org.gradle.api.Task](https://github.com/gradle/gradle/blob/master/subprojects/core-api/src/main/java/org/gradle/api/Task.java) 接口。
+
+##属性
+> 每个 Project和 Task实例都提供了 setter和 getter方法来访问属性，属性可以是任务的描述或者项目的版本号，在后续的章节，你会在具体例子中读取和修改这些属性值，有时候你要定义你自己的属性，比如，你想定义一个变量来引用你在构建脚本中多次使用的一个文件，Gradle允许你通过外部属性来定义自己的变量。
+
+###外部属性
+> 外部属性一般存储在键值对中，要添加一个属性，你需要使用ext命名空间，看一个例子：
+	//Only initial declaration of extra property requires you to use ext namespace
+	project.ext.myProp = 'myValue'
+	ext {
+	   someOtherProp = 123
+	}
+	//Using ext namespace to access extra property is optional
+	assert myProp == 'myValue'
+	println project.someOtherProp
+	ext.someOtherProp = 567	
+> 相似的，外部属性可以定义在一个属性文件中：
+> 通过在 <USER_HOME>/.gradle 路径或者项目根目录下的 gradle.properties 文件来定义属性可以直接注入到你的项目中，他们可以通过 project实例来访问，注意<USER_HOME>/.gradle 目录下只能有一个 Gradle属性文件即使你有多个项目，在属性文件中定义的属性可以被所有的项目访问，假设你在你的gradle.properties文件中定义了下面的属性：
+	exampleProp = myValue
+	someOtherProp = 455
+> 你可以在项目中访问这两个变量：
+	assert project.exampleProp == 'myValue'
+	task printGradleProperty << {
+	   println "Second property: $someOtherProp"
+	}
+> **定义属性的其他方法**
+> 你也可以通过下面的方法来定义属性：
+* 通过 -P 命令行选项来定义项目属性
+* 通过 -D 命令行选项来定义系统属性
+* 环境属性遵循这个模式： `ORG_GRADLE_PROJECT_propertyName=someValue`
+
