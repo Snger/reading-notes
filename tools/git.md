@@ -49,6 +49,7 @@
 - Remove all node_module folders recursively
 - Git Bash \(by babun\) git pull command crashed and created git.exe.stackdump file
 - Git Diff with Beyond Compare
+- git merge with vimdiff
 - Create Git branch with current changes
 
 <!-- /MarkdownTOC -->
@@ -463,6 +464,11 @@ find . -name "nodemodules" -type d -prune -exec rm -rf '{}' +
 
 ## Git Diff with Beyond Compare
 > `git difftool -t bc3`
+> `git difftool -t vimdiff`
+
+## git merge with vimdiff
+> `git mergetool -t vimdiff`
+
 
 ## Create Git branch with current changes
 ````bash
