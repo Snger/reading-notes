@@ -3,6 +3,7 @@
 <!-- MarkdownTOC -->
 
 - Android.gitignore
+- Gradle android-apt plugin
 - 解析包时出现问题
 - gradle plugins : com.android.application source code
 - Configure Your Build
@@ -14,6 +15,13 @@
 
 ## Android.gitignore
 > [github/gitignore](https://github.com/github/gitignore/blob/master/Android.gitignore)
+
+## Gradle android-apt plugin
+> [code](https://bitbucket.org/hvisser/android-apt)
+> [blog](https://code.neenbedankt.com/gradle-android-apt-plugin/)
+> The android-apt plugin assists in working with annotation processors in combination with Android Studio. It has two purposes:
+- Allow to configure a compile time only annotation processor as a dependency, not including the artifact in the final APK or library
+- Set up the source paths so that code that is generated from the annotation processor is correctly picked up by Android Studio.
 
 ## 解析包时出现问题
 > 手机版本过低（只支持5.0以上）， 或者之前手机上已经有装同样的APP并且版本号大于或者等于新的安装包
