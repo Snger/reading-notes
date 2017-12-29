@@ -23,6 +23,7 @@
 - How can you disable Git integration in Visual Studio 2013 permanently?
 - Command to collapse all sections of code?
 - HTML is being rendered as literal string using RazorEngine. How can I prevent this?
+- Why am I getting “Unable to find manifest signing certificate in the certificate store” in my Excel Addin?
 
 <!-- /MarkdownTOC -->
 
@@ -174,3 +175,8 @@ Collapse / Expand current preset area (e.g. <kbd>M</kbd>ethod)
 ## HTML is being rendered as literal string using RazorEngine. How can I prevent this?
 > `@Html.Raw("<h3>test</h3>")`
 > Represents an HTML-encoded string that should not be encoded again.
+
+## Why am I getting “Unable to find manifest signing certificate in the certificate store” in my Excel Addin?
+> A quick solution to get me going was to uncheck the "Sign the ClickOnce manifests"(为ClickOnce清单签名) in: Project -> (project name)Properties -> Signing Tab
+> When the project was originally created, the click-once signing certificate was added on the signing tab of the project's properties. This signs the click-once manifest when you build it. Between then and now, that certificate is no longer available. Either this wasn't the machine you originally built it on or it got cleaned up somehow. You need to re-add that certificate to your machine or chose another certificate.
+> Project Properties page > Signing in vertical tabs > Click on Create test certificate. And don't forget to commit a new created file You.Project_TemporaryKey.pfx because .pfx files are often ignored.

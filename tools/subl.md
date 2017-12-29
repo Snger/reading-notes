@@ -10,6 +10,7 @@
 - Vintage Mode \(Vi/Vim\)
 - VintageEx
 - advanced Vim
+- Emacs like keymaps
 - Search Filters
 - Search – Single File
 - Replace – Single File
@@ -17,6 +18,7 @@
 - HTML-CSS-JS Prettify
 - Markdown Package
 - React Package
+- Packages Location
 
 <!-- /MarkdownTOC -->
 
@@ -70,6 +72,16 @@
 > [NeoVintageous](https://github.com/NeoVintageous/NeoVintageous) An advanced Vim emulation layer for Sublime Text (Vintageous fork).
 > [Sublime Six](https://github.com/guillermooo/Six) is an advanced Vim emulator implemented entirely as a Python plugin.
 > [Vintageous](https://github.com/guillermooo/Vintageous) is a comprehensive vi/Vim emulation layer for Sublime Text 3.
+
+## Emacs like keymaps
+> [Emacs Pro Essentials](https://github.com/sublime-emacs/sublemacspro) brings the most common emacs features and key bindings that you love to Sublime Text.
+> User keymap
+	{ "keys": ["alt+x"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+    {"keys": ["alt+shift+-"], "command": "redo"},
+> paste from global clipboard `ctrl_y` (emacs)
+> paste from sublime text vim clipboard `p` (vim)
+> save, `ctrl+x,ctrl+s` (emacs), or `:w` (vim)
+> new file, `ctrl+x,ctrl+f` (emacs)
 
 ## Search Filters
 1. The Where field in Find in Files limits the search scope. You can define filters in several ways:
@@ -126,3 +138,15 @@ Then press Tab key, you will get pretty printed table
 
 ## React Package
 > 1. [JSX](https://github.com/allanhortle/JSX/)  - Syntax & Autocomplete
+
+## Packages Location
+> Zipped packages may be stored in:
+	<executable_path>/Packages/
+	<data_path>/Installed Packages/
+> Loose packages may be stored in:
+	<data_path>/Packages/
+> For example, the package Python is stored in <executable_path>/Packages/Python.sublime-package, and any files in the <data_path>/Packages/Python/ directory will override those stored in the .sublime-package file.
+> In general, <executable_path>/Packages/ is for packages that ship with Sublime Text, and <data_path>/Installed Packages/ is for packages installed by the user.
+> - Special Packages
+> There are two special packages: Default and User. Default is always ordered first, and User is always ordered last. Package ordering comes into effect when merging files between packages, for example Main.sublime-menu. Any package may contain a file called Main.sublime-menu, however this won't override the main menu, instead the files will be merged according to the order of the packages.
+> Packages other than Default and User are ordered alphabetically.
