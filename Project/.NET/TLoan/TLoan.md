@@ -10,7 +10,7 @@
 - 创建线程处理大量数据
 - 事务存储
 - 在缓存中比较两个List
-- 常见的两种Dao操作
+- 常见的Dao操作
 - ApiService读取Json文件
 
 <!-- /MarkdownTOC -->
@@ -85,9 +85,7 @@ Task.Run(() =>
 // ApiService
 using (new Spring.Data.NHibernate.Support.SessionScope())
 {
-    // 上传Sth
     UserInfoAuthService.UploadSth(needToUploadList.ToList());
-    // 更新Sth
     UserInfoAuthService.UpdateSth(needToUpdateList.ToList());
 }
 // Service
@@ -109,7 +107,7 @@ var needToUploadList = rawSths.Where(x => exceptList.Contains(x.CellPhone));
 var needToUpdateList = rawSths.Where(x => intersectList.Contains(x.CellPhone));
 ````
 
-## 常见的两种Dao操作
+## 常见的Dao操作
 ````
 public LoanUserSthPO FindByCellPhone(string cellPhone)
 {
@@ -132,6 +130,36 @@ public void UploadSth(IList<LoanUserSthPO> list)
             session.Save(po);
         }
         return 0;
+    });
+}
+// SqlQuery
+public bool IsCustomerBehaviorExist(string appNo, string OrderNo)
+{
+    return HibernateTemplate.Execute((ISession session) =>
+    {
+        IQuery query = session.CreateSQLQuery(@"SELECT exists(
+                                 SELECT 1 FROM CUSTOMERBEHAVIORS cb
+                                 INNER JOIN APPS a on cb.APPID = a.ID
+                                 WHERE cb.ORDERNO = :ORDERNO AND a.APPNO = :APPNO
+                                ); ")
+                                .SetParameter("ORDERNO", OrderNo)
+                                .SetParameter("APPNO", appNo);
+
+        return Convert.ToInt32(query.UniqueResult()) > 0 ? true : false;
+    });
+}
+// routine - CALL SP_INSERT_CASHACCOUNTDETAILS()
+public void SP_INSERT_CASHACCOUNTDETAILS(SP_INSERT_APPCUSTOMERACCOUNTDETAILS_PARAM param)
+{
+    this.HibernateTemplate.Execute<int>((ISession session) =>
+    {
+        return session.GetNamedQuery("SP_INSERT_APPCUSTOMERACCOUNTDETAILS")
+                .SetParameter("_MERCHANTID", param.MERCHANTID)
+                .SetParameter("_MERCHANTAPPID", param.MERCHANTAPPID)
+                .SetParameter("_CUSTOMERID", param.CUSTOMERID)
+                .SetParameter("_RULENAME", param.RULENAME)
+                .SetParameter("_CHANGEAMOUNT", param.CHANGEAMOUNT)
+                .ExecuteUpdate();
     });
 }
 ````

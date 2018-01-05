@@ -1,0 +1,470 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>A Title</title>
+    <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/promo/css.css" />
+    <script type="text/javascript" src="~/Content/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        //滚动插件
+        //自动根据单行行高设置 duration，能够处理换行情况；
+        //Todo：行高=单行行高*几行
+        (function($) {
+            $.fn.extend({
+                Scroll: function(opt, callback) {
+                    //参数初始化
+                    if (!opt) var opt = {};
+                    var _this = this;
+                    var scrollUl = _this.eq(0).find("ul:first");
+                    var baseLineH = scrollUl.find("li:first").height(); //获取行高
+                    var speed = opt.speed ? parseInt(opt.speed, 10) : 500; //卷动速度，数值越大，速度越慢（毫秒）
+                    var timer = opt.timer ? parseInt(opt.timer, 10) : 3000; //滚动的时间间隔（毫秒）
+                    //滚动函数
+                    scrollUp = function() {
+                        var allLi = _this.eq(0).find("ul:first li");
+                        // 小于1则不滚动
+                        if (allLi.length < 1) {
+                            clearInterval(timerID);
+                            return false;
+                        }
+                        var lineH = _this.eq(0).find("ul:first li:first").height(); //获取行高
+                        var line = opt.line ? parseInt(opt.line, 10) : parseInt(this.height() / lineH, 10); //每次滚动的行数，默认为一屏，即父容器高度
+                        if (line < 1) line = 1;
+                        var minLine = opt.minLine ? parseInt(opt.minLine, 10) : 1;
+                        var upHeight = 0 - line * lineH;
+                        var thisItemspeed = speed * (lineH / baseLineH);
+                        //console.log(thisItemspeed);
+
+                        // 小于最小行数则不滚动
+                        if (allLi.length <= minLine) {
+                            clearInterval(timerID);
+                            return false;
+                        }
+                        scrollUl.animate({
+                            marginTop: upHeight
+                        }, thisItemspeed, function() {
+                            for (var i = 1; i <= line; i++) {
+                                scrollUl.find("li:first").appendTo(scrollUl);
+                            }
+                            scrollUl.css({
+                                marginTop: 0
+                            });
+                        });
+                    }
+                    //鼠标事件绑定
+                    _this.hover(function() {
+                        clearInterval(timerID);
+                    }, function() {
+                        timerID = setInterval(scrollUp, timer);
+                    }).mouseout();
+                }
+            });
+        })(jQuery);
+        // Cookie 操作
+        // https://stackoverflow.com/questions/14573223/set-cookie-and-get-cookie-with-javascript#24103596
+        var CookieHelper = {
+            createCookie : function (name, value, days) {
+                var expires = "";
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie = name + "=" + value + expires + "; path=/";
+            },
+            readCookie: function (name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            },
+            eraseCookie: function (name) {
+                CookieHelper.createCookie(name, "", -1);
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="page-cont">
+        <div class="empty-header"></div>
+        <div class="lottery-wrapper">
+            <img src="~/Content/promo/img/layers/win-number-bg.png" style="width:100%;" />
+            <div id="J_TicketCountDiv" style="display:none;">
+                @*id="J_WrapperTitle"*@
+                <div class="wrapper-title total-no-text"></div>
+                <div class="lottery-area">
+                    <div id="J_TicketCount1" class="lottery-no-@ViewBag.TicketCount1" ></div>
+                    <div id="J_TicketCount2" class="lottery-no-@ViewBag.TicketCount2" ></div>
+                    <div id="J_TicketCount3" class="lottery-no-@ViewBag.TicketCount3" ></div>
+                    <div id="J_TicketCount4" class="lottery-no-@ViewBag.TicketCount4" ></div>
+                    <div id="J_TicketCount5" class="lottery-no-@ViewBag.TicketCount5" ></div>
+                </div>
+            </div>
+            <div id="J_LotteryNoDiv">
+                <div class="wrapper-title current-ticket-text"></div>
+                <div class="lottery-area">
+                    <div id="J_LotteryNo1" class="lottery-no-@ViewBag.LotteryNumber1" ></div>
+                    <div id="J_LotteryNo2" class="lottery-no-@ViewBag.LotteryNumber2" ></div>
+                    <div id="J_LotteryNo3" class="lottery-no-@ViewBag.LotteryNumber3" ></div>
+                    <div id="J_LotteryNo4" class="lottery-no-@ViewBag.LotteryNumber4" ></div>
+                    <div id="J_LotteryNo5" class="lottery-no-@ViewBag.LotteryNumber5" ></div>
+                </div>
+            </div>
+            <div class="lottery-text">
+                <span id="J_LotteryTime">@ViewBag.StatisticsTime</span>
+                兑奖码数 <span id="J_LoterySumNo">@ViewBag.StatisticsTimeTicketAmount</span>
+            </div>
+        </div>
+        <div class="btn-area row">
+            <div class="col-xs-7 stock-index-text">上证指数 <span id="J_StockIndex">@ViewBag.StockIndex</span></div>
+            <div class="col-xs-5 btn-div">
+                <img id="J_Btn" src="~/Content/promo/img/layers/btn.png" style="width: 90%;" />
+            </div>
+        </div>
+        <div class="winner-scroll-wrapper">
+            <img src="~/Content/promo/img/layers/winner-bg.png" style="width:100%;" />
+            <div id="scrollDiv" class="winner-container">
+                <ul>
+                    @{
+                        foreach(var item in ViewBag.WinTicketsInfo)
+                        {
+                            <li><span class="mr-span">@item.TicketNumber</span>  <span class="float-right">@item.CellPhone</span></li>
+                        };
+                    }
+                    @*<li><span class="mr-span">ABCED</span>  <span class="float-right">159****1234</span></li>
+                    <li><span class="mr-span">ABCED</span>  <span class="float-right">159****1234</span></li>*@
+                </ul>
+            </div>
+        </div>
+        <div class="rule-wrapper">
+            <img src="~/Content/promo/img/layers/rule-bg3.png" style="width:100%;" />
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="dialog-wrap" role="document">
+            <div class="dialog-header"><h4>我的兑奖码</h4></div>
+            <div class="dialog-cont">
+                <div id="J_LogIn">
+                    <form id="J_Form">
+                        <fieldset class="form-field">
+                            <div class="form-group">
+                                <input type="text" id="J_PromoId" name="PromoId" value="@ViewBag.PromoId" style="display: none;">
+                                <div class="left-inner-addon">
+                                    <i class="glyphicon glyphicon-phone"></i>
+                                    <input type="text" id="J_Cellphone" name="cellphone" class="form-control input-lg" placeholder="请输入手机号码">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-7 left-inner-addon">
+                                    <i class="glyphicon glyphicon-comment" style="left: 15px;"></i>
+                                    <input type="text" id="J_VerCode" name="verCode" class="form-control input-lg" placeholder="短信验证码">
+                                </div>
+                                <div class="col-xs-5 sms-btn-div">
+                                    <div id="J_SendSmsBtn" class="btn btn-warning btn-lg btn-block">获取验证码</div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <button type="button" id="J_CheckMyTickets" class="btn btn-warning btn-lg btn-block">立即查看</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div id="J_ShowMyTickets"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        $(function () {
+            var running = false;
+            var index = 0;
+            var isGotTickets = false;
+            // 链接中的查询参数方法
+            var parseQueryString = function () {
+
+                var str = window.location.search;
+                var objURL = {};
+
+                str.replace(
+                    new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+                    function ($0, $1, $2, $3) {
+                        objURL[$1] = $3;
+                    }
+                );
+                return objURL;
+            };
+            var promoId = parseQueryString().promoId;
+            //$('#J_PromoId').val(promoId);
+            // 检查手机号
+            var checkCellphone = function (cellPhone) {
+                if (cellPhone === '') {
+                    alert("手机号码不能为空！");
+                    return false;
+                }
+                // todo 手机号验证
+                if (!(/^1[3|4|5|7|8|9]\d{9}$/.test(cellPhone))) {
+                    alert('请输入正确的手机号');
+                    return false;
+                }
+                return true;
+            };
+            // 中奖者滚动区域
+            $("#scrollDiv").Scroll({
+                line: 1,
+                minLine: 1,
+                speed: 300,
+                timer: 800
+            });
+
+            // 显示登陆表单
+            var showLoginPage = function () {
+                $("#J_ShowMyTickets").html('').hide();
+                $('#J_LogIn').show();
+            };
+            // 获取我的兑奖码回调
+            var getMyTicketsRespDo = function (resp) {
+                function showLoginPage() {
+                    $("#J_ShowMyTickets").html('').hide();
+                    $('#J_LogIn').show();
+                }
+                var html = "";
+                if (resp.success) {
+                    var tickets = resp.data;
+                    if (tickets.length > 0) {
+                        html += '<ul class="my-tickets-ul">';
+                        var maxRepeat = tickets.length > 100 ? 100 : tickets.length;
+                        var leftNumber = tickets.length > 100 ? (tickets.length - 100) : 0;
+                        for ( var i = 0; i < maxRepeat; i++ ) { 
+                            html += '<li><span class="mr-span">' + tickets[i].createTime + '</span> '
+                                + tickets[i].ticketNumber + ' <span class="float-right ';
+                            if (tickets[i].isWinTicket) {
+                                html += 'color-for-win-ticket';
+                            } else {
+                                html += 'color-for-not-win-ticket';
+                            }
+                            html += '">';
+                            if (tickets[i].isWinTicket) {
+                                html += '中奖';
+                            } else {
+                                html += '未中奖';
+                            }
+                            html += '</span></li>';
+                        };
+                        if (leftNumber > 0) {
+                            html += '<li class="text-center">……</li>';
+                            html += '<li class="text-center color-for-not-win-ticket">您还有' + leftNumber + '条未中奖的兑奖码没展示</li>';
+                        }
+                        html += '</ul>';
+                        // 切换手机号查询
+                        html += '<button type="button" id="J_ChangeCellphone" class="btn btn-warning btn-block">切换手机号</button>';
+                        isGotTickets = true;
+                    }
+                    else {
+                        html += '<div class="err-msg">您暂无兑奖码</div>';
+                    }
+                } else {
+                    // todo: resp.errors
+                    html += '<div class="err-msg">获取兑奖码失败';
+                    if (resp.errors.length > 0 && resp.errors[0].msg) {
+                        html += ': ' + resp.errors[0].msg;
+                    }
+                    html += '</div>';
+                    // 清空短信验证码
+                    $('#J_VerCode').val('');
+                }
+                $('#J_LogIn').hide();
+                $("#J_ShowMyTickets").html(html).show();
+            };
+            // 登陆 - 点击输入手机号及验证码
+            $('#J_Btn').click(function () {
+                // 如果我的兑奖码获取错误，能够再次获取，
+                // 如果已获取兑奖码，直接显示
+                if (!isGotTickets) {
+                    showLoginPage();
+                }
+                var authCookieIndex = document.cookie.indexOf('__COOKIENAME__');
+                if (authCookieIndex !== -1) {
+                    $.ajax({
+                        url: '/api/v1/Tickets/getMyTicketsByCookie',
+                        type: 'get',
+                        dataType: 'json',
+                        success: function (resp) {
+                            if (!resp.success) {
+                                showLoginPage();
+                                return;
+                            }
+                            getMyTicketsRespDo(resp);
+                        },
+                        error: function () {
+                            showLoginPage();
+                        }
+                    });
+                }
+                $('#myModal').on('show.bs.modal', function () {
+                    // 因为会更新，所以每次获取
+                    var authCookieIndex = document.cookie.indexOf('__COOKIENAME__');
+                    if (authCookieIndex !== -1) {
+                        // 如果有Cookie，成功直接隐藏登陆表单
+                        $('#J_LogIn').hide();
+                        var html = '<div class="text-center">加载中……</div>';
+                        $("#J_ShowMyTickets").html(html).show();
+                    }
+                }).modal('show');
+            });
+
+            // 发放短信验证码
+            $('#J_SendSmsBtn').click(function() {
+                var cellPhone = $('#J_Cellphone').val();
+                if (!checkCellphone(cellPhone)) {
+                    return;
+                }
+                // 发送验证码
+                var url = '/Home/SendVerifyCode?cellphone=' + cellPhone;
+                $.get(url).success(function (resp) {
+                    console.log(resp);
+                    if (resp === 'fail') {
+                        console.log('发送失败');
+                    } else if (resp === 'success') {
+                        console.log('已发送');
+                    }
+                });
+
+                // 50秒计数
+                var sendSmsBtn = $("#J_SendSmsBtn");
+                var step = 59;
+                sendSmsBtn.attr("disabled", true);
+                sendSmsBtn.html('重新发送60');
+                var _res = setInterval(function()
+                {
+                    sendSmsBtn.html('重新发送'+step);
+                    step-=1;
+                    if(step <= 0){
+                        sendSmsBtn.removeAttr("disabled");
+                        sendSmsBtn.html('获取验证码');
+                        clearInterval(_res);//清除setInterval
+                    }
+                },1000);
+            });
+
+            // 获取我的兑换码
+            $('#J_CheckMyTickets').click(function () {
+                // 测试数据
+                var testData = {
+                    success: true,
+                    errors: ['失败1','失败2'],
+                    data: [{
+                        createTime: '2017年11月15日 17:59',
+                        ticketNumber: 'ABCKD',
+                        isWinTicket: false
+                    }, {
+                        createTime: '2017年11月15日 17:59',
+                        ticketNumber: 'ABCKD',
+                        isWinTicket: false
+                    }, {
+                        createTime: '2017年11月15日 17:59',
+                        ticketNumber: 'ABCKD',
+                        isWinTicket: true
+                    }, {
+                        createTime: '2017年11月15日 17:59',
+                        ticketNumber: 'ABCKD',
+                        isWinTicket: false
+                    }]
+                };
+                //respDo(testData);
+                //return;
+                var cellPhone = $('#J_Cellphone').val();
+                var verCode = $('#J_VerCode').val();
+                if (!checkCellphone(cellPhone)) {
+                    return;
+                }
+                if (verCode === '') {
+                    alert("短信验证码不能为空！");
+                    return;
+                }
+                $.ajax({
+                    url: '/api/v1/Tickets/getMyTickets',
+                    type: 'post',
+                    dataType: 'json',
+                    data: $('form#J_Form').serialize(),
+                    success: function (resp) {
+                        getMyTicketsRespDo(resp);
+                    }
+                });
+
+            });
+
+            // 切换手机号查询
+            $(document).on("click", '#J_ChangeCellphone', function () {
+                CookieHelper.eraseCookie('__COOKIENAME__');
+                showLoginPage();
+            })
+
+            // 显示内容切换 - 本期中奖码 和 兑奖码总数
+            var toggleContent = function () {
+                var wrapperTitle = $('#J_WrapperTitle');
+                var ticketCountDiv = $('#J_TicketCountDiv');
+                var lotteryNoDiv = $('#J_LotteryNoDiv');
+                var isInit = $('#J_TicketCountDiv').css('display') == 'none';
+                if (!isInit) {
+                    ticketCountDiv.hide();
+                    lotteryNoDiv.show();
+                    //wrapperTitle.removeClass('current-ticket-text').addClass('total-no-text');
+                } else {
+                    lotteryNoDiv.hide();
+                    ticketCountDiv.show();
+                    //wrapperTitle.removeClass('total-no-text').addClass('current-ticket-text');
+                }
+            };
+            setInterval(toggleContent, 5000);
+            // 最大请求次数
+            var maxAjax = 200;
+            // 最大失败请求次数
+            var maxBadAjax = 20;
+            // 更新兑奖码总数
+            var refreshTicketCount = function () {
+                maxAjax--;
+                if (maxAjax <= 0 || maxBadAjax <= 0) {
+                    clearInterval(refreshTicketCountIntervId);
+                }
+                var refreshDo = function (resp) {
+                    if (resp.success && resp.data) {
+                        var count = resp.data;
+                        var countArray = count.split('');
+                        $('#J_TicketCount1').removeClass().addClass('lottery-no-' + countArray[0]);
+                        $('#J_TicketCount2').removeClass().addClass('lottery-no-' + countArray[1]);
+                        $('#J_TicketCount3').removeClass().addClass('lottery-no-' + countArray[2]);
+                        $('#J_TicketCount4').removeClass().addClass('lottery-no-' + countArray[3]);
+                        $('#J_TicketCount5').removeClass().addClass('lottery-no-' + countArray[4]);
+                    } else {
+                        maxBadAjax--;
+                    }
+                }
+                $.ajax({
+                    url: '/api/v1/Tickets/getTicketCount?promoId=' + promoId,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function (resp) {
+                        refreshDo(resp);
+                    },
+                    error: function () {
+                        maxBadAjax--;
+                    }
+                });
+            };
+            var refreshTicketCountIntervId = setInterval(refreshTicketCount, 3000);
+        });
+    </script>
+</body>
+</html>
