@@ -82,6 +82,7 @@
 > paste from sublime text vim clipboard `p` (vim)
 > save, `ctrl+x,ctrl+s` (emacs), or `:w` (vim)
 > new file, `ctrl+x,ctrl+f` (emacs)
+> close file, `ctrl+x,0` (emacs), `:q` (vim)
 
 ## Search Filters
 1. The Where field in Find in Files limits the search scope. You can define filters in several ways:
