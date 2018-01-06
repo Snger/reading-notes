@@ -32,10 +32,12 @@
 - import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())
 ````
 >- Install Package
->> ConvertToUTF8, BracketHighlighter, SidebarEnhancements, afterglow-theme, CompaRe Side-By-Side, Sublime SFTP, TypeScript, LESS, Pretty JSON, DocBlockr, JavaScriptNext, SublimeLinter 3 (or Sublime-JSHint), HTML-CSS-JS Prettify, MarkdownTOC, JSX
+>> NeoVintageous, Emacs Pro Essentials(sublemacspro)
+>> ConvertToUTF8, BracketHighlighter, SidebarEnhancements, afterglow-theme, Compare Side-By-Side, Sublime SFTP, DocBlockr
+>> TypeScript, LESS, Pretty JSON, JavaScriptNext, SublimeLinter 3 (or Sublime-JSHint), HTML-CSS-JS Prettify(npm -g install js-beautify), MarkdownTOC, JSX
 
 ## Sublime Text 3 : Can't find installed packages
-> Sublime Text 3 uses .sublime-package zip files to store packages. In Windows, they are stored in AppData/Roaming/Sublime Text 3/Installed Packages. The easiest way to deal with them is to install the PackageResourceViewer plugin via Package Control. Once installed, it gives you Command Palette options to view, edit, and extract packages. 
+> Sublime Text 3 uses .sublime-package zip files to store packages. In Windows, they are stored in AppData/Roaming/Sublime Text 3/Installed Packages. The easiest way to deal with them is to install the PackageResourceViewer plugin via Package Control. Once installed, it gives you Command Palette options to view, edit, and extract packages.
 
 ## Sublime Text from Command Line (Win10)
 1. `alias subl='/d/App/Sublime\ Text\ 3/subl.exe '`
