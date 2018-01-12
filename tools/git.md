@@ -7,6 +7,7 @@
 - Amend your last commit
 - Amending the message of older or multiple commit messages
 - Change the author and committer name and e-mail of multiple commits in Git
+- Completely cancel a rebase
 - How do I move forward and backward between commits in git?
 - Using a socks proxy with git for the http transport
 - error: RPC failed; curl transfer closed with outstanding read data remaining
@@ -51,6 +52,7 @@
 - Git Diff with Beyond Compare
 - git merge with vimdiff
 - Create Git branch with current changes
+- A previous backup already exists in refs/original/
 
 <!-- /MarkdownTOC -->
 
@@ -97,6 +99,29 @@ exec git commit --amend --reset-author -C HEAD
 > git commit -C <commit> --reset-author
 >> --reuse-message=<commit> Take an existing commit object, and reuse the log message and the authorship information (including the timestamp) when creating the commit.
 3. [Changing the Git history of your repository using a script](https://help.github.com/articles/changing-author-info/)
+````bash
+git_change_author() {
+    git filter-branch --env-filter '
+    OLD_EMAIL="your-old-email@example.com"
+    CORRECT_NAME="Your Correct Name"
+    CORRECT_EMAIL="your-correct-email@example.com"
+    if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+    then
+        export GIT_COMMITTER_NAME="$CORRECT_NAME"
+        export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+    fi
+    if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+    then
+        export GIT_AUTHOR_NAME="$CORRECT_NAME"
+        export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+    fi
+    ' --tag-name-filter cat -- --branches --tags
+}
+````
+
+## Completely cancel a rebase
+> `git rebase --abort`. 
+> In the case of a past rebase that you did not properly aborted, you now (Git 2.12, Q1 2017) have `git rebase --quit`
 
 ## How do I move forward and backward between commits in git?
 1. I've experimented a bit and this seems to do the trick to navigate forwards:
@@ -476,3 +501,13 @@ git checkout -b <new-branch>
 git add <files>
 git commit -m "<Brief description of this commit>"
 ````
+
+## A previous backup already exists in refs/original/
+> log: Cannot create a new backup. A previous backup already exists in refs/original/
+> `refs/original/*` is there as a backup, in case you mess up your filter-branch. Believe me, it's a *really* good idea.
+> Once you've inspected the results, and you're very confident that you have what you want, you can remove the backed up ref:
+    git update-ref -d refs/original/refs/heads/master
+> or if you did this to many refs, and you want to wipe it all out:
+    git for-each-ref --format="%(refname)" refs/original/ | xargs -n 1 git update-ref -d
+> (That's taken directly from the filter-branch manpage.)
+> This doesn't apply to you, but to others who may find this: If you do a filter-branch which *removes* content taking up significant disk space, you might also want to run `git reflog expire --expire=now --all` and `git gc --prune=now` to expire your reflogs and delete the now-unused objects. (Warning: completely, totally irreversible. Be very sure before you do it.)
