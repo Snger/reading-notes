@@ -1,17 +1,17 @@
 # shell
 <!-- MarkdownTOC -->
 
-- Bash tips: Colors and formatting \(ANSI/VT100 Control sequences\) 1. The ANSI/VT100 terminals and terminal emulators are not just able to display black and white text ; they can display colors and formatted texts thanks to escape sequences. Those sequences are composed of the Escape character \(often represented by ”^\[” or ””\) followed by some other characters: ”[FormatCodem”. 2. In Bash, the  character can be obtained with the following syntaxes: `\e` , `\033`, `\x1B`, `\u001b` 3. [Example\] `echo -e "\033[31mHello\e[0m World"`:
-- What's is the difference between “>” and “>>” in shell command? 1. > is used to write to a file and >> is used to append to a file. Thus, when you use ps aux > file, the output of ps aux will be written to file and if a file named file was already present, its contents will be overwritten. And if you use ps aux >> file, the output of ps aux will be written to file and if the file named file was already present, the file will now contain its previous contents and also the contents of ps aux, written after its older contents of file.
-- What are the shell's control and redirection operators? 1. These are called shell operators and yes, there are more of them. I will give a brief overview of the most common among the two major classes, control operators and redirection operators, and how they work with respect to the bash shell. 2. A. Control operators: These are tokens that perform control functions, one of `||`, `!`, `&&`, `&`, `;`, `;;`, `|`, `|&`, `(`, or `)`.
-- How do I remove a directory and all its contents? 1. `rm -rf directoryname` 2. `rmdir directoryname`
-- How to get the MD5 hash of a string directly in the terminal? 1. echo -n Welcome | md5sum
+- Bash tips: Colors and formatting \(ANSI/VT100 Control sequences\)
+- What's is the difference between “>” and “>>” in shell command?
+- What are the shell's control and redirection operators?
+- How do I remove a directory and all its contents?
+- How to get the MD5 hash of a string directly in the terminal?
 - tar
 
 <!-- /MarkdownTOC -->
 
-## Bash tips: Colors and formatting (ANSI/VT100 Control sequences) 1. The ANSI/VT100 terminals and terminal emulators are not just able to display black and white text ; they can display colors and formatted texts thanks to escape sequences. Those sequences are composed of the Escape character (often represented by ”^[” or ”<Esc>”) followed by some other characters: ”<Esc>[FormatCodem”. 2. In Bash, the <Esc> character can be obtained with the following syntaxes: `\e` , `\033`, `\x1B`, `\u001b` 3. [Example] `echo -e "\033[31mHello\e[0m World"`:
-1. The ANSI/VT100 terminals and terminal emulators are not just able to display black and white text ; they can display colors and formatted texts thanks to escape sequences. Those sequences are composed of the Escape character (often represented by ”^[” or ”<Esc>”) followed by some other characters: ”<Esc>[FormatCodem”.
+## Bash tips: Colors and formatting (ANSI/VT100 Control sequences)
+> 1. The ANSI/VT100 terminals and terminal emulators are not just able to display black and white text ; they can display colors and formatted texts thanks to escape sequences. Those sequences are composed of the Escape character (often represented by ”^[” or ”<Esc>”) followed by some other characters: ”<Esc>[FormatCodem”.
 2. In Bash, the <Esc> character can be obtained with the following syntaxes: `\e` , `\033`, `\x1B`, `\u001b`
 3. [Example] `echo -e "\033[31mHello\e[0m World"`:
 > NOTE¹: The -e option of the echo command enable the parsing of the escape sequences.
@@ -19,11 +19,11 @@
 > NOTE³: The examples in this page are in Bash but the ANSI/VT100 escape sequences can be used in every programming languages. 4. [Attributes combination] Terminals allow attribute combinations. The attributes must be separated by a semicolon (”;”).
 4. [Attributes combination] Terminals allow attribute combinations. The attributes must be separated by a semicolon (”;”).
 
-## What's is the difference between “>” and “>>” in shell command? 1. > is used to write to a file and >> is used to append to a file. Thus, when you use ps aux > file, the output of ps aux will be written to file and if a file named file was already present, its contents will be overwritten. And if you use ps aux >> file, the output of ps aux will be written to file and if the file named file was already present, the file will now contain its previous contents and also the contents of ps aux, written after its older contents of file.
-1. > is used to write to a file and >> is used to append to a file. Thus, when you use ps aux > file, the output of ps aux will be written to file and if a file named file was already present, its contents will be overwritten. And if you use ps aux >> file, the output of ps aux will be written to file and if the file named file was already present, the file will now contain its previous contents and also the contents of ps aux, written after its older contents of file.
+## What's is the difference between “>” and “>>” in shell command?
+> `>` is used to write to a file and `>>` is used to append to a file. Thus, when you use ps aux > file, the output of ps aux will be written to file and if a file named file was already present, its contents will be overwritten. And if you use ps aux `>>` file, the output of ps aux will be written to file and if the file named file was already present, the file will now contain its previous contents and also the contents of ps aux, written after its older contents of file.
 
 ## What are the shell's control and redirection operators?
-1. These are called shell operators and yes, there are more of them. I will give a brief overview of the most common among the two major classes, control operators and [redirection operators](https://www.gnu.org/software/bash/manual/bashref.html#Redirections), and how they work with respect to the bash shell.
+> 1. These are called shell operators and yes, there are more of them. I will give a brief overview of the most common among the two major classes, control operators and [redirection operators](https://www.gnu.org/software/bash/manual/bashref.html#Redirections), and how they work with respect to the bash shell.
 2. A. Control operators: These are tokens that perform control functions, one of `||`, `!`, `&&`, `&`, `;`, `;;`, `|`, `|&`, `(`, or `)`.
 > 2.1 List terminators
 > `;` : Will run one command after another has finished, irrespective of the outcome of the first.
@@ -54,11 +54,11 @@
 > `<<<` : Here strings, similar to here documents, but intended for a single line. These exist only in the Unix port or rc (where it originated), zsh, some implementations of ksh, yash and bash.
 
 ## How do I remove a directory and all its contents?
-1. `rm -rf directoryname`
-2. `rmdir directoryname`
+> `rm -rf directoryname`
+> `rmdir directoryname`
 
 ## How to get the MD5 hash of a string directly in the terminal?
-1. echo -n Welcome | md5sum
+> 1. echo -n Welcome | md5sum
 > Notice that the -n is mandatory. Without it, your hash will be totally wrong since it includes the newline character.
 > -n     do not output the trailing newline
 1. md5sum <<<"my string"
