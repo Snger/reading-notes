@@ -8,3 +8,5 @@
 	  *) yarn=yarn;;
 	esac
 	eval $yarn run build
+> - alias
+> `alias yarn='yarn.cmd '`

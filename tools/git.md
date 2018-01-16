@@ -7,6 +7,7 @@
 - Amend your last commit
 - Amending the message of older or multiple commit messages
 - Change the author and committer name and e-mail of multiple commits in Git
+- Remove refs/original/heads/master from git repo after filter-branch --tree-filter?
 - Completely cancel a rebase
 - How do I move forward and backward between commits in git?
 - Using a socks proxy with git for the http transport
@@ -118,6 +119,16 @@ git_change_author() {
     ' --tag-name-filter cat -- --branches --tags
 }
 ````
+
+## Remove refs/original/heads/master from git repo after filter-branch --tree-filter?
+> Here's the thing to know, from which all else flows: except when doing `git gc` (well, and things `git gc` does as well), git *never removes anything*, it only ever *adds new things*.
+> `refs/original/*` is there as a backup, in case you mess up your filter-branch. Believe me, it's a *really* good idea.
+> Once you've inspected the results, and you're very confident that you have what you want, you can remove the backed up ref:
+    git update-ref -d refs/original/refs/heads/master
+> or if you did this to many refs, and you want to wipe it all out:
+    git for-each-ref --format="%(refname)" refs/original/ | xargs -n 1 git update-ref -d
+> (That's taken directly from the filter-branch manpage.)
+> This doesn't apply to you, but to others who may find this: If you do a filter-branch which *removes* content taking up significant disk space, you might also want to run `git reflog expire --expire=now --all` and `git gc --prune=now` to expire your reflogs and delete the now-unused objects. (Warning: completely, totally irreversible. Be very sure before you do it.)
 
 ## Completely cancel a rebase
 > `git rebase --abort`. 
