@@ -3,15 +3,16 @@
 
 - What's GNU Project?
 - CLI pdf viewer - xpdf
-    - How do I open a .pdf in cygwin? - xpdf
+	- How do I open a .pdf in cygwin? - xpdf
 - What's Bash
 - Why most programs should be using '/bin/sh' and not bash?
 - How to navigate long commands faster?
-    - Bash Shortcuts For Maximum Productivity
+	- Bash Shortcuts For Maximum Productivity
 - Bash Command Editing Shortcuts
 - Bash Command Recall Shortcuts
 - Bash Command Control Shortcuts
 - Bash Bang \(!\) Commands
+- md5sum - compute and check MD5 message digest
 
 <!-- /MarkdownTOC -->
 
@@ -98,3 +99,17 @@ Bash also has some handy features that use the ! (bang) to allow you to do some 
 !$:p – print out the word that !$ would substitute
 !* – the previous command except for the last word (e.g. if you type ‘find some_file.txt /‘, then !* would give you ‘find some_file.txt‘)
 !*:p – print out what !* would substitute
+
+## md5sum - compute and check MD5 message digest
+> Print or check MD5 (128-bit) checksums.
+> With no FILE, or when FILE is -, read standard input.
+	-b, --binary
+read in binary mode (default unless reading tty stdin)
+	-c, --check
+read MD5 sums from the FILEs and check them
+	--tag
+create a BSD-style checksum
+	-t, --text
+read in text mode (default if reading tty stdin)
+> For checking, go to the directory that contains filename and run this command:
+	md5sum filename | grep hash
