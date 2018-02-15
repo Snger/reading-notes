@@ -1,5 +1,5 @@
 ## How to verify the authenticity of a download?
-1. download: pact install gnupg (gpg), pact install gnupg2 (gpg2)
+> 1. download: pact install gnupg (gpg), pact install gnupg2 (gpg2)
 1. Creating Your Key
 > Before you can encrypt or sign files with GPG you must have a key.
 > $ gpg --gen-key
@@ -30,3 +30,6 @@
 1. Check by .sig file 
 > gpg --verify v2ray.exe.sig v2ray.exe
 
+## gpg: cannot open tty 'no tty': No such file or directory
+> echo "no-tty" >> ~/.gnupg/gpg.conf
+> [github issue](https://github.com/isaacs/github/issues/675)

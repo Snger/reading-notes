@@ -7,3 +7,4 @@
 - A quick search for a Feedly specific url turned up Add Feedly to Firefox’s Feed Handlers List and I recognised that the browser.contentHandlers.types.#.uri would do the trick. So using the following in the Edit feed reader dialog:
 Description: Feedly
 URL: http://cloud.feedly.com/#subscription/feed/%s
+URL: https://feedly.com/i/subscription/feed/%s

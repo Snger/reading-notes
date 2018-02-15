@@ -1,6 +1,7 @@
 # win10
 <!-- MarkdownTOC -->
 
+- Start or exit Narrator
 - Win10英文输入法如何切换全角和半角输入？
 - 把应用加入开机启动
 - Windows 10 自带输入法如何快速切换简繁体?
@@ -14,8 +15,12 @@
 - How to open firewall ports in Windows 10
 - How to join a Homegroup from a Windows 10 computer
 - Enabling UPnP in Windows 7, 8, and 10
+- Create a restore point
 
 <!-- /MarkdownTOC -->
+
+## Start or exit Narrator
+> | Windows logo key + Ctrl + Enter |  Start or exit Narrator |  
 
 ## Win10英文输入法如何切换全角和半角输入？
 1. 在win10系统中英文输入状态时我们需要使用全角时只要按 SHIFT键+ 空格键 就可以切换了
@@ -127,3 +132,11 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp 目录中
 UPnP will now automatically start when you turn on your computer.
 > - Win+R, services.msc
 Funtion Discovery Resource Publication, SSDP Discovery Service, UPnP Device Host, auto, start
+
+## Create a restore point
+> You can use a restore point to restore your computer's system files to an earlier point in time. Restore points are automatically created each week by System Restore and when your PC detects change, like when you install an app or driver. 
+> Here's how to create a restore point.
+- Right-click the Start  button, then select Control Panel > System and Maintenance > System.
+- In the left pane, select System protection.
+- Select the System Protection tab, and then select Create.
+- In the System Protection dialog box, type a description, and then select Create.

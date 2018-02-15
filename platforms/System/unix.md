@@ -1,3 +1,31 @@
+# Unix
+
+<!-- MarkdownTOC -->
+
+- Unix less commands
+- Switch back to the last working directory
+- Go back to home directory
+- List the contents of a directory
+- Running multiple commands in one single command
+- Running multiple commands in one single command only if the previous command was successful
+- Easily search and use the commands that you had used in the past
+- Unfreeze your Linux terminal from accidental Ctrl+S
+- Move to beginning or end of line
+- Reading a log file in real time
+- Reading compressed logs without extracting
+- Use less to read files
+- Reuse the last item from the previous command with !$
+- Reuse the previous command in present command with !!
+- Using alias to fix typos
+- Copy Paste in Linux terminal
+- Kill a running command/process
+- Using yes command for commands or scripts that need interactive response
+- Empty a file without deleting it
+- Find if there are files containing a particular text
+- Using help with any command
+
+<!-- /MarkdownTOC -->
+
 ## Unix less commands
 1.  Less  is  a program similar to more (1), but which allows backward movement in the file as well as forward movement.  Also, less does not have to read the entire input  file  before starting,  so  with  large  input files it starts up faster than text editors like vi (1). Less uses termcap (or terminfo on some systems), so it can run on a variety of  terminals. There  is  even  limited  support  for hardcopy terminals.  (On a hardcopy terminal, lines which should be printed at the top of the screen are prefixed with a caret.) Commands are based on both more and vi.  Commands may be preceded  by  a  decimal  number, called N in the descriptions below.  The number is used by some commands, as indicated.
 2. That should scroll for a while. To break up the output screen by screen, just pipe it through less: $ ls -l | less

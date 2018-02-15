@@ -1,5 +1,14 @@
 # DataGrip
 
+<!-- MarkdownTOC -->
+
+- How To Export/Import A Data Source From DataGrip?
+- Moving your data sources onto another computer
+- An open source alternative to datagrip?
+- Open a SQL file as a Console in DataGrip
+
+<!-- /MarkdownTOC -->
+
 ## How To Export/Import A Data Source From DataGrip?
 > It is possible! You need to share a project with your friend — all you do in DataGrip is in the context of a project. If you did not create a new one, everything is under the default project.
 > File - open Recent - manage projects - go to project path
@@ -26,3 +35,11 @@ On the destination computer, open the folder in DataGrip: start DataGrip, select
 
 ## An open source alternative to datagrip?
 > Have you looked at dbeaver? dbeaver does everything I need! thanks!
+
+## Open a SQL file as a Console in DataGrip
+> Attach Directory in the Files tool window,
+> Select the necessary SQL file in the Files tool window, or open the file in the editor.
+> Select Run "<file_name>" from the context menu.(right click in console window)
+> In the Choose Data Source pop-up, click the data source to which the script should be applied.
+If you want to run the script for more than one data source, select the data sources of interest in the pop-up and press Enter.
+

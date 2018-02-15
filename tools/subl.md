@@ -34,10 +34,12 @@
 >- Install Package
 >> NeoVintageous, Emacs Pro Essentials(sublemacspro)
 >> ConvertToUTF8, BracketHighlighter, SidebarEnhancements, afterglow-theme, Compare Side-By-Side, Sublime SFTP, DocBlockr
+>> SyncedSideBar
 >> TypeScript, LESS, Pretty JSON, JavaScriptNext, SublimeLinter 3 (or Sublime-JSHint), HTML-CSS-JS Prettify(npm -g install js-beautify), MarkdownTOC, JSX
+>> SublimeText-Nodejs(package name: Nodejs, npm install -g commander@"~2.9.0" uglify-js@"~2.6.0", config User -> Nodejs.sublime-settings and Nodejs.sublime-build)
 
 ## Sublime Text 3 : Can't find installed packages
-> Sublime Text 3 uses .sublime-package zip files to store packages. In Windows, they are stored in AppData/Roaming/Sublime Text 3/Installed Packages. The easiest way to deal with them is to install the PackageResourceViewer plugin via Package Control. Once installed, it gives you Command Palette options to view, edit, and extract packages.
+> Sublime Text 3 uses .sublime-package zip files to store packages. In Windows, they are stored in AppData/Roaming/Sublime Text 3/Installed Packages. The easiest way to deal with them is to install the PackageResourceViewer plugin via Package Control. Once installed, it gives you Command Palette options to view, edit, and extract packages. 
 
 ## Sublime Text from Command Line (Win10)
 1. `alias subl='/d/App/Sublime\ Text\ 3/subl.exe '`

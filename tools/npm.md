@@ -1,6 +1,7 @@
 # npm
 <!-- MarkdownTOC -->
 
+- cnpm
 - Error: Cannot find module 'webpack/lib/node/NodeTemplatePlugin'
 - Short version of --save-dev and --save
 - npm-run-script
@@ -11,6 +12,9 @@
 - npm ls
 
 <!-- /MarkdownTOC -->
+
+## cnpm
+> npm install cnpm -g
 
 ## Error: Cannot find module 'webpack/lib/node/NodeTemplatePlugin'
 1. Node requires you to install webpack to your project.

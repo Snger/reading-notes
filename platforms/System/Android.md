@@ -10,6 +10,7 @@
 - Android: API level VS. Android version
 - Uses of API Level in Android
 - Android Bundle
+- INSTALL_FAILED_INVALID_APK: Split lib_slice_9_apk was defined multiple times
 
 <!-- /MarkdownTOC -->
 
@@ -76,3 +77,6 @@ android:maxSdkVersion — Specifies the maximum API Level on which the applicati
 ## Android Bundle
 > A mapping from String values to various Parcelable types.
 > Bundle 类是一个 final 类， 是一个存储和管理 key-value 对的类，多应用于 Activity 之间相互传递值
+
+## INSTALL_FAILED_INVALID_APK: Split lib_slice_9_apk was defined multiple times
+> clean project -> make project
