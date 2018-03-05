@@ -6,9 +6,12 @@
 - Usage
 - webapi basic
 - testnet
+- Bitcoin.conf Configuration File
 - Data directory \(Win10\)
 - Difference between bitcoin-tx, bitcoin-cli, and bitcoind?
 - Bitcoind vs Bitcoin-cli Command Line Functions
+- what is the difference between hard cap and soft cap in ethereum ICO
+- what is XBT?
 
 <!-- /MarkdownTOC -->
 
@@ -90,6 +93,11 @@ error message: Invalid or non-wallet transaction id
 3. (Unable to connect to) http://bitcoinrpc:F2YkP9FYEdrHj2Ycg9eyxhNeN1848KoM2XJ2kem6Q3sd@localhost:18332
 4. check address: https://testnet.blockexplorer.com/address/n4mgBtKnfpmLyhFEeSTWxR3MEgTyUkgNbJ
 
+## Bitcoin.conf Configuration File
+> All command-line options (except for -conf) may be specified in a configuration file, and all configuration file options may also be specified on the command line. Command-line options override values set in the configuration file.
+> The configuration file is a list of setting=value pairs, one per line, with optional comments starting with the '#' character.
+> The configuration file is not automatically created; you can create it using your favorite plain-text editor. A user-friendly configuration file generator is available here. By default, Bitcoin (or bitcoind) will look for a file named 'bitcoin.conf' in the bitcoin data directory, but both the data directory and the configuration file path may be changed using the -datadir and -conf command-line arguments.
+
 ## Data directory (Win10)
 > 1. Bitcoin's data folder: C:\Users\YourUserName\Appdata\Roaming\Bitcoin
 > 2. If you have already downloaded the data then you will have to move the data to the new folder. If you want to store them in D:\BitcoinData then click on "Properties" of a shortcut to bitcoin-qt.exe and add -datadir=D:\BitcoinData at the end.
@@ -135,3 +143,24 @@ This is a program that can create, parse, or modify transactions. Example:
 
 ## Bitcoind vs Bitcoin-cli Command Line Functions
 > (August 19, 2014, 12:12:26 PM) bitcoind used to be the command you'd use in the past. In the future you should use bitcoin-cli. They are equivalent and bitcoind only works now for backwards compatibility.
+
+## what is the difference between hard cap and soft cap in ethereum ICO
+> A hard cap is defined as the maximum amount a crowdsale will receive. Most projects set a very high cap that is unlikely to happen. Only very famous projects like Status or Brave browser have reached its hard cap.
+    contract crowdsale {
+        uint public maximumEther;
+        uint public totalEther;
+
+        function () payable {
+            // Do not accept payment if recaudation is above maximumEther
+            if (totalEther + msg.value >= maximumEther) throw;
+
+            // Emit tokens
+            totalEther = totalEther + msg.value;
+        }
+    }
+> A soft cap is the amount received at which your crowdsale will be considered a success. It is the minimal amount required by your project.
+If you do not reach that amount during the ICO then you will allow the investors to retire their apport.
+
+## what is XBT?
+> They are the same, but different ways of typing the currency code. XBT is what some people use because is it like the ISO 4217 currency codes for metals (XAU / Gold, XAG / Silver, XPT / Platinum) and non-sovereign curriencies and the XBT code is currently unused. However, it is not officially recognized by the ISO (yet).
+> BTC conflicts with ISO 4217 because BT stands for Bhutan. XBT is used by some exchanges for the cryptocurrency Bitcoin even though it is not ISO 4217 approved. by [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217)
