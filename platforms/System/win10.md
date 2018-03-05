@@ -16,6 +16,7 @@
 - How to join a Homegroup from a Windows 10 computer
 - Enabling UPnP in Windows 7, 8, and 10
 - Create a restore point
+- win10 应用录音/录屏
 
 <!-- /MarkdownTOC -->
 
@@ -140,3 +141,7 @@ Funtion Discovery Resource Publication, SSDP Discovery Service, UPnP Device Host
 - In the left pane, select System protection.
 - Select the System Protection tab, and then select Create.
 - In the System Protection dialog box, type a description, and then select Create.
+
+## win10 应用录音/录屏
+> 用电脑版微信，w10系统自带的游戏录制功能可以用来录屏/录音，快捷键win+G唤醒，录完自动保存在我的电脑-视频-捕获文件夹里，亲测有效。
+
