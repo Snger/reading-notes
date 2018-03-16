@@ -2,19 +2,21 @@
 
 <!-- MarkdownTOC -->
 
-- How can I round a number in JavaScript? .toFixed\(\) returns a string?
-- Return multiple values in JavaScript?
-- Why function foo\(\){return 1,2,3;} doing console.log\(\[\].push(foo(\))) prints out 1?
-- Chrome Development Tool: \[VM\] file from javascript, What are these strange and mysterious scripts titled "\[VM\](XXXX " and where do they come from?
-- javascript Object.assign\(\)
-- angular.js $parse\(expression\);
-- conditional \(ternary\) operator
-- Arrow functions
-- Using a variable for a key in a JavaScript object literal
-- Base64 encoding and decoding
-- Array.prototype.splice\(\)
-- js隐藏手机号中间四位，变成 * 星号
-- How can I get a specific parameter from location.search?
+	- How can I round a number in JavaScript? .toFixed\(\) returns a string?
+	- Return multiple values in JavaScript?
+	- Why function foo\(\){return 1,2,3;} doing console.log\(\[\].push(foo(\))) prints out 1?
+	- Chrome Development Tool: \[VM\] file from javascript, What are these strange and mysterious scripts titled "\[VM\](XXXX " and where do they come from?
+	- javascript Object.assign\(\)
+	- angular.js $parse\(expression\);
+	- conditional \(ternary\) operator
+	- Arrow functions
+	- Using a variable for a key in a JavaScript object literal
+	- Base64 encoding and decoding
+	- Array.prototype.splice\(\)
+	- js隐藏手机号中间四位，变成 * 星号
+	- How can I get a specific parameter from location.search?
+- How to serialize an Object into a list of parameters?
+- url params to object
 
 <!-- /MarkdownTOC -->
 
@@ -135,3 +137,35 @@ var params = parseQueryString();
 alert(params["foo"]); 
 ````
 
+# How to serialize an Object into a list of parameters?
+````javascript
+var str = "";
+for (var key in obj) {
+    if (str != "") {
+        str += "&";
+    }
+    str += key + "=" + encodeURIComponent(obj[key]);
+}
+````
+````es6
+function params(data) {
+  return Object.keys(data).map(key => `${key}=${encodeURIComponent(data[key])}`).join('&');
+}
+````
+````es2017
+Object.entries(obj).map(([key, val]) => `${key}=${encodeURIComponent(val)}`).join('&')
+````
+
+# url params to object
+````javascript
+function parToObject(params) {
+	var rv = {};
+	var arr = params.split('&');
+	for (var i = 0; i < arr.length; ++i){
+		var par = arr[i].split('=');
+		var key = par[0];
+		var value=par[1];
+		rv[key] = decodeURIComponent(value);
+	}
+	return rv;
+}

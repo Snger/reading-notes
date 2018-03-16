@@ -48,6 +48,7 @@
 - Accessibility Levels \(C# Reference\)
 - display two decimal places using c
 - How to convert date format to DD-MM-YYYY in C
+- How to get the unix timestamp in C
 - Task Class
 - Task.Run Method \(Func\)
 - How to debug Task.Factory
@@ -432,6 +433,18 @@ day = _date.ToString("dd-MMM-yyyy");
 // config
 config.Formatters.JsonFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
 ````
+
+## How to get the unix timestamp in C#
+> You get a unix timestamp in C# by using DateTime.UtcNow and subtracting the epoc time of 1970-01-01.
+	Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+DateTime.Now can be replaced with any DateTime object that you would like to get the unix timestamp for.
+> As of .NET 4.6, there is DateTimeOffset.ToUnixTimeSeconds().
+This is an instance method, so you are expected to call it on an instance of DateTimeOffset. You can also cast any instance of DateTime, though beware the timezone.
+To get the current timestamp (local timezone):
+	DateTimeOffset.Now.ToUnixTimeSeconds()
+To get the timestamp from a DateTime:
+	DateTime foo = DateTime.Now;
+	long unixTime = ((DateTimeOffset)foo).ToUnixTimeSeconds();
 
 ## Task Class
 > Represents an asynchronous operation.
