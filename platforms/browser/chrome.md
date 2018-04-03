@@ -6,6 +6,7 @@
 - Chrome DevTools converts all HEX Colors to RGB
 - How Source Maps Work
 - How to add Feedly to the Chrome RSS Subscription Extension
+- Copy JSON from console.log in developer tool to clipboard?
 
 <!-- /MarkdownTOC -->
 
@@ -43,3 +44,13 @@ Start Time. Sorts by the start time of each network request (same as sorting by 
 Description: Feedly
 URL: http://cloud.feedly.com/#subscription/feed/%s
 ````
+
+## Copy JSON from console.log in developer tool to clipboard?
+> If the right-click -> copy is not available you could try:
+1 - Right-click the object and select "Store as global variable"
+2 - The console will print the new variable's name, for example:
+	//temp1
+3 - Type:
+copy(temp1)   
+The object is now available in your clipboard.
+Tested in chrome 36
