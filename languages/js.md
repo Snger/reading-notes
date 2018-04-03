@@ -2,21 +2,23 @@
 
 <!-- MarkdownTOC -->
 
-	- How can I round a number in JavaScript? .toFixed\(\) returns a string?
-	- Return multiple values in JavaScript?
-	- Why function foo\(\){return 1,2,3;} doing console.log\(\[\].push(foo(\))) prints out 1?
-	- Chrome Development Tool: \[VM\] file from javascript, What are these strange and mysterious scripts titled "\[VM\](XXXX " and where do they come from?
-	- javascript Object.assign\(\)
-	- angular.js $parse\(expression\);
-	- conditional \(ternary\) operator
-	- Arrow functions
-	- Using a variable for a key in a JavaScript object literal
-	- Base64 encoding and decoding
-	- Array.prototype.splice\(\)
-	- js隐藏手机号中间四位，变成 * 星号
-	- How can I get a specific parameter from location.search?
+- How can I round a number in JavaScript? .toFixed\(\) returns a string?
+- Return multiple values in JavaScript?
+- Why function foo\(\){return 1,2,3;} doing console.log\(\[\].push(foo(\))) prints out 1?
+- Chrome Development Tool: \[VM\] file from javascript, What are these strange and mysterious scripts titled "\[VM\](XXXX " and where do they come from?
+- javascript Object.assign\(\)
+- angular.js $parse\(expression\);
+- conditional \(ternary\) operator
+- Arrow functions
+- Using a variable for a key in a JavaScript object literal
+- Base64 encoding and decoding
+- Array.prototype.splice\(\)
+- js隐藏手机号中间四位，变成 * 星号
+- How can I get a specific parameter from location.search?
 - How to serialize an Object into a list of parameters?
 - url params to object
+- How do you get a timestamp in JavaScript?
+- Why does JS minification convert 1000 to 1E3?
 
 <!-- /MarkdownTOC -->
 
@@ -137,7 +139,7 @@ var params = parseQueryString();
 alert(params["foo"]); 
 ````
 
-# How to serialize an Object into a list of parameters?
+## How to serialize an Object into a list of parameters?
 ````javascript
 var str = "";
 for (var key in obj) {
@@ -156,7 +158,7 @@ function params(data) {
 Object.entries(obj).map(([key, val]) => `${key}=${encodeURIComponent(val)}`).join('&')
 ````
 
-# url params to object
+## url params to object
 ````javascript
 function parToObject(params) {
 	var rv = {};
@@ -169,3 +171,36 @@ function parToObject(params) {
 	}
 	return rv;
 }
+````
+
+## How do you get a timestamp in JavaScript?
+> new Date().valueOf();
+- Short & Snazzy:
+	+ new Date()
+A unary operator like plus triggers the valueOf method in the Date object and it returns the timestamp (without any alteration).
+- Details:
+On almost all current browsers you can use Date.now() to get the UTC timestamp in milliseconds; a notable exception to this is IE8 and earlier (see compatibility table).
+You can easily make a shim for this, though:
+	if (!Date.now) {
+	    Date.now = function() { return new Date().getTime(); }
+	}
+To get the timestamp in seconds, you can use:
+	Math.floor(Date.now() / 1000)
+Or alternatively you could use:
+	Date.now() / 1000 | 0
+Which should be slightly faster, but also less readable (also see this answer).
+> I would recommend using Date.now() (with compatibility shim). It's slightly better because it's shorter & doesn't create a new Date object. However, if you don't want a shim & maximum compatibility, you could use the "old" method to get the timestamp in milliseconds:
+	new Date().getTime()
+Which you can then convert to seconds like this:
+	Math.round(new Date().getTime()/1000)
+And you can also use the valueOf method which we showed above:
+	new Date().valueOf()
+
+## Why does JS minification convert 1000 to 1E3?
+> they are the same value, 1E3 is 10 to the third power, or 1000
+> The whole point of minification is to be able to pass less data over the network but retain the same functionality.
+> Taken from wikipedia:
+>> Minification (also minimisation or minimization), in computer programming languages and especially JavaScript, is the process of removing all unnecessary characters from source code without changing its functionality. These unnecessary characters usually include white space characters, new line characters, comments, and sometimes block delimiters, which are used to add readability to the code but are not required for it to execute.
+> As long as the size is smaller the minification is doing its job.
+> 1E3 pretty much means 10 to the power of 3; a shorter way of representing the number 1000.
+> [testing in browser](https://jsperf.com/1000-vs-1e3)

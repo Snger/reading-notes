@@ -3,6 +3,7 @@
 <!-- MarkdownTOC -->
 
 - How to initialize empty array in C
+- Creating a List of Lists in C
 - How to create an anonymous object in C
 - Creating an JSON array in C
 - What's Assemblies?
@@ -69,6 +70,20 @@
 > string[] a= new string[] { };
 > string[] a = new string[0];
 > String[] a = Array.Empty<string>(); (In .Net 4.6 the preferred way is to use a new method, Array.Empty)
+
+## Creating a List of Lists in C#
+````C#
+List<List<int>> matrix = new List<List<int>>(new []{
+                 new List<int>(new []{0, 0, 0, 0, 0, 0, 0}),
+                 new List<int>(new []{0, 0, 0, 0, 0, 0, 0}),
+                 new List<int>(new []{0, 0, 0, 0, 0, 0, 0})});
+# Arnis L. here...
+# Just wanted to add that collection initializers might be used (if .Net 3.0 is supported):
+var matrix = new List<List<int>>{
+                 new List<int>{0, 0, 0, 0, 0, 0, 0},
+                 new List<int>{0, 0, 0, 0, 0, 0, 0},
+                 new List<int>{0, 0, 0, 0, 0, 0, 0}};
+````
 
 ## How to create an anonymous object in C#
 > var v = new { Amount = 108, Message = "Hello" };  
