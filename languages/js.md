@@ -13,6 +13,7 @@
 - Using a variable for a key in a JavaScript object literal
 - Base64 encoding and decoding
 - Array.prototype.splice\(\)
+- Convert Array to Object
 - js隐藏手机号中间四位，变成 * 星号
 - How can I get a specific parameter from location.search?
 - How to serialize an Object into a list of parameters?
@@ -114,6 +115,14 @@ array.splice(start, deleteCount, item1, item2, ...)
 1. [Return value] An array containing the deleted elements. If only one element is removed, an array of one element is returned. If no elements are removed, an empty array is returned.
 1. [Description] If you specify a different number of elements to insert than the number you're removing, the array will have a different length at the end of the call.
 
+## Convert Array to Object
+````js
+let accountInfo = list.reduce(function (acc, cur, i) {
+    acc[cur['coinCode']] = cur;
+    return acc;
+}, {});
+````
+
 ## js隐藏手机号中间四位，变成 * 星号
 ````
 var tel = "13888888888";
@@ -134,9 +143,9 @@ var parseQueryString = function() {
     );
     return objURL;
 };
-//Example how to use it: 
+//Example how to use it:
 var params = parseQueryString();
-alert(params["foo"]); 
+alert(params["foo"]);
 ````
 
 ## How to serialize an Object into a list of parameters?
