@@ -20,6 +20,7 @@
 - url params to object
 - How do you get a timestamp in JavaScript?
 - Why does JS minification convert 1000 to 1E3?
+- Javascript copy array to new array
 
 <!-- /MarkdownTOC -->
 
@@ -213,3 +214,11 @@ And you can also use the valueOf method which we showed above:
 > As long as the size is smaller the minification is doing its job.
 > 1E3 pretty much means 10 to the power of 3; a shorter way of representing the number 1000.
 > [testing in browser](https://jsperf.com/1000-vs-1e3)
+
+## Javascript copy array to new array
+> You can use the .slice method:
+    var old = ["Apples", "Bananas"];
+    var newArr = old.slice(0);
+    newArr.reverse();
+    // now newArr is ["Bananas", "Apples"] and old is ["Apples", "Bananas"]
+> Array.prototype.slice returns a shallow copy of a portion of an array. Giving it 0 as the first parameter means you are returning a copy of all the elements (starting at index 0 that is)
