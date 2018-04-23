@@ -19,6 +19,7 @@
 - Markdown Package
 - React Package
 - Packages Location
+- Vue.js Package
 
 <!-- /MarkdownTOC -->
 
@@ -155,3 +156,7 @@ Then press Tab key, you will get pretty printed table
 > - Special Packages
 > There are two special packages: Default and User. Default is always ordered first, and User is always ordered last. Package ordering comes into effect when merging files between packages, for example Main.sublime-menu. Any package may contain a file called Main.sublime-menu, however this won't override the main menu, instead the files will be merged according to the order of the packages.
 > Packages other than Default and User are ordered alphabetically.
+
+## Vue.js Package
+> 1. [Vue Syntax Highlight](https://github.com/vuejs/vue-syntax-highlight)
+> Sublime Text syntax highlighting for single-file Vue components

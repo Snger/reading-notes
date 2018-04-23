@@ -54,6 +54,7 @@
 - git merge with vimdiff
 - Create Git branch with current changes
 - A previous backup already exists in refs/original/
+- pull/push from multiple remote locations
 
 <!-- /MarkdownTOC -->
 
@@ -522,3 +523,15 @@ git commit -m "<Brief description of this commit>"
     git for-each-ref --format="%(refname)" refs/original/ | xargs -n 1 git update-ref -d
 > (That's taken directly from the filter-branch manpage.)
 > This doesn't apply to you, but to others who may find this: If you do a filter-branch which *removes* content taking up significant disk space, you might also want to run `git reflog expire --expire=now --all` and `git gc --prune=now` to expire your reflogs and delete the now-unused objects. (Warning: completely, totally irreversible. Be very sure before you do it.)
+
+## pull/push from multiple remote locations
+> You can configure multiple remote repositories with the `git remote` command:
+    git remote add lab lab-machine:/path/to/repo
+> To fetch from all the configured remotes and update tracking branches, but not merge into HEAD, do:
+    git remote update
+> If it's not currently connected to one of the remotes, it will take time out or throw an error, and go on to the next. You'll have to manually merge from the fetched repositories, or cherry-pick, depending on how you want to organize collecting changes.
+> To fetch the master branch from alt and pull it into your current head, do:
+    git pull lab master
+    git push lab master
+> So in fact `git pull` is almost shorthand for `git pull origin HEAD` (actually it looks in the config file to determine this, but you get the idea).
+> For pushing updates, you have to do that to each repo manually. A push was, I think, designed with the central-repository workflow in mind.

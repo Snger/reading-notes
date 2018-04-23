@@ -13,8 +13,14 @@
 - Using a variable for a key in a JavaScript object literal
 - Base64 encoding and decoding
 - Array.prototype.splice\(\)
+- Convert Array to Object
 - js隐藏手机号中间四位，变成 * 星号
 - How can I get a specific parameter from location.search?
+- How to serialize an Object into a list of parameters?
+- url params to object
+- How do you get a timestamp in JavaScript?
+- Why does JS minification convert 1000 to 1E3?
+- Javascript copy array to new array
 
 <!-- /MarkdownTOC -->
 
@@ -110,6 +116,14 @@ array.splice(start, deleteCount, item1, item2, ...)
 1. [Return value] An array containing the deleted elements. If only one element is removed, an array of one element is returned. If no elements are removed, an empty array is returned.
 1. [Description] If you specify a different number of elements to insert than the number you're removing, the array will have a different length at the end of the call.
 
+## Convert Array to Object
+````js
+let accountInfo = list.reduce(function (acc, cur, i) {
+    acc[cur['coinCode']] = cur;
+    return acc;
+}, {});
+````
+
 ## js隐藏手机号中间四位，变成 * 星号
 ````
 var tel = "13888888888";
@@ -130,8 +144,81 @@ var parseQueryString = function() {
     );
     return objURL;
 };
-//Example how to use it: 
+//Example how to use it:
 var params = parseQueryString();
-alert(params["foo"]); 
+alert(params["foo"]);
 ````
 
+## How to serialize an Object into a list of parameters?
+````javascript
+var str = "";
+for (var key in obj) {
+    if (str != "") {
+        str += "&";
+    }
+    str += key + "=" + encodeURIComponent(obj[key]);
+}
+````
+````es6
+function params(data) {
+  return Object.keys(data).map(key => `${key}=${encodeURIComponent(data[key])}`).join('&');
+}
+````
+````es2017
+Object.entries(obj).map(([key, val]) => `${key}=${encodeURIComponent(val)}`).join('&')
+````
+
+## url params to object
+````javascript
+function parToObject(params) {
+	var rv = {};
+	var arr = params.split('&');
+	for (var i = 0; i < arr.length; ++i){
+		var par = arr[i].split('=');
+		var key = par[0];
+		var value=par[1];
+		rv[key] = decodeURIComponent(value);
+	}
+	return rv;
+}
+````
+
+## How do you get a timestamp in JavaScript?
+> new Date().valueOf();
+- Short & Snazzy:
+	+ new Date()
+A unary operator like plus triggers the valueOf method in the Date object and it returns the timestamp (without any alteration).
+- Details:
+On almost all current browsers you can use Date.now() to get the UTC timestamp in milliseconds; a notable exception to this is IE8 and earlier (see compatibility table).
+You can easily make a shim for this, though:
+	if (!Date.now) {
+	    Date.now = function() { return new Date().getTime(); }
+	}
+To get the timestamp in seconds, you can use:
+	Math.floor(Date.now() / 1000)
+Or alternatively you could use:
+	Date.now() / 1000 | 0
+Which should be slightly faster, but also less readable (also see this answer).
+> I would recommend using Date.now() (with compatibility shim). It's slightly better because it's shorter & doesn't create a new Date object. However, if you don't want a shim & maximum compatibility, you could use the "old" method to get the timestamp in milliseconds:
+	new Date().getTime()
+Which you can then convert to seconds like this:
+	Math.round(new Date().getTime()/1000)
+And you can also use the valueOf method which we showed above:
+	new Date().valueOf()
+
+## Why does JS minification convert 1000 to 1E3?
+> they are the same value, 1E3 is 10 to the third power, or 1000
+> The whole point of minification is to be able to pass less data over the network but retain the same functionality.
+> Taken from wikipedia:
+>> Minification (also minimisation or minimization), in computer programming languages and especially JavaScript, is the process of removing all unnecessary characters from source code without changing its functionality. These unnecessary characters usually include white space characters, new line characters, comments, and sometimes block delimiters, which are used to add readability to the code but are not required for it to execute.
+> As long as the size is smaller the minification is doing its job.
+> 1E3 pretty much means 10 to the power of 3; a shorter way of representing the number 1000.
+> [testing in browser](https://jsperf.com/1000-vs-1e3)
+
+## Javascript copy array to new array
+> You can use the .slice method:
+    var old = ["Apples", "Bananas"];
+    var newArr = old.slice(0);
+    newArr.reverse();
+    // now newArr is ["Bananas", "Apples"] and old is ["Apples", "Bananas"]
+> Array.prototype.slice returns a shallow copy of a portion of an array. Giving it 0 as the first parameter means you are returning a copy of all the elements (starting at index 0 that is)
