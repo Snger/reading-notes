@@ -132,7 +132,7 @@ git_change_author() {
 > This doesn't apply to you, but to others who may find this: If you do a filter-branch which *removes* content taking up significant disk space, you might also want to run `git reflog expire --expire=now --all` and `git gc --prune=now` to expire your reflogs and delete the now-unused objects. (Warning: completely, totally irreversible. Be very sure before you do it.)
 
 ## Completely cancel a rebase
-> `git rebase --abort`. 
+> `git rebase --abort`.
 > In the case of a past rebase that you did not properly aborted, you now (Git 2.12, Q1 2017) have `git rebase --quit`
 
 ## How do I move forward and backward between commits in git?
@@ -535,3 +535,7 @@ git commit -m "<Brief description of this commit>"
     git push lab master
 > So in fact `git pull` is almost shorthand for `git pull origin HEAD` (actually it looks in the config file to determine this, but you get the idea).
 > For pushing updates, you have to do that to each repo manually. A push was, I think, designed with the central-repository workflow in mind.
+
+## Why am I getting the message, “fatal: This operation must be run in a work tree?”
+> I had this issue, because .git/config contained worktree = D:/git-repositories/OldName. I just changed it into worktree = D:/git-repositories/NewName
+> I discovered that, because I used git gui, which showed a more detailed error message
