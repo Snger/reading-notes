@@ -7,6 +7,7 @@
 - How Source Maps Work
 - How to add Feedly to the Chrome RSS Subscription Extension
 - Copy JSON from console.log in developer tool to clipboard?
+- How to download Google Chrome offline installers
 
 <!-- /MarkdownTOC -->
 
@@ -28,7 +29,7 @@ Start Time. Sorts by the start time of each network request (same as sorting by 
 2. Note: Support for source maps is enabled by default in Firefox’s developer tools. You may need to enable support manually in Chrome. To do this, launch the Chrome dev tools and open the Settings pane (cog in the bottom right corner). In the General tab make sure that Enable JS source maps and Enable CSS source maps are both ticked.
 3. You indicate to the browser that a source map is available by adding a special comment to the bottom of your optimised file. `//# sourceMappingURL=/path/to/script.js.map` This comment will usually be added by the program that was used to generate the source map. The developer tools will only load this file if support for source maps is enabled and the developer tools are open.
 4. You can also specify a source map is available by sending the X-SourceMap  HTTP header in the response for the compressed JavaScript file. `X-SourceMap: /path/to/script.js.map`
-5. The source map file contains a JSON object with information about the map itself and the original JavaScript files. 
+5. The source map file contains a JSON object with information about the map itself and the original JavaScript files.
 > version – This property indicates which version of the source map spec the file adheres to.
 > file – The name of the source map file.
 > sources – An array of URLs for the original source files.
@@ -51,6 +52,13 @@ URL: http://cloud.feedly.com/#subscription/feed/%s
 2 - The console will print the new variable's name, for example:
 	//temp1
 3 - Type:
-copy(temp1)   
+copy(temp1)
 The object is now available in your clipboard.
 Tested in chrome 36
+
+## How to download Google Chrome offline installers
+> https://www.ghacks.net/2018/05/19/how-to-download-google-chrome-offline-installers/
+> Chrome Stable: https://www.google.com/chrome/?standalone=1
+Chrome Beta: https://www.google.com/chrome/?extra=betachannel&standalone=1
+Chrome Dev: https://www.google.com/chrome/?extra=devchannel&standalone=1
+Chrome Canary: https://www.google.com/chrome/?extra=canarychannel&standalone=1
