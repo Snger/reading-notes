@@ -20,6 +20,7 @@
 - React Package
 - Packages Location
 - Vue.js Package
+- Error loading syntax, apparent recursion within a with_prototype action: 25000 context sanity limit hit
 
 <!-- /MarkdownTOC -->
 
@@ -160,3 +161,7 @@ Then press Tab key, you will get pretty printed table
 ## Vue.js Package
 > 1. [Vue Syntax Highlight](https://github.com/vuejs/vue-syntax-highlight)
 > Sublime Text syntax highlighting for single-file Vue components
+
+## Error loading syntax, apparent recursion within a with_prototype action: 25000 context sanity limit hit
+> https://github.com/jonschlinkert/sublime-markdown-extended/issues/141
+> Same issue, removing package JavaScriptNext - ES6 Syntax fixed it

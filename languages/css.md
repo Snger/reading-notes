@@ -11,6 +11,7 @@
 - Centering in the Unknown
 - HTML position:fixed page header and in-page anchors
 - rendering  as text not as a newline
+- Gaussian blur all content
 
 <!-- /MarkdownTOC -->
 
@@ -78,3 +79,10 @@
 
 ## rendering <br> as text not as a newline
 > `white-space: pre-line;`
+
+## Gaussian blur all content
+````css
+.signup_wall_prevent_scroll .SiteHeader, .signup_wall_prevent_scroll .LoggedOutFooter, .signup_wall_prevent_scroll .ContentWrapper {
+    filter: blur(3px);
+}
+````
