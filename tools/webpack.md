@@ -71,3 +71,4 @@ CommonJS模块以服务器第一原则发展，选择同步加载，它的模块
 这迫使人们又想出另一个更通用的模式UMD （Universal Module Definition）。希望解决跨平台的解决方案。
 UMD先判断是否支持Node.js的模块（exports）是否存在，存在则使用Node.js模块模式。
 在判断是否支持AMD（define是否存在），存在则使用AMD方式加载模块。
+
