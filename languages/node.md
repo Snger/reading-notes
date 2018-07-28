@@ -5,6 +5,7 @@
 - install v8.9.3
 - How to clear console
 - Writing files in Node.js
+- Install step is run on optional package not supported by OS
 
 <!-- /MarkdownTOC -->
 
@@ -76,3 +77,8 @@ util.print("\u001b[2J\u001b[0;0H");
   [1002]: http://nodejs.org/api/fs.html#fs_fs_writefile_filename_data_options_callback
   [1003]: http://nodejs.org/api/fs.html#fs_fs_createwritestream_path_options
   [1004]: https://github.com/joyent/node/blob/master/lib/fs.js#L1623
+
+## Install step is run on optional package not supported by OS
+  > https://github.com/yarnpkg/yarn/issues/1217
+  > yarn install --ignore-optional
+
