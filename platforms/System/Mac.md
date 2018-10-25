@@ -8,6 +8,7 @@
     - Enable Bookmark Synchronization in Windows
 - 如何修改鼠须管默认简繁体？
 - How can I make Safari show the URL when I hover over a link?
+- Mac "say" not working in tmux session
 
 <!-- /MarkdownTOC -->
 
@@ -40,6 +41,7 @@
 ## 如何修改鼠须管默认简繁体？
 > 鼠须管默认是繁体输入，需要切换到简体输入的话，请用快捷键 control+“~”  打开切换菜单，选“漢字→汉字” 即可。
 
+
 ## How can I make Safari show the URL when I hover over a link?
 > There are two options. One is a setting, and the other is a workaround.
 > - Here are instructions on how to toggle the setting using the Menu Bar:
@@ -51,3 +53,13 @@ Now, there will be a URL that pops up when you hover over a link, and also tells
 > Click and drag the link out of where it will originally appear.
 At your mouse will be a small box telling you the title of the new window and its URL, although it may be shortened.
 You can also drag the link to the plus sign in your tab list, out of the window, or in a folder/the desktop to open that URL in a new tab, new window or save it to your computer, respectively.
+
+## Mac "say" not working in tmux session
+````shell
+brew install reattach-to-user-namespace
+# In .tmux.conf:
+set-option -g default-command "reattach-to-user-namespace -l zsh"
+# To kill your existing tmux server (and everything running “inside” it!):
+tmux kill-server
+````
+
