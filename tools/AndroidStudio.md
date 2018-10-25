@@ -7,6 +7,7 @@
 - Android Studio - How to Change Android SDK Path
 - How to run from Android Studio to Genymotion emulator
 - Open AndroidStudio project from command line
+- How to add classpath in an Android Studio project
 
 <!-- /MarkdownTOC -->
 
@@ -71,4 +72,15 @@ You'll get a Welcome to Android Studio Dialog. In that:
 	alias AndroidStudio="open -a /Applications/Android\ Studio.app"
 > Then reload your terminal and you can now do
 	AndroidStudio ~/my_android_project
+
+## How to add classpath in an Android Studio project
+> First off all, be sure there's a "libs" subfolder in the "app" folder of your project. If there's not, create one. Next, in the app/build.gradle file, add this line of code:
+````gradle
+	dependencies {
+	    ...
+	    compile fileTree(dir:'libs', include: ['*.jar'])
+	    ...
+	}
+````
+> Place all of your .jar files in the "libs" folder, and voila, you're done
 

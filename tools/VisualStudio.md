@@ -1,10 +1,11 @@
 # Visual Studio
 <!-- MarkdownTOC -->
 
+- setting vs
+- vs2017 config
 - VsVim - Write Faster Code by Adding VIM to Visual Studio
 - toggle full screen
 - show the project manage view
-- setting vs
 - VsVim - clipboard different from the system one
 - VsVim - Capturing group and using Backreference
 - Package Manager Console
@@ -27,6 +28,24 @@
 
 <!-- /MarkdownTOC -->
 
+## setting vs
+1. vsVim: keybinding - Ctrl + r - use vim
+2. debug config: uncheck only my code
+3. nuget package config
+4. debug config: symbol(.pdb) position - http://localhost:33417/ D:\workspace\VS-SymbolCache
+
+## vs2017 config
+>> 单个组件 - 代码工具 - 类设计器
+>> web开发包 + 中英文语言包 >> Tools(工具)-> Extensions and updates(拓展和更新) - VsVim + Vue.js Pack 2017 >> 重启
+>> Tools(工具) - Options(选项) - Environment(环境) - Import and Export Settings(导入和导出设置) - Use team setting file(使用团队设置文件)
+>> 选项 - NuGet包管理器 - 程序包源 - 添加
+>> 选项 - VsVim - Keyboard - [Ctrl + R],[Ctrl + B] -> VsVim
+>> 选项 - Debugging(调试) - Symbols(符号) - 从dotPeek加载， 设置缓存符号路径， 加载所有模块
+>> debug config: uncheck only my code(去除-启用“仅我的代码”)
+>> Go to Tools -> Options -> Debugging -> General and turn off the setting Enable JavaScript Debugging for ASP.NET (Chrome and IE).
+>> Environment(环境) - Fonts and Colors(字体和颜色) - 16
+>> In Visual Studio 2017, It seems that this behavior is turned off by default. It can be enabled under Tools > Options > Text Editors > C# > Advanced > Outlining > "Collapse #regions when collapsing to definitions"
+
 ## VsVim - Write Faster Code by Adding VIM to Visual Studio
 1. One of the greatest productivity gains you can make is to type less and navigate through your code faster. VsVim, is an extension for Visual Studio 2010 and later which will get you doing just that. To get VsVim, you can download it from the Visual Studio Gallery or via the extension manager in Visual Studio. Mastering VsVim takes an investment of time, but learning it will pay dividends.
 2. In addition to all this, you still get IntelliSense, tab completion, snippets and all other base Visual Studio features when in insert mode. There's built in support for key binding collisions, enabling you to choose if VsVim or Visual Studio itself will handle the shortcuts; just click the options button in the bottom right of your code file.
@@ -39,12 +58,6 @@
 ## show the project manage view
 > Alt + Ctrl + l
 > Ctrl + Tab : come back to editer
-
-## setting vs
-1. vsVim: keybinding - Ctrl + r - use vim
-2. debug config: uncheck only my code
-3. nuget package config
-4. debug config: symbol(.pdb) position - http://localhost:33417/ D:\workspace\VS-SymbolCache
 
 ## VsVim - clipboard different from the system one
 1. VsVim uses the gVim settings which will default to using the unnamed register for edit and paste commands. But it also implements the clipboard option which allows you to use the Windows System clipboard instead of the unnamed register.
