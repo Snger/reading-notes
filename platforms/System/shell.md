@@ -102,7 +102,7 @@ not encouraged.
 >> Extract files from an archive.  Arguments are optional.  When given,  they  specify names of the archive members to be extracted.
 
 ## tree
-> `tree -I node_modules --dirsfirst -L 2 -a`
+> `tree -I 'node_modules|.git' --dirsfirst -L 2 -a`
 > `-I` ignore
 > `--dirsfirst`
 > `-L` level
