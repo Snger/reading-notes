@@ -55,6 +55,8 @@
 - Create Git branch with current changes
 - A previous backup already exists in refs/original/
 - pull/push from multiple remote locations
+- Why am I getting the message, “fatal: This operation must be run in a work tree?”
+- How can I add an empty directory to a Git repository?
 
 <!-- /MarkdownTOC -->
 
@@ -539,3 +541,11 @@ git commit -m "<Brief description of this commit>"
 ## Why am I getting the message, “fatal: This operation must be run in a work tree?”
 > I had this issue, because .git/config contained worktree = D:/git-repositories/OldName. I just changed it into worktree = D:/git-repositories/NewName
 > I discovered that, because I used git gui, which showed a more detailed error message
+
+## How can I add an empty directory to a Git repository?
+> Create an empty file called `.gitkeep` in the directory, and add that.
+> `.gitkeep` has not been prescribed by Git and is going to make people second guess its meaning, which will lead them to google searches, which will lead them here. The .git prefix convention should be reserved for files and directories that Git itself uses. 
+````gitkeep
+# add empty directory of mock and give a explanation
+# https://stackoverflow.com/questions/115983/how-can-i-add-an-empty-directory-to-a-git-repository#8418403
+````
