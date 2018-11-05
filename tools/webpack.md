@@ -21,7 +21,14 @@ resolve: {
 ````
 
 ## Cannot assign to read only property 'exports' of object '#<Object>'
+> - reason
 > This issue was newly affecting me after instructing Babel to not transpile module syntax. As sokra described, it only occurred when trying to use CommonJS style module.exports inside of ES modules. require always works. This can be fixed by simply replacing all module.exports = ... to export default ... where applicable, as this is seemingly equivalent for old Babel-style ES module transpilation. (Note though, that importing this module using require will probably give you an option with a default key rather than the default export itself, so it's probably best you make the switch across the entire codebase at once.)
+> - setting in .babelrc
+> Removing "modules: false" in .babelrc
+> - preset-es2015 Options - [modules](https://babeljs.io/docs/plugins/preset-es2015/#optionsmodules)  
+> "amd" | "umd" | "systemjs" | "commonjs" | false, defaults to "commonjs".  
+Enable transformation of ES6 module syntax to another module type.  
+Setting this to false will not transform modules.  
 
 ## AMD, CMD, CommonJS和UMD
 > [link](https://segmentfault.com/a/1190000004873947)
