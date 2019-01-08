@@ -57,6 +57,7 @@
 - pull/push from multiple remote locations
 - Why am I getting the message, “fatal: This operation must be run in a work tree?”
 - How can I add an empty directory to a Git repository?
+- Adding Remote Repositories
 
 <!-- /MarkdownTOC -->
 
@@ -549,3 +550,7 @@ git commit -m "<Brief description of this commit>"
 # add empty directory of mock and give a explanation
 # https://stackoverflow.com/questions/115983/how-can-i-add-an-empty-directory-to-a-git-repository#8418403
 ````
+
+## Adding Remote Repositories
+> git remote add upstream [git link]
+> git pull upstream master

@@ -11,6 +11,7 @@
 - npm update
 - npm ls
 - Use dependencies from a private GitLab with NPM
+- Recieve error when install node-sass
 
 <!-- /MarkdownTOC -->
 
@@ -87,4 +88,7 @@
   version "1.0.0"
   resolved "git+https://git@gitlab.leke.cn:lekeweb/frontend/raw-html-loader.git#bae8b878420bceca415af2ea8c23db94a7089ccb"
 ````
+
+## Recieve error when install node-sass
+> yarn global add node-sass
 
