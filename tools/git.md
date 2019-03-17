@@ -2,6 +2,7 @@
 
 <!-- MarkdownTOC -->
 
+- Windows GIT 解決中文顯示亂碼問題
 - Rewriting the most recent commit message
 - Amending older or multiple commit messages
 - Amend your last commit
@@ -58,8 +59,47 @@
 - Why am I getting the message, “fatal: This operation must be run in a work tree?”
 - How can I add an empty directory to a Git repository?
 - Adding Remote Repositories
+- Delete a branch \(local or remote\)
+- git stuck on Unpacking Objects phase
 
 <!-- /MarkdownTOC -->
+
+## Windows GIT 解決中文顯示亂碼問題
+> [link](https://jerry2yang.wordpress.com/2011/08/12/windows-git-%E8%A7%A3%E6%B1%BA%E4%B8%AD%E6%96%87%E9%A1%AF%E7%A4%BA%E4%BA%82%E7%A2%BC%E5%95%8F%E9%A1%8C/)
+> - 終端機內無法輸入中文：
+修改「C:\Program Files\Git\etc\inputrc」
+````config
+#disable/enable 8bit input
+set meta-flag on
+set input-meta on
+set output-meta on
+set convert-meta off
+````
+- ls 無法顯示中文目錄：
+修改「C:\Program Files\Git\etc\profile」
+````config
+#修正 ls 無法顯示中文目錄，新增下面這行
+alias ls='ls --show-control-chars --color=auto'
+#如果安裝的msysGit此設定已成預設值(bash_profile設定檔裏)
+````
+- git log 無法顯示中文註解：
+修改「C:\Program Files\Git\etc\profile」
+````config
+#修正 git log 無法顯示中文註解
+export LESSCHARSET=utf-8
+````
+修改「C:\Program Files\Git\etc\gitconfig」
+````config
+#加入以下設定值
+[gui]
+    encoding = utf-8
+[i18n]
+    commitencoding = utf-8
+    logoutputencoding = utf-8
+````
+此三項是 Windows GIT 常見的中文問題。
+補充說明：
+如果在msys裏無法正確顯示日文、韓文或是簡體中文，請在windows作業系統上安裝「unicode補完計畫」重新開機後，就可以正常於msys上顯示。
 
 ## Rewriting the most recent commit message
 You can change the most recent commit message using the `git commit --amend` command.
@@ -554,3 +594,30 @@ git commit -m "<Brief description of this commit>"
 ## Adding Remote Repositories
 > git remote add upstream [git link]
 > git pull upstream master
+
+## Delete a branch (local or remote)
+> To delete a local branch
+`git branch -d the_local_branch`
+> To remove a remote branch (if you know what you are doing!)
+`git push origin :the_remote_branch`
+or simply use the new syntax (v1.7.0)
+`git push origin --delete the_remote_branch`
+- Note
+If you get the error error: unable to push to unqualified destination: the_remote_branch The destination refspec neither matches an existing ref on the remote nor begins with refs/, and we are unable to guess a prefix based on the source ref. error: failed to push some refs to 'git@repository_name'
+perhaps someone else has already deleted the branch. Try to synchronize your branch list with
+`git fetch -p`
+The git manual says -p, --prune After fetching, remove any remote-tracking branches which no longer exist on the remote.
+
+## git stuck on Unpacking Objects phase
+> I had the same problem when I git pull a repository on github.com. I found there were some large files and the connection to github was slow. So maybe you just have to wait patiently before git pulls the whole repository.
+> For me the solution was to change protocol specifier from https to git, e.g.:
+git clone https://github.com/some/repository
+to
+git clone git://github.com/some/repository
+Edit:
+Here's something about the protocols used in Git.
+Some highlights:
+The downside of the Git protocol is the lack of authentication.
+It also requires firewall access to port 9418, which isn’t a standard port that corporate firewalls always allow
+> I find that large binary objects (like Adobe Illustrator files, etc.) tend to bog the whole pull/push process down as well.
+Which is why I like to use two repositories now for design vs. code.

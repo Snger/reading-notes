@@ -4,6 +4,8 @@
 
 - How to open Visual Studio Code from the command line on OSX?
 - Advanced search options
+- 显示"没有活动的源代码控制提供程序“处理
+- git extension
 
 <!-- /MarkdownTOC -->
 
@@ -24,3 +26,20 @@
 ````
 > VS Code excludes some folders by default to reduce the number of search results that you are not interested in (for example: node_modules). Open settings to change these rules under the files.exclude and search.exclude section.
 > Also note the Use Exclude Settings and Ignore Files toggle button in the files to exclude box. The toggle determines whether to exclude files that are ignored by your .gitignore files and/or matched by your files.exclude and search.exclude settings.
+
+## 显示"没有活动的源代码控制提供程序“处理
+> 1、扩展程序git可能未启动
+扩展程序——输入**@builtin**——找到git——启动——重启vscode
+2、配置git.path
+进入setting位置：
+在设置中找到“git.path”，会发现后面路径为null，修改为git的安装位置。
+“git.path”: “D:/Program Files/Git/bin/git.exe”
+3、重启
+
+## git extension
+> 1. Git History Diff
+GitHD aims to bring the most useful git history inside with the simplest and the most convenient way.
+2. Git File History
+Quickly browse the history of a file from any git repository.(like website)
+3. GitLens — Git supercharged
+GitLens simply helps you better understand code. Quickly glimpse into whom, why, and when a line or code block was changed. Jump back through history to gain further insights as to how and why the code evolved. Effortlessly explore the history and evolution of a codebase.
