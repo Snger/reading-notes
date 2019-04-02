@@ -2,12 +2,16 @@
 
 <!-- MarkdownTOC -->
 
+- Settings Sync
 - How to open Visual Studio Code from the command line on OSX?
 - Advanced search options
 - 显示"没有活动的源代码控制提供程序“处理
 - git extension
 
 <!-- /MarkdownTOC -->
+
+## Settings Sync
+> Synchronize Settings, Snippets, Themes, File Icons, Launch, Keybindings, Workspaces and Extensions Across Multiple Machines Using GitHub Gist.
 
 ## How to open Visual Studio Code from the command line on OSX?
 > Download, install and open Visual Studio Code for Mac.
