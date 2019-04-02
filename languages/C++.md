@@ -2,6 +2,8 @@
 <!-- MarkdownTOC -->
 
 - gcc version
+- Compiling a C++ program with gcc
+- G++ undefined reference to class::function
 - g++ 应用说明
 - g++ 常用命令选项
 - << 运算符
@@ -32,6 +34,16 @@
 ## gcc version
 	$ gcc -v
 	$ g++ -v
+
+## Compiling a C++ program with gcc
+> use g++ instead of gcc to compile you c++ source.
+
+## G++ undefined reference to class::function
+> [so](https://stackoverflow.com/questions/19661406/g-undefined-reference-to-classfunction#19662783)
+This is a linker error. Try:
+`g++ test.cpp Telephone.cpp -o test`
+Basically, the linker is complaining about functions you used but didn't provide an implementation for. To see all the steps the compiler performs for you, throw in a -v:
+`g++ -v test.cpp Telephone.cpp -o test`
 
 ## g++ 应用说明
 > 程序 g++ 是将 gcc 默认语言设为 C++ 的一个特殊的版本，链接时它自动使用 C++ 标准库而不用 C 标准库。通过遵循源码的命名规范并指定对应库的名字，用 gcc 来编译链接 C++ 程序是可行的，如下例所示：
