@@ -61,6 +61,7 @@
 - Adding Remote Repositories
 - Delete a branch \(local or remote\)
 - git stuck on Unpacking Objects phase
+- git clone issue: repo too large?
 
 <!-- /MarkdownTOC -->
 
@@ -88,7 +89,7 @@ alias ls='ls --show-control-chars --color=auto'
 #修正 git log 無法顯示中文註解
 export LESSCHARSET=utf-8
 ````
-修改「C:\Program Files\Git\etc\gitconfig」
+修改「C:\Program Files\Git\mingw64\etc\gitconfig」
 ````config
 #加入以下設定值
 [gui]
@@ -621,3 +622,12 @@ The downside of the Git protocol is the lack of authentication.
 It also requires firewall access to port 9418, which isn’t a standard port that corporate firewalls always allow
 > I find that large binary objects (like Adobe Illustrator files, etc.) tend to bog the whole pull/push process down as well.
 Which is why I like to use two repositories now for design vs. code.
+
+## git clone issue: repo too large?
+> Basically, initialize an empty repository
+`cd repo_name && git init`
+Add the original repo as a remote in this repo
+`git remote add origin url/to/repo`
+And now do a `git fetch`.
+This way, even if your clone breaks in the middle, fetch will take care to bring in unfetched objects only in next run.
+Alternatively, you can check the solutions [here](https://stackoverflow.com/questions/21277806/fatal-early-eof-fatal-index-pack-failed/22317479#22317479) and [here](https://stackoverflow.com/questions/2505644/git-checking-out-problem-fatal-early-eofs/2505821#2505821).
