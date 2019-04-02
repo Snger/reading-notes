@@ -12,6 +12,7 @@
 - Arrow functions
 - Using a variable for a key in a JavaScript object literal
 - Base64 encoding and decoding
+- Array.prototype.slice\(\)
 - Array.prototype.splice\(\)
 - Convert Array to Object
 - js隐藏手机号中间四位，变成 * 星号
@@ -101,7 +102,13 @@ expect(getter(context, locals)).toEqual('local');
 4. The atob() function decodes a string of data which has been encoded using base-64 encoding. Conversely, the btoa() function creates a base-64 encoded ASCII string from a "string" of binary data.
 5. Both atob() and btoa() work on strings. If you want to work on ArrayBuffers, please, read this paragraph.
 
+## Array.prototype.slice()
+1. 原有内容不变，返回新的数组；
+2. Syntax: `arr.slice([begin[, end]])`
+3. The slice() method returns a shallow copy of a portion of an array into a new array object selected from `begin` to `end` (end not included). The original array will not be modified.
+
 ## Array.prototype.splice()
+1. 修改原有内容，返回值是被删除的元素；
 1. The splice() method changes the content of an array by removing existing elements and/or adding new elements.
 1. Syntax
 ````javascript

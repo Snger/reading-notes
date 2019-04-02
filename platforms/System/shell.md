@@ -7,6 +7,7 @@
 - How do I remove a directory and all its contents?
 - How to get the MD5 hash of a string directly in the terminal?
 - tar
+- tree
 
 <!-- /MarkdownTOC -->
 
@@ -100,3 +101,9 @@ not encouraged.
 > -x, --extract, --get
 >> Extract files from an archive.  Arguments are optional.  When given,  they  specify names of the archive members to be extracted.
 
+## tree
+> `tree -I 'node_modules|.git' --dirsfirst -L 2 -a`
+> `-I` ignore
+> `--dirsfirst`
+> `-L` level
+> `-a` show all

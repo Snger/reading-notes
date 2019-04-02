@@ -23,6 +23,7 @@
 - Empty a file without deleting it
 - Find if there are files containing a particular text
 - Using help with any command
+- How can I decode a base64 string from the command line?
 
 <!-- /MarkdownTOC -->
 
@@ -106,3 +107,20 @@
 1. I’ll conclude this article with one more obvious and yet very important ‘trick’, using help with a command or a command line tool.
 1. Almost all command and command line tool come with a help page that shows how to use the command. Often using help will tell you the basic usage of the tool/command.
 1. command_tool --help
+
+## How can I decode a base64 string from the command line?
+> Just use the base64 program from the coreutils package:
+	echo QWxhZGRpbjpvcGVuIHNlc2FtZQ== | base64 --decode
+> Or, to include the newline character
+	echo `echo QWxhZGRpbjpvcGVuIHNlc2FtZQ== | base64 --decode`
+> output (includes newline):
+	Aladdin:open sesame
+> Add the following to the bottom of your ~/.bashrc file:
+````bash
+decode () {
+  echo "$1" | base64 -d ; echo
+}
+````
+> Now, open a new Terminal and run the command.
+	decode QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+> This will do exactly what you asked for in your question.

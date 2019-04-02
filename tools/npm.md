@@ -10,6 +10,8 @@
 - npm outdated
 - npm update
 - npm ls
+- Use dependencies from a private GitLab with NPM
+- Recieve error when install node-sass
 
 <!-- /MarkdownTOC -->
 
@@ -64,3 +66,29 @@
 > When run as ll or la, it shows extended information by default.
 > `npm list -g --depth=0` get a list of all globally installed modules
 > ls `npm root -g`
+
+## Use dependencies from a private GitLab with NPM
+> In package.json try to replace `https://` by `git+https://`
+> doc : https://docs.npmjs.com/files/package.json#git-urls-as-dependencies
+````json
+// package.json
+"raw-html-loader": "https://gitlab.leke.cn/lekeweb/frontend/raw-html-loader.git",
+// replace
+"raw-html-loader": "git+https://git@gitlab.leke.cn:lekeweb/frontend/raw-html-loader.git",
+// yarn.lock
+"leke-jscore@git+https://git@gitlab.leke.cn/lekeweb/frontend/leke-jscore.git":
+  version "1.0.0"
+  resolved "git+https://git@gitlab.leke.cn/lekeweb/frontend/leke-jscore.git#b7e883b2da1a68aa90a30988a7d94065128e3c0d"
+"p-repo-filters@git+https://git@gitlab.leke.cn/leke-common/p-repo-filters.git":
+  version "1.0.0"
+  resolved "git+https://git@gitlab.leke.cn/leke-common/p-repo-filters.git#d636d3acab16c6f2b52841ac4040e7246ea22b32"
+  dependencies:
+    leke-jscore "git+https://git@gitlab.leke.cn/lekeweb/frontend/leke-jscore.git"
+"raw-html-loader@git+https://git@gitlab.leke.cn:lekeweb/frontend/raw-html-loader.git":
+  version "1.0.0"
+  resolved "git+https://git@gitlab.leke.cn:lekeweb/frontend/raw-html-loader.git#bae8b878420bceca415af2ea8c23db94a7089ccb"
+````
+
+## Recieve error when install node-sass
+> yarn global add node-sass
+
