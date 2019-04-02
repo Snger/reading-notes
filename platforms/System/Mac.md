@@ -1,6 +1,8 @@
 # Mac
 <!-- MarkdownTOC -->
 
+- macOS Sierra: Open an app from an unidentified developer
+- How to reinstate the Anywhere setting in Gatekeeper
 - Kernel_task taking up RAM in OS X
 - How to Sync Safari Bookmarks with Chrome
     - Manually import bookmarks and history from Firefox or Chrome
@@ -11,6 +13,26 @@
 - Mac "say" not working in tmux session
 
 <!-- /MarkdownTOC -->
+
+## macOS Sierra: Open an app from an unidentified developer
+> To override your security settings and open the app anyway:
+1. In the Finder, locate the app you want to open.
+> Don’t use Launchpad to do this. Launchpad doesn’t allow you to access the shortcut menu.
+2. Control-click the app icon, then choose Open from the shortcut menu.
+3. Click Open.
+> The app is saved as an exception to your security settings, and you can open it in the future by double-clicking it just as you can any registered app.
+> Note: You can also grant an exception for a blocked app by clicking the “Open Anyway” button in the General pane of Security & Privacy preferences. This button is available for about an hour after you try to open the app.
+> To open this pane, choose Apple menu > System Preferences, click Security & Privacy, then click General.
+
+## How to reinstate the Anywhere setting in Gatekeeper
+> If the thought of having to right or control-click to open apps from unidentified developers seems arduous and tiresome, you can turn back time with Gatekeeper and bring back the ability to open apps from anywhere. All it takes is a bit of coding in Terminal.
+1. Close System Preferences on your Mac.
+2. Open Terminal.
+3. Type the following command:
+`sudo spctl --master-disable`
+4. Hit enter on your keyboard.
+5. Enter your administrator password.
+6. Hit enter on your keyboard.
 
 ## Kernel_task taking up RAM in OS X
 >  The kernel in OS X is the software architecture that is responsible for handling resources that processes and programs need. These include the management of multitasking scheduling, virtual memory, system input and output, and various communication routines between processes. In addition, the kernel can be modified and given enhanced functionality by loading kernel extensions (kexts) to supply system-level management of features like Bluetooth and Wi-Fi, graphics processors, third-party hardware, access to peripheral devices, and special filesystem support. In essence, the kernel is responsible for running your hardware and making the hardware resources available to applications and system services.
