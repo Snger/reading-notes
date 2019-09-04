@@ -8,6 +8,16 @@
 - How to get the MD5 hash of a string directly in the terminal?
 - tar
 - tree
+- Replace one substring for another string in shell script
+- Linux ls 命令只显示目录和只显示文件
+- How can I have a newline in a string in sh?
+- How to read and write from a file in a Linux bash shell script
+- How do I pause my shell script for a second before continuing?
+- Replacing some characters in a string with another character
+- How to tell bash that the line continues on the next line
+- How to pipe command output to other commands?
+- How to Get Current Date and Time in Bash Script
+- How to iterate through json in bash script
 
 <!-- /MarkdownTOC -->
 
@@ -107,3 +117,156 @@ not encouraged.
 > `--dirsfirst`
 > `-L` level
 > `-a` show all
+
+## Replace one substring for another string in shell script
+> To replace the *first* occurrence of a pattern with a given string, use <code>${*parameter*/*pattern*/*string*}</code>:
+
+    #!/bin/bash
+    firstString="I love Suzi and Marry"
+    secondString="Sara"
+    echo "${firstString/Suzi/$secondString}"    
+    # prints 'I love Sara and Marry'
+
+> To replace *all* occurrences, use <code>${*parameter*//*pattern*/*string*}</code>:
+
+    message='The secret code is 12345'
+    echo "${message//[0-9]/X}"           
+    # prints 'The secret code is XXXXX'
+
+> (This is documented in [the *Bash Reference Manual*, &sect;3.5.3 "Shell Parameter Expansion"](https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion).)
+> Note that this feature is not specified by POSIX &mdash; it's a Bash extension &mdash; so not all Unix shells implement it. For the relevant POSIX documentation, see [*The Open Group Technical Standard Base Specifications, Issue 7*, the *Shell & Utilities* volume, &sect;2.6.2 "Parameter Expansion"](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06_02).
+
+## Linux ls 命令只显示目录和只显示文件
+> 1. 只显示目录
+` ls -F | grep "/$" `
+> -F 文件类型（File type）。在每一个列举项目之后添加一个符号。这些符号包括： / 表明是一个目录； @ 表明是到其它文件的符号链接； * 表明是一个可执行文件
+> 只显示文件
+` ls -al | grep "^-" `
+
+## How can I have a newline in a string in sh?
+> [link](https://stackoverflow.com/questions/3005963/how-can-i-have-a-newline-in-a-string-in-sh#3182519)
+> The solution is to use $'string', for example:
+````bash
+$ STR=$'Hello\nWorld'
+$ echo "$STR"
+#Hello
+#World
+NL=$'\n'
+SUB_GROUPS=$SUB_GROUPS$NL'web'$NL'web/resource'
+````
+
+## How to read and write from a file in a Linux bash shell script
+> this is how I write my counter to that file:
+````bash
+# create a variable to represent the filename
+COUNTER_FILE="counter.tmp"
+# write to the file
+echo "0" > $COUNTER_FILE
+````
+> Later in the code I increment the counter and write it to the file like this:
+````bash
+((count++))
+echo $count > $COUNTER_FILE
+````
+>Finally, this is how I read the counter from the file:
+````bash
+count=`cat $COUNTER_FILE`
+````
+
+## How do I pause my shell script for a second before continuing?
+> Use the sleep command.
+Example:
+````bash
+sleep .5 # Waits 0.5 second.
+sleep 5  # Waits 5 seconds.
+sleep 5s # Waits 5 seconds.
+sleep 5m # Waits 5 minutes.
+sleep 5h # Waits 5 hours.
+sleep 5d # Waits 5 days.
+````
+> One can also employ decimals when specifying a time unit; e.g. sleep 1.5s
+
+## Replacing some characters in a string with another character
+> `echo "$string" | tr xyz _`
+> would replace each occurrence of x, y, or z with `_`, giving `A__BC___DEF__LMN` in your example.
+````bash
+echo "$string" | sed -r 's/[xyz]+/_/g'
+````
+> would replace repeating occurrences of x, y, or z with a single `_`, giving `A_BC_DEF_LMN` in your example.
+
+## How to tell bash that the line continues on the next line
+> The character is a backslash \
+From the bash manual:
+The backslash character ‘\’ may be used to remove any special meaning for the next character read and for line continuation.
+
+## How to pipe command output to other commands?
+> There is a distinction between command line arguments and standard input. A pipe will connect standard output of one process to standard input of another. So
+````bash
+ls | echo
+````
+> Connects standard output of ls to standard input of echo. Fine right? Well, echo ignores standard input and will dump its command line arguments - which are none in this case to - its own stdout. The output: nothing at all.
+> There are a few solutions in this case. One is to use a command that reads stdin and dumps to stdout, such as cat.
+````bash
+ls | cat
+````
+> Will 'work', depending on what your definition of work is.
+> But what about the general case. What you really want is to convert stdout of one command to command line args of another. As others have said, xargs is the canonical helper tool in this case, reading its command line args for a command from its stdin, and constructing commands to run.
+````bash
+ls | xargs echo
+````
+> You could also convert this some, using the substitution command $()
+````bash
+echo $(ls)
+````
+> Would also do what you want.
+> Both of these tools are pretty core to shell scripting, you should learn both.
+For completeness, as you indicate in the question, the other base way to convert stdin to command line args is the shell's builtin read command. It converts "words" (words as defined by the IFS variable) to a temp variable, which you can use in any command runs.
+
+## How to Get Current Date and Time in Bash Script
+> 1. Uses of date Command:
+Simple date command returns the current date and time with the current timezone set in your system.
+````bash
+date
+Mon Mar  6 14:40:32 IST 2019
+````
+> You can also store the output of command in a variable for further use.
+````bash
+currentDate=`date`
+echo $currentDate
+Mon Mar 25 14:40:32 IST 2019
+````
+> 2. Formated Output of date Command:
+There are several switches, you can use to format the output of date command.
+Get date time in MM/DD/YY HH:MM:SS format:
+````bash
+date +"%D %T"
+03/25/17 14:40:32
+````
+Get current Unix epoch time:
+````bash
+date +%s
+1554542637
+````
+Get date time in YYYY-MM-DD HH:MM:SS format:
+````bash
+date +"%Y-%m-%d %T"
+2019-03-25 14:40:32
+````
+
+## How to iterate through json in bash script
+> If this is valid json and the email field is the only one containing a @ character, you can do something like this:
+````bash
+echo $value | tr '"' '\n' | grep @
+````
+> It replaces double-quotes by new line character and only keeps lines containing @. It is really not json parsing, but it works.
+> You can store the result in a bash array
+````bash
+emails=($(echo $value | tr '"' '\n' | grep @))
+````
+> and iterate on them
+````bash
+for email in ${emails[@]}
+do
+    echo $email
+done
+````
