@@ -9,6 +9,7 @@ Unit testing（单元测试），指一段代码的基本测试，其实际大�
 
 
 Backreference	\1 through \9	Substituted with the text matched between the 1st through 9th numbered capturing group.	(abc|def)=\1 matches abc=abc or def=def, but not abc=def or def=abc.
+
 ## Backreference
 1. Syntax: \1 through \9
 2. Substituted with the text matched between the 1st through 9th numbered capturing group.
@@ -56,3 +57,10 @@ tel = tel.replace(reg, "$1****$2");
 ````
 
 
+1
+00:00:00,350 --> 00:00:03,138
+To begin talking about this course, let's look at the learning goals.
+
+To begin talking about this course, let's look at the learning goals.
+
+\n?^\d([>\d:,\s-]+)?
