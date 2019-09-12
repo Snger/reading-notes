@@ -73,6 +73,9 @@
 - 解决Git Revert操作后再次Merge代码被冲掉的问题
 - Force merge after reverting merge commit init git
 - git cherry-pick Apply the changes introduced by some existing commits
+- 对代码进行 revert 后，应该如何避免代码不能合并到主干？
+- 冲突时直接把冲突文件进行reset操作，导致记录丢失
+- git log - History Simplification
 
 <!-- /MarkdownTOC -->
 
@@ -768,3 +771,73 @@ Create a merge commit even when the merge resolves as a fast-forward. This is th
 3. Paths in which the change applied cleanly are updated both in the index file and in your working tree.
 4. For conflicting paths, the index file records up to three versions, as described in the "TRUE MERGE" section of git-merge(1). The working tree files will include a description of the conflict bracketed by the usual conflict markers <<<<<<< and >>>>>>>.
 5. No other modifications are made.
+
+## 对代码进行 revert 后，应该如何避免代码不能合并到主干？
+> - 推荐方案：
+当主干代码对分支代码进行 revert 以后
+需要把主干代码拉到分支中；（这时候分支部分代码也会被 revert，造成代码丢失）
+在分支中，对上一次 revert 的记录进行 revert，才能保证代码完整；
+具体的操作记录，可以参考 test-git-revert 仓库
+> - 其他方案：
+手动提交丢失代码；
+手动修改本地的仓库提交记录（把不需要的提交记录删除）后，强制提交分支；（不推荐，一般也没有这个权限）
+> - 对 revert 进入进行 revert 的讨论
+可以选择对“合并记录” （以Merge 开头），进行 revert；
+也可以选择对 “revert 记录” （以 Revert 开头），进行 revert；
+从语义上推荐第二种，这样明确是对 revert 记录进行 revert；
+从 gitlab 操作来说，第一种比较好找（直接看 merged list），目前不做强制限制；
+
+## 冲突时直接把冲突文件进行reset操作，导致记录丢失
+> 现象描述：对代码冲突进行合并的时候，如果觉得某些文件是保留本地的，也需要对这个文件的冲突中选择自己的那部分，而不是直接忽略，（特别是使用各种 IDE 的情况，要明确知道各按钮或选项的意义），忽略文件对应的 git 命令行是 git reset -- file，结果是保留了自己本地文件内容，但是在提交记录中体现不出来，并导致后续各种代码丢失的情况；
+````bash
+# 只显示正常提交的记录
+git log 
+# --follow
+# Continue listing the history of a file beyond renames
+# (works only for a single file).
+git log --follow
+# --full-history
+# Same as the default mode, but does not prune some
+# history.
+git log --full-history
+````
+
+## git log - History Simplification
+> Sometimes you are only interested in parts of the history,
+for example the commits modifying a particular <path>. But
+there are two parts of History Simplification, one part is
+selecting the commits and the other is how to do it, as
+there are various strategies to simplify the history.
+> The following options select the commits to be shown:
+<paths>
+   Commits modifying the given <paths> are selected.
+--simplify-by-decoration
+   Commits that are referred by some branch or tag are
+   selected.
+Note that extra commits can be shown to give a meaningful
+history.
+The following options affect the way the simplification is
+performed:
+Default mode
+   Simplifies the history to the simplest history
+   explaining the final state of the tree. Simplest because
+   it prunes some side branches if the end result is the
+   same (i.e. merging branches with the same content)
+--full-history
+   Same as the default mode, but does not prune some
+   history.
+--dense
+   Only the selected commits are shown, plus some to have a
+   meaningful history.
+--sparse
+   All commits in the simplified history are shown.
+--simplify-merges
+   Additional option to --full-history to remove some
+   needless merges from the resulting history, as there are
+   no selected commits contributing to this merge.
+--ancestry-path
+   When given a range of commits to display (e.g.
+   commit1..commit2 or commit2 ^commit1), only display
+   commits that exist directly on the ancestry chain
+   between the commit1 and commit2, i.e. commits that are
+   both descendants of commit1, and ancestors of commit2.
