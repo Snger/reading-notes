@@ -18,6 +18,9 @@
 - How to pipe command output to other commands?
 - How to Get Current Date and Time in Bash Script
 - How to iterate through json in bash script
+- Recursively change file extensions in Bash
+- Add Filename as first line of file in shell script
+- List file using ls command in Linux with full path
 
 <!-- /MarkdownTOC -->
 
@@ -269,4 +272,43 @@ for email in ${emails[@]}
 do
     echo $email
 done
+````
+
+## Recursively change file extensions in Bash
+> If you have rename available then use:
+````bash
+find . -name '*.t1' -exec rename .t1 .t2 {} + 
+find . -name "*.t1" -exec rename 's/\.t1$/.t2/' '{}' \;
+````
+> If rename isn't available then use:
+````bash
+find . -name "*.t1" -exec bash -c 'mv "$1" "${1%.t1}".t2' - '{}' \;
+````
+
+## Add Filename as first line of file in shell script
+````bash
+# only first one
+f=$(ls -1tr *.txt | head -1); sed -e 1i$f $f > $f-tmp && mv $f-tmp $f
+# echo
+files=$(ls -R | grep '\.txt$');for f in $files; do echo $f; done;
+files=$(ls | grep '\.md$');for f in $files; do echo $f; done;
+files=$(ls | grep '\.md$');for f in $files; do echo $f-tmp; done;
+# without recursite
+files=$(ls | grep '\.txt$');for f in $files; do sed -e 1i$f $f > $f-tmp && mv $f-tmp $f; done;
+files=$(ls | grep '\.md$');for f in $files; do sed -e 1i$f $f > $f-tmp && mv $f-tmp $f; done;
+# sth wrong
+files=$(ls -R | grep '\.txt$');for f in $files; do sed -e 1i$f $f > $f-tmp && mv $f-tmp $f; done;
+# sed: can't find label for jump to `est11.txt'
+# add filename is  'hello.txt'$'\n''test11.txt-tmp'
+````
+
+## List file using ls command in Linux with full path
+> 1. It will also catch hidden files.
+````bash
+ls -lrt -d -1 $PWD/{*,.*}   
+find $PWD -maxdepth 1
+````
+> 2.
+````bash
+ls -d $PWD/*
 ````
