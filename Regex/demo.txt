@@ -40,6 +40,21 @@ Procedural languages offer limited support for model-driven design. Such languag
  $2
 
 
+Procedural languages offer limited support for model-driven design. Such languages do not offer the constructs necessary to implement key components of a model. Some say that OOP can be done with a procedural language like C, and indeed, some of the functionality can be reproduced that way. Objects can be simulated as data structures. Such structures do not contain the behavior of the object, and that has to be added separately as functions. The meaning of such data exists only in developer’s mind, because the code itself is not explicit. A program written in a procedural language is usually perceived as a set of functions, one calling another, and working together to achieve a certain result. Such a program cannot easily encapsulate conceptual connections, making mapping between domain and code difficult to be realized.
+
+Procedural languages offer limited support for model-driven design.
+Such languages do not offer the constructs necessary to implement key components of a model.
+Some say that OOP can be done with a procedural language like C, and indeed, some of the functionality can be reproduced that way.
+Objects can be simulated as data structures.
+Such structures do not contain the behavior of the object, and that has to be added separately as functions.
+The meaning of such data exists only in developer’s mind, because the code itself is not explicit.
+A program written in a procedural language is usually perceived as a set of functions, one calling another, and working together to achieve a certain result.
+Such a program cannot easily encapsulate conceptual connections, making mapping between domain and code difficult to be realized.
+
+\.(\s(\w))
+.\n$2
+
+
 <a href="/p/content/help/getHelp?id=129" target="_blank">如何交易比特币</a>
 
 <router-link to="/p/content/help/getHelp?id=129" target="_blank">如何交易比特币</router-link>

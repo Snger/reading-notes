@@ -32,5 +32,18 @@
 > 01 - Lesson Preview.md
 > 02 - Visual Metaphor.md
 
-## 20190911
-> 
+## 20190912
+> 03 - What is an Operating System.md
+> 04 - Operating System Definition.md
+
+## 20190918
+> 05 - Operating System Components Quiz.md
+> 06 - Operating System Components Quiz.md
+
+## 20190923
+> 07 - Abstraction or Arbitration Quiz.adoc
+
+## 20190925
+> IELTS-Preparation-and-Practice-4 (P19 Reading-1)
+> IELTS-Preparation-and-Practice-4-cn (P9 Reading-1)
+> IELTS-4-Essential-Teaching (P23 Reading-1)

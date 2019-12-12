@@ -800,6 +800,8 @@ git log --follow
 # Same as the default mode, but does not prune some
 # history.
 git log --full-history
+# 显示完整记录并直接展示修改内容（包括merge）
+git log --full-history -p -m readme.md
 ````
 
 ## git log - History Simplification

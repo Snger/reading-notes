@@ -1,0 +1,19 @@
+/* mkdir ~/.goldendict/styles/sim-dark-theme/
+then put this stylesheet there */
+MainWindow #searchPane #translateLine,
+MainWindow #searchPane #wordList {
+  background: #737c96;
+  color: orange;
+}
+MainWindow #favoritesPane #favoritesTree {
+  background: #4b5162;
+  color: orange;
+}
+MainWindow #translateLine,
+ScanPopup #translateLine,
+MainWindow #wordList,
+MainWindow #dictsPane #dictsList,
+MainWindow #historyPane #historyList {
+  background: #4b5162;
+  color: #d4d2cf;
+}

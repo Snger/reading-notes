@@ -278,6 +278,7 @@ done
 > If you have rename available then use:
 ````bash
 find . -name '*.t1' -exec rename .t1 .t2 {} + 
+find . -name '*.md' -exec rename .md .adoc {} + 
 find . -name "*.t1" -exec rename 's/\.t1$/.t2/' '{}' \;
 ````
 > If rename isn't available then use:
@@ -287,6 +288,10 @@ find . -name "*.t1" -exec bash -c 'mv "$1" "${1%.t1}".t2' - '{}' \;
 
 ## Add Filename as first line of file in shell script
 ````bash
+# add filename and backup file
+# can't support blank space
+perl -i -pe 'BEGIN{undef $/;} s/^/$ARGV\n/' `find . -name '*.txt'`
+perl -i -pe 'BEGIN{undef $/;} s/^/$ARGV\n/' `ls -1tr *.txt`
 # only first one
 f=$(ls -1tr *.txt | head -1); sed -e 1i$f $f > $f-tmp && mv $f-tmp $f
 # echo
