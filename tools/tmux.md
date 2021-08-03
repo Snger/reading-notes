@@ -12,6 +12,7 @@
 - refresh config file
 - Toggle pane zoom
 - tmux version
+- tmux ls
 
 <!-- /MarkdownTOC -->
 
@@ -48,7 +49,7 @@ You can kill a session using the following command:
 tmux kill-session -t mysession
 Frequently used sessions commands
 ````bash
-Ctrl-b d	  Detach from the current session 
+Ctrl-b d	  Detach from the current session
 Ctrl-b (          Go to previous session
 Ctrl-b )          Go to next session
 Ctrl-b L          Go to previously used session
@@ -108,3 +109,8 @@ or
 
 ## tmux version
 > tmux -V
+
+## tmux ls
+ls  list
+tmux kill-session -t [session-name]
+td  new tmux

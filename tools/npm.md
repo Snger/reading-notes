@@ -1,6 +1,7 @@
 # npm
 <!-- MarkdownTOC -->
 
+- npm run dev 报错：getaddrinfo ENOTFOUND
 - cnpm
 - Error: Cannot find module 'webpack/lib/node/NodeTemplatePlugin'
 - Short version of --save-dev and --save
@@ -14,6 +15,9 @@
 - Recieve error when install node-sass
 
 <!-- /MarkdownTOC -->
+
+## npm run dev 报错：getaddrinfo ENOTFOUND
+> 127.0.0.1 localhost
 
 ## cnpm
 > npm install cnpm -g

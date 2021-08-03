@@ -58,6 +58,7 @@
 - pull/push from multiple remote locations
 - Why am I getting the message, “fatal: This operation must be run in a work tree?”
 - How can I add an empty directory to a Git repository?
+- How To Change Git Remote Origin - devconnected
 - Adding Remote Repositories
 - Delete a branch \(local or remote\)
 - git stuck on Unpacking Objects phase
@@ -120,7 +121,14 @@ If you have already pushed the commit to GitHub, you will have to force push a c
 5. Force-push the amended commits.
 
 ## Change the author and committer name and e-mail of multiple commits in Git
-1. In the case where just the top few commits have bad authors, you can do this all inside git rebase -i using the exec command and the --amend commit, as follows:
+1. git commit --amend --reset-author --no-edit
+
+> git config --global user.name "Your Name"
+> git config --global user.email "youremail@yourdomain.com"
+> That works really well on the last commit. Nice and simple. Doesn't have to be a global change, using --local works too
+> git commit -C <commit> --reset-author
+>> --reuse-message=<commit> Take an existing commit object, and reuse the log message and the authorship information (including the timestamp) when creating the commit.
+2. In the case where just the top few commits have bad authors, you can do this all inside git rebase -i using the exec command and the --amend commit, as follows:
 ````
 git rebase -i HEAD~6 # not at master branch
 git rebase -i HEAD~~~~ # at master branch
@@ -140,10 +148,6 @@ pick 1234 my bad commit 2
 exec git commit --amend --reset-author -C HEAD
 ````
 > save and exit editor (to run).
-2. git commit --amend --reset-author --no-edit
-> That works really well on the last commit. Nice and simple. Doesn't have to be a global change, using --local works too
-> git commit -C <commit> --reset-author
->> --reuse-message=<commit> Take an existing commit object, and reuse the log message and the authorship information (including the timestamp) when creating the commit.
 3. [Changing the Git history of your repository using a script](https://help.github.com/articles/changing-author-info/)
 ````bash
 git_change_author() {
@@ -208,6 +212,7 @@ git_next() {
 ## Using a socks proxy with git for the http transport
 1. $ ALL_PROXY=socks5://127.0.0.1:1080 git clone https://github.com/some/one.git
 2. $ git clone https://github.com/xxxxx --config 'http.proxy=socks5://127.0.0.1:1080'
+ALL_PROXY=socks5://127.0.0.1:1090 git fetch --depth=5
 
 ## error: RPC failed; curl transfer closed with outstanding read data remaining
 1. because have error when clone by HTTP protocol (curl command). And, you should increment buffer size: `git config --global http.postBuffer 524288000`
@@ -586,10 +591,22 @@ git commit -m "<Brief description of this commit>"
 
 ## How can I add an empty directory to a Git repository?
 > Create an empty file called `.gitkeep` in the directory, and add that.
-> `.gitkeep` has not been prescribed by Git and is going to make people second guess its meaning, which will lead them to google searches, which will lead them here. The .git prefix convention should be reserved for files and directories that Git itself uses. 
+> `.gitkeep` has not been prescribed by Git and is going to make people second guess its meaning, which will lead them to google searches, which will lead them here. The .git prefix convention should be reserved for files and directories that Git itself uses.
 ````gitkeep
 # add empty directory of mock and give a explanation
 # https://stackoverflow.com/questions/115983/how-can-i-add-an-empty-directory-to-a-git-repository#8418403
+````
+
+## How To Change Git Remote Origin - devconnected
+````shell
+$ git remote -v
+> origin  https://github.com/USERNAME/REPOSITORY.git (fetch)
+> origin  https://github.com/USERNAME/REPOSITORY.git (push)
+$ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+$ git remote -v
+# Verify new remote URL
+> origin  git@github.com:USERNAME/REPOSITORY.git (fetch)
+> origin  git@github.com:USERNAME/REPOSITORY.git (push)
 ````
 
 ## Adding Remote Repositories

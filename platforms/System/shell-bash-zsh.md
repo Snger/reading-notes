@@ -1,6 +1,7 @@
 # shell
 <!-- MarkdownTOC -->
 
+- env: bash\r: No such file or directory
 - Bash tips: Colors and formatting \(ANSI/VT100 Control sequences\)
 - What's is the difference between “>” and “>>” in shell command?
 - What are the shell's control and redirection operators?
@@ -10,6 +11,19 @@
 - tree
 
 <!-- /MarkdownTOC -->
+
+## env: bash\r: No such file or directory
+> The error message suggests that the script you're invoking has embedded \r characters, which in turn suggests that it has Windows-style \r\n line endings instead of the \n-only line endings bash expects.
+> As a quick fix, you can remove the \r chars. as follows:
+    sed $'s/\r$//' ./install.sh > ./install.Unix.sh
+> For MAC:
+    brew install dos2unix # Installs dos2unix Mac
+find . -type f -exec dos2unix {} \; # recursively removes windows related stuff
+For Linux:
+    sudo apt-get install -y dos2unix # Installs dos2unix Linux
+    sudo find . -type f -exec dos2unix {} \; # recursively removes windows related stuff
+And make sure your git config is set as follows:
+    git config --global core.autocrlf input
 
 ## Bash tips: Colors and formatting (ANSI/VT100 Control sequences)
 > 1. The ANSI/VT100 terminals and terminal emulators are not just able to display black and white text ; they can display colors and formatted texts thanks to escape sequences. Those sequences are composed of the Escape character (often represented by ”^[” or ”<Esc>”) followed by some other characters: ”<Esc>[FormatCodem”.

@@ -6,6 +6,7 @@
 - How to clear console
 - Writing files in Node.js
 - Install step is run on optional package not supported by OS
+- nvm
 
 <!-- /MarkdownTOC -->
 
@@ -82,3 +83,8 @@ util.print("\u001b[2J\u001b[0;0H");
   > https://github.com/yarnpkg/yarn/issues/1217
   > yarn install --ignore-optional
 
+## nvm
+> 临时切换，当你开启新的terminal窗口的时候就失效
+> nvm use stable
+> 彻底的切换
+> nvm alias default xxxx

@@ -2,6 +2,9 @@
 <!-- MarkdownTOC -->
 
 - Xcode Project vs. Xcode Workspace - Differences
+- install with cocoapods, but no such module xx
+- 解决pod install / pod update 速度慢???
+- iOS error “Embedded binary is not signed with the same certificate as the parent app”
 - What's Storyboard?
 - A Segue Manages the Transition Between Two Scenes
 - WHAT IS COCOAPODS
@@ -29,6 +32,27 @@
 4. In a lot of cases, projects are all you need. If you have a dependency that you build from source, you can embed it as a subproject. Subprojects can be opened separately or within their super project. If you add one of the subproject’s targets to the super project’s dependencies, the subproject will be automatically built unless it has remained unchanged. The advantage here is that you can edit files from both your project and your dependencies in the same Xcode window, and when you build/run, you can select from the project’s and its subprojects’ targets
 5. If, however, your library (the subproject) is used by a variety of other projects (or their targets, to be precise), it makes sense to put it on the same hierarchy level – that’s what workspaces are for. Workspaces contain and manage projects, and all the projects it includes directly (i.e., not their subprojects) are on the same level and their targets can depend on each other (projects’ targets can depend on subprojects’ targets, but not vice versa).
 6. You can still open your project files separately, but it is likely their targets won’t build because Xcode cannot resolve the dependencies unless you open the workspace file. Workspaces give you the same benefit as subprojects: Once a dependency changes, Xcode will rebuild it to make sure it’s up-to-date (although I have had some issues with that, it doesn’t seem to work reliably).
+
+## install with cocoapods, but no such module xx
+> Are you sure that you are opening an xcworkspace file geneated by cocoapods instead of an xcodeproj file?
+> You must reopen project .xcworkspace file(not .xcodeproj) after install your podfile.
+> Clone the repo with CocoaPods
+> Open YourWorkspace/YourApplication.xcworkspace
+> Select the app u want to run Add SwiftyJSON.framework in embedded binaries for that project Hit Run
+
+## 解决pod install / pod update 速度慢???
+1. 查看代理端口
+mac
+偏好设置——>网络——>连接的网络——>高级——>代理——>SOCKS代理服务器
+2. 依次输入两个命令：
+git config --global http.proxy socks5://127.0.0.1:10000
+git config --global http.https://github.com.proxy socks5://127.0.0.1:10000
+3. 更新完后回滚
+git config --global --unset http.proxy
+git config --global --unset http.https://github.com.proxy
+
+## iOS error “Embedded binary is not signed with the same certificate as the parent app”
+[](https://stackoverflow.com/questions/27906188/ios-error-embedded-binary-is-not-signed-with-the-same-certificate-as-the-parent)
 
 ## What's Storyboard?
 1. A storyboard is a visual representation of the user interface of an iOS application, showing screens of content and the connections between those screens. A storyboard is composed of a sequence of scenes, each of which represents a view controller and its views; scenes are connected by segue objects, which represent a transition between two view controllers.

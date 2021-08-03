@@ -11,6 +11,8 @@
 - 如何修改鼠须管默认简繁体？
 - How can I make Safari show the URL when I hover over a link?
 - Mac "say" not working in tmux session
+- macOS 时光机器备份加速命令
+- macOS 时光机器备份加速命令
 
 <!-- /MarkdownTOC -->
 
@@ -85,3 +87,13 @@ set-option -g default-command "reattach-to-user-namespace -l zsh"
 tmux kill-server
 ````
 
+## macOS 时光机器备份加速命令
+> 如果你真的打算让时光机器全力全速工作，那也是有办法的，就是通过命令行，用命令强制关闭系统对时光机器的限流，俗称“解除封印”。打开终端，输入以下命令：
+> sudo sysctl debug.lowpri_throttle_enabled=0
+> 等它完成了首次的备份之后，你可以再执行下面的命令，恢复到原本限流的状态，以保证日后使用电脑时不被时光机器备份占去太多的资源导致变卡。
+> sudo sysctl debug.lowpri_throttle_enabled=1
+
+## macOS 时光机器备份加速命令
+> 时光机器格式：Mac OS Extended (Juournaled, Encrypted)
+> 通用格式：ExFAT
+如果希望移动硬盘既可用于Time Machine备份，也可用于Windows系统，我是这样做的：首先为移动硬盘分区（至少2个分区），用于Time Machine备份的分区设置为“Mac OS X 扩展（日志式）”格式（Win无法访问），用于Mac或Win的分区设置为“ExFAT”格式（Mac及Win均可访问）；然后将“Mac OS X 扩展（日志式）”格式的分区设置为Time Machine备份的目标设备。
