@@ -12,6 +12,7 @@
 - Arrow functions
 - Using a variable for a key in a JavaScript object literal
 - Base64 encoding and decoding
+- Failed to execute 'toDataURL' on 'HTMLCanvasElement': Tainted canvases may not be exported. \(Base64\)
 - Array.prototype.slice\(\)
 - Array.prototype.splice\(\)
 - Convert Array to Object
@@ -101,6 +102,18 @@ expect(getter(context, locals)).toEqual('local');
 3. In JavaScript there are two functions respectively for decoding and encoding base64 strings: atob(), btoa()
 4. The atob() function decodes a string of data which has been encoded using base-64 encoding. Conversely, the btoa() function creates a base-64 encoded ASCII string from a "string" of binary data.
 5. Both atob() and btoa() work on strings. If you want to work on ArrayBuffers, please, read this paragraph.
+
+## Failed to execute 'toDataURL' on 'HTMLCanvasElement': Tainted canvases may not be exported. (Base64)
+> For security reasons, your local drive is declared to be "other-domain" and will taint the canvas.
+(That's because your most sensitive info is likely on your local drive!).
+While testing try these workarounds:
+- Put all page related files (.html, .jpg, .js, .css, etc) on your desktop (not in sub-folders).
+- Post your images to a site that supports cross-domain sharing (like dropbox.com). Be sure you put your images in dropbox's public folder and also set the cross origin flag when downloading the image (var img=new Image(); img.crossOrigin="anonymous" ...)
+- Install a webserver on your development computer (IIS and PHP web servers both have free editions that work nicely on a local computer).
+> In the img tag set crossorigin to Anonymous.
+````html
+<img crossorigin="anonymous"></img>
+````
 
 ## Array.prototype.slice()
 1. 原有内容不变，返回新的数组；

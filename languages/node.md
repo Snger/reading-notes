@@ -7,6 +7,9 @@
 - Writing files in Node.js
 - Install step is run on optional package not supported by OS
 - nvm
+- How Can I Wait In Node.js \(Javascript\), l need to pause for a period of time
+- write/add data in JSON file using node.js
+- How to exit in Node.js
 
 <!-- /MarkdownTOC -->
 
@@ -80,11 +83,70 @@ util.print("\u001b[2J\u001b[0;0H");
   [1004]: https://github.com/joyent/node/blob/master/lib/fs.js#L1623
 
 ## Install step is run on optional package not supported by OS
-  > https://github.com/yarnpkg/yarn/issues/1217
-  > yarn install --ignore-optional
+> https://github.com/yarnpkg/yarn/issues/1217
+> yarn install --ignore-optional
 
+<<<<<<< HEAD
 ## nvm
 > 临时切换，当你开启新的terminal窗口的时候就失效
 > nvm use stable
 > 彻底的切换
 > nvm alias default xxxx
+
+## How Can I Wait In Node.js (Javascript), l need to pause for a period of time
+> A new answer to an old question. Today ( Jan 2017 June 2019) it is much easier. You can use the new async/await syntax. For example:
+````javascript
+async function init(){
+   console.log(1)
+   await sleep(1000)
+   console.log(2)
+}
+function sleep(ms){
+    return new Promise(resolve=>{
+        setTimeout(resolve,ms)
+    })
+}
+````
+
+## write/add data in JSON file using node.js
+> If this json file won't become too big over the time you should try:
+Create a javascript object with the table array in it
+````javascript
+var obj = {
+   table: []
+};
+````
+> Add some data to it like
+`obj.table.push({id: 1, square:2});`
+> Convert it from an object to string with stringify
+`var json = JSON.stringify(obj);`
+> use fs to write the file to disk
+````javascript
+var fs = require('fs');
+fs.writeFile('myjsonfile.json', json, 'utf8', callback);
+````
+> if you want to append it read the json file and convert it back to an object
+````javascript
+fs.readFile('myjsonfile.json', 'utf8', function readFileCallback(err, data){
+    if (err){
+        console.log(err);
+    } else {
+    obj = JSON.parse(data); //now it an object
+    obj.table.push({id: 2, square:3}); //add some data
+    json = JSON.stringify(obj); //convert it back to json
+    fs.writeFile('myjsonfile.json', json, 'utf8', callback); // write it back 
+}});
+````
+> This will work for data big as 100 MB max effectively. Over this limit, you should use a database engine.
+> UPDATE: Create a function which returns the current date (year+month+day) as a string. Create the file named this string + .json. the fs module has a function which can check for file existence named fs.stat(path, callback). With this, you can check if the file exists. If it exists, use the read function if it's not, use the create function. Use the date string as the path cuz the file will be named as the today date + .json. the callback will contain a stats object which will be null if the file does not exist.
+
+## How to exit in Node.js
+> Call the global process object's exit method:
+`process.exit()`
+> From the docs:
+`process.exit([code])`
+> Ends the process with the specified code. If omitted, exit uses the 'success' code 0.
+> To exit with a 'failure' code:
+`process.exit(1);`
+> The shell that executed node should see the exit code as 1.
+>>>>>>> b2b1b481dec060be3e51e3bdf55dfc8994601df3

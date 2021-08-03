@@ -7,6 +7,7 @@
 - Amending older or multiple commit messages
 - Amend your last commit
 - Amending the message of older or multiple commit messages
+- git rebase commands
 - Change the author and committer name and e-mail of multiple commits in Git
 - Remove refs/original/heads/master from git repo after filter-branch --tree-filter?
 - Completely cancel a rebase
@@ -18,6 +19,9 @@
 - Trace the evolution of the line range of a file
 - git diff between two different files
 - How to compare files from two different branches?
+- How to view file diff in git before commit \(committed\)
+- git-diff ignore changes in whitespace
+- git-diff to ignore ^M
 - man git-merge-base
 - List merge commits affecting a file.
 - Get the Git Commit ID via Command Line
@@ -30,7 +34,6 @@
 - How to delete .orig files after merge from git repository?
 - how to remove untracked files in Git?
 - Is there a way to skip password typing when using https:// on GitHub?
-- git-diff to ignore ^M
 - .gitignore manual
 - Best practice for using multiple .gitignore files
 - Are multiple `.gitignore`s frowned on?
@@ -55,14 +58,25 @@
 - git merge with vimdiff
 - Create Git branch with current changes
 - A previous backup already exists in refs/original/
-- pull/push from multiple remote locations
+- fetch/pull/push from multiple remote locations
+- How to clone all remote branches in Git?
+- Differences between git remote update and fetch?
 - Why am I getting the message, “fatal: This operation must be run in a work tree?”
 - How can I add an empty directory to a Git repository?
 - How To Change Git Remote Origin - devconnected
+- Replace Remote Repositories
 - Adding Remote Repositories
 - Delete a branch \(local or remote\)
 - git stuck on Unpacking Objects phase
 - git clone issue: repo too large?
+- git tag
+- git-revert - Revert some existing commits
+- 解决Git Revert操作后再次Merge代码被冲掉的问题
+- Force merge after reverting merge commit init git
+- git cherry-pick Apply the changes introduced by some existing commits
+- 对代码进行 revert 后，应该如何避免代码不能合并到主干？
+- 冲突时直接把冲突文件进行reset操作，导致记录丢失
+- git log - History Simplification
 
 <!-- /MarkdownTOC -->
 
@@ -120,6 +134,18 @@ If you have already pushed the commit to GitHub, you will have to force push a c
 4. In each resulting commit file, type the new commit message, save the file, and close it.
 5. Force-push the amended commits.
 
+## git rebase commands
+````vi
+# Commands:
+# p, pick = use commit
+# r, reword = use commit, but edit the commit message
+# e, edit = use commit, but stop for amending
+# s, squash = use commit, but meld into previous commit
+# f, fixup = like "squash", but discard this commit's log message
+# x, exec = run command (the rest of the line) using shell
+# d, drop = remove commit
+````
+
 ## Change the author and committer name and e-mail of multiple commits in Git
 1. git commit --amend --reset-author --no-edit
 
@@ -129,6 +155,8 @@ If you have already pushed the commit to GitHub, you will have to force push a c
 > git commit -C <commit> --reset-author
 >> --reuse-message=<commit> Take an existing commit object, and reuse the log message and the authorship information (including the timestamp) when creating the commit.
 2. In the case where just the top few commits have bad authors, you can do this all inside git rebase -i using the exec command and the --amend commit, as follows:
+> [Git-rebase 小筆記](https://blog.yorkxin.org/2011/07/29/git-rebase.html)
+1. In the case where just the top few commits have bad authors, you can do this all inside git rebase -i using the exec command and the --amend commit, as follows:
 ````
 git rebase -i HEAD~6 # not at master branch
 git rebase -i HEAD~~~~ # at master branch
@@ -250,6 +278,48 @@ ALL_PROXY=socks5://127.0.0.1:1090 git fetch --depth=5
 > This form is to view the changes on the branch containing and up to the second <commit>, starting at a common ancestor of both <commit>. `git diff A...B` is equivalent to `git diff $(git-merge-base A B) B`.
 In other words, this will give a diff of changes in master since it diverged from mybranch (but without new changes since then in mybranch).
 
+## How to view file diff in git before commit (committed)
+> If you want to see what you haven't git added yet:
+`git diff myfile.txt`
+or if you want to see already added changes
+`git diff --cached myfile.txt`
+
+## git-diff ignore changes in whitespace
+````bash
+--ignore-cr-at-eol
+   Ignore carrige-return at the end of line when doing a comparison.
+
+--ignore-space-at-eol
+   Ignore changes in whitespace at EOL.
+
+-b, --ignore-space-change
+   Ignore changes in amount of whitespace. This ignores whitespace at line end, and considers all other sequences of
+   one or more whitespace characters to be equivalent.
+
+-w, --ignore-all-space
+   Ignore whitespace when comparing lines. This ignores differences even if one line has whitespace where the other
+   line has none.
+
+--ignore-blank-lines
+   Ignore changes whose lines are all blank.
+````
+
+## git-diff to ignore ^M
+> 1. GitHub suggests that you should make sure to only use \n as a newline character in git-handled repos. There's an option to auto-convert:
+2. `$ git config --global core.autocrlf true`
+3. Of course, this is said to convert crlf to lf, while you want to convert cr to lf.
+4. code
+    ````bash
+    # Remove everything from the index
+    $ git rm --cached -r .
+    # Re-add all the deleted files to the index
+    # You should get lots of messages like: "warning: CRLF will be replaced by LF in <file>."
+    $ git diff --cached --name-only -z | xargs -0 git add
+    # Commit
+    $ git commit -m "Fix CRLF"
+    ````
+5. core.autocrlf: Setting this variable to "true" is almost the same as setting the text attribute to "auto" on all files except that text files are not guaranteed to be normalized: files that contain CRLF in the repository will not be touched. Use this setting if you want to have CRLF line endings in your working directory even though the repository does not have normalized line endings. This variable can be set to input, in which case no output conversion is performed.
+
 ## man git-merge-base
 > git-merge-base - Find as good common ancestors as possible for a merge
 > git merge-base finds best common ancestor(s) between two commits to use in a three-way merge. One common ancestor is better than another common ancestor if the latter is an ancestor of the former. A common ancestor that does not have any better common ancestor is a best common ancestor, i.e. a merge base. Note that there can be more than one merge base for a pair of commits.
@@ -333,7 +403,7 @@ git clean -fdx
 -x - remove ignored files too ( don't use this if you don't want to remove ignored files)
 
 ## Is there a way to skip password typing when using https:// on GitHub?
-1. With Git version 1.7.9 and later
+> 1. With Git version 1.7.9 and later
 > Since Git 1.7.9 (released in late January 2012), there is a neat mechanism in Git to avoid having to type your password all the time for HTTP / HTTPS, called [credential helpers](http://www.kernel.org/pub/software/scm/git/docs/v1.7.9/gitcredentials.html). (Thanks to [dazonic](http://stackoverflow.com/users/109707/dazonic) for pointing out this new feature in the comments below.)
 > With Git 1.7.9 or later, you can just use one of the following credential helpers:
 >    git config --global credential.helper cache
@@ -360,22 +430,6 @@ git clean -fdx
 > ... replacing `<hostname>` with the server's hostname, and `<username>` and `<password>` with your username and password. Also remember to set restrictive file system permissions on that file:
 >     chmod 600 ~/.netrc
 > Note that on Windows, this file should be called `_netrc`, and you may need to define the %HOME% environment variable - for more details see:
-
-## git-diff to ignore ^M
-1. GitHub suggests that you should make sure to only use \n as a newline character in git-handled repos. There's an option to auto-convert:
-2. `$ git config --global core.autocrlf true`
-3. Of course, this is said to convert crlf to lf, while you want to convert cr to lf.
-4. code
-    ````bash
-    # Remove everything from the index
-    $ git rm --cached -r .
-    # Re-add all the deleted files to the index
-    # You should get lots of messages like: "warning: CRLF will be replaced by LF in <file>."
-    $ git diff --cached --name-only -z | xargs -0 git add
-    # Commit
-    $ git commit -m "Fix CRLF"
-    ````
-5. core.autocrlf: Setting this variable to "true" is almost the same as setting the text attribute to "auto" on all files except that text files are not guaranteed to be normalized: files that contain CRLF in the repository will not be touched. Use this setting if you want to have CRLF line endings in your working directory even though the repository does not have normalized line endings. This variable can be set to input, in which case no output conversion is performed.
 
 ## .gitignore manual
 > - NAME
@@ -573,17 +627,55 @@ git commit -m "<Brief description of this commit>"
 > (That's taken directly from the filter-branch manpage.)
 > This doesn't apply to you, but to others who may find this: If you do a filter-branch which *removes* content taking up significant disk space, you might also want to run `git reflog expire --expire=now --all` and `git gc --prune=now` to expire your reflogs and delete the now-unused objects. (Warning: completely, totally irreversible. Be very sure before you do it.)
 
-## pull/push from multiple remote locations
+## fetch/pull/push from multiple remote locations
 > You can configure multiple remote repositories with the `git remote` command:
     git remote add lab lab-machine:/path/to/repo
 > To fetch from all the configured remotes and update tracking branches, but not merge into HEAD, do:
     git remote update
 > If it's not currently connected to one of the remotes, it will take time out or throw an error, and go on to the next. You'll have to manually merge from the fetched repositories, or cherry-pick, depending on how you want to organize collecting changes.
 > To fetch the master branch from alt and pull it into your current head, do:
+    git fetch origin --all
+    //-u, --set-upstream    set upstream for git pull/status
+    git push -u lab --all
+    git push lab --all
     git pull lab master
     git push lab master
 > So in fact `git pull` is almost shorthand for `git pull origin HEAD` (actually it looks in the config file to determine this, but you get the idea).
 > For pushing updates, you have to do that to each repo manually. A push was, I think, designed with the central-repository workflow in mind.
+
+## How to clone all remote branches in Git?
+> 1. mirror and core.bare
+> Using the --mirror option seems to copy the remote tracking branches properly. However, it sets up the repository as a bare repository, so you have to turn it back into a normal repository afterwards.
+````bash
+git clone --mirror path/to/original path/to/dest/.git
+cd path/to/dest
+git config --bool core.bare false
+git checkout anybranch
+````
+> Reference: Git FAQ: How do I clone a repository with all remotely tracked branches?
+> 3. checkout by xargs
+> Here is another short one-liner command which creates local branches for all remote branches:
+````bash
+(git branch -r | sed -n '/->/!s#^  origin/##p' && echo master) | xargs -L1 git checkout
+````
+> It works also properly if tracking local branches are already created. You can call it after the first git clone or any time later.
+> If you do not need to have master branch checked out after cloning, use
+````bash
+git branch -r | sed -n '/->/!s#^  origin/##p'| xargs -L1 git checkout
+````
+> 2. bash alias
+> Use aliases. Though there aren't any native Git one-liners, you can define your own as
+````bash
+git config --global alias.clone-branches '! git branch -a | sed -n "/\/HEAD /d; /\/master$/d; /remotes/p;" | xargs -L1 git checkout -t'
+````
+> and then use it as
+````bash
+git clone-branches
+````
+
+## Differences between git remote update and fetch?
+> git remote update fetches from all remotes, not just one.
+> You can configure which remotes to fetch when running git remote update, see git-remote manpage.
 
 ## Why am I getting the message, “fatal: This operation must be run in a work tree?”
 > I had this issue, because .git/config contained worktree = D:/git-repositories/OldName. I just changed it into worktree = D:/git-repositories/NewName
@@ -608,6 +700,8 @@ $ git remote -v
 > origin  git@github.com:USERNAME/REPOSITORY.git (fetch)
 > origin  git@github.com:USERNAME/REPOSITORY.git (push)
 ````
+## Replace Remote Repositories
+> git remote set-url [--push] <name> <newurl> [<oldurl>]
 
 ## Adding Remote Repositories
 > git remote add upstream [git link]
@@ -648,3 +742,121 @@ Add the original repo as a remote in this repo
 And now do a `git fetch`.
 This way, even if your clone breaks in the middle, fetch will take care to bring in unfetched objects only in next run.
 Alternatively, you can check the solutions [here](https://stackoverflow.com/questions/21277806/fatal-early-eof-fatal-index-pack-failed/22317479#22317479) and [here](https://stackoverflow.com/questions/2505644/git-checking-out-problem-fatal-early-eofs/2505821#2505821).
+
+## git tag
+> 1. 创建tag
+git tag -a V1.2 -m 'release 1.2'
+上面的命令我们成功创建了本地一个版本 V1.2 ,并且添加了附注信息 'release 1.2'
+> 2. 查看tag
+git tag
+要显示附注信息,我们需要用 show 指令来查看
+git show V1.2
+但是目前这个标签仅仅是提交到了本地git仓库.如何同步到远程代码库
+git push origin --tags
+如果刚刚同步上去,你缺发现一个致命bug ,需要重新打版本,现在还为时不晚.
+git tag -d V1.2
+到这一步我们只是删除了本地 V1.2的版本,可是线上V1.2的版本还是存在,如何办?这时我们可以推送的空的同名版本到线下,达到删除线上版本的目标:
+git push origin :refs/tags/V1.2
+如何获取远程版本?
+git fetch origin tag V1.2
+这样我们可以精准拉取指定的某一个版本.适用于运维同学部署指定版本.
+
+## git-revert - Revert some existing commits
+> Given one or more existing commits, revert the changes that the relatedpatches introduce, and record some new commits that record them. Thisrequires your working tree to be clean (no modifications from the HEADcommit).
+> Note: git revert is used to record some new commits to reverse the effectof some earlier commits (often only a faulty one). If you want to throwaway all uncommitted changes in your working directory, you should see git-reset(1), particularly the --hard option. If you want to extract specificfiles as they were in another commit, you should see git-checkout(1),specifically the git checkout <commit> -- <filename> syntax. Take care withthese alternatives as both will discard uncommitted changes in your workingdirectory.
+
+## 解决Git Revert操作后再次Merge代码被冲掉的问题
+> [link](https://www.cnblogs.com/zhaokunbokeyuan256/p/9597263.html)
+> 要解决这个问题，需要把revert产生的提交再revert一次
+> 因为git revert是用新提交覆盖旧提交，因此，被覆盖的提交等于不会被采用了。如果两个分支（假设是master和A分支）先合并再用revert回滚，之后又合并（A合并到master），就会发现在master分支上，A分支第一次合并之前的修改大部分不见了。这是因为从时间的发生顺序来看，A分支第一次合并之前的修改发生在revert之前，revert 发生在后，而 revert 抛弃了A第一合并之前的修改，那么再合并 Git 就认为你永远抛弃了A第一次之前的修改。
+> [link](https://blog.csdn.net/cxn945/article/details/48372327)
+> 使用revert，把错误的合并反向删除掉。把master合并到dev_cxn时，发现dev_cxn上最后一次提交的代码丢失。经过检查，发现这次合并是fast-forward，而master上的revert操作不会改变合并历史，只是反向删除，所以版本节点是向前更新的，于是想到把dev_cxn合到master，结果发现Already-up-to-date，失败。。
+> 再想到如果不用快进合并的方式，也许能够解决问题，于是执行git merge master --no-ff
+````man
+--no-ff
+Create a merge commit even when the merge resolves as a fast-forward. This is the default behaviour when merging an annotated (and possibly signed) tag.
+````
+> 结果发现，即使不用快进的方式，revert那次操作还是会实实在在的执行进dev_cxn分支，失败。。。
+
+## Force merge after reverting merge commit init git
+> There is no way to force a merge; indeed, reverting the revert is the correct way to do it (see https://github.com/git/git/blob/master/Documentation/howto/revert-a-faulty-merge.txt where Linus discusses this). Note that if there are commits on the branch after the (reverted) merge that you want in master, you will need to of course merge in the branch as well.
+
+## git cherry-pick Apply the changes introduced by some existing commits
+> Given one or more existing commits, apply the change each one introduces, recording a new commit for each. This requires your working tree to be clean (no modifications from the HEAD commit). When it is not obvious how to apply a change, the following happens:
+1. The current branch and HEAD pointer stay at the last commit successfully made.
+2. The CHERRY_PICK_HEAD ref is set to point at the commit that introduced the change that is difficult to apply.
+3. Paths in which the change applied cleanly are updated both in the index file and in your working tree.
+4. For conflicting paths, the index file records up to three versions, as described in the "TRUE MERGE" section of git-merge(1). The working tree files will include a description of the conflict bracketed by the usual conflict markers <<<<<<< and >>>>>>>.
+5. No other modifications are made.
+
+## 对代码进行 revert 后，应该如何避免代码不能合并到主干？
+> - 推荐方案：
+当主干代码对分支代码进行 revert 以后
+需要把主干代码拉到分支中；（这时候分支部分代码也会被 revert，造成代码丢失）
+在分支中，对上一次 revert 的记录进行 revert，才能保证代码完整；
+具体的操作记录，可以参考 test-git-revert 仓库
+> - 其他方案：
+手动提交丢失代码；
+手动修改本地的仓库提交记录（把不需要的提交记录删除）后，强制提交分支；（不推荐，一般也没有这个权限）
+> - 对 revert 进入进行 revert 的讨论
+可以选择对“合并记录” （以Merge 开头），进行 revert；
+也可以选择对 “revert 记录” （以 Revert 开头），进行 revert；
+从语义上推荐第二种，这样明确是对 revert 记录进行 revert；
+从 gitlab 操作来说，第一种比较好找（直接看 merged list），目前不做强制限制；
+
+## 冲突时直接把冲突文件进行reset操作，导致记录丢失
+> 现象描述：对代码冲突进行合并的时候，如果觉得某些文件是保留本地的，也需要对这个文件的冲突中选择自己的那部分，而不是直接忽略，（特别是使用各种 IDE 的情况，要明确知道各按钮或选项的意义），忽略文件对应的 git 命令行是 git reset -- file，结果是保留了自己本地文件内容，但是在提交记录中体现不出来，并导致后续各种代码丢失的情况；
+````bash
+# 只显示正常提交的记录
+git log
+# --follow
+# Continue listing the history of a file beyond renames
+# (works only for a single file).
+git log --follow
+# --full-history
+# Same as the default mode, but does not prune some
+# history.
+git log --full-history
+# 显示完整记录并直接展示修改内容（包括merge）
+git log --full-history -p -m readme.md
+````
+
+## git log - History Simplification
+> Sometimes you are only interested in parts of the history,
+for example the commits modifying a particular <path>. But
+there are two parts of History Simplification, one part is
+selecting the commits and the other is how to do it, as
+there are various strategies to simplify the history.
+> The following options select the commits to be shown:
+<paths>
+   Commits modifying the given <paths> are selected.
+--simplify-by-decoration
+   Commits that are referred by some branch or tag are
+   selected.
+Note that extra commits can be shown to give a meaningful
+history.
+The following options affect the way the simplification is
+performed:
+Default mode
+   Simplifies the history to the simplest history
+   explaining the final state of the tree. Simplest because
+   it prunes some side branches if the end result is the
+   same (i.e. merging branches with the same content)
+--full-history
+   Same as the default mode, but does not prune some
+   history.
+--dense
+   Only the selected commits are shown, plus some to have a
+   meaningful history.
+--sparse
+   All commits in the simplified history are shown.
+--simplify-merges
+   Additional option to --full-history to remove some
+   needless merges from the resulting history, as there are
+   no selected commits contributing to this merge.
+--ancestry-path
+   When given a range of commits to display (e.g.
+   commit1..commit2 or commit2 ^commit1), only display
+   commits that exist directly on the ancestry chain
+   between the commit1 and commit2, i.e. commits that are
+   both descendants of commit1, and ancestors of commit2.

@@ -17,6 +17,7 @@
 - Enabling UPnP in Windows 7, 8, and 10
 - Create a restore point
 - win10 应用录音/录屏
+- 不能访问此共享文件夹，因为你组织的安全策略阻止未经身份验证的来宾访问
 
 <!-- /MarkdownTOC -->
 
@@ -145,3 +146,7 @@ Funtion Discovery Resource Publication, SSDP Discovery Service, UPnP Device Host
 ## win10 应用录音/录屏
 > 用电脑版微信，w10系统自带的游戏录制功能可以用来录屏/录音，快捷键win+G唤醒，录完自动保存在我的电脑-视频-捕获文件夹里，亲测有效。
 
+## 不能访问此共享文件夹，因为你组织的安全策略阻止未经身份验证的来宾访问
+> 按window+R键输入gpedit.msc 来启动本地组策略编辑器。
+> 依次找到“计算机配置-管理模板-网络-Lanman工作站”这个节点，在右侧内容区可以看到“启用不安全的来宾登录”这一条策略设置。状态是“未配置”。
+> 双击“启用不安全的来宾登录”这一条策略设置，将其状态修改为“已启用”并单击确定按钮。

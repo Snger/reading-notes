@@ -24,6 +24,7 @@
 - Find if there are files containing a particular text
 - Using help with any command
 - How can I decode a base64 string from the command line?
+- find
 
 <!-- /MarkdownTOC -->
 
@@ -122,5 +123,26 @@ decode () {
 }
 ````
 > Now, open a new Terminal and run the command.
+````bash
 	decode QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+````
 > This will do exactly what you asked for in your question.
+
+## find
+> find - search for files in a directory hierarchy
+	find /tmp -name core -type f -print | xargs /bin/rm -f
+> Find  files  named  core  in or below the directory /tmp and delete them. Note that this will work incorrectly if  there are  any  filenames  containing  newlines,  single or double quotes, or spaces.
+	-type c
+        File is of type c:
+        b      block (buffered) special
+        c      character (unbuffered) special
+        d      directory
+        p      named pipe (FIFO)
+        f      regular file
+        l      symbolic  link;  this  is never true if the -L
+               option or the -follow  option  is  in  effect,
+               unless  the  symbolic  link is broken.  If you
+               want to search for symbolic links when  -L  is
+               in effect, use -xtype.
+        s      socket
+        D      door (Solaris)

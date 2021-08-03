@@ -4,6 +4,7 @@
 - How to prevent favicon.ico requests?
 - Can we have multiple tbody in same table?
 - IconFont和FontAwesome的区别？
+- HTML  Tag - Attributes - crossorigin
 
 <!-- /MarkdownTOC -->
 
@@ -35,3 +36,11 @@ Fontawesome只支持IE7+的高版本浏览器；
 Fontawesome只能用别人的字体文件；
 Fontawesome，即便只用到2个图标，你都得把所有文件下载下来，才能使用。而且svg和其他字体文件加起来，大小总共有400+KB。
 访问网址是： [http://fontawesome.dashgame.com/](http://fontawesome.dashgame.com/)
+
+## HTML <img> Tag - Attributes - crossorigin
+> Attribute:
+crossorigin
+> Value:
+anonymous
+> Description:
+use-credentials	Allow images from third-party sites that allow cross-origin access to be used with canvas

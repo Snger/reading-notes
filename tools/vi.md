@@ -13,6 +13,7 @@
 - Indent or comment several text lines with vi
 - Ctrl-s hang terminal emulator?
 - Tab key == 4 spaces and auto-indent after curly braces in Vim
+- delete current character
 
 <!-- /MarkdownTOC -->
 
@@ -129,3 +130,11 @@ The width of a hard tabstop measured in "spaces" -- effectively the (maximum) wi
 > - smarttab
 > Enabling this will make the tab key (in insert mode) insert spaces or tabs to go to the next indent of the next tabstop when the cursor is at the beginning of a line (i.e. the only preceding characters are whitespace).
 > For more details on any of these see :help 'optionname' in vim (e.g. :help 'tabstop')
+
+## delete current character
+> x   - delete current character
+d$  - delete to end of line
+d0  - delete to beginning of line
+:1,.d  - delete to beginning of file
+:.,$d  - delete to end of file
+
